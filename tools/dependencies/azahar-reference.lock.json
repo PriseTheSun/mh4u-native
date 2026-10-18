@@ -1,0 +1,9 @@
+{
+  "name": "Azahar",
+  "version": "2126.2",
+  "purpose": "reference execution only; not linked or bundled with native engine",
+  "release_url": "https://github.com/azahar-emu/azahar/releases/tag/2126.2",
+  "url": "https://github.com/azahar-emu/azahar/releases/download/2126.2/azahar-macos-arm64-2126.2.zip",
+  "size": 99740365,
+  "sha256": "c24dec2bd5111b7d79513d686c5aece6612cdbf9737b2e6ea99cfc426f1d4aef"
+}

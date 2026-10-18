@@ -1,0 +1,64 @@
+{
+  "schema": "mh4u-translation-seed-v1",
+  "locale": "pt-BR",
+  "status": "draft; source consumer identified by discriminant test; final translation layout not yet verified",
+  "source": {
+    "internal_name": "Common",
+    "sha256": "015a1236c2146295b93cd201b76fa05b450d66707c74fff55f8e162f10e20fe7",
+    "size": 10427,
+    "archive": "/eng/data/core_common.arc",
+    "entry_path": "eng\\msg\\common\\Common_eng",
+    "rom_sha256": "c16b6cd17cb761508d3077c99be3fb310b460aa8fcf57d3c651310f082bda666"
+  },
+  "coverage": {
+    "translated_fragments": 2,
+    "source_file_fragments": 124,
+    "entire_game_total": null,
+    "excluded_candidate": {
+      "text_index": 62,
+      "reason": "Consumer not identified by bounded runtime test"
+    }
+  },
+  "entries": [
+    {
+      "key": "Common:000060",
+      "text_index": 60,
+      "source_text": "Back",
+      "source_offset": 7984,
+      "label_references": [
+        {
+          "label_ordinal": 60,
+          "identifier_hex": "df7dff6d",
+          "label_unknown_u16": 64,
+          "control_index": 129
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Voltar",
+      "review_status": "draft"
+    },
+    {
+      "key": "Common:000061",
+      "text_index": 61,
+      "source_text": "Confirm",
+      "source_offset": 7996,
+      "label_references": [
+        {
+          "label_ordinal": 61,
+          "identifier_hex": "4faf8bb7",
+          "label_unknown_u16": 64,
+          "control_index": 131
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Confirmar",
+      "review_status": "draft"
+    }
+  ]
+}

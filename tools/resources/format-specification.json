@@ -1,0 +1,100 @@
+{
+  "scope": "Observed MH4U EUR source assets; bounded parser, not a complete engine/file-format implementation",
+  "endianness": "little",
+  "sources": [
+    "https://github.com/svanheulen/mhff/wiki/MH4U-rArchive-Format",
+    "https://github.com/svanheulen/mhff/wiki/MH4U-rModel-Format",
+    "https://github.com/svanheulen/mhff/wiki/MH4U-rTexture-Format",
+    "https://github.com/svanheulen/mhff/wiki/MH4U-rMaterial-Format",
+    "https://github.com/svanheulen/mhff/blob/6ef14c8ffa341ccbe44e0e6a93eb4bfe541265cf/n3ds/io_import_scene_mod.py"
+  ],
+  "arc": {
+    "header": "<4sHHI; magic ARC\\0, observed version19, count at6; records start12",
+    "record_size": 80,
+    "record": {
+      "0x00": "ASCII name,64 bytes",
+      "0x40": "resource type u32",
+      "0x44": "compressed size u32",
+      "0x48": "uncompressed size low28 bits, high4 preserved unknown",
+      "0x4c": "offset u32 relative to ARC start"
+    },
+    "payload": "zlib stream; validate exact output length/eof/no trailing bytes",
+    "types": {
+      "58a15856": "MOD",
+      "241f5deb": "TEX",
+      "2749c8a8": "MRL"
+    }
+  },
+  "mod": {
+    "header": "<4s4H13I at0; MOD\\0; version230",
+    "fields": {
+      "0x06": "joint count u16",
+      "0x08": "primitive count u16",
+      "0x0a": "material count u16",
+      "0x0c": "total vertex count u32",
+      "0x10": "total index count u32",
+      "0x14": "total polygon count u32",
+      "0x18": "vertex buffer bytes u32",
+      "0x30": "material-name table offset",
+      "0x34": "primitive table offset",
+      "0x38": "vertex buffer offset",
+      "0x3c": "index buffer offset"
+    },
+    "material": "128-byte null-terminated ASCII name records",
+    "primitive_size": 48,
+    "primitive_fields": {
+      "0x02": "vertex count u16",
+      "0x04": "material ID in bits12..23; remaining bits preserved",
+      "0x0a": "vertex stride u8",
+      "0x0b": "vertex type low6 bits",
+      "0x0c": "vertex start index u32",
+      "0x10": "vertex buffer suboffset u32",
+      "0x18": "index start u32",
+      "0x1c": "strip extent u32; observed importer reads extent+1 u16"
+    },
+    "vertex_location": "header.vertex_buffer + primitive.vertex_start * stride + primitive.vertex_buffer_suboffset",
+    "vertex_observed_type4_stride28": {
+      "0x00": "3 float32 positions, source coordinates retained",
+      "0x0c": "3 signed-normalized i8 normals; fourth byte preserved in raw source",
+      "0x10": "2 float32 UV, no flip applied",
+      "0x18": "joint/weight bytes; not used in static preview"
+    },
+    "faces": "u16 triangle strips; 0xffff restart; parity toggles on every new triangle including degenerates; omit only degenerate triples; validate local indices",
+    "unknowns": [
+      "primitive flags and distinction between primitives0/1",
+      "physical units",
+      "world transform",
+      "material shader",
+      "skeletal pose"
+    ]
+  },
+  "tex": {
+    "header": "<4s3I at0; magic TEX\\0",
+    "word4": "version bits0..11=165; bits12..23 unknown; bits24..27 size shift; high nibble observed2",
+    "word8": "mip_count bits0..5; width bits6..18; height bits19..31",
+    "word12": "texture_count low8=1; color_type bits8..15=12; remaining bits preserved",
+    "mip_offsets": "u32 array at16, offsets relative to end of offset table in selected assets",
+    "base_level": "128x256, ETC1+A4,4 mips, offsets[0,32768,40960,43008]",
+    "tiles": "8x8 tiles row-major; four 4x4 blocks top-left/top-right/bottom-left/bottom-right",
+    "blocks": "16 bytes: alpha u64 little-endian then ETC1 selector u32LE then color/header u32LE",
+    "alpha": "4-bit nibble at index4*(4*x+y), scaled by17; semantic purpose unknown",
+    "rgb": "ETC1 individual/differential modes; 8 standard modifier tables; clamp output0..255",
+    "output_orientation": "PPM/PNG top-down y0 equals source tile y0; OBJ UV untouched, so viewer image sampling uses y=(1-v)*height",
+    "validation": "32768 RGB pixels identical to independent historical importer decoder"
+  },
+  "material_binding": {
+    "observation": "Both one133.mrl and sld133.mrl first resource name weapon\\one\\one133\\one133_BM",
+    "header": "MRL\\0 version32; first section offset u32 at0x14",
+    "first_resource": "type u32 atsection+0; filename64bytes atsection+0x0c",
+    "limitation": "Other material expressions/state unparsed; display is unlit RGB preview"
+  },
+  "selection": {
+    "arc": "/data/pl_one133.arc",
+    "model_members": [
+      "weapon\\one\\one133\\one133",
+      "weapon\\one\\one133\\sld133"
+    ],
+    "primitive": 0,
+    "reason": "One material and one joint in each model; shared texture named by MRL. Other primitives retained as facts in manifest."
+  }
+}

@@ -1,0 +1,9 @@
+/.tools/
+/vendor/
+/build/
+/assets/local/
+/research/private/
+*.log
+.DS_Store
+__pycache__/
+*.pyc

@@ -1,0 +1,926 @@
+{
+  "schema": "mh4u-translation-seed-v1",
+  "locale": "pt-BR",
+  "status": "draft; full source messages translated; linguistic/layout review pending; no human review claimed",
+  "source": {
+    "internal_name": "Quest",
+    "sha256": "a4baf3ea686f5fbdbfc0de0088c1752c3b7643125ee104d9f682f359893324da",
+    "size": 4434,
+    "archive": "/eng/data/core_event.arc",
+    "entry_path": "eng\\msg\\quest\\Quest_eng",
+    "rom_sha256": "c16b6cd17cb761508d3077c99be3fb310b460aa8fcf57d3c651310f082bda666"
+  },
+  "entries": [
+    {
+      "key": "Quest:000000",
+      "text_index": 0,
+      "source_text": "End via Subquest",
+      "source_offset": 2144,
+      "label_references": [
+        {
+          "label_ordinal": 0,
+          "identifier_hex": "b5647199",
+          "label_unknown_u16": 64,
+          "control_index": 0
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Concluir pela missão secundária",
+      "review_status": "draft"
+    },
+    {
+      "key": "Quest:000001",
+      "text_index": 1,
+      "source_text": "Abandon Quest",
+      "source_offset": 2180,
+      "label_references": [
+        {
+          "label_ordinal": 1,
+          "identifier_hex": "2a7784ea",
+          "label_unknown_u16": 64,
+          "control_index": 2
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Abandonar missão",
+      "review_status": "draft"
+    },
+    {
+      "key": "Quest:000002",
+      "text_index": 2,
+      "source_text": "Return to Town",
+      "source_offset": 2208,
+      "label_references": [
+        {
+          "label_ordinal": 2,
+          "identifier_hex": "86c3b0bf",
+          "label_unknown_u16": 64,
+          "control_index": 4
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Voltar à cidade",
+      "review_status": "draft"
+    },
+    {
+      "key": "Quest:000003",
+      "text_index": 3,
+      "source_text": "Pause the game.",
+      "source_offset": 2240,
+      "label_references": [
+        {
+          "label_ordinal": 3,
+          "identifier_hex": "adeee37c",
+          "label_unknown_u16": 64,
+          "control_index": 6
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Pause o jogo.",
+      "review_status": "draft"
+    },
+    {
+      "key": "Quest:000004",
+      "text_index": 4,
+      "source_text": "Return to town with only\nthe Subquest completed.",
+      "source_offset": 2272,
+      "label_references": [
+        {
+          "label_ordinal": 4,
+          "identifier_hex": "2594e3ba",
+          "label_unknown_u16": 64,
+          "control_index": 8
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "Volte à cidade concluindo apenas\na missão secundária.",
+      "review_status": "draft"
+    },
+    {
+      "key": "Quest:000005",
+      "text_index": 5,
+      "source_text": "Stop the Quest and return to town.",
+      "source_offset": 2372,
+      "label_references": [
+        {
+          "label_ordinal": 5,
+          "identifier_hex": "6546fc73",
+          "label_unknown_u16": 64,
+          "control_index": 10
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Pare a missão e volte à cidade.",
+      "review_status": "draft"
+    },
+    {
+      "key": "Quest:000006",
+      "text_index": 6,
+      "source_text": "End Expedition and return to town.",
+      "source_offset": 2444,
+      "label_references": [
+        {
+          "label_ordinal": 6,
+          "identifier_hex": "e7a87fef",
+          "label_unknown_u16": 64,
+          "control_index": 12
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Encerre a expedição e volte à cidade.",
+      "review_status": "draft"
+    },
+    {
+      "key": "Quest:000007",
+      "text_index": 7,
+      "source_text": "Expedition Record",
+      "source_offset": 2516,
+      "label_references": [
+        {
+          "label_ordinal": 7,
+          "identifier_hex": "09d61d37",
+          "label_unknown_u16": 64,
+          "control_index": 14
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Registro da expedição",
+      "review_status": "draft"
+    },
+    {
+      "key": "Quest:000008",
+      "text_index": 8,
+      "source_text": "Points",
+      "source_offset": 2552,
+      "label_references": [
+        {
+          "label_ordinal": 8,
+          "identifier_hex": "88c3beee",
+          "label_unknown_u16": 64,
+          "control_index": 16
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Pontos",
+      "review_status": "draft"
+    },
+    {
+      "key": "Quest:000009",
+      "text_index": 9,
+      "source_text": "Deliveries",
+      "source_offset": 2568,
+      "label_references": [
+        {
+          "label_ordinal": 9,
+          "identifier_hex": "30b0959a",
+          "label_unknown_u16": 64,
+          "control_index": 18
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Entregas",
+      "review_status": "draft"
+    },
+    {
+      "key": "Quest:000010",
+      "text_index": 10,
+      "source_text": "Main Objective",
+      "source_offset": 2592,
+      "label_references": [
+        {
+          "label_ordinal": 10,
+          "identifier_hex": "6432c361",
+          "label_unknown_u16": 64,
+          "control_index": 20
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Objetivo principal",
+      "review_status": "draft"
+    },
+    {
+      "key": "Quest:000011",
+      "text_index": 11,
+      "source_text": "Subquest",
+      "source_offset": 2624,
+      "label_references": [
+        {
+          "label_ordinal": 11,
+          "identifier_hex": "cfe3bbec",
+          "label_unknown_u16": 64,
+          "control_index": 22
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Missão secundária",
+      "review_status": "draft"
+    },
+    {
+      "key": "Quest:000012",
+      "text_index": 12,
+      "source_text": "End via Subquest",
+      "source_offset": 2644,
+      "label_references": [
+        {
+          "label_ordinal": 12,
+          "identifier_hex": "5f6d01c2",
+          "label_unknown_u16": 64,
+          "control_index": 24
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Concluir pela missão secundária",
+      "review_status": "draft"
+    },
+    {
+      "key": "Quest:000013",
+      "text_index": 13,
+      "source_text": "Claim rewards for completing the\nSubquest and return to town?\n\nIf you retry this Quest later you\nmust start from the beginning.",
+      "source_offset": 2680,
+      "label_references": [
+        {
+          "label_ordinal": 13,
+          "identifier_hex": "6403cef6",
+          "label_unknown_u16": 64,
+          "control_index": 26
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10,
+          10,
+          10,
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "Receber a recompensa da missão\nsecundária e voltar à cidade?\n\nSe tentar esta missão depois,\nserá preciso recomeçar do início.",
+      "review_status": "draft"
+    },
+    {
+      "key": "Quest:000014",
+      "text_index": 14,
+      "source_text": "Abandon Quest",
+      "source_offset": 2936,
+      "label_references": [
+        {
+          "label_ordinal": 14,
+          "identifier_hex": "79ea5116",
+          "label_unknown_u16": 64,
+          "control_index": 28
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Abandonar missão",
+      "review_status": "draft"
+    },
+    {
+      "key": "Quest:000015",
+      "text_index": 15,
+      "source_text": "Stop the Quest and return\nto town?\n\nYou will revert to your\npre-Quest status, and any\nprogress made during this\nQuest will be lost.",
+      "source_offset": 2964,
+      "label_references": [
+        {
+          "label_ordinal": 15,
+          "identifier_hex": "074645f9",
+          "label_unknown_u16": 64,
+          "control_index": 30
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10,
+          10,
+          10,
+          10,
+          10,
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "Abandonar a missão e voltar\nà cidade?\n\nVocê voltará ao estado de\nantes da missão e todo o\nprogresso feito nela\nserá perdido.",
+      "review_status": "draft"
+    },
+    {
+      "key": "Quest:000016",
+      "text_index": 16,
+      "source_text": "Return to Town",
+      "source_offset": 3228,
+      "label_references": [
+        {
+          "label_ordinal": 16,
+          "identifier_hex": "0f4698fa",
+          "label_unknown_u16": 64,
+          "control_index": 32
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Voltar à cidade",
+      "review_status": "draft"
+    },
+    {
+      "key": "Quest:000017",
+      "text_index": 17,
+      "source_text": "End the Expedition and\nreturn to town?",
+      "source_offset": 3260,
+      "label_references": [
+        {
+          "label_ordinal": 17,
+          "identifier_hex": "be45315a",
+          "label_unknown_u16": 64,
+          "control_index": 34
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "Encerrar a expedição e\nvoltar à cidade?",
+      "review_status": "draft"
+    },
+    {
+      "key": "Quest:000018",
+      "text_index": 18,
+      "source_text": "Deliveries",
+      "source_offset": 3340,
+      "label_references": [
+        {
+          "label_ordinal": 18,
+          "identifier_hex": "f563face",
+          "label_unknown_u16": 64,
+          "control_index": 36
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Entregas",
+      "review_status": "draft"
+    },
+    {
+      "key": "Quest:000019",
+      "text_index": 19,
+      "source_text": "Select an item to deliver.",
+      "source_offset": 3364,
+      "label_references": [
+        {
+          "label_ordinal": 19,
+          "identifier_hex": "793b3e0c",
+          "label_unknown_u16": 64,
+          "control_index": 38
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Selecione um item para entregar.",
+      "review_status": "draft"
+    },
+    {
+      "key": "Quest:000020",
+      "text_index": 20,
+      "source_text": "Select an item to deliver.\n",
+      "source_offset": 3420,
+      "label_references": [
+        {
+          "label_ordinal": 20,
+          "identifier_hex": "c1182695",
+          "label_unknown_u16": 64,
+          "control_index": 40
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "Selecione um item para entregar.\n",
+      "review_status": "draft"
+    },
+    {
+      "key": "Quest:000021",
+      "text_index": 21,
+      "source_text": "(Delivery for this item\nis already complete.)",
+      "source_offset": 3476,
+      "label_references": [
+        {
+          "label_ordinal": 20,
+          "identifier_hex": "c1182695",
+          "label_unknown_u16": 64,
+          "control_index": 42
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "(A entrega deste item\njá foi concluída.)",
+      "review_status": "draft"
+    },
+    {
+      "key": "Quest:000022",
+      "text_index": 22,
+      "source_text": "Select an item to deliver.\n",
+      "source_offset": 3568,
+      "label_references": [
+        {
+          "label_ordinal": 21,
+          "identifier_hex": "b61f1603",
+          "label_unknown_u16": 64,
+          "control_index": 45
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "Selecione um item para entregar.\n",
+      "review_status": "draft"
+    },
+    {
+      "key": "Quest:000023",
+      "text_index": 23,
+      "source_text": "(You do not have this item.)",
+      "source_offset": 3624,
+      "label_references": [
+        {
+          "label_ordinal": 21,
+          "identifier_hex": "b61f1603",
+          "label_unknown_u16": 64,
+          "control_index": 47
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "(Você não tem este item.)",
+      "review_status": "draft"
+    },
+    {
+      "key": "Quest:000024",
+      "text_index": 24,
+      "source_text": "Select the number to deliver.",
+      "source_offset": 3684,
+      "label_references": [
+        {
+          "label_ordinal": 22,
+          "identifier_hex": "ba96c4ef",
+          "label_unknown_u16": 64,
+          "control_index": 50
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Selecione a quantidade para entregar.",
+      "review_status": "draft"
+    },
+    {
+      "key": "Quest:000025",
+      "text_index": 25,
+      "source_text": "Deliver the item(s)?",
+      "source_offset": 3744,
+      "label_references": [
+        {
+          "label_ordinal": 23,
+          "identifier_hex": "52d566cb",
+          "label_unknown_u16": 64,
+          "control_index": 52
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Entregar os itens?",
+      "review_status": "draft"
+    },
+    {
+      "key": "Quest:000026",
+      "text_index": 26,
+      "source_text": "Total Reward",
+      "source_offset": 3788,
+      "label_references": [
+        {
+          "label_ordinal": 24,
+          "identifier_hex": "35786913",
+          "label_unknown_u16": 64,
+          "control_index": 54
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Recompensa total",
+      "review_status": "draft"
+    },
+    {
+      "key": "Quest:000027",
+      "text_index": 27,
+      "source_text": "Caravan Points",
+      "source_offset": 3816,
+      "label_references": [
+        {
+          "label_ordinal": 25,
+          "identifier_hex": "350289d3",
+          "label_unknown_u16": 64,
+          "control_index": 56
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Pontos da Caravana",
+      "review_status": "draft"
+    },
+    {
+      "key": "Quest:000028",
+      "text_index": 28,
+      "source_text": "Current Funds",
+      "source_offset": 3848,
+      "label_references": [
+        {
+          "label_ordinal": 26,
+          "identifier_hex": "e19d3cc7",
+          "label_unknown_u16": 64,
+          "control_index": 58
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Dinheiro atual",
+      "review_status": "draft"
+    },
+    {
+      "key": "Quest:000029",
+      "text_index": 29,
+      "source_text": "Current Caravan Points",
+      "source_offset": 3876,
+      "label_references": [
+        {
+          "label_ordinal": 27,
+          "identifier_hex": "e1e7dc07",
+          "label_unknown_u16": 64,
+          "control_index": 60
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Pontos atuais da Caravana",
+      "review_status": "draft"
+    },
+    {
+      "key": "Quest:000030",
+      "text_index": 30,
+      "source_text": "Supply Box",
+      "source_offset": 3924,
+      "label_references": [
+        {
+          "label_ordinal": 28,
+          "identifier_hex": "e7f8436e",
+          "label_unknown_u16": 64,
+          "control_index": 62
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Baú de suprimentos",
+      "review_status": "draft"
+    },
+    {
+      "key": "Quest:000031",
+      "text_index": 31,
+      "source_text": "Owned",
+      "source_offset": 3948,
+      "label_references": [
+        {
+          "label_ordinal": 29,
+          "identifier_hex": "22cffe9d",
+          "label_unknown_u16": 64,
+          "control_index": 64
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Possui",
+      "review_status": "draft"
+    },
+    {
+      "key": "Quest:000032",
+      "text_index": 32,
+      "source_text": "Select the items you wish\nto claim.",
+      "source_offset": 3960,
+      "label_references": [
+        {
+          "label_ordinal": 30,
+          "identifier_hex": "55ea2f2c",
+          "label_unknown_u16": 64,
+          "control_index": 66
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "Selecione os itens que\ndeseja pegar.",
+      "review_status": "draft"
+    },
+    {
+      "key": "Quest:000033",
+      "text_index": 33,
+      "source_text": "No Item Pouch Slots available.",
+      "source_offset": 4032,
+      "label_references": [
+        {
+          "label_ordinal": 31,
+          "identifier_hex": "cce37e96",
+          "label_unknown_u16": 64,
+          "control_index": 69
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Sem espaços livres na bolsa de itens.",
+      "review_status": "draft"
+    },
+    {
+      "key": "Quest:000034",
+      "text_index": 34,
+      "source_text": "No more of this item will fit\nin your Item Pouch.",
+      "source_offset": 4096,
+      "label_references": [
+        {
+          "label_ordinal": 32,
+          "identifier_hex": "bbe44e00",
+          "label_unknown_u16": 64,
+          "control_index": 73
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "Não cabe mais deste item\nna bolsa de itens.",
+      "review_status": "draft"
+    },
+    {
+      "key": "Quest:000035",
+      "text_index": 35,
+      "source_text": "Wound the Congalala's tail",
+      "source_offset": 4196,
+      "label_references": [
+        {
+          "label_ordinal": 33,
+          "identifier_hex": "44d8e47a",
+          "label_unknown_u16": 64,
+          "control_index": 76
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Ferir a cauda do Congalala",
+      "review_status": "draft"
+    },
+    {
+      "key": "Quest:000036",
+      "text_index": 36,
+      "source_text": "Wound the Kecha Wacha's ears",
+      "source_offset": 4252,
+      "label_references": [
+        {
+          "label_ordinal": 34,
+          "identifier_hex": "6b0b3cab",
+          "label_unknown_u16": 64,
+          "control_index": 78
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Ferir as orelhas do Kecha Wacha",
+      "review_status": "draft"
+    },
+    {
+      "key": "Quest:000037",
+      "text_index": 37,
+      "source_text": "Wound the A.Kecha Wacha's ears",
+      "source_offset": 4312,
+      "label_references": [
+        {
+          "label_ordinal": 35,
+          "identifier_hex": "1c0c0c3d",
+          "label_unknown_u16": 64,
+          "control_index": 80
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Ferir as orelhas do A.Kecha Wacha",
+      "review_status": "draft"
+    },
+    {
+      "key": "Quest:000038",
+      "text_index": 38,
+      "source_text": "Sever the Rathian's tail",
+      "source_offset": 4376,
+      "label_references": [
+        {
+          "label_ordinal": 36,
+          "identifier_hex": "43b52063",
+          "label_unknown_u16": 64,
+          "control_index": 82
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Cortar a cauda da Rathian",
+      "review_status": "draft"
+    }
+  ],
+  "glossary": [
+    {
+      "source": "Item Box / Box",
+      "target": "baú de itens / baú",
+      "note": "Mesmo recipiente nos três documentos novos; forma curta quando a fonte também abrevia."
+    },
+    {
+      "source": "Item Pouch / Pouch",
+      "target": "bolsa de itens / bolsa",
+      "note": "Inventário levado pelo caçador; distinto do baú."
+    },
+    {
+      "source": "Item Set / Equipment Set",
+      "target": "conjunto de itens / conjunto de equipamentos",
+      "note": "Unregister remove o registro do conjunto, não os itens; excluir se refere ao conjunto."
+    },
+    {
+      "source": "Decoration / Slot",
+      "target": "joia / espaço",
+      "note": "Escolha editorial para adorno de habilidade e sua capacidade; conferir contexto visual."
+    },
+    {
+      "source": "Talisman / Combo List",
+      "target": "talismã / combinações",
+      "note": "Terminologia uniforme nas lojas e no baú."
+    },
+    {
+      "source": "Bowgun / Bow / Blademaster / Gunner",
+      "target": "fuzilarco / arco / espadachim / atirador",
+      "note": "Categorias de arma/caçador, sem alteração de regras."
+    },
+    {
+      "source": "Features",
+      "target": "detalhes",
+      "note": "Preserva a escolha do catálogo CharMake existente."
+    },
+    {
+      "source": "Palico / Circle Pad / HR / z",
+      "target": "Palico / Circle Pad / HR / z",
+      "note": "Termos/símbolos mantidos; texto legado de controle não implementa esse dispositivo."
+    },
+    {
+      "source": "Common NPC titles",
+      "target": "títulos funcionais em português",
+      "note": "Caravaneiro, Assistente da Guilda, Mercador wyveriano e Transportador Palico são escolhas editoriais do projeto, sem alegação de tradução oficial. Topônimos e nomes Cha-Cha, Felcote, Kayamba e Poogie são preservados."
+    },
+    {
+      "source": "Forge / Upgrade / Hone",
+      "target": "forjar / melhorar / aprimorar",
+      "note": "Preserva a distinção entre criar, melhorar e aplicar o aprimoramento às armas já no máximo; não confundir com afiação ou polimento."
+    },
+    {
+      "source": "Kinsect / Insect Glaive / Nectar",
+      "target": "Kinseto / Glaive Inseto / néctar",
+      "note": "As duas primeiras formas mantêm Common v3; néctar permanece distinto de material genérico."
+    },
+    {
+      "source": "Quest / Subquest / Expedition",
+      "target": "missão / missão secundária / expedição",
+      "note": "Fluxos distintos preservados, inclusive consequências de abandono e retorno."
+    },
+    {
+      "source": "Hunter Search / Gathering Hall",
+      "target": "busca de caçadores / Salão de Reunião",
+      "note": "Nomes traduzidos do recurso legado. Não afirmam rede local ou serviços implementados no PC."
+    },
+    {
+      "source": "Panel / Target Cam / +Control Pad",
+      "target": "painel / câmera de alvo / direcional",
+      "note": "Tradução das instruções originais, sem remapeá-las para mouse, teclado ou joystick do laboratório."
+    },
+    {
+      "source": "Health / Stamina / Sharpness",
+      "target": "vida / vigor / afiação",
+      "note": "Termos distintos de atributos; afiação não substitui o verbo aprimorar (Hone)."
+    },
+    {
+      "source": "Rapid Fire / Crouching Fire / WyvernFire",
+      "target": "tiro rápido / tiro agachado / Fogo de wyvern",
+      "note": "Escolhas editoriais para os modos descritos pela fonte; sem alegação de terminologia oficial."
+    },
+    {
+      "source": "HR / Arena / VS / G1★ / G2★ / G3★",
+      "target": "HR / Arena / VS / G1★ / G2★ / G3★",
+      "note": "Siglas, palavra idêntica em português e símbolos de requisitos preservados; não contam como traduções."
+    },
+    {
+      "source": "Val Habar / Congalala / Kecha Wacha / A.Kecha Wacha / Rathian",
+      "target": "Val Habar / Congalala / Kecha Wacha / A.Kecha Wacha / Rathian",
+      "note": "Nomes e abreviação A. mantidos exatamente; não expandir a abreviação sem fonte."
+    }
+  ],
+  "coverage": {
+    "source_file_fragments": 39,
+    "catalog_entries": 39,
+    "translated_fragments": 39,
+    "entire_game_total": null,
+    "excluded_fragments": []
+  },
+  "limitations": [
+    "Editorial draft, not official terminology or human-reviewed readiness.",
+    "No original layout/glyph or execution validation; no menu/gameplay functionality follows from this translation.",
+    "Help describes legacy 3DS screens, wireless search and controls; no PC implementation or remapping is asserted.",
+    "Fragment references, protected tokens, blank lines and leading/trailing whitespace remain intact."
+  ]
+}

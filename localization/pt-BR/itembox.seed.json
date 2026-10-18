@@ -1,0 +1,5081 @@
+{
+  "schema": "mh4u-translation-seed-v1",
+  "locale": "pt-BR",
+  "source": {
+    "internal_name": "ItemBox",
+    "sha256": "14f8c3f7267615f073faf251c58706b1e3c07319ad723d5b9aa18e9df2725264",
+    "size": 25904,
+    "archive": "/eng/data/core_arena.arc",
+    "entry_path": "eng\\msg\\lobby\\ItemBox_eng",
+    "rom_sha256": "c16b6cd17cb761508d3077c99be3fb310b460aa8fcf57d3c651310f082bda666"
+  },
+  "entries": [
+    {
+      "key": "ItemBox:000000",
+      "text_index": 0,
+      "source_text": "Store Items",
+      "source_offset": 13144,
+      "label_references": [
+        {
+          "label_ordinal": 0,
+          "identifier_hex": "43635fc8",
+          "label_unknown_u16": 64,
+          "control_index": 0
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Guardar itens",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000001",
+      "text_index": 1,
+      "source_text": "Take Items",
+      "source_offset": 13168,
+      "label_references": [
+        {
+          "label_ordinal": 1,
+          "identifier_hex": "34646f5e",
+          "label_unknown_u16": 64,
+          "control_index": 2
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Retirar itens",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000002",
+      "text_index": 2,
+      "source_text": "Item Sets",
+      "source_offset": 13192,
+      "label_references": [
+        {
+          "label_ordinal": 2,
+          "identifier_hex": "ad6d3ee4",
+          "label_unknown_u16": 64,
+          "control_index": 4
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Conjuntos de itens",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000003",
+      "text_index": 3,
+      "source_text": "Combine/Manage Items",
+      "source_offset": 13212,
+      "label_references": [
+        {
+          "label_ordinal": 3,
+          "identifier_hex": "da6a0e72",
+          "label_unknown_u16": 64,
+          "control_index": 6
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Combinar/gerenciar itens",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000004",
+      "text_index": 4,
+      "source_text": "Manage Equipment",
+      "source_offset": 13256,
+      "label_references": [
+        {
+          "label_ordinal": 4,
+          "identifier_hex": "440e9bd1",
+          "label_unknown_u16": 64,
+          "control_index": 8
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Gerenciar equipamentos",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000005",
+      "text_index": 5,
+      "source_text": "Equipment Sets",
+      "source_offset": 13292,
+      "label_references": [
+        {
+          "label_ordinal": 5,
+          "identifier_hex": "3309ab47",
+          "label_unknown_u16": 64,
+          "control_index": 10
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Conjuntos de equipamentos",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000006",
+      "text_index": 6,
+      "source_text": "Change Appearance",
+      "source_offset": 13324,
+      "label_references": [
+        {
+          "label_ordinal": 6,
+          "identifier_hex": "aa00fafd",
+          "label_unknown_u16": 64,
+          "control_index": 12
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Mudar aparência",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000007",
+      "text_index": 7,
+      "source_text": "Item Box",
+      "source_offset": 13360,
+      "label_references": [
+        {
+          "label_ordinal": 7,
+          "identifier_hex": "dd07ca6b",
+          "label_unknown_u16": 64,
+          "control_index": 14
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Baú de itens",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000008",
+      "text_index": 8,
+      "source_text": "Blademaster's/Gunner's Pouch",
+      "source_offset": 13380,
+      "label_references": [
+        {
+          "label_ordinal": 8,
+          "identifier_hex": "4db8d7fa",
+          "label_unknown_u16": 64,
+          "control_index": 16
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Bolsa de espadachim/atirador",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000009",
+      "text_index": 9,
+      "source_text": "Current Sets",
+      "source_offset": 13440,
+      "label_references": [
+        {
+          "label_ordinal": 9,
+          "identifier_hex": "3abfe76c",
+          "label_unknown_u16": 64,
+          "control_index": 18
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Conjuntos atuais",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000010",
+      "text_index": 10,
+      "source_text": "Register a Set",
+      "source_offset": 13468,
+      "label_references": [
+        {
+          "label_ordinal": 10,
+          "identifier_hex": "5a786e89",
+          "label_unknown_u16": 64,
+          "control_index": 20
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Registrar conjunto",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000011",
+      "text_index": 11,
+      "source_text": "Reorder Sets",
+      "source_offset": 13500,
+      "label_references": [
+        {
+          "label_ordinal": 11,
+          "identifier_hex": "2d7f5e1f",
+          "label_unknown_u16": 64,
+          "control_index": 22
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Reordenar conjuntos",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000012",
+      "text_index": 12,
+      "source_text": "Unregister a Set",
+      "source_offset": 13528,
+      "label_references": [
+        {
+          "label_ordinal": 12,
+          "identifier_hex": "b4760fa5",
+          "label_unknown_u16": 64,
+          "control_index": 24
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Excluir conjunto",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000013",
+      "text_index": 13,
+      "source_text": "Combine Box Items",
+      "source_offset": 13564,
+      "label_references": [
+        {
+          "label_ordinal": 13,
+          "identifier_hex": "c3713f33",
+          "label_unknown_u16": 64,
+          "control_index": 26
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Combinar itens do baú",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000014",
+      "text_index": 14,
+      "source_text": "Combo List",
+      "source_offset": 13600,
+      "label_references": [
+        {
+          "label_ordinal": 14,
+          "identifier_hex": "5d15aa90",
+          "label_unknown_u16": 64,
+          "control_index": 28
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Combinações",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000015",
+      "text_index": 15,
+      "source_text": "Arrange",
+      "source_offset": 13624,
+      "label_references": [
+        {
+          "label_ordinal": 15,
+          "identifier_hex": "2a129a06",
+          "label_unknown_u16": 64,
+          "control_index": 30
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Organizar",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000016",
+      "text_index": 16,
+      "source_text": "Sell Items",
+      "source_offset": 13640,
+      "label_references": [
+        {
+          "label_ordinal": 16,
+          "identifier_hex": "b31bcbbc",
+          "label_unknown_u16": 64,
+          "control_index": 32
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Vender itens",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000017",
+      "text_index": 17,
+      "source_text": "Select Equip.",
+      "source_offset": 13664,
+      "label_references": [
+        {
+          "label_ordinal": 17,
+          "identifier_hex": "c41cfb2a",
+          "label_unknown_u16": 64,
+          "control_index": 34
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Selecionar equip.",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000018",
+      "text_index": 18,
+      "source_text": "View Talismans",
+      "source_offset": 13692,
+      "label_references": [
+        {
+          "label_ordinal": 18,
+          "identifier_hex": "54a3e6bb",
+          "label_unknown_u16": 64,
+          "control_index": 36
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Ver talismãs",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000019",
+      "text_index": 19,
+      "source_text": "Set Decorations",
+      "source_offset": 13724,
+      "label_references": [
+        {
+          "label_ordinal": 19,
+          "identifier_hex": "23a4d62d",
+          "label_unknown_u16": 64,
+          "control_index": 38
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Instalar joias",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000020",
+      "text_index": 20,
+      "source_text": "Arrange",
+      "source_offset": 13756,
+      "label_references": [
+        {
+          "label_ordinal": 20,
+          "identifier_hex": "71553d4a",
+          "label_unknown_u16": 64,
+          "control_index": 40
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Organizar",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000021",
+      "text_index": 21,
+      "source_text": "Sell Equipment",
+      "source_offset": 13772,
+      "label_references": [
+        {
+          "label_ordinal": 21,
+          "identifier_hex": "06520ddc",
+          "label_unknown_u16": 64,
+          "control_index": 42
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Vender equipamentos",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000022",
+      "text_index": 22,
+      "source_text": "Equip a Set",
+      "source_offset": 13804,
+      "label_references": [
+        {
+          "label_ordinal": 22,
+          "identifier_hex": "9f5b5c66",
+          "label_unknown_u16": 64,
+          "control_index": 44
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Equipar conjunto",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000023",
+      "text_index": 23,
+      "source_text": "Register a Set",
+      "source_offset": 13828,
+      "label_references": [
+        {
+          "label_ordinal": 23,
+          "identifier_hex": "e85c6cf0",
+          "label_unknown_u16": 64,
+          "control_index": 46
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Registrar conjunto",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000024",
+      "text_index": 24,
+      "source_text": "Reorder Sets",
+      "source_offset": 13860,
+      "label_references": [
+        {
+          "label_ordinal": 24,
+          "identifier_hex": "7638f953",
+          "label_unknown_u16": 64,
+          "control_index": 48
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Reordenar conjuntos",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000025",
+      "text_index": 25,
+      "source_text": "Unregister a Set",
+      "source_offset": 13888,
+      "label_references": [
+        {
+          "label_ordinal": 25,
+          "identifier_hex": "013fc9c5",
+          "label_unknown_u16": 64,
+          "control_index": 50
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Excluir conjunto",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000026",
+      "text_index": 26,
+      "source_text": "Change Clothing",
+      "source_offset": 13924,
+      "label_references": [
+        {
+          "label_ordinal": 26,
+          "identifier_hex": "9836987f",
+          "label_unknown_u16": 64,
+          "control_index": 52
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Mudar roupa",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000027",
+      "text_index": 27,
+      "source_text": "Clothing",
+      "source_offset": 13956,
+      "label_references": [
+        {
+          "label_ordinal": 27,
+          "identifier_hex": "ef31a8e9",
+          "label_unknown_u16": 64,
+          "control_index": 54
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Roupa",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000028",
+      "text_index": 28,
+      "source_text": "Change Clothing Color",
+      "source_offset": 13976,
+      "label_references": [
+        {
+          "label_ordinal": 28,
+          "identifier_hex": "7f8eb578",
+          "label_unknown_u16": 64,
+          "control_index": 56
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Mudar cor da roupa",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000029",
+      "text_index": 29,
+      "source_text": "Clothing Color",
+      "source_offset": 14020,
+      "label_references": [
+        {
+          "label_ordinal": 29,
+          "identifier_hex": "088985ee",
+          "label_unknown_u16": 64,
+          "control_index": 58
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Cor da roupa",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000030",
+      "text_index": 30,
+      "source_text": "Change Hairstyle",
+      "source_offset": 14052,
+      "label_references": [
+        {
+          "label_ordinal": 30,
+          "identifier_hex": "684e0c0b",
+          "label_unknown_u16": 64,
+          "control_index": 60
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Mudar penteado",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000031",
+      "text_index": 31,
+      "source_text": "Hairstyle",
+      "source_offset": 14088,
+      "label_references": [
+        {
+          "label_ordinal": 31,
+          "identifier_hex": "1f493c9d",
+          "label_unknown_u16": 64,
+          "control_index": 62
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Penteado",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000032",
+      "text_index": 32,
+      "source_text": "Change Hair Color",
+      "source_offset": 14108,
+      "label_references": [
+        {
+          "label_ordinal": 32,
+          "identifier_hex": "86406d27",
+          "label_unknown_u16": 64,
+          "control_index": 64
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Mudar cor do cabelo",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000033",
+      "text_index": 33,
+      "source_text": "Hair Color",
+      "source_offset": 14144,
+      "label_references": [
+        {
+          "label_ordinal": 33,
+          "identifier_hex": "f1475db1",
+          "label_unknown_u16": 64,
+          "control_index": 66
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Cor do cabelo",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000034",
+      "text_index": 34,
+      "source_text": "Change Features",
+      "source_offset": 14168,
+      "label_references": [
+        {
+          "label_ordinal": 34,
+          "identifier_hex": "6f23c812",
+          "label_unknown_u16": 64,
+          "control_index": 68
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Mudar detalhes",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000035",
+      "text_index": 35,
+      "source_text": "Features",
+      "source_offset": 14200,
+      "label_references": [
+        {
+          "label_ordinal": 35,
+          "identifier_hex": "1824f884",
+          "label_unknown_u16": 64,
+          "control_index": 70
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Detalhes",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000036",
+      "text_index": 36,
+      "source_text": "Change Color",
+      "source_offset": 14220,
+      "label_references": [
+        {
+          "label_ordinal": 36,
+          "identifier_hex": "812da93e",
+          "label_unknown_u16": 64,
+          "control_index": 72
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Mudar cor",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000037",
+      "text_index": 37,
+      "source_text": "Feature Color",
+      "source_offset": 14248,
+      "label_references": [
+        {
+          "label_ordinal": 37,
+          "identifier_hex": "f62a99a8",
+          "label_unknown_u16": 64,
+          "control_index": 74
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Cor dos detalhes",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000038",
+      "text_index": 38,
+      "source_text": "Change Eye Color",
+      "source_offset": 14276,
+      "label_references": [
+        {
+          "label_ordinal": 38,
+          "identifier_hex": "66958439",
+          "label_unknown_u16": 64,
+          "control_index": 76
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Mudar cor dos olhos",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000039",
+      "text_index": 39,
+      "source_text": "Eye Color",
+      "source_offset": 14312,
+      "label_references": [
+        {
+          "label_ordinal": 39,
+          "identifier_hex": "1192b4af",
+          "label_unknown_u16": 64,
+          "control_index": 78
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Cor dos olhos",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000040",
+      "text_index": 40,
+      "source_text": "Change Armor Pigment",
+      "source_offset": 14332,
+      "label_references": [
+        {
+          "label_ordinal": 40,
+          "identifier_hex": "270f9acc",
+          "label_unknown_u16": 64,
+          "control_index": 80
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Mudar pigmento da armadura",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000041",
+      "text_index": 41,
+      "source_text": "Change Pigment",
+      "source_offset": 14376,
+      "label_references": [
+        {
+          "label_ordinal": 41,
+          "identifier_hex": "5008aa5a",
+          "label_unknown_u16": 64,
+          "control_index": 82
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Mudar pigmento",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000042",
+      "text_index": 42,
+      "source_text": "Select Part",
+      "source_offset": 14408,
+      "label_references": [
+        {
+          "label_ordinal": 42,
+          "identifier_hex": "c901fbe0",
+          "label_unknown_u16": 64,
+          "control_index": 84
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Selecionar peça",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000043",
+      "text_index": 43,
+      "source_text": "Change All",
+      "source_offset": 14432,
+      "label_references": [
+        {
+          "label_ordinal": 43,
+          "identifier_hex": "be06cb76",
+          "label_unknown_u16": 64,
+          "control_index": 86
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Mudar tudo",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000044",
+      "text_index": 44,
+      "source_text": "Head",
+      "source_offset": 14456,
+      "label_references": [
+        {
+          "label_ordinal": 44,
+          "identifier_hex": "20625ed5",
+          "label_unknown_u16": 64,
+          "control_index": 88
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Cabeça",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000045",
+      "text_index": 45,
+      "source_text": "Chest",
+      "source_offset": 14468,
+      "label_references": [
+        {
+          "label_ordinal": 45,
+          "identifier_hex": "57656e43",
+          "label_unknown_u16": 64,
+          "control_index": 90
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Peito",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000046",
+      "text_index": 46,
+      "source_text": "Arms",
+      "source_offset": 14480,
+      "label_references": [
+        {
+          "label_ordinal": 46,
+          "identifier_hex": "ce6c3ff9",
+          "label_unknown_u16": 64,
+          "control_index": 92
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Braços",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000047",
+      "text_index": 47,
+      "source_text": "Waist",
+      "source_offset": 14492,
+      "label_references": [
+        {
+          "label_ordinal": 47,
+          "identifier_hex": "b96b0f6f",
+          "label_unknown_u16": 64,
+          "control_index": 94
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Cintura",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000048",
+      "text_index": 48,
+      "source_text": "Legs",
+      "source_offset": 14504,
+      "label_references": [
+        {
+          "label_ordinal": 48,
+          "identifier_hex": "29d412fe",
+          "label_unknown_u16": 64,
+          "control_index": 96
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Pernas",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000049",
+      "text_index": 49,
+      "source_text": "Color",
+      "source_offset": 14516,
+      "label_references": [
+        {
+          "label_ordinal": 49,
+          "identifier_hex": "5ed32268",
+          "label_unknown_u16": 64,
+          "control_index": 98
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Cor",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000050",
+      "text_index": 50,
+      "source_text": "Default",
+      "source_offset": 14528,
+      "label_references": [
+        {
+          "label_ordinal": 50,
+          "identifier_hex": "3e14ab8d",
+          "label_unknown_u16": 64,
+          "control_index": 100
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Padrão",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000051",
+      "text_index": 51,
+      "source_text": "Take items out of your Pouch and\nstore them in the Item Box.",
+      "source_offset": 14544,
+      "label_references": [
+        {
+          "label_ordinal": 51,
+          "identifier_hex": "d01acaa1",
+          "label_unknown_u16": 64,
+          "control_index": 102
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "Retire itens da bolsa e\nguarde-os no baú de itens.",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000052",
+      "text_index": 52,
+      "source_text": "Select the item to store.",
+      "source_offset": 14668,
+      "label_references": [
+        {
+          "label_ordinal": 52,
+          "identifier_hex": "39796f94",
+          "label_unknown_u16": 64,
+          "control_index": 104
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Selecione o item para guardar.",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000053",
+      "text_index": 53,
+      "source_text": "Select the item to store.\n",
+      "source_offset": 14720,
+      "label_references": [
+        {
+          "label_ordinal": 53,
+          "identifier_hex": "4e7e5f02",
+          "label_unknown_u16": 64,
+          "control_index": 106
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "Selecione o item para guardar.\n",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000054",
+      "text_index": 54,
+      "source_text": "(Your Item Box is full.)",
+      "source_offset": 14776,
+      "label_references": [
+        {
+          "label_ordinal": 53,
+          "identifier_hex": "4e7e5f02",
+          "label_unknown_u16": 64,
+          "control_index": 108
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "(Seu baú de itens está cheio.)",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000055",
+      "text_index": 55,
+      "source_text": "Store how many?",
+      "source_offset": 14828,
+      "label_references": [
+        {
+          "label_ordinal": 54,
+          "identifier_hex": "1539f84e",
+          "label_unknown_u16": 64,
+          "control_index": 111
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Guardar quantos?",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000056",
+      "text_index": 56,
+      "source_text": "Item(s) stored.",
+      "source_offset": 14860,
+      "label_references": [
+        {
+          "label_ordinal": 55,
+          "identifier_hex": "623ec8d8",
+          "label_unknown_u16": 64,
+          "control_index": 113
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Itens guardados.",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000057",
+      "text_index": 57,
+      "source_text": "Take items out of the Item Box.",
+      "source_offset": 14892,
+      "label_references": [
+        {
+          "label_ordinal": 56,
+          "identifier_hex": "8c30a9f4",
+          "label_unknown_u16": 64,
+          "control_index": 115
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Retire itens do baú de itens.",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000058",
+      "text_index": 58,
+      "source_text": "Select the item to take out.",
+      "source_offset": 14956,
+      "label_references": [
+        {
+          "label_ordinal": 57,
+          "identifier_hex": "65530cc1",
+          "label_unknown_u16": 64,
+          "control_index": 117
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Selecione o item para retirar.",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000059",
+      "text_index": 59,
+      "source_text": "Select the item to take out.\n",
+      "source_offset": 15016,
+      "label_references": [
+        {
+          "label_ordinal": 58,
+          "identifier_hex": "fc5a5d7b",
+          "label_unknown_u16": 64,
+          "control_index": 119
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "Selecione o item para retirar.\n",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000060",
+      "text_index": 60,
+      "source_text": "(Your Pouch is full.)",
+      "source_offset": 15076,
+      "label_references": [
+        {
+          "label_ordinal": 58,
+          "identifier_hex": "fc5a5d7b",
+          "label_unknown_u16": 64,
+          "control_index": 121
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "(Sua bolsa está cheia.)",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000061",
+      "text_index": 61,
+      "source_text": "Select the item to take out.\n",
+      "source_offset": 15120,
+      "label_references": [
+        {
+          "label_ordinal": 59,
+          "identifier_hex": "8b5d6ded",
+          "label_unknown_u16": 64,
+          "control_index": 124
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "Selecione o item para retirar.\n",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000062",
+      "text_index": 62,
+      "source_text": "(You cannot carry any more\nof this item.)",
+      "source_offset": 15180,
+      "label_references": [
+        {
+          "label_ordinal": 59,
+          "identifier_hex": "8b5d6ded",
+          "label_unknown_u16": 64,
+          "control_index": 126
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "(Você não pode levar mais\ndeste item.)",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000063",
+      "text_index": 63,
+      "source_text": "Select where to place the item.",
+      "source_offset": 15264,
+      "label_references": [
+        {
+          "label_ordinal": 60,
+          "identifier_hex": "1be2707c",
+          "label_unknown_u16": 64,
+          "control_index": 129
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Selecione onde colocar o item.",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000064",
+      "text_index": 64,
+      "source_text": "Select where to place the item.\n",
+      "source_offset": 15328,
+      "label_references": [
+        {
+          "label_ordinal": 61,
+          "identifier_hex": "6ce540ea",
+          "label_unknown_u16": 64,
+          "control_index": 131
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "Selecione onde colocar o item.\n",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000065",
+      "text_index": 65,
+      "source_text": "(Your Item Box is full.)",
+      "source_offset": 15396,
+      "label_references": [
+        {
+          "label_ordinal": 61,
+          "identifier_hex": "6ce540ea",
+          "label_unknown_u16": 64,
+          "control_index": 133
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "(Seu baú de itens está cheio.)",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000066",
+      "text_index": 66,
+      "source_text": "Select where to place the item.\n",
+      "source_offset": 15448,
+      "label_references": [
+        {
+          "label_ordinal": 62,
+          "identifier_hex": "a9842e93",
+          "label_unknown_u16": 64,
+          "control_index": 136
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "Selecione onde colocar o item.\n",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000067",
+      "text_index": 67,
+      "source_text": "(Your Gunner's Pouch cannot hold\nother types of items.)",
+      "source_offset": 15516,
+      "label_references": [
+        {
+          "label_ordinal": 62,
+          "identifier_hex": "a9842e93",
+          "label_unknown_u16": 64,
+          "control_index": 138
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "(A bolsa de atirador não aceita\noutros tipos de itens.)",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000068",
+      "text_index": 68,
+      "source_text": "Take how many?",
+      "source_offset": 15628,
+      "label_references": [
+        {
+          "label_ordinal": 63,
+          "identifier_hex": "0c22c90f",
+          "label_unknown_u16": 64,
+          "control_index": 141
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Retirar quantos?",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000069",
+      "text_index": 69,
+      "source_text": "Item(s) taken.",
+      "source_offset": 15660,
+      "label_references": [
+        {
+          "label_ordinal": 64,
+          "identifier_hex": "7b25f999",
+          "label_unknown_u16": 64,
+          "control_index": 143
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Itens retirados.",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000070",
+      "text_index": 70,
+      "source_text": "Register the contents of your Item\nPouch and quickly swap between\nyour favorite sets of items.",
+      "source_offset": 15692,
+      "label_references": [
+        {
+          "label_ordinal": 65,
+          "identifier_hex": "e22ca823",
+          "label_unknown_u16": 64,
+          "control_index": 145
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10,
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "Registre o conteúdo da bolsa\ne troque rapidamente entre\nseus conjuntos de itens.",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000071",
+      "text_index": 71,
+      "source_text": "Swap your Item Pouch's contents\nwith a set of items you already\nregistered.",
+      "source_offset": 15884,
+      "label_references": [
+        {
+          "label_ordinal": 66,
+          "identifier_hex": "0b4f0d16",
+          "label_unknown_u16": 64,
+          "control_index": 147
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10,
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "Troque o conteúdo da bolsa\npor um conjunto de itens\njá registrado.",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000072",
+      "text_index": 72,
+      "source_text": "Select a set.",
+      "source_offset": 16036,
+      "label_references": [
+        {
+          "label_ordinal": 67,
+          "identifier_hex": "e5416c3a",
+          "label_unknown_u16": 64,
+          "control_index": 149
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Selecione um conjunto.",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000073",
+      "text_index": 73,
+      "source_text": "Select a set.\n",
+      "source_offset": 16064,
+      "label_references": [
+        {
+          "label_ordinal": 68,
+          "identifier_hex": "0d5057ea",
+          "label_unknown_u16": 64,
+          "control_index": 151
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "Selecione um conjunto.\n",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000074",
+      "text_index": 74,
+      "source_text": "(Your Box is full.)",
+      "source_offset": 16096,
+      "label_references": [
+        {
+          "label_ordinal": 68,
+          "identifier_hex": "0d5057ea",
+          "label_unknown_u16": 64,
+          "control_index": 153
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "(Seu baú está cheio.)",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000075",
+      "text_index": 75,
+      "source_text": "Swap out your possessions?",
+      "source_offset": 16136,
+      "label_references": [
+        {
+          "label_ordinal": 69,
+          "identifier_hex": "02f9413d",
+          "label_unknown_u16": 64,
+          "control_index": 156
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Trocar os itens que você leva?",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000076",
+      "text_index": 76,
+      "source_text": "Your items have been swapped.",
+      "source_offset": 16192,
+      "label_references": [
+        {
+          "label_ordinal": 70,
+          "identifier_hex": "75fe71ab",
+          "label_unknown_u16": 64,
+          "control_index": 158
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Seus itens foram trocados.",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000077",
+      "text_index": 77,
+      "source_text": "Your items have been swapped.\n",
+      "source_offset": 16252,
+      "label_references": [
+        {
+          "label_ordinal": 71,
+          "identifier_hex": "8bbad5c0",
+          "label_unknown_u16": 64,
+          "control_index": 160
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "Seus itens foram trocados.\n",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000078",
+      "text_index": 78,
+      "source_text": "(Registered contents could not\nbe matched.)",
+      "source_offset": 16316,
+      "label_references": [
+        {
+          "label_ordinal": 71,
+          "identifier_hex": "8bbad5c0",
+          "label_unknown_u16": 64,
+          "control_index": 162
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "(Não foi possível repor todo\no conteúdo registrado.)",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000079",
+      "text_index": 79,
+      "source_text": "Register the contents of your\nItem Pouch as an Item Set.",
+      "source_offset": 16404,
+      "label_references": [
+        {
+          "label_ordinal": 72,
+          "identifier_hex": "fcbde556",
+          "label_unknown_u16": 64,
+          "control_index": 165
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "Registre o conteúdo da bolsa\ncomo um conjunto de itens.",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000080",
+      "text_index": 80,
+      "source_text": "Select where to register the\nset.",
+      "source_offset": 16520,
+      "label_references": [
+        {
+          "label_ordinal": 73,
+          "identifier_hex": "65b4b4ec",
+          "label_unknown_u16": 64,
+          "control_index": 167
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "Selecione onde registrar o\nconjunto.",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000081",
+      "text_index": 81,
+      "source_text": "Register to this Slot?",
+      "source_offset": 16588,
+      "label_references": [
+        {
+          "label_ordinal": 74,
+          "identifier_hex": "12b3847a",
+          "label_unknown_u16": 64,
+          "control_index": 169
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Registrar neste espaço?",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000082",
+      "text_index": 82,
+      "source_text": "Swap the positions of sets\nin your list.",
+      "source_offset": 16636,
+      "label_references": [
+        {
+          "label_ordinal": 75,
+          "identifier_hex": "8cd711d9",
+          "label_unknown_u16": 64,
+          "control_index": 171
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "Troque a posição dos conjuntos\nna lista.",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000083",
+      "text_index": 83,
+      "source_text": "Swap the positions of sets\nin your list.\n",
+      "source_offset": 16720,
+      "label_references": [
+        {
+          "label_ordinal": 76,
+          "identifier_hex": "56b793d2",
+          "label_unknown_u16": 64,
+          "control_index": 173
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10,
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "Troque a posição dos conjuntos\nna lista.\n",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000084",
+      "text_index": 84,
+      "source_text": "(No sets registered.)",
+      "source_offset": 16804,
+      "label_references": [
+        {
+          "label_ordinal": 76,
+          "identifier_hex": "56b793d2",
+          "label_unknown_u16": 64,
+          "control_index": 175
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "(Nenhum conjunto registrado.)",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000085",
+      "text_index": 85,
+      "source_text": "Select a set to move.",
+      "source_offset": 16848,
+      "label_references": [
+        {
+          "label_ordinal": 77,
+          "identifier_hex": "fbd0214f",
+          "label_unknown_u16": 64,
+          "control_index": 178
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Selecione o conjunto para mover.",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000086",
+      "text_index": 86,
+      "source_text": "Select a destination.",
+      "source_offset": 16892,
+      "label_references": [
+        {
+          "label_ordinal": 78,
+          "identifier_hex": "62d970f5",
+          "label_unknown_u16": 64,
+          "control_index": 180
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Selecione o destino.",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000087",
+      "text_index": 87,
+      "source_text": "Unregister a set.",
+      "source_offset": 16936,
+      "label_references": [
+        {
+          "label_ordinal": 79,
+          "identifier_hex": "15de4063",
+          "label_unknown_u16": 64,
+          "control_index": 182
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Exclua um conjunto.",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000088",
+      "text_index": 88,
+      "source_text": "Unregister a set.\n",
+      "source_offset": 16972,
+      "label_references": [
+        {
+          "label_ordinal": 80,
+          "identifier_hex": "54f12d8b",
+          "label_unknown_u16": 64,
+          "control_index": 184
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "Exclua um conjunto.\n",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000089",
+      "text_index": 89,
+      "source_text": "(No sets registered.)",
+      "source_offset": 17012,
+      "label_references": [
+        {
+          "label_ordinal": 80,
+          "identifier_hex": "54f12d8b",
+          "label_unknown_u16": 64,
+          "control_index": 186
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "(Nenhum conjunto registrado.)",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000090",
+      "text_index": 90,
+      "source_text": "Select a set to unregister.",
+      "source_offset": 17056,
+      "label_references": [
+        {
+          "label_ordinal": 81,
+          "identifier_hex": "85615df2",
+          "label_unknown_u16": 64,
+          "control_index": 189
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Selecione o conjunto para excluir.",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000091",
+      "text_index": 91,
+      "source_text": "Select a set to unregister.\n",
+      "source_offset": 17112,
+      "label_references": [
+        {
+          "label_ordinal": 82,
+          "identifier_hex": "5fad6ab6",
+          "label_unknown_u16": 64,
+          "control_index": 191
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "Selecione o conjunto para excluir.\n",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000092",
+      "text_index": 92,
+      "source_text": "(No set registered.)",
+      "source_offset": 17172,
+      "label_references": [
+        {
+          "label_ordinal": 82,
+          "identifier_hex": "5fad6ab6",
+          "label_unknown_u16": 64,
+          "control_index": 193
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "(Nenhum conjunto registrado.)",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000093",
+      "text_index": 93,
+      "source_text": "Unregister this set?",
+      "source_offset": 17216,
+      "label_references": [
+        {
+          "label_ordinal": 83,
+          "identifier_hex": "f2666d64",
+          "label_unknown_u16": 64,
+          "control_index": 196
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Excluir este conjunto?",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000094",
+      "text_index": 94,
+      "source_text": "Combine, organize, and sell items\nstored in the Item Box.",
+      "source_offset": 17260,
+      "label_references": [
+        {
+          "label_ordinal": 84,
+          "identifier_hex": "92a1e481",
+          "label_unknown_u16": 64,
+          "control_index": 198
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "Combine, organize e venda itens\nguardados no baú de itens.",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000095",
+      "text_index": 95,
+      "source_text": "Combine items by selecting them\nfrom the Item Box.",
+      "source_offset": 17376,
+      "label_references": [
+        {
+          "label_ordinal": 85,
+          "identifier_hex": "e5a6d417",
+          "label_unknown_u16": 64,
+          "control_index": 200
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "Combine itens selecionados\nno baú de itens.",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000096",
+      "text_index": 96,
+      "source_text": "Select the first material\nto combine.",
+      "source_offset": 17480,
+      "label_references": [
+        {
+          "label_ordinal": 86,
+          "identifier_hex": "7caf85ad",
+          "label_unknown_u16": 64,
+          "control_index": 202
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "Selecione o primeiro material\npara combinar.",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000097",
+      "text_index": 97,
+      "source_text": "Now, select a second material\nto combine.",
+      "source_offset": 17556,
+      "label_references": [
+        {
+          "label_ordinal": 87,
+          "identifier_hex": "0ba8b53b",
+          "label_unknown_u16": 64,
+          "control_index": 204
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "Agora, selecione outro material\npara combinar.",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000098",
+      "text_index": 98,
+      "source_text": "Proceed with the\nselected combination.",
+      "source_offset": 17640,
+      "label_references": [
+        {
+          "label_ordinal": 88,
+          "identifier_hex": "95cc2098",
+          "label_unknown_u16": 64,
+          "control_index": 206
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "Confirmar a\ncombinação selecionada.",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000099",
+      "text_index": 99,
+      "source_text": "Combination successful.",
+      "source_offset": 17720,
+      "label_references": [
+        {
+          "label_ordinal": 89,
+          "identifier_hex": "e2cb100e",
+          "label_unknown_u16": 64,
+          "control_index": 208
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Combinação bem-sucedida.",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000100",
+      "text_index": 100,
+      "source_text": "Combination failed.",
+      "source_offset": 17768,
+      "label_references": [
+        {
+          "label_ordinal": 90,
+          "identifier_hex": "7bc241b4",
+          "label_unknown_u16": 64,
+          "control_index": 210
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Falha na combinação.",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000101",
+      "text_index": 101,
+      "source_text": "Cancel the combining process.",
+      "source_offset": 17808,
+      "label_references": [
+        {
+          "label_ordinal": 91,
+          "identifier_hex": "0cc57122",
+          "label_unknown_u16": 64,
+          "control_index": 212
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Cancele a combinação.",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000102",
+      "text_index": 102,
+      "source_text": "Combine items by selecting a\ncombination from the Combo List.",
+      "source_offset": 17868,
+      "label_references": [
+        {
+          "label_ordinal": 92,
+          "identifier_hex": "9c7a6cb3",
+          "label_unknown_u16": 64,
+          "control_index": 214
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "Combine itens selecionando uma\nreceita na lista de combinações.",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000103",
+      "text_index": 103,
+      "source_text": "Select a combination.",
+      "source_offset": 17992,
+      "label_references": [
+        {
+          "label_ordinal": 93,
+          "identifier_hex": "eb7d5c25",
+          "label_unknown_u16": 64,
+          "control_index": 216
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Selecione uma combinação.",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000104",
+      "text_index": 104,
+      "source_text": "Swap into which position?",
+      "source_offset": 18036,
+      "label_references": [
+        {
+          "label_ordinal": 94,
+          "identifier_hex": "42a135ff",
+          "label_unknown_u16": 64,
+          "control_index": 218
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Trocar para qual posição?",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000105",
+      "text_index": 105,
+      "source_text": "Arrange the positions of items\nstored in the Item Box.",
+      "source_offset": 18088,
+      "label_references": [
+        {
+          "label_ordinal": 95,
+          "identifier_hex": "35a60569",
+          "label_unknown_u16": 64,
+          "control_index": 220
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "Organize a posição dos itens\nguardados no baú de itens.",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000106",
+      "text_index": 106,
+      "source_text": "Select an item to move.",
+      "source_offset": 18200,
+      "label_references": [
+        {
+          "label_ordinal": 96,
+          "identifier_hex": "acaf54d3",
+          "label_unknown_u16": 64,
+          "control_index": 222
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Selecione o item para mover.",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000107",
+      "text_index": 107,
+      "source_text": "Sell items stored in the Item Box.",
+      "source_offset": 18248,
+      "label_references": [
+        {
+          "label_ordinal": 97,
+          "identifier_hex": "dba86445",
+          "label_unknown_u16": 64,
+          "control_index": 224
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Venda itens do baú de itens.",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000108",
+      "text_index": 108,
+      "source_text": "Select the item you want to sell.",
+      "source_offset": 18320,
+      "label_references": [
+        {
+          "label_ordinal": 98,
+          "identifier_hex": "45ccf1e6",
+          "label_unknown_u16": 64,
+          "control_index": 226
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Selecione o item para vender.",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000109",
+      "text_index": 109,
+      "source_text": "Sell how many?",
+      "source_offset": 18388,
+      "label_references": [
+        {
+          "label_ordinal": 99,
+          "identifier_hex": "32cbc170",
+          "label_unknown_u16": 64,
+          "control_index": 228
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Vender quantos?",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000110",
+      "text_index": 110,
+      "source_text": "Sell for ",
+      "source_offset": 18420,
+      "label_references": [
+        {
+          "label_ordinal": 100,
+          "identifier_hex": "abc290ca",
+          "label_unknown_u16": 64,
+          "control_index": 230
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Vender por ",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000112",
+      "text_index": 112,
+      "source_text": "This has no market value.\nGive it away for free?",
+      "source_offset": 18448,
+      "label_references": [
+        {
+          "label_ordinal": 101,
+          "identifier_hex": "dcc5a05c",
+          "label_unknown_u16": 64,
+          "control_index": 234
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "Isto não tem valor de venda.\nEntregar de graça?",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000113",
+      "text_index": 113,
+      "source_text": "Change, organize, and sell\nyour equipment.",
+      "source_offset": 18548,
+      "label_references": [
+        {
+          "label_ordinal": 102,
+          "identifier_hex": "4c7abdcd",
+          "label_unknown_u16": 64,
+          "control_index": 236
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "Troque, organize e venda\nseus equipamentos.",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000114",
+      "text_index": 114,
+      "source_text": "Change your equipment.",
+      "source_offset": 18636,
+      "label_references": [
+        {
+          "label_ordinal": 103,
+          "identifier_hex": "3b7d8d5b",
+          "label_unknown_u16": 64,
+          "control_index": 238
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Troque seus equipamentos.",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000115",
+      "text_index": 115,
+      "source_text": "Select the equipment to use/unequip.",
+      "source_offset": 18684,
+      "label_references": [
+        {
+          "label_ordinal": 104,
+          "identifier_hex": "5bba04be",
+          "label_unknown_u16": 64,
+          "control_index": 240
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Selecione o que equipar/remover.",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000116",
+      "text_index": 116,
+      "source_text": "Select the equipment to use/unequip.\n",
+      "source_offset": 18760,
+      "label_references": [
+        {
+          "label_ordinal": 105,
+          "identifier_hex": "2cbd3428",
+          "label_unknown_u16": 64,
+          "control_index": 242
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "Selecione o que equipar/remover.\n",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000117",
+      "text_index": 117,
+      "source_text": "(You cannot unequip your weapon.)",
+      "source_offset": 18836,
+      "label_references": [
+        {
+          "label_ordinal": 105,
+          "identifier_hex": "2cbd3428",
+          "label_unknown_u16": 64,
+          "control_index": 244
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "(Não é possível remover sua arma.)",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000118",
+      "text_index": 118,
+      "source_text": "Select the equipment to use/unequip.\n",
+      "source_offset": 18904,
+      "label_references": [
+        {
+          "label_ordinal": 106,
+          "identifier_hex": "b5b46592",
+          "label_unknown_u16": 64,
+          "control_index": 247
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "Selecione o que equipar/remover.\n",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000119",
+      "text_index": 119,
+      "source_text": "(Your current Hunter Type cannot\nequip this.)",
+      "source_offset": 18980,
+      "label_references": [
+        {
+          "label_ordinal": 106,
+          "identifier_hex": "b5b46592",
+          "label_unknown_u16": 64,
+          "control_index": 249
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "(Seu tipo de caçador não pode\nequipar isto.)",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000120",
+      "text_index": 120,
+      "source_text": "Select the equipment to use/unequip.\n",
+      "source_offset": 19072,
+      "label_references": [
+        {
+          "label_ordinal": 107,
+          "identifier_hex": "c2b35504",
+          "label_unknown_u16": 64,
+          "control_index": 252
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "Selecione o que equipar/remover.\n",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000121",
+      "text_index": 121,
+      "source_text": "(Your current armor will be\nunequipped.)",
+      "source_offset": 19148,
+      "label_references": [
+        {
+          "label_ordinal": 107,
+          "identifier_hex": "c2b35504",
+          "label_unknown_u16": 64,
+          "control_index": 254
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "(Sua armadura atual será\nremovida.)",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000122",
+      "text_index": 122,
+      "source_text": "Select the equipment to use/unequip.\n",
+      "source_offset": 19232,
+      "label_references": [
+        {
+          "label_ordinal": 108,
+          "identifier_hex": "11d65d34",
+          "label_unknown_u16": 64,
+          "control_index": 257
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "Selecione o que equipar/remover.\n",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000123",
+      "text_index": 123,
+      "source_text": "(This must be polished before\nyou can equip it.)",
+      "source_offset": 19308,
+      "label_references": [
+        {
+          "label_ordinal": 108,
+          "identifier_hex": "11d65d34",
+          "label_unknown_u16": 64,
+          "control_index": 259
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "(É preciso polir isto antes\nde equipar.)",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000124",
+      "text_index": 124,
+      "source_text": "Change equipment?",
+      "source_offset": 19408,
+      "label_references": [
+        {
+          "label_ordinal": 109,
+          "identifier_hex": "5cd7c0a7",
+          "label_unknown_u16": 64,
+          "control_index": 262
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Trocar equipamento?",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000125",
+      "text_index": 125,
+      "source_text": "Change equipment?\n",
+      "source_offset": 19444,
+      "label_references": [
+        {
+          "label_ordinal": 110,
+          "identifier_hex": "2bd0f031",
+          "label_unknown_u16": 64,
+          "control_index": 264
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "Trocar equipamento?\n",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000126",
+      "text_index": 126,
+      "source_text": "(Changing weapons may result\nin armor being removed.)",
+      "source_offset": 19484,
+      "label_references": [
+        {
+          "label_ordinal": 110,
+          "identifier_hex": "2bd0f031",
+          "label_unknown_u16": 64,
+          "control_index": 266
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "(Trocar de arma pode\nremover sua armadura.)",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000127",
+      "text_index": 127,
+      "source_text": "Change or sell Talismans.",
+      "source_offset": 19592,
+      "label_references": [
+        {
+          "label_ordinal": 111,
+          "identifier_hex": "b2d9a18b",
+          "label_unknown_u16": 64,
+          "control_index": 269
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Troque ou venda talismãs.",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000128",
+      "text_index": 128,
+      "source_text": "Change or sell Talismans.\n",
+      "source_offset": 19644,
+      "label_references": [
+        {
+          "label_ordinal": 112,
+          "identifier_hex": "c5de911d",
+          "label_unknown_u16": 64,
+          "control_index": 271
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "Troque ou venda talismãs.\n",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000129",
+      "text_index": 129,
+      "source_text": "(You don't have any Talismans.)",
+      "source_offset": 19700,
+      "label_references": [
+        {
+          "label_ordinal": 112,
+          "identifier_hex": "c5de911d",
+          "label_unknown_u16": 64,
+          "control_index": 273
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "(Você não tem talismãs.)",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000130",
+      "text_index": 130,
+      "source_text": "Select a Talisman to equip.",
+      "source_offset": 19764,
+      "label_references": [
+        {
+          "label_ordinal": 113,
+          "identifier_hex": "55618c8c",
+          "label_unknown_u16": 64,
+          "control_index": 276
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Selecione o talismã para equipar.",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000131",
+      "text_index": 131,
+      "source_text": "Select a Talisman to equip.\n",
+      "source_offset": 19820,
+      "label_references": [
+        {
+          "label_ordinal": 114,
+          "identifier_hex": "2266bc1a",
+          "label_unknown_u16": 64,
+          "control_index": 278
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "Selecione o talismã para equipar.\n",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000132",
+      "text_index": 132,
+      "source_text": "(You cannot sell equipment\ncurrently in use.)",
+      "source_offset": 19880,
+      "label_references": [
+        {
+          "label_ordinal": 114,
+          "identifier_hex": "2266bc1a",
+          "label_unknown_u16": 64,
+          "control_index": 280
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "(Não é possível vender um\nequipamento em uso.)",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000133",
+      "text_index": 133,
+      "source_text": "Select a Talisman to equip.\n",
+      "source_offset": 19972,
+      "label_references": [
+        {
+          "label_ordinal": 115,
+          "identifier_hex": "7097577d",
+          "label_unknown_u16": 64,
+          "control_index": 283
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "Selecione o talismã para equipar.\n",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000134",
+      "text_index": 134,
+      "source_text": "(Selling this will unregister any\nEquipment Sets that use it.)",
+      "source_offset": 20032,
+      "label_references": [
+        {
+          "label_ordinal": 115,
+          "identifier_hex": "7097577d",
+          "label_unknown_u16": 64,
+          "control_index": 285
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "(Vender isto exclui os conjuntos\nde equipamentos que o utilizam.)",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000135",
+      "text_index": 135,
+      "source_text": "Select a Talisman to equip.\n",
+      "source_offset": 20160,
+      "label_references": [
+        {
+          "label_ordinal": 116,
+          "identifier_hex": "1fc50c8c",
+          "label_unknown_u16": 64,
+          "control_index": 288
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "Selecione o talismã para equipar.\n",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000136",
+      "text_index": 136,
+      "source_text": "(You don't have any Talismans.)",
+      "source_offset": 20220,
+      "label_references": [
+        {
+          "label_ordinal": 116,
+          "identifier_hex": "1fc50c8c",
+          "label_unknown_u16": 64,
+          "control_index": 290
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "(Você não tem talismãs.)",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000137",
+      "text_index": 137,
+      "source_text": "Including attached Decorations,",
+      "source_offset": 20284,
+      "label_references": [
+        {
+          "label_ordinal": 117,
+          "identifier_hex": "079067eb",
+          "label_unknown_u16": 64,
+          "control_index": 294
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Com as joias instaladas,",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000138",
+      "text_index": 138,
+      "source_text": "\nthe total comes to ",
+      "source_offset": 20348,
+      "label_references": [
+        {
+          "label_ordinal": 117,
+          "identifier_hex": "079067eb",
+          "label_unknown_u16": 64,
+          "control_index": 296
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "\no total é de ",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000139",
+      "text_index": 139,
+      "source_text": "z.\nProceed with the sale?",
+      "source_offset": 20392,
+      "label_references": [
+        {
+          "label_ordinal": 117,
+          "identifier_hex": "079067eb",
+          "label_unknown_u16": 64,
+          "control_index": 298
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "z.\nConfirmar a venda?",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000140",
+      "text_index": 140,
+      "source_text": "Attach or remove Decorations.",
+      "source_offset": 20444,
+      "label_references": [
+        {
+          "label_ordinal": 118,
+          "identifier_hex": "9e993651",
+          "label_unknown_u16": 64,
+          "control_index": 300
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Instale ou remova joias.",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000141",
+      "text_index": 141,
+      "source_text": "Attach or remove Decorations.\n",
+      "source_offset": 20504,
+      "label_references": [
+        {
+          "label_ordinal": 119,
+          "identifier_hex": "00e726b4",
+          "label_unknown_u16": 64,
+          "control_index": 302
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "Instale ou remova joias.\n",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000142",
+      "text_index": 142,
+      "source_text": "(You don't have any Decorations.)",
+      "source_offset": 20568,
+      "label_references": [
+        {
+          "label_ordinal": 119,
+          "identifier_hex": "00e726b4",
+          "label_unknown_u16": 64,
+          "control_index": 304
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "(Você não tem joias.)",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000143",
+      "text_index": 143,
+      "source_text": "Select the equipment to attach\nor remove Decorations from.",
+      "source_offset": 20636,
+      "label_references": [
+        {
+          "label_ordinal": 120,
+          "identifier_hex": "e99e06c7",
+          "label_unknown_u16": 64,
+          "control_index": 307
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "Selecione o equipamento para\ninstalar ou remover joias.",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000144",
+      "text_index": 144,
+      "source_text": "Select the equipment to attach\nor remove Decorations from.\n",
+      "source_offset": 20756,
+      "label_references": [
+        {
+          "label_ordinal": 121,
+          "identifier_hex": "01254c83",
+          "label_unknown_u16": 64,
+          "control_index": 309
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10,
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "Selecione o equipamento para\ninstalar ou remover joias.\n",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000145",
+      "text_index": 145,
+      "source_text": "(Decorations cannot be removed.)",
+      "source_offset": 20876,
+      "label_references": [
+        {
+          "label_ordinal": 121,
+          "identifier_hex": "01254c83",
+          "label_unknown_u16": 64,
+          "control_index": 311
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "(Não é possível remover as joias.)",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000146",
+      "text_index": 146,
+      "source_text": "Select a Slot.",
+      "source_offset": 20944,
+      "label_references": [
+        {
+          "label_ordinal": 122,
+          "identifier_hex": "77fa9364",
+          "label_unknown_u16": 64,
+          "control_index": 314
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Selecione um espaço.",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000147",
+      "text_index": 147,
+      "source_text": "Select a Decoration.",
+      "source_offset": 20976,
+      "label_references": [
+        {
+          "label_ordinal": 123,
+          "identifier_hex": "00fda3f2",
+          "label_unknown_u16": 64,
+          "control_index": 316
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Selecione uma joia.",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000148",
+      "text_index": 148,
+      "source_text": "Select a Decoration.\n",
+      "source_offset": 21020,
+      "label_references": [
+        {
+          "label_ordinal": 124,
+          "identifier_hex": "99f4f248",
+          "label_unknown_u16": 64,
+          "control_index": 318
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "Selecione uma joia.\n",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000149",
+      "text_index": 149,
+      "source_text": "(Not enough Slots.)",
+      "source_offset": 21064,
+      "label_references": [
+        {
+          "label_ordinal": 124,
+          "identifier_hex": "99f4f248",
+          "label_unknown_u16": 64,
+          "control_index": 320
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "(Espaços insuficientes.)",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000150",
+      "text_index": 150,
+      "source_text": "Select a Decoration.\n",
+      "source_offset": 21104,
+      "label_references": [
+        {
+          "label_ordinal": 125,
+          "identifier_hex": "07ee8e68",
+          "label_unknown_u16": 64,
+          "control_index": 323
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "Selecione uma joia.\n",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000151",
+      "text_index": 151,
+      "source_text": "(Your Box is full.)",
+      "source_offset": 21148,
+      "label_references": [
+        {
+          "label_ordinal": 125,
+          "identifier_hex": "07ee8e68",
+          "label_unknown_u16": 64,
+          "control_index": 325
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "(Seu baú está cheio.)",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000152",
+      "text_index": 152,
+      "source_text": "Arrange the positions of equipment\nstored in the Item Box.",
+      "source_offset": 21188,
+      "label_references": [
+        {
+          "label_ordinal": 126,
+          "identifier_hex": "eef3c2de",
+          "label_unknown_u16": 64,
+          "control_index": 328
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "Organize a posição dos equipamentos\nguardados no baú de itens.",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000153",
+      "text_index": 153,
+      "source_text": "Select a piece of equipment\nto move.",
+      "source_offset": 21308,
+      "label_references": [
+        {
+          "label_ordinal": 127,
+          "identifier_hex": "7e4cdf4f",
+          "label_unknown_u16": 64,
+          "control_index": 330
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "Selecione o equipamento\npara mover.",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000154",
+      "text_index": 154,
+      "source_text": "Sell equipment stored in the\nItem Box.",
+      "source_offset": 21384,
+      "label_references": [
+        {
+          "label_ordinal": 128,
+          "identifier_hex": "698c663c",
+          "label_unknown_u16": 64,
+          "control_index": 332
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "Venda equipamentos guardados\nno baú de itens.",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000155",
+      "text_index": 155,
+      "source_text": "Select the equipment to sell.",
+      "source_offset": 21464,
+      "label_references": [
+        {
+          "label_ordinal": 129,
+          "identifier_hex": "1e8b56aa",
+          "label_unknown_u16": 64,
+          "control_index": 334
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Selecione o equipamento para vender.",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000156",
+      "text_index": 156,
+      "source_text": "Select the equipment to sell.\n",
+      "source_offset": 21524,
+      "label_references": [
+        {
+          "label_ordinal": 130,
+          "identifier_hex": "ba1dff88",
+          "label_unknown_u16": 64,
+          "control_index": 336
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "Selecione o equipamento para vender.\n",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000157",
+      "text_index": 157,
+      "source_text": "(You cannot sell equipment\ncurrently in use.)",
+      "source_offset": 21588,
+      "label_references": [
+        {
+          "label_ordinal": 130,
+          "identifier_hex": "ba1dff88",
+          "label_unknown_u16": 64,
+          "control_index": 338
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "(Não é possível vender um\nequipamento em uso.)",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000158",
+      "text_index": 158,
+      "source_text": "Select the equipment to sell.\n",
+      "source_offset": 21680,
+      "label_references": [
+        {
+          "label_ordinal": 131,
+          "identifier_hex": "2314ae32",
+          "label_unknown_u16": 64,
+          "control_index": 341
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "Selecione o equipamento para vender.\n",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000159",
+      "text_index": 159,
+      "source_text": "(Selling this will unregister any\nEquipment Sets that use it.)",
+      "source_offset": 21744,
+      "label_references": [
+        {
+          "label_ordinal": 131,
+          "identifier_hex": "2314ae32",
+          "label_unknown_u16": 64,
+          "control_index": 343
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "(Vender isto exclui os conjuntos\nde equipamentos que o utilizam.)",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000160",
+      "text_index": 160,
+      "source_text": "Select the equipment to sell.\n",
+      "source_offset": 21872,
+      "label_references": [
+        {
+          "label_ordinal": 132,
+          "identifier_hex": "54139ea4",
+          "label_unknown_u16": 64,
+          "control_index": 346
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "Selecione o equipamento para vender.\n",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000161",
+      "text_index": 161,
+      "source_text": "(Cannot sell polished equipment.\nTrade it in at the Antiquary.)",
+      "source_offset": 21936,
+      "label_references": [
+        {
+          "label_ordinal": 132,
+          "identifier_hex": "54139ea4",
+          "label_unknown_u16": 64,
+          "control_index": 348
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "(Não é possível vender itens polidos.\nTroque-os no antiquário.)",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000162",
+      "text_index": 162,
+      "source_text": "Register your equipped weapon,\narmor, and talisman, or edit an\nexisting Equipment Set.",
+      "source_offset": 22064,
+      "label_references": [
+        {
+          "label_ordinal": 133,
+          "identifier_hex": "87820710",
+          "label_unknown_u16": 64,
+          "control_index": 351
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10,
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "Registre arma, armadura e\ntalismã equipados ou edite um\nconjunto de equipamentos.",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000163",
+      "text_index": 163,
+      "source_text": "Change into one of your\nregistered Equipment Sets.",
+      "source_offset": 22240,
+      "label_references": [
+        {
+          "label_ordinal": 134,
+          "identifier_hex": "f0853786",
+          "label_unknown_u16": 64,
+          "control_index": 353
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "Equipe um de seus conjuntos\nde equipamentos registrados.",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000164",
+      "text_index": 164,
+      "source_text": "Change into one of your\nregistered Equipment Sets.\n",
+      "source_offset": 22344,
+      "label_references": [
+        {
+          "label_ordinal": 135,
+          "identifier_hex": "b9992be6",
+          "label_unknown_u16": 64,
+          "control_index": 355
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10,
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "Equipe um de seus conjuntos\nde equipamentos registrados.\n",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000165",
+      "text_index": 165,
+      "source_text": "(No sets registered.)",
+      "source_offset": 22448,
+      "label_references": [
+        {
+          "label_ordinal": 135,
+          "identifier_hex": "b9992be6",
+          "label_unknown_u16": 64,
+          "control_index": 357
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "(Nenhum conjunto registrado.)",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000166",
+      "text_index": 166,
+      "source_text": "Select the set you want to equip.",
+      "source_offset": 22492,
+      "label_references": [
+        {
+          "label_ordinal": 136,
+          "identifier_hex": "19e692b3",
+          "label_unknown_u16": 64,
+          "control_index": 360
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Selecione o conjunto para equipar.",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000167",
+      "text_index": 167,
+      "source_text": "Select the set you want to equip.\n",
+      "source_offset": 22560,
+      "label_references": [
+        {
+          "label_ordinal": 137,
+          "identifier_hex": "bd145754",
+          "label_unknown_u16": 64,
+          "control_index": 362
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "Selecione o conjunto para equipar.\n",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000168",
+      "text_index": 168,
+      "source_text": "(No set registered.)",
+      "source_offset": 22632,
+      "label_references": [
+        {
+          "label_ordinal": 137,
+          "identifier_hex": "bd145754",
+          "label_unknown_u16": 64,
+          "control_index": 364
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "(Nenhum conjunto registrado.)",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000169",
+      "text_index": 169,
+      "source_text": "Select the set you want to equip.\n",
+      "source_offset": 22676,
+      "label_references": [
+        {
+          "label_ordinal": 138,
+          "identifier_hex": "241d06ee",
+          "label_unknown_u16": 64,
+          "control_index": 367
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "Selecione o conjunto para equipar.\n",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000170",
+      "text_index": 170,
+      "source_text": "(Some Decorations are missing.)",
+      "source_offset": 22748,
+      "label_references": [
+        {
+          "label_ordinal": 138,
+          "identifier_hex": "241d06ee",
+          "label_unknown_u16": 64,
+          "control_index": 369
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "(Algumas joias estão faltando.)",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000171",
+      "text_index": 171,
+      "source_text": "Select the set you want to equip.\n",
+      "source_offset": 22812,
+      "label_references": [
+        {
+          "label_ordinal": 139,
+          "identifier_hex": "531a3678",
+          "label_unknown_u16": 64,
+          "control_index": 372
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "Selecione o conjunto para equipar.\n",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000172",
+      "text_index": 172,
+      "source_text": "(Cannot equip because Decorations\ncannot be put away.)",
+      "source_offset": 22884,
+      "label_references": [
+        {
+          "label_ordinal": 139,
+          "identifier_hex": "531a3678",
+          "label_unknown_u16": 64,
+          "control_index": 374
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "(Não é possível equipar: as joias\nnão podem ser guardadas.)",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000173",
+      "text_index": 173,
+      "source_text": "Change into registered equipment?",
+      "source_offset": 22996,
+      "label_references": [
+        {
+          "label_ordinal": 140,
+          "identifier_hex": "cd7ea3db",
+          "label_unknown_u16": 64,
+          "control_index": 377
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Equipar o conjunto registrado?",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000174",
+      "text_index": 174,
+      "source_text": "Change into registered equipment?\n",
+      "source_offset": 23064,
+      "label_references": [
+        {
+          "label_ordinal": 141,
+          "identifier_hex": "2370c2f7",
+          "label_unknown_u16": 64,
+          "control_index": 379
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "Equipar o conjunto registrado?\n",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000175",
+      "text_index": 175,
+      "source_text": "(Some Decorations are missing.)",
+      "source_offset": 23136,
+      "label_references": [
+        {
+          "label_ordinal": 141,
+          "identifier_hex": "2370c2f7",
+          "label_unknown_u16": 64,
+          "control_index": 381
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "(Algumas joias estão faltando.)",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000176",
+      "text_index": 176,
+      "source_text": "Equipment changed.",
+      "source_offset": 23200,
+      "label_references": [
+        {
+          "label_ordinal": 142,
+          "identifier_hex": "6ee1a225",
+          "label_unknown_u16": 64,
+          "control_index": 384
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Equipamento trocado.",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000177",
+      "text_index": 177,
+      "source_text": "Register your current equipment\nas a new Equipment Set.",
+      "source_offset": 23240,
+      "label_references": [
+        {
+          "label_ordinal": 143,
+          "identifier_hex": "ba79934d",
+          "label_unknown_u16": 64,
+          "control_index": 386
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "Registre seu equipamento atual\ncomo um novo conjunto.",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000178",
+      "text_index": 178,
+      "source_text": "Change the style and color of\nyour hair, clothing, and more.",
+      "source_offset": 23352,
+      "label_references": [
+        {
+          "label_ordinal": 144,
+          "identifier_hex": "80efc309",
+          "label_unknown_u16": 64,
+          "control_index": 388
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "Mude o estilo e a cor do\ncabelo, da roupa e mais.",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000179",
+      "text_index": 179,
+      "source_text": "Change your clothing (garments\nworn beneath any armor).",
+      "source_offset": 23476,
+      "label_references": [
+        {
+          "label_ordinal": 145,
+          "identifier_hex": "f7e8f39f",
+          "label_unknown_u16": 64,
+          "control_index": 390
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "Mude sua roupa (usada\npor baixo da armadura).",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000180",
+      "text_index": 180,
+      "source_text": "Change your hairstyle.",
+      "source_offset": 23588,
+      "label_references": [
+        {
+          "label_ordinal": 146,
+          "identifier_hex": "26cdf0fb",
+          "label_unknown_u16": 64,
+          "control_index": 392
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Mude seu penteado.",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000181",
+      "text_index": 181,
+      "source_text": "Choose a new hair color.",
+      "source_offset": 23636,
+      "label_references": [
+        {
+          "label_ordinal": 147,
+          "identifier_hex": "c8c391d7",
+          "label_unknown_u16": 64,
+          "control_index": 394
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Escolha uma nova cor de cabelo.",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000182",
+      "text_index": 182,
+      "source_text": "Change your cosmetic feature.",
+      "source_offset": 23688,
+      "label_references": [
+        {
+          "label_ordinal": 148,
+          "identifier_hex": "bfc4a141",
+          "label_unknown_u16": 64,
+          "control_index": 396
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Mude os detalhes do rosto.",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000183",
+      "text_index": 183,
+      "source_text": "Choose the cosmetic feature's color.",
+      "source_offset": 23748,
+      "label_references": [
+        {
+          "label_ordinal": 149,
+          "identifier_hex": "56a70474",
+          "label_unknown_u16": 64,
+          "control_index": 398
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Escolha a cor dos detalhes do rosto.",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000184",
+      "text_index": 184,
+      "source_text": "Change your eye color.",
+      "source_offset": 23824,
+      "label_references": [
+        {
+          "label_ordinal": 150,
+          "identifier_hex": "cfae55ce",
+          "label_unknown_u16": 64,
+          "control_index": 400
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Mude a cor dos olhos.",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000185",
+      "text_index": 185,
+      "source_text": "Change your armor color.",
+      "source_offset": 23872,
+      "label_references": [
+        {
+          "label_ordinal": 151,
+          "identifier_hex": "281678c9",
+          "label_unknown_u16": 64,
+          "control_index": 402
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Mude a cor da armadura.",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000186",
+      "text_index": 186,
+      "source_text": "Change your armor color.\n",
+      "source_offset": 23924,
+      "label_references": [
+        {
+          "label_ordinal": 152,
+          "identifier_hex": "5f11485f",
+          "label_unknown_u16": 64,
+          "control_index": 404
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "Mude a cor da armadura.\n",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000187",
+      "text_index": 187,
+      "source_text": "(The armor you have equipped\ncannot be recolored.)",
+      "source_offset": 23976,
+      "label_references": [
+        {
+          "label_ordinal": 152,
+          "identifier_hex": "5f11485f",
+          "label_unknown_u16": 64,
+          "control_index": 406
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "(A armadura equipada não\npermite mudar de cor.)",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000188",
+      "text_index": 188,
+      "source_text": "Select the piece of armor\nyou would like to recolor.",
+      "source_offset": 24080,
+      "label_references": [
+        {
+          "label_ordinal": 153,
+          "identifier_hex": "3fd6c1ba",
+          "label_unknown_u16": 64,
+          "control_index": 409
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "Selecione a peça de armadura\ncuja cor deseja mudar.",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000189",
+      "text_index": 189,
+      "source_text": "Select a new color.",
+      "source_offset": 24188,
+      "label_references": [
+        {
+          "label_ordinal": 154,
+          "identifier_hex": "48d1f12c",
+          "label_unknown_u16": 64,
+          "control_index": 411
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Selecione uma nova cor.",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000190",
+      "text_index": 190,
+      "source_text": "Restore to the default color?",
+      "source_offset": 24228,
+      "label_references": [
+        {
+          "label_ordinal": 155,
+          "identifier_hex": "d1d8a096",
+          "label_unknown_u16": 64,
+          "control_index": 413
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Restaurar a cor padrão?",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000191",
+      "text_index": 191,
+      "source_text": "The default colors were restored.",
+      "source_offset": 24288,
+      "label_references": [
+        {
+          "label_ordinal": 156,
+          "identifier_hex": "a6df9000",
+          "label_unknown_u16": 64,
+          "control_index": 415
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "As cores padrão foram restauradas.",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000192",
+      "text_index": 192,
+      "source_text": "Sort your items?",
+      "source_offset": 24356,
+      "label_references": [
+        {
+          "label_ordinal": 157,
+          "identifier_hex": "38bb05a3",
+          "label_unknown_u16": 64,
+          "control_index": 417
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Ordenar seus itens?",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000193",
+      "text_index": 193,
+      "source_text": "Sort your equipment?",
+      "source_offset": 24392,
+      "label_references": [
+        {
+          "label_ordinal": 158,
+          "identifier_hex": "4fbc3535",
+          "label_unknown_u16": 64,
+          "control_index": 419
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Ordenar seus equipamentos?",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000194",
+      "text_index": 194,
+      "source_text": "Move the Circle Pad Up/Down\nto pan the camera, and Left/\nRight to rotate the character.",
+      "source_offset": 24436,
+      "label_references": [
+        {
+          "label_ordinal": 159,
+          "identifier_hex": "d6b5648f",
+          "label_unknown_u16": 64,
+          "control_index": 421
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10,
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "Mova o Circle Pad para cima/baixo\npara mover a câmera e para os\nlados para girar o personagem.",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000196",
+      "text_index": 196,
+      "source_text": "Camera",
+      "source_offset": 24620,
+      "label_references": [
+        {
+          "label_ordinal": 161,
+          "identifier_hex": "310d4988",
+          "label_unknown_u16": 64,
+          "control_index": 425
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Câmera",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000197",
+      "text_index": 197,
+      "source_text": "View Mode",
+      "source_offset": 24636,
+      "label_references": [
+        {
+          "label_ordinal": 162,
+          "identifier_hex": "460a791e",
+          "label_unknown_u16": 64,
+          "control_index": 427
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Modo de visualização",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000198",
+      "text_index": 198,
+      "source_text": "(None)",
+      "source_offset": 24656,
+      "label_references": [
+        {
+          "label_ordinal": 163,
+          "identifier_hex": "14fb9279",
+          "label_unknown_u16": 64,
+          "control_index": 429
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "(Nenhum)",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000199",
+      "text_index": 199,
+      "source_text": "Skills",
+      "source_offset": 24672,
+      "label_references": [
+        {
+          "label_ordinal": 164,
+          "identifier_hex": "63fca2ef",
+          "label_unknown_u16": 64,
+          "control_index": 431
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Habilidades",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000200",
+      "text_index": 200,
+      "source_text": "Resort",
+      "source_offset": 24688,
+      "label_references": [
+        {
+          "label_ordinal": 165,
+          "identifier_hex": "faf5f355",
+          "label_unknown_u16": 64,
+          "control_index": 433
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Reordenar",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000201",
+      "text_index": 201,
+      "source_text": "Sell",
+      "source_offset": 24704,
+      "label_references": [
+        {
+          "label_ordinal": 166,
+          "identifier_hex": "8df2c3c3",
+          "label_unknown_u16": 64,
+          "control_index": 435
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Vender",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000202",
+      "text_index": 202,
+      "source_text": "Sort By",
+      "source_offset": 24716,
+      "label_references": [
+        {
+          "label_ordinal": 167,
+          "identifier_hex": "13965660",
+          "label_unknown_u16": 64,
+          "control_index": 437
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Ordenar por",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000203",
+      "text_index": 203,
+      "source_text": "Rarity",
+      "source_offset": 24732,
+      "label_references": [
+        {
+          "label_ordinal": 168,
+          "identifier_hex": "649166f6",
+          "label_unknown_u16": 64,
+          "control_index": 439
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Raridade",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000204",
+      "text_index": 204,
+      "source_text": "Innate Skill 1",
+      "source_offset": 24748,
+      "label_references": [
+        {
+          "label_ordinal": 169,
+          "identifier_hex": "fd98374c",
+          "label_unknown_u16": 64,
+          "control_index": 441
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Habilidade inata 1",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000205",
+      "text_index": 205,
+      "source_text": "Innate Skill 2",
+      "source_offset": 24780,
+      "label_references": [
+        {
+          "label_ordinal": 170,
+          "identifier_hex": "8a9f07da",
+          "label_unknown_u16": 64,
+          "control_index": 443
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Habilidade inata 2",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000206",
+      "text_index": 206,
+      "source_text": "Slots",
+      "source_offset": 24812,
+      "label_references": [
+        {
+          "label_ordinal": 171,
+          "identifier_hex": "1a201a4b",
+          "label_unknown_u16": 64,
+          "control_index": 445
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Espaços",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000207",
+      "text_index": 207,
+      "source_text": "Rotate",
+      "source_offset": 24824,
+      "label_references": [
+        {
+          "label_ordinal": 172,
+          "identifier_hex": "6d272add",
+          "label_unknown_u16": 64,
+          "control_index": 447
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Girar",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000208",
+      "text_index": 208,
+      "source_text": "Move/Rotate",
+      "source_offset": 24840,
+      "label_references": [
+        {
+          "label_ordinal": 173,
+          "identifier_hex": "83d05e02",
+          "label_unknown_u16": 64,
+          "control_index": 449
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Mover/girar",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000209",
+      "text_index": 209,
+      "source_text": "Hide Weapon",
+      "source_offset": 24864,
+      "label_references": [
+        {
+          "label_ordinal": 174,
+          "identifier_hex": "0de0a338",
+          "label_unknown_u16": 64,
+          "control_index": 451
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Ocultar arma",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000210",
+      "text_index": 210,
+      "source_text": "Show Menu",
+      "source_offset": 24888,
+      "label_references": [
+        {
+          "label_ordinal": 175,
+          "identifier_hex": "7ae793ae",
+          "label_unknown_u16": 64,
+          "control_index": 453
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Mostrar menu",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000211",
+      "text_index": 211,
+      "source_text": "Color",
+      "source_offset": 24908,
+      "label_references": [
+        {
+          "label_ordinal": 176,
+          "identifier_hex": "e3eec214",
+          "label_unknown_u16": 64,
+          "control_index": 455
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Cor",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000212",
+      "text_index": 212,
+      "source_text": "Edit Name",
+      "source_offset": 24920,
+      "label_references": [
+        {
+          "label_ordinal": 177,
+          "identifier_hex": "94e9f282",
+          "label_unknown_u16": 64,
+          "control_index": 457
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Editar nome",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000213",
+      "text_index": 213,
+      "source_text": "Equipment Set",
+      "source_offset": 24940,
+      "label_references": [
+        {
+          "label_ordinal": 178,
+          "identifier_hex": "0a8d6721",
+          "label_unknown_u16": 64,
+          "control_index": 459
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Conjunto de equipamentos",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000214",
+      "text_index": 214,
+      "source_text": "Player",
+      "source_offset": 24968,
+      "label_references": [
+        {
+          "label_ordinal": 179,
+          "identifier_hex": "9384369b",
+          "label_unknown_u16": 64,
+          "control_index": 461
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Jogador",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000218",
+      "text_index": 218,
+      "source_text": "Value",
+      "source_offset": 25008,
+      "label_references": [
+        {
+          "label_ordinal": 183,
+          "identifier_hex": "fd7f8f61",
+          "label_unknown_u16": 64,
+          "control_index": 469
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Valor",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000219",
+      "text_index": 219,
+      "source_text": "Talisman",
+      "source_offset": 25020,
+      "label_references": [
+        {
+          "label_ordinal": 184,
+          "identifier_hex": "6476dedb",
+          "label_unknown_u16": 64,
+          "control_index": 471
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Talismã",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000220",
+      "text_index": 220,
+      "source_text": "Skill Tree",
+      "source_offset": 25040,
+      "label_references": [
+        {
+          "label_ordinal": 185,
+          "identifier_hex": "1371ee4d",
+          "label_unknown_u16": 64,
+          "control_index": 473
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Árvore de habilidades",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000221",
+      "text_index": 221,
+      "source_text": "Skill Details",
+      "source_offset": 25064,
+      "label_references": [
+        {
+          "label_ordinal": 186,
+          "identifier_hex": "8d157bee",
+          "label_unknown_u16": 64,
+          "control_index": 475
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Detalhes das habilidades",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000223",
+      "text_index": 223,
+      "source_text": "Active Skills",
+      "source_offset": 25096,
+      "label_references": [
+        {
+          "label_ordinal": 188,
+          "identifier_hex": "631b1ac2",
+          "label_unknown_u16": 64,
+          "control_index": 479
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Habilidades ativas",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000224",
+      "text_index": 224,
+      "source_text": "Set Decorations",
+      "source_offset": 25124,
+      "label_references": [
+        {
+          "label_ordinal": 189,
+          "identifier_hex": "141c2a54",
+          "label_unknown_u16": 64,
+          "control_index": 481
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Instalar joias",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000225",
+      "text_index": 225,
+      "source_text": "Displaying:",
+      "source_offset": 25156,
+      "label_references": [
+        {
+          "label_ordinal": 190,
+          "identifier_hex": "84a337c5",
+          "label_unknown_u16": 64,
+          "control_index": 483
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Exibindo:",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000226",
+      "text_index": 226,
+      "source_text": "Required Slots",
+      "source_offset": 25180,
+      "label_references": [
+        {
+          "label_ordinal": 191,
+          "identifier_hex": "f3a40753",
+          "label_unknown_u16": 64,
+          "control_index": 485
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Espaços necessários",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000227",
+      "text_index": 227,
+      "source_text": "Equip. Box",
+      "source_offset": 25212,
+      "label_references": [
+        {
+          "label_ordinal": 192,
+          "identifier_hex": "93638eb6",
+          "label_unknown_u16": 64,
+          "control_index": 487
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Baú de equip.",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000228",
+      "text_index": 228,
+      "source_text": "Quantity",
+      "source_offset": 25236,
+      "label_references": [
+        {
+          "label_ordinal": 193,
+          "identifier_hex": "e464be20",
+          "label_unknown_u16": 64,
+          "control_index": 489
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Quantidade",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000229",
+      "text_index": 229,
+      "source_text": "Sort",
+      "source_offset": 25256,
+      "label_references": [
+        {
+          "label_ordinal": 194,
+          "identifier_hex": "7d6def9a",
+          "label_unknown_u16": 64,
+          "control_index": 491
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Ordenar",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000230",
+      "text_index": 230,
+      "source_text": "Combinable",
+      "source_offset": 25268,
+      "label_references": [
+        {
+          "label_ordinal": 195,
+          "identifier_hex": "0a6adf0c",
+          "label_unknown_u16": 64,
+          "control_index": 493
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Combinável",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000231",
+      "text_index": 231,
+      "source_text": "Reorder",
+      "source_offset": 25292,
+      "label_references": [
+        {
+          "label_ordinal": 196,
+          "identifier_hex": "940e4aaf",
+          "label_unknown_u16": 64,
+          "control_index": 495
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Reordenar",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000232",
+      "text_index": 232,
+      "source_text": "Sell",
+      "source_offset": 25308,
+      "label_references": [
+        {
+          "label_ordinal": 197,
+          "identifier_hex": "e3097a39",
+          "label_unknown_u16": 64,
+          "control_index": 497
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Vender",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000233",
+      "text_index": 233,
+      "source_text": "Compare",
+      "source_offset": 25320,
+      "label_references": [
+        {
+          "label_ordinal": 198,
+          "identifier_hex": "7a002b83",
+          "label_unknown_u16": 64,
+          "control_index": 499
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Comparar",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000234",
+      "text_index": 234,
+      "source_text": "Set ",
+      "source_offset": 25336,
+      "label_references": [
+        {
+          "label_ordinal": 199,
+          "identifier_hex": "0d071b15",
+          "label_unknown_u16": 64,
+          "control_index": 501
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Conjunto ",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000235",
+      "text_index": 235,
+      "source_text": "Show Weapon",
+      "source_offset": 25348,
+      "label_references": [
+        {
+          "label_ordinal": 200,
+          "identifier_hex": "9db80684",
+          "label_unknown_u16": 64,
+          "control_index": 504
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Mostrar arma",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000236",
+      "text_index": 236,
+      "source_text": "Customize",
+      "source_offset": 25372,
+      "label_references": [
+        {
+          "label_ordinal": 201,
+          "identifier_hex": "eabf3612",
+          "label_unknown_u16": 64,
+          "control_index": 506
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Personalizar",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000237",
+      "text_index": 237,
+      "source_text": "Default Order",
+      "source_offset": 25392,
+      "label_references": [
+        {
+          "label_ordinal": 202,
+          "identifier_hex": "40e78ba6",
+          "label_unknown_u16": 64,
+          "control_index": 508
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Ordem padrão",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000238",
+      "text_index": 238,
+      "source_text": "Show skills",
+      "source_offset": 25420,
+      "label_references": [
+        {
+          "label_ordinal": 203,
+          "identifier_hex": "37e0bb30",
+          "label_unknown_u16": 64,
+          "control_index": 510
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Mostrar habilidades",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000239",
+      "text_index": 239,
+      "source_text": "Show names",
+      "source_offset": 25444,
+      "label_references": [
+        {
+          "label_ordinal": 204,
+          "identifier_hex": "aee9ea8a",
+          "label_unknown_u16": 64,
+          "control_index": 512
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Mostrar nomes",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000240",
+      "text_index": 240,
+      "source_text": "Toggle Display",
+      "source_offset": 25468,
+      "label_references": [
+        {
+          "label_ordinal": 205,
+          "identifier_hex": "d9eeda1c",
+          "label_unknown_u16": 64,
+          "control_index": 514
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Alternar exibição",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000241",
+      "text_index": 241,
+      "source_text": "Details",
+      "source_offset": 25500,
+      "label_references": [
+        {
+          "label_ordinal": 206,
+          "identifier_hex": "478a4fbf",
+          "label_unknown_u16": 64,
+          "control_index": 516
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Detalhes",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000242",
+      "text_index": 242,
+      "source_text": "Equipment Name",
+      "source_offset": 25516,
+      "label_references": [
+        {
+          "label_ordinal": 207,
+          "identifier_hex": "308d7f29",
+          "label_unknown_u16": 64,
+          "control_index": 518
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Nome do equipamento",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000243",
+      "text_index": 243,
+      "source_text": "Register the contents of your\nItem Pouch as an Item Set.",
+      "source_offset": 25548,
+      "label_references": [
+        {
+          "label_ordinal": 208,
+          "identifier_hex": "792f78f5",
+          "label_unknown_u16": 64,
+          "control_index": 520
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "Registre o conteúdo da bolsa\ncomo um conjunto de itens.",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000244",
+      "text_index": 244,
+      "source_text": "Swap the positions of sets\nin your list.",
+      "source_offset": 25664,
+      "label_references": [
+        {
+          "label_ordinal": 209,
+          "identifier_hex": "4ef188c7",
+          "label_unknown_u16": 64,
+          "control_index": 522
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "Troque a posição dos conjuntos\nna lista.",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000245",
+      "text_index": 245,
+      "source_text": "Unregister a set.",
+      "source_offset": 25748,
+      "label_references": [
+        {
+          "label_ordinal": 210,
+          "identifier_hex": "5c442729",
+          "label_unknown_u16": 64,
+          "control_index": 524
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Exclua um conjunto.",
+      "review_status": "draft"
+    },
+    {
+      "key": "ItemBox:000246",
+      "text_index": 246,
+      "source_text": "Register your current equipment\nas a new Equipment Set.",
+      "source_offset": 25784,
+      "label_references": [
+        {
+          "label_ordinal": 211,
+          "identifier_hex": "4ac10d16",
+          "label_unknown_u16": 64,
+          "control_index": 526
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "Registre seu equipamento atual\ncomo um novo conjunto.",
+      "review_status": "draft"
+    }
+  ],
+  "status": "draft; source-bound native catalog; linguistic/layout review pending; no human review claimed",
+  "glossary": [
+    {
+      "source": "Item Box / Box",
+      "target": "baú de itens / baú",
+      "note": "Mesmo recipiente nos três documentos novos; forma curta quando a fonte também abrevia."
+    },
+    {
+      "source": "Item Pouch / Pouch",
+      "target": "bolsa de itens / bolsa",
+      "note": "Inventário levado pelo caçador; distinto do baú."
+    },
+    {
+      "source": "Item Set / Equipment Set",
+      "target": "conjunto de itens / conjunto de equipamentos",
+      "note": "Unregister remove o registro do conjunto, não os itens; excluir se refere ao conjunto."
+    },
+    {
+      "source": "Decoration / Slot",
+      "target": "joia / espaço",
+      "note": "Escolha editorial para adorno de habilidade e sua capacidade; conferir contexto visual."
+    },
+    {
+      "source": "Talisman / Combo List",
+      "target": "talismã / combinações",
+      "note": "Terminologia uniforme nas lojas e no baú."
+    },
+    {
+      "source": "Bowgun / Bow / Blademaster / Gunner",
+      "target": "fuzilarco / arco / espadachim / atirador",
+      "note": "Categorias de arma/caçador, sem alteração de regras."
+    },
+    {
+      "source": "Features",
+      "target": "detalhes",
+      "note": "Preserva a escolha do catálogo CharMake existente."
+    },
+    {
+      "source": "Palico / Circle Pad / HR / z",
+      "target": "Palico / Circle Pad / HR / z",
+      "note": "Termos/símbolos mantidos; texto legado de controle não implementa esse dispositivo."
+    },
+    {
+      "source": "Common NPC titles",
+      "target": "títulos funcionais em português",
+      "note": "Caravaneiro, Assistente da Guilda, Mercador wyveriano e Transportador Palico são escolhas editoriais do projeto, sem alegação de tradução oficial. Topônimos e nomes Cha-Cha, Felcote, Kayamba e Poogie são preservados."
+    }
+  ],
+  "coverage": {
+    "source_file_fragments": 247,
+    "catalog_entries": 241,
+    "translated_fragments": 241,
+    "entire_game_total": null,
+    "excluded_fragments": [
+      {
+        "text_index": 111,
+        "reason": "preserved source symbol, whitespace or proper term; see draft glossary"
+      },
+      {
+        "text_index": 195,
+        "reason": "preserved source symbol, whitespace or proper term; see draft glossary"
+      },
+      {
+        "text_index": 215,
+        "reason": "preserved source symbol, whitespace or proper term; see draft glossary"
+      },
+      {
+        "text_index": 216,
+        "reason": "preserved source symbol, whitespace or proper term; see draft glossary"
+      },
+      {
+        "text_index": 217,
+        "reason": "preserved source symbol, whitespace or proper term; see draft glossary"
+      },
+      {
+        "text_index": 222,
+        "reason": "preserved source symbol, whitespace or proper term; see draft glossary"
+      }
+    ]
+  },
+  "limitations": [
+    "Draft translation, not official terminology or human-reviewed readiness.",
+    "No original menu layout, opcode execution, device functionality or gameplay is implemented by these strings.",
+    "Source fragments, placeholders, leading/trailing whitespace and line structure are preserved.",
+    "No installation into a reference runtime and no mutation of the ROM."
+  ]
+}

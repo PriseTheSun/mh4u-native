@@ -1,0 +1,66 @@
+{
+  "schema": "mh4u-reference-translation-package-v1",
+  "locale": "pt-BR",
+  "status": "experimental partial translation for separate reference runtime",
+  "source_rom_sha256": "c16b6cd17cb761508d3077c99be3fb310b460aa8fcf57d3c651310f082bda666",
+  "title_id": "0004000000126100",
+  "changed_fragments": 160,
+  "selected_catalog_entries": 161,
+  "native_engine_integration": false,
+  "full_translation": false,
+  "observed": {
+    "title_headers": 2,
+    "charmake_fragments": 14,
+    "common_buttons": 2
+  },
+  "files": [
+    {
+      "source": "research/private/localization/title-charmake-reference/romfs/eng/data/core_title.arc",
+      "destination": "romfs/eng/data/core_title.arc",
+      "size": 1097737,
+      "sha256": "76b732cc639b2cf36bc54e254607a3e64f9ad25fd491fb3fd6f14c33919d2020"
+    },
+    {
+      "source": "research/private/localization/common-buttons-reference/romfs/eng/data/core_common.arc",
+      "destination": "romfs/eng/data/core_common.arc",
+      "size": 1484139,
+      "sha256": "00cf4fa2cd73cf28cc511325162cfd878aa0d0c2ac20d4ffceec358757b96fad"
+    },
+    {
+      "source": "localization/pt-BR/title.seed.json",
+      "destination": "catalogs/title.seed.json",
+      "size": 3990,
+      "sha256": "b7fd8b340645ed234854dd04670b5e96617fd75a11eda9540ccd9d278931035c"
+    },
+    {
+      "source": "localization/pt-BR/charmake.seed.json",
+      "destination": "catalogs/charmake.seed.json",
+      "size": 83645,
+      "sha256": "266808b6ce0f3ad0786db869e3a8b50fea605c1ea3b593b3a430b8cfb138916a"
+    },
+    {
+      "source": "localization/pt-BR/common-buttons.seed.json",
+      "destination": "catalogs/common-buttons.seed.json",
+      "size": 1749,
+      "sha256": "582d82b075406fccdd0b2da28c019d230cd79e3fb347b6525b110372c2daee50"
+    },
+    {
+      "source": "research/private/localization/title-reference/runtime-validation.json",
+      "destination": "validation/title.json",
+      "size": 1930,
+      "sha256": "9047f55702dae23198f2db4af85d8f3796c427a72b3d90c65f983f1d2bff8334"
+    },
+    {
+      "source": "research/private/localization/title-charmake-reference/runtime-validation.json",
+      "destination": "validation/charmake.json",
+      "size": 2633,
+      "sha256": "c4792ca5701c43e04ce0c53546b402849e3d003b75f984046947e80caa3f40e8"
+    },
+    {
+      "source": "research/private/localization/common-buttons-reference/runtime-validation.json",
+      "destination": "validation/common-buttons.json",
+      "size": 3724,
+      "sha256": "64ddc0b28026a1f2c43fcdd1f77c009c3438a2bebe2c9221b0aa1f462bfdc0d2"
+    }
+  ]
+}

@@ -1,0 +1,2150 @@
+{
+  "schema": "mh4u-translation-seed-v1",
+  "locale": "pt-BR",
+  "status": "draft; source-bound native catalog; linguistic/layout review pending; no human review claimed",
+  "source": {
+    "internal_name": "Common",
+    "sha256": "015a1236c2146295b93cd201b76fa05b450d66707c74fff55f8e162f10e20fe7",
+    "size": 10427,
+    "archive": "/eng/data/core_common.arc",
+    "entry_path": "eng\\msg\\common\\Common_eng",
+    "rom_sha256": "c16b6cd17cb761508d3077c99be3fb310b460aa8fcf57d3c651310f082bda666"
+  },
+  "coverage": {
+    "source_file_fragments": 124,
+    "catalog_entries": 98,
+    "translated_fragments": 98,
+    "entire_game_total": null,
+    "excluded_fragments": [
+      {
+        "text_index": 0,
+        "reason": "preserved source symbol, whitespace or proper term; see draft glossary"
+      },
+      {
+        "text_index": 1,
+        "reason": "preserved source symbol, whitespace or proper term; see draft glossary"
+      },
+      {
+        "text_index": 2,
+        "reason": "preserved source symbol, whitespace or proper term; see draft glossary"
+      },
+      {
+        "text_index": 3,
+        "reason": "preserved source symbol, whitespace or proper term; see draft glossary"
+      },
+      {
+        "text_index": 22,
+        "reason": "preserved source symbol, whitespace or proper term; see draft glossary"
+      },
+      {
+        "text_index": 24,
+        "reason": "preserved source symbol, whitespace or proper term; see draft glossary"
+      },
+      {
+        "text_index": 26,
+        "reason": "preserved source symbol, whitespace or proper term; see draft glossary"
+      },
+      {
+        "text_index": 67,
+        "reason": "preserved source symbol, whitespace or proper term; see draft glossary"
+      },
+      {
+        "text_index": 68,
+        "reason": "preserved source symbol, whitespace or proper term; see draft glossary"
+      },
+      {
+        "text_index": 69,
+        "reason": "preserved source symbol, whitespace or proper term; see draft glossary"
+      },
+      {
+        "text_index": 70,
+        "reason": "preserved source symbol, whitespace or proper term; see draft glossary"
+      },
+      {
+        "text_index": 71,
+        "reason": "preserved source symbol, whitespace or proper term; see draft glossary"
+      },
+      {
+        "text_index": 72,
+        "reason": "preserved source symbol, whitespace or proper term; see draft glossary"
+      },
+      {
+        "text_index": 73,
+        "reason": "preserved source symbol, whitespace or proper term; see draft glossary"
+      },
+      {
+        "text_index": 74,
+        "reason": "preserved source symbol, whitespace or proper term; see draft glossary"
+      },
+      {
+        "text_index": 75,
+        "reason": "preserved source symbol, whitespace or proper term; see draft glossary"
+      },
+      {
+        "text_index": 76,
+        "reason": "preserved source symbol, whitespace or proper term; see draft glossary"
+      },
+      {
+        "text_index": 77,
+        "reason": "preserved source symbol, whitespace or proper term; see draft glossary"
+      },
+      {
+        "text_index": 78,
+        "reason": "preserved source symbol, whitespace or proper term; see draft glossary"
+      },
+      {
+        "text_index": 79,
+        "reason": "preserved source symbol, whitespace or proper term; see draft glossary"
+      },
+      {
+        "text_index": 83,
+        "reason": "preserved source symbol, whitespace or proper term; see draft glossary"
+      },
+      {
+        "text_index": 84,
+        "reason": "preserved source symbol, whitespace or proper term; see draft glossary"
+      },
+      {
+        "text_index": 88,
+        "reason": "preserved source symbol, whitespace or proper term; see draft glossary"
+      },
+      {
+        "text_index": 89,
+        "reason": "preserved source symbol, whitespace or proper term; see draft glossary"
+      },
+      {
+        "text_index": 90,
+        "reason": "preserved source symbol, whitespace or proper term; see draft glossary"
+      },
+      {
+        "text_index": 101,
+        "reason": "preserved source symbol, whitespace or proper term; see draft glossary"
+      }
+    ]
+  },
+  "entries": [
+    {
+      "key": "Common:000004",
+      "text_index": 4,
+      "source_text": "Circle Pad Pro connection lost.",
+      "source_offset": 6668,
+      "label_references": [
+        {
+          "label_ordinal": 4,
+          "identifier_hex": "e927db47",
+          "label_unknown_u16": 64,
+          "control_index": 12
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Conexão com o Circle Pad Pro perdida.",
+      "review_status": "draft"
+    },
+    {
+      "key": "Common:000005",
+      "text_index": 5,
+      "source_text": "Caravaneer",
+      "source_offset": 6732,
+      "label_references": [
+        {
+          "label_ordinal": 5,
+          "identifier_hex": "5ce7c866",
+          "label_unknown_u16": 64,
+          "control_index": 14
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Caravaneiro",
+      "review_status": "draft"
+    },
+    {
+      "key": "Common:000006",
+      "text_index": 6,
+      "source_text": "Guildmarm",
+      "source_offset": 6756,
+      "label_references": [
+        {
+          "label_ordinal": 6,
+          "identifier_hex": "c5ee99dc",
+          "label_unknown_u16": 64,
+          "control_index": 16
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Assistente da Guilda",
+      "review_status": "draft"
+    },
+    {
+      "key": "Common:000007",
+      "text_index": 7,
+      "source_text": "The Man",
+      "source_offset": 6776,
+      "label_references": [
+        {
+          "label_ordinal": 7,
+          "identifier_hex": "b2e9a94a",
+          "label_unknown_u16": 64,
+          "control_index": 18
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "O Homem",
+      "review_status": "draft"
+    },
+    {
+      "key": "Common:000008",
+      "text_index": 8,
+      "source_text": "Street Cook",
+      "source_offset": 6792,
+      "label_references": [
+        {
+          "label_ordinal": 8,
+          "identifier_hex": "5b8a0c7f",
+          "label_unknown_u16": 64,
+          "control_index": 20
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Cozinheiro de rua",
+      "review_status": "draft"
+    },
+    {
+      "key": "Common:000009",
+      "text_index": 9,
+      "source_text": "Wycoon",
+      "source_offset": 6816,
+      "label_references": [
+        {
+          "label_ordinal": 9,
+          "identifier_hex": "c2835dc5",
+          "label_unknown_u16": 64,
+          "control_index": 22
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Mercador wyveriano",
+      "review_status": "draft"
+    },
+    {
+      "key": "Common:000010",
+      "text_index": 10,
+      "source_text": "Little Miss Forge",
+      "source_offset": 6832,
+      "label_references": [
+        {
+          "label_ordinal": 10,
+          "identifier_hex": "b5846d53",
+          "label_unknown_u16": 64,
+          "control_index": 24
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Jovem ferreira",
+      "review_status": "draft"
+    },
+    {
+      "key": "Common:000011",
+      "text_index": 11,
+      "source_text": "Cowardly Palico",
+      "source_offset": 6868,
+      "label_references": [
+        {
+          "label_ordinal": 11,
+          "identifier_hex": "e9ae0e06",
+          "label_unknown_u16": 64,
+          "control_index": 26
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Palico medroso",
+      "review_status": "draft"
+    },
+    {
+      "key": "Common:000012",
+      "text_index": 12,
+      "source_text": "Ace Commander",
+      "source_offset": 6900,
+      "label_references": [
+        {
+          "label_ordinal": 12,
+          "identifier_hex": "7dba5f76",
+          "label_unknown_u16": 64,
+          "control_index": 28
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Comandante de elite",
+      "review_status": "draft"
+    },
+    {
+      "key": "Common:000013",
+      "text_index": 13,
+      "source_text": "Ace Lancer",
+      "source_offset": 6928,
+      "label_references": [
+        {
+          "label_ordinal": 13,
+          "identifier_hex": "0abd6fe0",
+          "label_unknown_u16": 64,
+          "control_index": 30
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Lanceiro de elite",
+      "review_status": "draft"
+    },
+    {
+      "key": "Common:000014",
+      "text_index": 14,
+      "source_text": "Ace Gunner",
+      "source_offset": 6952,
+      "label_references": [
+        {
+          "label_ordinal": 14,
+          "identifier_hex": "93b43e5a",
+          "label_unknown_u16": 64,
+          "control_index": 32
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Atirador de elite",
+      "review_status": "draft"
+    },
+    {
+      "key": "Common:000015",
+      "text_index": 15,
+      "source_text": "Ace Cadet",
+      "source_offset": 6976,
+      "label_references": [
+        {
+          "label_ordinal": 15,
+          "identifier_hex": "e4b30ecc",
+          "label_unknown_u16": 64,
+          "control_index": 34
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Cadete de elite",
+      "review_status": "draft"
+    },
+    {
+      "key": "Common:000016",
+      "text_index": 16,
+      "source_text": "Master of Defense",
+      "source_offset": 6996,
+      "label_references": [
+        {
+          "label_ordinal": 16,
+          "identifier_hex": "142c2295",
+          "label_unknown_u16": 64,
+          "control_index": 36
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Mestre da defesa",
+      "review_status": "draft"
+    },
+    {
+      "key": "Common:000017",
+      "text_index": 17,
+      "source_text": "Research Assistant",
+      "source_offset": 7032,
+      "label_references": [
+        {
+          "label_ordinal": 17,
+          "identifier_hex": "fd4f87a0",
+          "label_unknown_u16": 64,
+          "control_index": 38
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Assistente de pesquisa",
+      "review_status": "draft"
+    },
+    {
+      "key": "Common:000018",
+      "text_index": 18,
+      "source_text": "Jumbo Sweetheart",
+      "source_offset": 7072,
+      "label_references": [
+        {
+          "label_ordinal": 18,
+          "identifier_hex": "5d25a251",
+          "label_unknown_u16": 64,
+          "control_index": 40
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Atendente de Jumbo",
+      "review_status": "draft"
+    },
+    {
+      "key": "Common:000019",
+      "text_index": 19,
+      "source_text": "Minegarde Sweetheart",
+      "source_offset": 7108,
+      "label_references": [
+        {
+          "label_ordinal": 19,
+          "identifier_hex": "da5a06b3",
+          "label_unknown_u16": 64,
+          "control_index": 42
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Atendente de Minegarde",
+      "review_status": "draft"
+    },
+    {
+      "key": "Common:000020",
+      "text_index": 20,
+      "source_text": "Yukumo Sweetheart",
+      "source_offset": 7152,
+      "label_references": [
+        {
+          "label_ordinal": 20,
+          "identifier_hex": "ad5d3625",
+          "label_unknown_u16": 64,
+          "control_index": 44
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Atendente de Yukumo",
+      "review_status": "draft"
+    },
+    {
+      "key": "Common:000021",
+      "text_index": 21,
+      "source_text": "Tanzia Sweetheart",
+      "source_offset": 7188,
+      "label_references": [
+        {
+          "label_ordinal": 21,
+          "identifier_hex": "3de22bb4",
+          "label_unknown_u16": 64,
+          "control_index": 46
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Atendente de Tanzia",
+      "review_status": "draft"
+    },
+    {
+      "key": "Common:000023",
+      "text_index": 23,
+      "source_text": "Moga Sweetheart",
+      "source_offset": 7240,
+      "label_references": [
+        {
+          "label_ordinal": 23,
+          "identifier_hex": "1814f045",
+          "label_unknown_u16": 64,
+          "control_index": 50
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Atendente de Moga",
+      "review_status": "draft"
+    },
+    {
+      "key": "Common:000025",
+      "text_index": 25,
+      "source_text": "Instructor",
+      "source_offset": 7288,
+      "label_references": [
+        {
+          "label_ordinal": 25,
+          "identifier_hex": "1f79345c",
+          "label_unknown_u16": 64,
+          "control_index": 54
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Instrutor",
+      "review_status": "draft"
+    },
+    {
+      "key": "Common:000027",
+      "text_index": 27,
+      "source_text": "Jumbo Village Chief",
+      "source_offset": 7328,
+      "label_references": [
+        {
+          "label_ordinal": 27,
+          "identifier_hex": "f1775570",
+          "label_unknown_u16": 64,
+          "control_index": 58
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Chefe da Vila Jumbo",
+      "review_status": "draft"
+    },
+    {
+      "key": "Common:000028",
+      "text_index": 28,
+      "source_text": "Legendary Artisan",
+      "source_offset": 7368,
+      "label_references": [
+        {
+          "label_ordinal": 28,
+          "identifier_hex": "867065e6",
+          "label_unknown_u16": 64,
+          "control_index": 60
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Artesão lendário",
+      "review_status": "draft"
+    },
+    {
+      "key": "Common:000029",
+      "text_index": 29,
+      "source_text": "The Transpurrter",
+      "source_offset": 7404,
+      "label_references": [
+        {
+          "label_ordinal": 29,
+          "identifier_hex": "16cf7877",
+          "label_unknown_u16": 64,
+          "control_index": 62
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Transportador Palico",
+      "review_status": "draft"
+    },
+    {
+      "key": "Common:000030",
+      "text_index": 30,
+      "source_text": "Drink Seller",
+      "source_offset": 7440,
+      "label_references": [
+        {
+          "label_ordinal": 30,
+          "identifier_hex": "61c848e1",
+          "label_unknown_u16": 64,
+          "control_index": 64
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Vendedor de bebidas",
+      "review_status": "draft"
+    },
+    {
+      "key": "Common:000031",
+      "text_index": 31,
+      "source_text": "Veggie Elder",
+      "source_offset": 7468,
+      "label_references": [
+        {
+          "label_ordinal": 31,
+          "identifier_hex": "4a220bbf",
+          "label_unknown_u16": 64,
+          "control_index": 66
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Ancião dos legumes",
+      "review_status": "draft"
+    },
+    {
+      "key": "Common:000032",
+      "text_index": 32,
+      "source_text": "Yes",
+      "source_offset": 7496,
+      "label_references": [
+        {
+          "label_ordinal": 32,
+          "identifier_hex": "bb2c74e0",
+          "label_unknown_u16": 64,
+          "control_index": 68
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Sim",
+      "review_status": "draft"
+    },
+    {
+      "key": "Common:000033",
+      "text_index": 33,
+      "source_text": "No",
+      "source_offset": 7504,
+      "label_references": [
+        {
+          "label_ordinal": 33,
+          "identifier_hex": "c2658e6e",
+          "label_unknown_u16": 64,
+          "control_index": 70
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Não",
+      "review_status": "draft"
+    },
+    {
+      "key": "Common:000034",
+      "text_index": 34,
+      "source_text": "Yes",
+      "source_offset": 7512,
+      "label_references": [
+        {
+          "label_ordinal": 34,
+          "identifier_hex": "68669f8c",
+          "label_unknown_u16": 64,
+          "control_index": 73
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Sim",
+      "review_status": "draft"
+    },
+    {
+      "key": "Common:000035",
+      "text_index": 35,
+      "source_text": "No",
+      "source_offset": 7520,
+      "label_references": [
+        {
+          "label_ordinal": 35,
+          "identifier_hex": "621f7851",
+          "label_unknown_u16": 64,
+          "control_index": 77
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Não",
+      "review_status": "draft"
+    },
+    {
+      "key": "Common:000036",
+      "text_index": 36,
+      "source_text": "(None)",
+      "source_offset": 7528,
+      "label_references": [
+        {
+          "label_ordinal": 36,
+          "identifier_hex": "1650c6d3",
+          "label_unknown_u16": 64,
+          "control_index": 80
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "(Nenhum)",
+      "review_status": "draft"
+    },
+    {
+      "key": "Common:000037",
+      "text_index": 37,
+      "source_text": "Chest",
+      "source_offset": 7544,
+      "label_references": [
+        {
+          "label_ordinal": 37,
+          "identifier_hex": "b268cdae",
+          "label_unknown_u16": 64,
+          "control_index": 82
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Peito",
+      "review_status": "draft"
+    },
+    {
+      "key": "Common:000038",
+      "text_index": 38,
+      "source_text": "Arms",
+      "source_offset": 7556,
+      "label_references": [
+        {
+          "label_ordinal": 38,
+          "identifier_hex": "5130ec01",
+          "label_unknown_u16": 64,
+          "control_index": 84
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Braços",
+      "review_status": "draft"
+    },
+    {
+      "key": "Common:000039",
+      "text_index": 39,
+      "source_text": "Waist",
+      "source_offset": 7568,
+      "label_references": [
+        {
+          "label_ordinal": 39,
+          "identifier_hex": "e73267d7",
+          "label_unknown_u16": 64,
+          "control_index": 86
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Cintura",
+      "review_status": "draft"
+    },
+    {
+      "key": "Common:000040",
+      "text_index": 40,
+      "source_text": "Legs",
+      "source_offset": 7580,
+      "label_references": [
+        {
+          "label_ordinal": 40,
+          "identifier_hex": "bcbe12da",
+          "label_unknown_u16": 64,
+          "control_index": 88
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Pernas",
+      "review_status": "draft"
+    },
+    {
+      "key": "Common:000041",
+      "text_index": 41,
+      "source_text": "Head",
+      "source_offset": 7592,
+      "label_references": [
+        {
+          "label_ordinal": 41,
+          "identifier_hex": "0241f669",
+          "label_unknown_u16": 64,
+          "control_index": 90
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Cabeça",
+      "review_status": "draft"
+    },
+    {
+      "key": "Common:000042",
+      "text_index": 42,
+      "source_text": "Charm",
+      "source_offset": 7604,
+      "label_references": [
+        {
+          "label_ordinal": 42,
+          "identifier_hex": "f28751ac",
+          "label_unknown_u16": 64,
+          "control_index": 92
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Talismã",
+      "review_status": "draft"
+    },
+    {
+      "key": "Common:000043",
+      "text_index": 43,
+      "source_text": "Great Sword",
+      "source_offset": 7616,
+      "label_references": [
+        {
+          "label_ordinal": 43,
+          "identifier_hex": "e9701b1d",
+          "label_unknown_u16": 64,
+          "control_index": 94
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Espadão",
+      "review_status": "draft"
+    },
+    {
+      "key": "Common:000044",
+      "text_index": 44,
+      "source_text": "Sword & Shield",
+      "source_offset": 7640,
+      "label_references": [
+        {
+          "label_ordinal": 44,
+          "identifier_hex": "67e194c3",
+          "label_unknown_u16": 64,
+          "control_index": 96
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Espada e Escudo",
+      "review_status": "draft"
+    },
+    {
+      "key": "Common:000045",
+      "text_index": 45,
+      "source_text": "Hammer",
+      "source_offset": 7672,
+      "label_references": [
+        {
+          "label_ordinal": 45,
+          "identifier_hex": "a5b6cfbb",
+          "label_unknown_u16": 64,
+          "control_index": 98
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Martelo",
+      "review_status": "draft"
+    },
+    {
+      "key": "Common:000046",
+      "text_index": 46,
+      "source_text": "Lance",
+      "source_offset": 7688,
+      "label_references": [
+        {
+          "label_ordinal": 46,
+          "identifier_hex": "d53fe562",
+          "label_unknown_u16": 64,
+          "control_index": 100
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Lança",
+      "review_status": "draft"
+    },
+    {
+      "key": "Common:000047",
+      "text_index": 47,
+      "source_text": "Light Bowgun",
+      "source_offset": 7700,
+      "label_references": [
+        {
+          "label_ordinal": 47,
+          "identifier_hex": "b60840d3",
+          "label_unknown_u16": 64,
+          "control_index": 102
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Fuzilarco Leve",
+      "review_status": "draft"
+    },
+    {
+      "key": "Common:000048",
+      "text_index": 48,
+      "source_text": "Heavy Bowgun",
+      "source_offset": 7728,
+      "label_references": [
+        {
+          "label_ordinal": 48,
+          "identifier_hex": "424764c0",
+          "label_unknown_u16": 64,
+          "control_index": 104
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Fuzilarco Pesado",
+      "review_status": "draft"
+    },
+    {
+      "key": "Common:000049",
+      "text_index": 49,
+      "source_text": "Long Sword",
+      "source_offset": 7756,
+      "label_references": [
+        {
+          "label_ordinal": 49,
+          "identifier_hex": "ab384d42",
+          "label_unknown_u16": 64,
+          "control_index": 106
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Espada Longa",
+      "review_status": "draft"
+    },
+    {
+      "key": "Common:000050",
+      "text_index": 50,
+      "source_text": "Switch Axe",
+      "source_offset": 7780,
+      "label_references": [
+        {
+          "label_ordinal": 50,
+          "identifier_hex": "a5048cb9",
+          "label_unknown_u16": 64,
+          "control_index": 108
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Transmachado",
+      "review_status": "draft"
+    },
+    {
+      "key": "Common:000051",
+      "text_index": 51,
+      "source_text": "Gunlance",
+      "source_offset": 7804,
+      "label_references": [
+        {
+          "label_ordinal": 51,
+          "identifier_hex": "6bbe6e11",
+          "label_unknown_u16": 64,
+          "control_index": 110
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Lançarma",
+      "review_status": "draft"
+    },
+    {
+      "key": "Common:000052",
+      "text_index": 52,
+      "source_text": "Bow",
+      "source_offset": 7824,
+      "label_references": [
+        {
+          "label_ordinal": 52,
+          "identifier_hex": "43edc6f9",
+          "label_unknown_u16": 64,
+          "control_index": 112
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Arco",
+      "review_status": "draft"
+    },
+    {
+      "key": "Common:000053",
+      "text_index": 53,
+      "source_text": "Dual Blades",
+      "source_offset": 7832,
+      "label_references": [
+        {
+          "label_ordinal": 53,
+          "identifier_hex": "8061e945",
+          "label_unknown_u16": 64,
+          "control_index": 114
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Duplas-Lâminas",
+      "review_status": "draft"
+    },
+    {
+      "key": "Common:000054",
+      "text_index": 54,
+      "source_text": "Hunting Horn",
+      "source_offset": 7856,
+      "label_references": [
+        {
+          "label_ordinal": 54,
+          "identifier_hex": "94c18d4b",
+          "label_unknown_u16": 64,
+          "control_index": 116
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Berrante de Caça",
+      "review_status": "draft"
+    },
+    {
+      "key": "Common:000055",
+      "text_index": 55,
+      "source_text": "Insect Glaive",
+      "source_offset": 7884,
+      "label_references": [
+        {
+          "label_ordinal": 55,
+          "identifier_hex": "c9e02590",
+          "label_unknown_u16": 64,
+          "control_index": 118
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Glaive Inseto",
+      "review_status": "draft"
+    },
+    {
+      "key": "Common:000056",
+      "text_index": 56,
+      "source_text": "Charge Blade",
+      "source_offset": 7912,
+      "label_references": [
+        {
+          "label_ordinal": 56,
+          "identifier_hex": "7d5e1184",
+          "label_unknown_u16": 64,
+          "control_index": 120
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Lâmina Dínamo",
+      "review_status": "draft"
+    },
+    {
+      "key": "Common:000057",
+      "text_index": 57,
+      "source_text": "Kinsect",
+      "source_offset": 7940,
+      "label_references": [
+        {
+          "label_ordinal": 57,
+          "identifier_hex": "998ac674",
+          "label_unknown_u16": 64,
+          "control_index": 122
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Kinseto",
+      "review_status": "draft"
+    },
+    {
+      "key": "Common:000058",
+      "text_index": 58,
+      "source_text": "RARE ",
+      "source_offset": 7956,
+      "label_references": [
+        {
+          "label_ordinal": 58,
+          "identifier_hex": "0425f235",
+          "label_unknown_u16": 64,
+          "control_index": 124
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "RARIDADE ",
+      "review_status": "draft"
+    },
+    {
+      "key": "Common:000059",
+      "text_index": 59,
+      "source_text": "RARE ?",
+      "source_offset": 7968,
+      "label_references": [
+        {
+          "label_ordinal": 59,
+          "identifier_hex": "bf2c9ec7",
+          "label_unknown_u16": 64,
+          "control_index": 127
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "RARIDADE ?",
+      "review_status": "draft"
+    },
+    {
+      "key": "Common:000060",
+      "text_index": 60,
+      "source_text": "Back",
+      "source_offset": 7984,
+      "label_references": [
+        {
+          "label_ordinal": 60,
+          "identifier_hex": "df7dff6d",
+          "label_unknown_u16": 64,
+          "control_index": 129
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Voltar",
+      "review_status": "draft"
+    },
+    {
+      "key": "Common:000061",
+      "text_index": 61,
+      "source_text": "Confirm",
+      "source_offset": 7996,
+      "label_references": [
+        {
+          "label_ordinal": 61,
+          "identifier_hex": "4faf8bb7",
+          "label_unknown_u16": 64,
+          "control_index": 131
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Confirmar",
+      "review_status": "draft"
+    },
+    {
+      "key": "Common:000062",
+      "text_index": 62,
+      "source_text": "Confirm",
+      "source_offset": 8012,
+      "label_references": [
+        {
+          "label_ordinal": 62,
+          "identifier_hex": "1084d4dc",
+          "label_unknown_u16": 64,
+          "control_index": 133
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Confirmar",
+      "review_status": "draft"
+    },
+    {
+      "key": "Common:000063",
+      "text_index": 63,
+      "source_text": "Deliver",
+      "source_offset": 8028,
+      "label_references": [
+        {
+          "label_ordinal": 63,
+          "identifier_hex": "4092d63f",
+          "label_unknown_u16": 64,
+          "control_index": 135
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Entregar",
+      "review_status": "draft"
+    },
+    {
+      "key": "Common:000064",
+      "text_index": 64,
+      "source_text": "Cash",
+      "source_offset": 8044,
+      "label_references": [
+        {
+          "label_ordinal": 64,
+          "identifier_hex": "d5bfd775",
+          "label_unknown_u16": 64,
+          "control_index": 137
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Dinheiro",
+      "review_status": "draft"
+    },
+    {
+      "key": "Common:000065",
+      "text_index": 65,
+      "source_text": "Points",
+      "source_offset": 8056,
+      "label_references": [
+        {
+          "label_ordinal": 65,
+          "identifier_hex": "d5c537b5",
+          "label_unknown_u16": 64,
+          "control_index": 139
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Pontos",
+      "review_status": "draft"
+    },
+    {
+      "key": "Common:000066",
+      "text_index": 66,
+      "source_text": "Order",
+      "source_offset": 8072,
+      "label_references": [
+        {
+          "label_ordinal": 66,
+          "identifier_hex": "97495709",
+          "label_unknown_u16": 64,
+          "control_index": 141
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Ordem",
+      "review_status": "draft"
+    },
+    {
+      "key": "Common:000080",
+      "text_index": 80,
+      "source_text": "Hunter Search",
+      "source_offset": 8248,
+      "label_references": [
+        {
+          "label_ordinal": 80,
+          "identifier_hex": "fbda763d",
+          "label_unknown_u16": 64,
+          "control_index": 169
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Busca de caçadores",
+      "review_status": "draft"
+    },
+    {
+      "key": "Common:000081",
+      "text_index": 81,
+      "source_text": "Help",
+      "source_offset": 8276,
+      "label_references": [
+        {
+          "label_ordinal": 81,
+          "identifier_hex": "ba3462f6",
+          "label_unknown_u16": 64,
+          "control_index": 171
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Ajuda",
+      "review_status": "draft"
+    },
+    {
+      "key": "Common:000082",
+      "text_index": 82,
+      "source_text": "Close",
+      "source_offset": 8288,
+      "label_references": [
+        {
+          "label_ordinal": 82,
+          "identifier_hex": "71614555",
+          "label_unknown_u16": 64,
+          "control_index": 173
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Fechar",
+      "review_status": "draft"
+    },
+    {
+      "key": "Common:000085",
+      "text_index": 85,
+      "source_text": "Keyboard",
+      "source_offset": 8308,
+      "label_references": [
+        {
+          "label_ordinal": 85,
+          "identifier_hex": "47db5e03",
+          "label_unknown_u16": 64,
+          "control_index": 180
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Teclado",
+      "review_status": "draft"
+    },
+    {
+      "key": "Common:000086",
+      "text_index": 86,
+      "source_text": "(No Item)",
+      "source_offset": 8328,
+      "label_references": [
+        {
+          "label_ordinal": 86,
+          "identifier_hex": "d9b9f608",
+          "label_unknown_u16": 64,
+          "control_index": 182
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "(Sem item)",
+      "review_status": "draft"
+    },
+    {
+      "key": "Common:000087",
+      "text_index": 87,
+      "source_text": "Solo/Multiplayer",
+      "source_offset": 8348,
+      "label_references": [
+        {
+          "label_ordinal": 87,
+          "identifier_hex": "da157153",
+          "label_unknown_u16": 64,
+          "control_index": 184
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Solo/Multijogador",
+      "review_status": "draft"
+    },
+    {
+      "key": "Common:000091",
+      "text_index": 91,
+      "source_text": "Equipment Appraisals",
+      "source_offset": 8396,
+      "label_references": [
+        {
+          "label_ordinal": 91,
+          "identifier_hex": "54151a10",
+          "label_unknown_u16": 64,
+          "control_index": 192
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Avaliação de equipamentos",
+      "review_status": "draft"
+    },
+    {
+      "key": "Common:000092",
+      "text_index": 92,
+      "source_text": "Preparing Quest...",
+      "source_offset": 8440,
+      "label_references": [
+        {
+          "label_ordinal": 92,
+          "identifier_hex": "dc224708",
+          "label_unknown_u16": 64,
+          "control_index": 194
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Preparando missão...",
+      "review_status": "draft"
+    },
+    {
+      "key": "Common:000093",
+      "text_index": 93,
+      "source_text": "Launching Quest...",
+      "source_offset": 8480,
+      "label_references": [
+        {
+          "label_ordinal": 93,
+          "identifier_hex": "ab25779e",
+          "label_unknown_u16": 64,
+          "control_index": 196
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Iniciando missão...",
+      "review_status": "draft"
+    },
+    {
+      "key": "Common:000094",
+      "text_index": 94,
+      "source_text": "Preparing Expedition...",
+      "source_offset": 8520,
+      "label_references": [
+        {
+          "label_ordinal": 94,
+          "identifier_hex": "322c2624",
+          "label_unknown_u16": 64,
+          "control_index": 198
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Preparando expedição...",
+      "review_status": "draft"
+    },
+    {
+      "key": "Common:000095",
+      "text_index": 95,
+      "source_text": "Launching Expedition...",
+      "source_offset": 8568,
+      "label_references": [
+        {
+          "label_ordinal": 95,
+          "identifier_hex": "452b16b2",
+          "label_unknown_u16": 64,
+          "control_index": 200
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Iniciando expedição...",
+      "review_status": "draft"
+    },
+    {
+      "key": "Common:000096",
+      "text_index": 96,
+      "source_text": "Moving to destination...",
+      "source_offset": 8616,
+      "label_references": [
+        {
+          "label_ordinal": 96,
+          "identifier_hex": "db4f8311",
+          "label_unknown_u16": 64,
+          "control_index": 202
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Indo para o destino...",
+      "review_status": "draft"
+    },
+    {
+      "key": "Common:000097",
+      "text_index": 97,
+      "source_text": "Returning to camp...",
+      "source_offset": 8668,
+      "label_references": [
+        {
+          "label_ordinal": 97,
+          "identifier_hex": "ac48b387",
+          "label_unknown_u16": 64,
+          "control_index": 204
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Voltando ao acampamento...",
+      "review_status": "draft"
+    },
+    {
+      "key": "Common:000098",
+      "text_index": 98,
+      "source_text": "Relocating camp...",
+      "source_offset": 8712,
+      "label_references": [
+        {
+          "label_ordinal": 98,
+          "identifier_hex": "3541e23d",
+          "label_unknown_u16": 64,
+          "control_index": 206
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Mudando de acampamento...",
+      "review_status": "draft"
+    },
+    {
+      "key": "Common:000099",
+      "text_index": 99,
+      "source_text": "Palico Level Up!",
+      "source_offset": 8752,
+      "label_references": [
+        {
+          "label_ordinal": 99,
+          "identifier_hex": "d802b2e7",
+          "label_unknown_u16": 64,
+          "control_index": 208
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Palico subiu de nível!",
+      "review_status": "draft"
+    },
+    {
+      "key": "Common:000100",
+      "text_index": 100,
+      "source_text": "Set ",
+      "source_offset": 8788,
+      "label_references": [
+        {
+          "label_ordinal": 100,
+          "identifier_hex": "98a38668",
+          "label_unknown_u16": 64,
+          "control_index": 210
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Conjunto ",
+      "review_status": "draft"
+    },
+    {
+      "key": "Common:000102",
+      "text_index": 102,
+      "source_text": "Stop",
+      "source_offset": 8816,
+      "label_references": [
+        {
+          "label_ordinal": 102,
+          "identifier_hex": "0be528ec",
+          "label_unknown_u16": 64,
+          "control_index": 214
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Parar",
+      "review_status": "draft"
+    },
+    {
+      "key": "Common:000103",
+      "text_index": 103,
+      "source_text": "Save your game progress?",
+      "source_offset": 8828,
+      "label_references": [
+        {
+          "label_ordinal": 103,
+          "identifier_hex": "7b62f821",
+          "label_unknown_u16": 64,
+          "control_index": 216
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Salvar o progresso do jogo?",
+      "review_status": "draft"
+    },
+    {
+      "key": "Common:000104",
+      "text_index": 104,
+      "source_text": " entered the Gathering Hall.",
+      "source_offset": 8880,
+      "label_references": [
+        {
+          "label_ordinal": 104,
+          "identifier_hex": "265b268e",
+          "label_unknown_u16": 64,
+          "control_index": 218
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": " entrou no Salão de Reunião.",
+      "review_status": "draft"
+    },
+    {
+      "key": "Common:000105",
+      "text_index": 105,
+      "source_text": " left the Gathering Hall.",
+      "source_offset": 8940,
+      "label_references": [
+        {
+          "label_ordinal": 105,
+          "identifier_hex": "60659c3b",
+          "label_unknown_u16": 64,
+          "control_index": 220
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": " saiu do Salão de Reunião.",
+      "review_status": "draft"
+    },
+    {
+      "key": "Common:000106",
+      "text_index": 106,
+      "source_text": "Potency 1★",
+      "source_offset": 8992,
+      "label_references": [
+        {
+          "label_ordinal": 106,
+          "identifier_hex": "1999d118",
+          "label_unknown_u16": 64,
+          "control_index": 222
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Potência 1★",
+      "review_status": "draft"
+    },
+    {
+      "key": "Common:000107",
+      "text_index": 107,
+      "source_text": "Potency 3★",
+      "source_offset": 9016,
+      "label_references": [
+        {
+          "label_ordinal": 107,
+          "identifier_hex": "6e9ee18e",
+          "label_unknown_u16": 64,
+          "control_index": 224
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Potência 3★",
+      "review_status": "draft"
+    },
+    {
+      "key": "Common:000108",
+      "text_index": 108,
+      "source_text": "In the Gathering Hall, you can chat with\nplayers found via Hunter Search.\n\nPlease refrain from using content that\nis illegal, offensive, personal, or that\ncould infringe upon others' rights.",
+      "source_offset": 9040,
+      "label_references": [
+        {
+          "label_ordinal": 108,
+          "identifier_hex": "25f19389",
+          "label_unknown_u16": 64,
+          "control_index": 226
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10,
+          10,
+          10,
+          10,
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "No Salão de Reunião, você pode conversar\ncom jogadores da Busca de caçadores.\n\nEvite compartilhar conteúdo ilegal,\nofensivo, pessoal ou que viole\nos direitos de outras pessoas.",
+      "review_status": "draft"
+    },
+    {
+      "key": "Common:000109",
+      "text_index": 109,
+      "source_text": "Chat features, including Guild Card\ngreetings, cannot be used because\nSharing Long Text Data is restricted\nby Parental Controls.",
+      "source_offset": 9424,
+      "label_references": [
+        {
+          "label_ordinal": 109,
+          "identifier_hex": "03d86bc3",
+          "label_unknown_u16": 64,
+          "control_index": 228
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10,
+          10,
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "O chat e as saudações do Cartão de Guilda\nnão estão disponíveis porque o\ncompartilhamento de textos longos está\nrestrito pelo Controle dos Pais.",
+      "review_status": "draft"
+    },
+    {
+      "key": "Common:000110",
+      "text_index": 110,
+      "source_text": "Attention all hunters:",
+      "source_offset": 9684,
+      "label_references": [
+        {
+          "label_ordinal": 110,
+          "identifier_hex": "8a273a2e",
+          "label_unknown_u16": 64,
+          "control_index": 230
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Atenção, caçadores:",
+      "review_status": "draft"
+    },
+    {
+      "key": "Common:000111",
+      "text_index": 111,
+      "source_text": "We will be conducting",
+      "source_offset": 9732,
+      "label_references": [
+        {
+          "label_ordinal": 111,
+          "identifier_hex": "88618477",
+          "label_unknown_u16": 64,
+          "control_index": 232
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Hoje faremos",
+      "review_status": "draft"
+    },
+    {
+      "key": "Common:000112",
+      "text_index": 112,
+      "source_text": "server maintenance today.",
+      "source_offset": 9776,
+      "label_references": [
+        {
+          "label_ordinal": 112,
+          "identifier_hex": "1168d5cd",
+          "label_unknown_u16": 64,
+          "control_index": 234
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "manutenção no servidor.",
+      "review_status": "draft"
+    },
+    {
+      "key": "Common:000113",
+      "text_index": 113,
+      "source_text": "Server maintenance will",
+      "source_offset": 9828,
+      "label_references": [
+        {
+          "label_ordinal": 113,
+          "identifier_hex": "89a3ee40",
+          "label_unknown_u16": 64,
+          "control_index": 236
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "A manutenção do servidor",
+      "review_status": "draft"
+    },
+    {
+      "key": "Common:000114",
+      "text_index": 114,
+      "source_text": "begin shortly.",
+      "source_offset": 9876,
+      "label_references": [
+        {
+          "label_ordinal": 114,
+          "identifier_hex": "10aabffa",
+          "label_unknown_u16": 64,
+          "control_index": 238
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "começará em breve.",
+      "review_status": "draft"
+    },
+    {
+      "key": "Common:000115",
+      "text_index": 115,
+      "source_text": "Please end Online Multiplayer and",
+      "source_offset": 9908,
+      "label_references": [
+        {
+          "label_ordinal": 115,
+          "identifier_hex": "8cecf8c5",
+          "label_unknown_u16": 64,
+          "control_index": 240
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Encerre o multijogador online e",
+      "review_status": "draft"
+    },
+    {
+      "key": "Common:000116",
+      "text_index": 116,
+      "source_text": "disconnect from the Internet.",
+      "source_offset": 9976,
+      "label_references": [
+        {
+          "label_ordinal": 116,
+          "identifier_hex": "15e5a97f",
+          "label_unknown_u16": 64,
+          "control_index": 242
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "desconecte-se da internet.",
+      "review_status": "draft"
+    },
+    {
+      "key": "Common:000117",
+      "text_index": 117,
+      "source_text": "If you remain connected, you will",
+      "source_offset": 10036,
+      "label_references": [
+        {
+          "label_ordinal": 117,
+          "identifier_hex": "8d2e92f2",
+          "label_unknown_u16": 64,
+          "control_index": 244
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Se permanecer conectado, você será",
+      "review_status": "draft"
+    },
+    {
+      "key": "Common:000118",
+      "text_index": 118,
+      "source_text": "be automatically disconnected.",
+      "source_offset": 10104,
+      "label_references": [
+        {
+          "label_ordinal": 118,
+          "identifier_hex": "1427c348",
+          "label_unknown_u16": 64,
+          "control_index": 246
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "desconectado automaticamente.",
+      "review_status": "draft"
+    },
+    {
+      "key": "Common:000119",
+      "text_index": 119,
+      "source_text": "Server maintenance will begin",
+      "source_offset": 10168,
+      "label_references": [
+        {
+          "label_ordinal": 119,
+          "identifier_hex": "8f682cab",
+          "label_unknown_u16": 64,
+          "control_index": 248
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "A manutenção do servidor começará",
+      "review_status": "draft"
+    },
+    {
+      "key": "Common:000120",
+      "text_index": 120,
+      "source_text": "in approximately ",
+      "source_offset": 10228,
+      "label_references": [
+        {
+          "label_ordinal": 120,
+          "identifier_hex": "16617d11",
+          "label_unknown_u16": 64,
+          "control_index": 250
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "em aproximadamente ",
+      "review_status": "draft"
+    },
+    {
+      "key": "Common:000121",
+      "text_index": 121,
+      "source_text": " minutes.",
+      "source_offset": 10264,
+      "label_references": [
+        {
+          "label_ordinal": 120,
+          "identifier_hex": "16617d11",
+          "label_unknown_u16": 64,
+          "control_index": 252
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": " minutos.",
+      "review_status": "draft"
+    },
+    {
+      "key": "Common:000122",
+      "text_index": 122,
+      "source_text": "We apologize for the inconvenience.",
+      "source_offset": 10284,
+      "label_references": [
+        {
+          "label_ordinal": 121,
+          "identifier_hex": "8eaa469c",
+          "label_unknown_u16": 64,
+          "control_index": 254
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Pedimos desculpas pelo transtorno.",
+      "review_status": "draft"
+    },
+    {
+      "key": "Common:000123",
+      "text_index": 123,
+      "source_text": "Thank you for your cooperation.",
+      "source_offset": 10356,
+      "label_references": [
+        {
+          "label_ordinal": 122,
+          "identifier_hex": "17a31726",
+          "label_unknown_u16": 64,
+          "control_index": 256
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Agradecemos a colaboração.",
+      "review_status": "draft"
+    }
+  ],
+  "limitations": [
+    "Draft translation, not official terminology or human-reviewed readiness.",
+    "No original menu layout, opcode execution, device functionality or gameplay is implemented by these strings.",
+    "Source fragments, placeholders, leading/trailing whitespace and line structure are preserved.",
+    "No installation into a reference runtime and no mutation of the ROM."
+  ],
+  "glossary": [
+    {
+      "source": "Item Box / Box",
+      "target": "baú de itens / baú",
+      "note": "Mesmo recipiente nos três documentos novos; forma curta quando a fonte também abrevia."
+    },
+    {
+      "source": "Item Pouch / Pouch",
+      "target": "bolsa de itens / bolsa",
+      "note": "Inventário levado pelo caçador; distinto do baú."
+    },
+    {
+      "source": "Item Set / Equipment Set",
+      "target": "conjunto de itens / conjunto de equipamentos",
+      "note": "Unregister remove o registro do conjunto, não os itens; excluir se refere ao conjunto."
+    },
+    {
+      "source": "Decoration / Slot",
+      "target": "joia / espaço",
+      "note": "Escolha editorial para adorno de habilidade e sua capacidade; conferir contexto visual."
+    },
+    {
+      "source": "Talisman / Combo List",
+      "target": "talismã / combinações",
+      "note": "Terminologia uniforme nas lojas e no baú."
+    },
+    {
+      "source": "Bowgun / Bow / Blademaster / Gunner",
+      "target": "fuzilarco / arco / espadachim / atirador",
+      "note": "Categorias de arma/caçador, sem alteração de regras."
+    },
+    {
+      "source": "Features",
+      "target": "detalhes",
+      "note": "Preserva a escolha do catálogo CharMake existente."
+    },
+    {
+      "source": "Palico / Circle Pad / HR / z",
+      "target": "Palico / Circle Pad / HR / z",
+      "note": "Termos/símbolos mantidos; texto legado de controle não implementa esse dispositivo."
+    },
+    {
+      "source": "Common NPC titles",
+      "target": "títulos funcionais em português",
+      "note": "Caravaneiro, Assistente da Guilda, Mercador wyveriano e Transportador Palico são escolhas editoriais do projeto, sem alegação de tradução oficial. Topônimos e nomes Cha-Cha, Felcote, Kayamba e Poogie são preservados."
+    }
+  ]
+}

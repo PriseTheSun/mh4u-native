@@ -1,0 +1,1551 @@
+{
+  "schema": "mh4u-translation-seed-v1",
+  "locale": "pt-BR",
+  "status": "draft; full source messages translated; linguistic/layout review pending; no human review claimed",
+  "source": {
+    "internal_name": "Help",
+    "sha256": "60d86bd1f090c382dc6a59fbf343a01226b76c539f1cb6a2c6126bfb78be89f2",
+    "size": 14009,
+    "archive": "/eng/data/core_common.arc",
+    "entry_path": "eng\\msg\\common\\Help_eng",
+    "rom_sha256": "c16b6cd17cb761508d3077c99be3fb310b460aa8fcf57d3c651310f082bda666"
+  },
+  "entries": [
+    {
+      "key": "Help:000000",
+      "text_index": 0,
+      "source_text": "Hunter Search",
+      "source_offset": 3416,
+      "label_references": [
+        {
+          "label_ordinal": 0,
+          "identifier_hex": "dfc7b645",
+          "label_unknown_u16": 64,
+          "control_index": 0
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Busca de caçadores",
+      "review_status": "draft"
+    },
+    {
+      "key": "Help:000001",
+      "text_index": 1,
+      "source_text": "Panel Customization",
+      "source_offset": 3444,
+      "label_references": [
+        {
+          "label_ordinal": 1,
+          "identifier_hex": "46cee7ff",
+          "label_unknown_u16": 64,
+          "control_index": 2
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Personalização dos painéis",
+      "review_status": "draft"
+    },
+    {
+      "key": "Help:000002",
+      "text_index": 2,
+      "source_text": "Panel Schemes",
+      "source_offset": 3484,
+      "label_references": [
+        {
+          "label_ordinal": 2,
+          "identifier_hex": "31c9d769",
+          "label_unknown_u16": 64,
+          "control_index": 4
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Configurações de painéis",
+      "review_status": "draft"
+    },
+    {
+      "key": "Help:000003",
+      "text_index": 3,
+      "source_text": "About Hunter Search",
+      "source_offset": 3512,
+      "label_references": [
+        {
+          "label_ordinal": 3,
+          "identifier_hex": "afad42ca",
+          "label_unknown_u16": 64,
+          "control_index": 6
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Sobre a busca de caçadores",
+      "review_status": "draft"
+    },
+    {
+      "key": "Help:000004",
+      "text_index": 4,
+      "source_text": "Searching for Players",
+      "source_offset": 3552,
+      "label_references": [
+        {
+          "label_ordinal": 4,
+          "identifier_hex": "d8aa725c",
+          "label_unknown_u16": 64,
+          "control_index": 8
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Buscar jogadores",
+      "review_status": "draft"
+    },
+    {
+      "key": "Help:000005",
+      "text_index": 5,
+      "source_text": "Displaying Player Info",
+      "source_offset": 3596,
+      "label_references": [
+        {
+          "label_ordinal": 5,
+          "identifier_hex": "41a323e6",
+          "label_unknown_u16": 64,
+          "control_index": 10
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Ver dados de jogadores",
+      "review_status": "draft"
+    },
+    {
+      "key": "Help:000006",
+      "text_index": 6,
+      "source_text": "Automatic Searching",
+      "source_offset": 3644,
+      "label_references": [
+        {
+          "label_ordinal": 6,
+          "identifier_hex": "36a41370",
+          "label_unknown_u16": 64,
+          "control_index": 12
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Busca automática",
+      "review_status": "draft"
+    },
+    {
+      "key": "Help:000007",
+      "text_index": 7,
+      "source_text": "About Panel Customization",
+      "source_offset": 3684,
+      "label_references": [
+        {
+          "label_ordinal": 7,
+          "identifier_hex": "a61b0ee1",
+          "label_unknown_u16": 64,
+          "control_index": 14
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Sobre personalizar painéis",
+      "review_status": "draft"
+    },
+    {
+      "key": "Help:000008",
+      "text_index": 8,
+      "source_text": "Selecting Categories",
+      "source_offset": 3736,
+      "label_references": [
+        {
+          "label_ordinal": 8,
+          "identifier_hex": "d11c3e77",
+          "label_unknown_u16": 64,
+          "control_index": 16
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Selecionar categorias",
+      "review_status": "draft"
+    },
+    {
+      "key": "Help:000009",
+      "text_index": 9,
+      "source_text": "Panel Layout",
+      "source_offset": 3780,
+      "label_references": [
+        {
+          "label_ordinal": 9,
+          "identifier_hex": "b1dbb792",
+          "label_unknown_u16": 64,
+          "control_index": 18
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Disposição dos painéis",
+      "review_status": "draft"
+    },
+    {
+      "key": "Help:000010",
+      "text_index": 10,
+      "source_text": "Removing Panels",
+      "source_offset": 3808,
+      "label_references": [
+        {
+          "label_ordinal": 10,
+          "identifier_hex": "c6dc8704",
+          "label_unknown_u16": 64,
+          "control_index": 20
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Remover painéis",
+      "review_status": "draft"
+    },
+    {
+      "key": "Help:000011",
+      "text_index": 11,
+      "source_text": "Panel Options",
+      "source_offset": 3840,
+      "label_references": [
+        {
+          "label_ordinal": 11,
+          "identifier_hex": "5fd5d6be",
+          "label_unknown_u16": 64,
+          "control_index": 22
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Opções dos painéis",
+      "review_status": "draft"
+    },
+    {
+      "key": "Help:000012",
+      "text_index": 12,
+      "source_text": "The Camera Controls Panel",
+      "source_offset": 3868,
+      "label_references": [
+        {
+          "label_ordinal": 12,
+          "identifier_hex": "28d2e628",
+          "label_unknown_u16": 64,
+          "control_index": 24
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Painel de controle da câmera",
+      "review_status": "draft"
+    },
+    {
+      "key": "Help:000013",
+      "text_index": 13,
+      "source_text": "The Target Cam Panel",
+      "source_offset": 3920,
+      "label_references": [
+        {
+          "label_ordinal": 13,
+          "identifier_hex": "b6b6738b",
+          "label_unknown_u16": 64,
+          "control_index": 26
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Painel da câmera de alvo",
+      "review_status": "draft"
+    },
+    {
+      "key": "Help:000014",
+      "text_index": 14,
+      "source_text": "The Player Status Panel",
+      "source_offset": 3964,
+      "label_references": [
+        {
+          "label_ordinal": 14,
+          "identifier_hex": "c1b1431d",
+          "label_unknown_u16": 64,
+          "control_index": 28
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Painel de status do jogador",
+      "review_status": "draft"
+    },
+    {
+      "key": "Help:000015",
+      "text_index": 15,
+      "source_text": "The Companion Status Panel",
+      "source_offset": 4012,
+      "label_references": [
+        {
+          "label_ordinal": 15,
+          "identifier_hex": "58b812a7",
+          "label_unknown_u16": 64,
+          "control_index": 30
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Painel de status dos companheiros",
+      "review_status": "draft"
+    },
+    {
+      "key": "Help:000016",
+      "text_index": 16,
+      "source_text": "The Map Panel",
+      "source_offset": 4068,
+      "label_references": [
+        {
+          "label_ordinal": 16,
+          "identifier_hex": "2fbf2231",
+          "label_unknown_u16": 64,
+          "control_index": 32
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Painel do mapa",
+      "review_status": "draft"
+    },
+    {
+      "key": "Help:000017",
+      "text_index": 17,
+      "source_text": "The Item Bar Panel",
+      "source_offset": 4096,
+      "label_references": [
+        {
+          "label_ordinal": 17,
+          "identifier_hex": "bf003fa0",
+          "label_unknown_u16": 64,
+          "control_index": 34
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Painel da barra de itens",
+      "review_status": "draft"
+    },
+    {
+      "key": "Help:000018",
+      "text_index": 18,
+      "source_text": "The Item Shortcuts Panel",
+      "source_offset": 4136,
+      "label_references": [
+        {
+          "label_ordinal": 18,
+          "identifier_hex": "c8070f36",
+          "label_unknown_u16": 64,
+          "control_index": 36
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Painel de atalhos de itens",
+      "review_status": "draft"
+    },
+    {
+      "key": "Help:000019",
+      "text_index": 19,
+      "source_text": "The Ammo/Coatings Panel",
+      "source_offset": 4188,
+      "label_references": [
+        {
+          "label_ordinal": 19,
+          "identifier_hex": "9af6e451",
+          "label_unknown_u16": 64,
+          "control_index": 38
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Painel de munição/revestimentos",
+      "review_status": "draft"
+    },
+    {
+      "key": "Help:000020",
+      "text_index": 20,
+      "source_text": "The Item Pouch Panel",
+      "source_offset": 4236,
+      "label_references": [
+        {
+          "label_ordinal": 20,
+          "identifier_hex": "edf1d4c7",
+          "label_unknown_u16": 64,
+          "control_index": 40
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Painel da bolsa de itens",
+      "review_status": "draft"
+    },
+    {
+      "key": "Help:000021",
+      "text_index": 21,
+      "source_text": "The Combo List Panel",
+      "source_offset": 4280,
+      "label_references": [
+        {
+          "label_ordinal": 21,
+          "identifier_hex": "74f8857d",
+          "label_unknown_u16": 64,
+          "control_index": 42
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Painel de combinações",
+      "review_status": "draft"
+    },
+    {
+      "key": "Help:000022",
+      "text_index": 22,
+      "source_text": "The Gestures Panel",
+      "source_offset": 4324,
+      "label_references": [
+        {
+          "label_ordinal": 22,
+          "identifier_hex": "03ffb5eb",
+          "label_unknown_u16": 64,
+          "control_index": 44
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Painel de gestos",
+      "review_status": "draft"
+    },
+    {
+      "key": "Help:000023",
+      "text_index": 23,
+      "source_text": "The Special Attack Panel",
+      "source_offset": 4364,
+      "label_references": [
+        {
+          "label_ordinal": 23,
+          "identifier_hex": "9d9b2048",
+          "label_unknown_u16": 64,
+          "control_index": 46
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Painel de ataque especial",
+      "review_status": "draft"
+    },
+    {
+      "key": "Help:000024",
+      "text_index": 24,
+      "source_text": "The Signal Panel",
+      "source_offset": 4416,
+      "label_references": [
+        {
+          "label_ordinal": 24,
+          "identifier_hex": "ea9c10de",
+          "label_unknown_u16": 64,
+          "control_index": 48
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Painel de sinal",
+      "review_status": "draft"
+    },
+    {
+      "key": "Help:000025",
+      "text_index": 25,
+      "source_text": "Resetting Panels",
+      "source_offset": 4452,
+      "label_references": [
+        {
+          "label_ordinal": 25,
+          "identifier_hex": "f7f80272",
+          "label_unknown_u16": 64,
+          "control_index": 50
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Redefinir painéis",
+      "review_status": "draft"
+    },
+    {
+      "key": "Help:000026",
+      "text_index": 26,
+      "source_text": "About Panel Schemes",
+      "source_offset": 4488,
+      "label_references": [
+        {
+          "label_ordinal": 26,
+          "identifier_hex": "73954164",
+          "label_unknown_u16": 64,
+          "control_index": 52
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Sobre configurações de painéis",
+      "review_status": "draft"
+    },
+    {
+      "key": "Help:000027",
+      "text_index": 27,
+      "source_text": "Hunter Search allows you to look for\nnearby people who are playing\nMonster Hunter 4 Ultimate.",
+      "source_offset": 4528,
+      "label_references": [
+        {
+          "label_ordinal": 27,
+          "identifier_hex": "049271f2",
+          "label_unknown_u16": 64,
+          "control_index": 54
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10,
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "A busca de caçadores encontra\npessoas próximas que estão jogando\nMonster Hunter 4 Ultimate.",
+      "review_status": "draft"
+    },
+    {
+      "key": "Help:000028",
+      "text_index": 28,
+      "source_text": "In order to use Hunter Search,\nwireless communication must\nbe enabled.",
+      "source_offset": 4716,
+      "label_references": [
+        {
+          "label_ordinal": 28,
+          "identifier_hex": "942d6c63",
+          "label_unknown_u16": 64,
+          "control_index": 56
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10,
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "Para usar a busca de caçadores,\na comunicação sem fio deve\nestar ativada.",
+      "review_status": "draft"
+    },
+    {
+      "key": "Help:000029",
+      "text_index": 29,
+      "source_text": "When Hunter Search is activated, the\ngame will automatically look for nearby\nplayers who also have Hunter Search on,\nor players at the local Gathering Hall.",
+      "source_offset": 4860,
+      "label_references": [
+        {
+          "label_ordinal": 29,
+          "identifier_hex": "e32a5cf5",
+          "label_unknown_u16": 64,
+          "control_index": 58
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10,
+          10,
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "Ao ativar a busca de caçadores, o jogo\nbusca automaticamente jogadores próximos\nque também a ativaram ou que estão\nno Salão de Reunião local.",
+      "review_status": "draft"
+    },
+    {
+      "key": "Help:000030",
+      "text_index": 30,
+      "source_text": "When the automatic search function finds\na player, their Hunter Name will be shown\nin the Hunter Search area.",
+      "source_offset": 5176,
+      "label_references": [
+        {
+          "label_ordinal": 30,
+          "identifier_hex": "83edd510",
+          "label_unknown_u16": 64,
+          "control_index": 60
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10,
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "Quando a busca automática encontra\num jogador, o nome dele aparece\nna área de busca de caçadores.",
+      "review_status": "draft"
+    },
+    {
+      "key": "Help:000031",
+      "text_index": 31,
+      "source_text": "When you open the Hunter Search screen,\nit will display a list of players that\nhave been found.",
+      "source_offset": 5396,
+      "label_references": [
+        {
+          "label_ordinal": 31,
+          "identifier_hex": "6de3b43c",
+          "label_unknown_u16": 64,
+          "control_index": 62
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10,
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "Ao abrir a tela de busca de caçadores,\nvocê verá uma lista dos jogadores\nencontrados.",
+      "review_status": "draft"
+    },
+    {
+      "key": "Help:000032",
+      "text_index": 32,
+      "source_text": "You can view a player's info by touching\ntheir panel. Displayed information will\ndiffer depending on whether the person\nis playing offline or online.",
+      "source_offset": 5588,
+      "label_references": [
+        {
+          "label_ordinal": 32,
+          "identifier_hex": "1ae484aa",
+          "label_unknown_u16": 64,
+          "control_index": 64
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10,
+          10,
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "Toque no painel de um jogador para\nver seus dados. As informações\nexibidas mudam conforme ele\nesteja jogando offline ou online.",
+      "review_status": "draft"
+    },
+    {
+      "key": "Help:000033",
+      "text_index": 33,
+      "source_text": "Automatic searching will stop when\nthe Hunter Search screen is open.\nTo re-search, press the Y Button\nor touch the Retry button.",
+      "source_offset": 5888,
+      "label_references": [
+        {
+          "label_ordinal": 33,
+          "identifier_hex": "84801109",
+          "label_unknown_u16": 64,
+          "control_index": 66
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10,
+          10,
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "A busca automática para enquanto a\ntela de busca de caçadores está aberta.\nPara buscar de novo, pressione Y\nou toque no botão Tentar de novo.",
+      "review_status": "draft"
+    },
+    {
+      "key": "Help:000034",
+      "text_index": 34,
+      "source_text": "Hunter Search can only be used\nwhile playing Solo.",
+      "source_offset": 6148,
+      "label_references": [
+        {
+          "label_ordinal": 34,
+          "identifier_hex": "4e860f20",
+          "label_unknown_u16": 64,
+          "control_index": 68
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "A busca de caçadores só pode ser usada\nao jogar no modo solo.",
+      "review_status": "draft"
+    },
+    {
+      "key": "Help:000035",
+      "text_index": 35,
+      "source_text": "Panels on the Touch Screen help with\ncamera controls, Map settings, and other\nfunctions. The layout of the panels can\nbe customized to suit your needs.",
+      "source_offset": 6252,
+      "label_references": [
+        {
+          "label_ordinal": 35,
+          "identifier_hex": "f387219f",
+          "label_unknown_u16": 64,
+          "control_index": 70
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10,
+          10,
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "Os painéis da tela de toque ajudam no\ncontrole da câmera, no mapa e em\noutras funções. Personalize a disposição\ndos painéis conforme sua preferência.",
+      "review_status": "draft"
+    },
+    {
+      "key": "Help:000036",
+      "text_index": 36,
+      "source_text": "Touch a category button on the left\nside of the Touch Screen to select the\ntype of panel you wish to place.",
+      "source_offset": 6556,
+      "label_references": [
+        {
+          "label_ordinal": 36,
+          "identifier_hex": "6a8e7025",
+          "label_unknown_u16": 64,
+          "control_index": 72
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10,
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "Toque em uma categoria à esquerda\nda tela de toque para escolher\no tipo de painel que deseja colocar.",
+      "review_status": "draft"
+    },
+    {
+      "key": "Help:000037",
+      "text_index": 37,
+      "source_text": "After selecting a category, slide\nthe panel you want into the Panel\nDisplay Area to set that panel.",
+      "source_offset": 6772,
+      "label_references": [
+        {
+          "label_ordinal": 37,
+          "identifier_hex": "1d8940b3",
+          "label_unknown_u16": 64,
+          "control_index": 74
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10,
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "Após escolher uma categoria, arraste\no painel desejado até a área de\nexibição para colocá-lo.",
+      "review_status": "draft"
+    },
+    {
+      "key": "Help:000038",
+      "text_index": 38,
+      "source_text": "Each panel has a set size. If there's\nnot enough space in the Panel Display\nArea, you must remove other panels in\norder to place new ones.",
+      "source_offset": 6972,
+      "label_references": [
+        {
+          "label_ordinal": 38,
+          "identifier_hex": "8d365d22",
+          "label_unknown_u16": 64,
+          "control_index": 76
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10,
+          10,
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "Cada painel tem um tamanho fixo.\nSe não houver espaço na área de\nexibição, remova outros painéis\npara colocar os novos.",
+      "review_status": "draft"
+    },
+    {
+      "key": "Help:000039",
+      "text_index": 39,
+      "source_text": "Some panels serve the same basic\nfunction, but differ in size. Two such\npanels cannot be set at the same time.",
+      "source_offset": 7252,
+      "label_references": [
+        {
+          "label_ordinal": 39,
+          "identifier_hex": "fa316db4",
+          "label_unknown_u16": 64,
+          "control_index": 78
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10,
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "Alguns painéis têm a mesma função,\nmas tamanhos diferentes. Dois assim\nnão podem ser usados ao mesmo tempo.",
+      "review_status": "draft"
+    },
+    {
+      "key": "Help:000040",
+      "text_index": 40,
+      "source_text": "You can remove a panel by sliding it out\nof the Panel Display Area. Removed\npanels can be found in the Recycle Bin\non the right side of the Touch Screen.",
+      "source_offset": 7476,
+      "label_references": [
+        {
+          "label_ordinal": 40,
+          "identifier_hex": "ccac43d7",
+          "label_unknown_u16": 64,
+          "control_index": 80
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10,
+          10,
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "Para remover um painel, arraste-o\npara fora da área de exibição. Ele\nficará na lixeira, à direita\nda tela de toque.",
+      "review_status": "draft"
+    },
+    {
+      "key": "Help:000041",
+      "text_index": 41,
+      "source_text": "Panels you remove can be chosen again\nfrom the panel selection area. You can\nalso put panels from the Recycle Bin\nback into the Panel Display Area.",
+      "source_offset": 7784,
+      "label_references": [
+        {
+          "label_ordinal": 41,
+          "identifier_hex": "bbab7341",
+          "label_unknown_u16": 64,
+          "control_index": 82
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10,
+          10,
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "Os painéis removidos podem ser escolhidos\nnovamente na área de seleção. Você\ntambém pode devolver painéis da lixeira\npara a área de exibição.",
+      "review_status": "draft"
+    },
+    {
+      "key": "Help:000042",
+      "text_index": 42,
+      "source_text": "Some panels have customizable options.\nTouch the Options button to open a list\nof adjustable panels, then touch the\npanel you want to modify.",
+      "source_offset": 8080,
+      "label_references": [
+        {
+          "label_ordinal": 42,
+          "identifier_hex": "679370ef",
+          "label_unknown_u16": 64,
+          "control_index": 84
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10,
+          10,
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "Alguns painéis têm opções ajustáveis.\nToque em Opções para ver a lista\ndesses painéis. Depois, toque\nno painel que deseja modificar.",
+      "review_status": "draft"
+    },
+    {
+      "key": "Help:000043",
+      "text_index": 43,
+      "source_text": "To reset to the default panel scheme,\ntouch the Options button, then press\nthe X Button. Note that this will not\naffect any registered panel schemes.",
+      "source_offset": 8364,
+      "label_references": [
+        {
+          "label_ordinal": 43,
+          "identifier_hex": "7c17e997",
+          "label_unknown_u16": 64,
+          "control_index": 86
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10,
+          10,
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "Para restaurar os painéis padrão,\ntoque em Opções e pressione X.\nIsso não altera as configurações\nde painéis que você registrou.",
+      "review_status": "draft"
+    },
+    {
+      "key": "Help:000044",
+      "text_index": 44,
+      "source_text": "Use the virtual +Control Pad on this panel\nto manipulate the camera. To change the\npanel's size or position, touch the Options\nbutton and select Camera Controls.",
+      "source_offset": 8664,
+      "label_references": [
+        {
+          "label_ordinal": 44,
+          "identifier_hex": "22a222fb",
+          "label_unknown_u16": 64,
+          "control_index": 88
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10,
+          10,
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "Use o direcional virtual deste painel\npara controlar a câmera. Para mudar\no tamanho ou a posição, toque em Opções\ne selecione Controle da câmera.",
+      "review_status": "draft"
+    },
+    {
+      "key": "Help:000045",
+      "text_index": 45,
+      "source_text": "Touching this panel will switch the camera\nto Target Mode. You can't activate the\nTarget Cam until you encounter a large\nmonster during a Quest.",
+      "source_offset": 8988,
+      "label_references": [
+        {
+          "label_ordinal": 45,
+          "identifier_hex": "55a5126d",
+          "label_unknown_u16": 64,
+          "control_index": 90
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10,
+          10,
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "Toque neste painel para ativar a\ncâmera de alvo. Você só pode ativá-la\napós encontrar um monstro grande\ndurante uma missão.",
+      "review_status": "draft"
+    },
+    {
+      "key": "Help:000046",
+      "text_index": 46,
+      "source_text": "While in Target Mode, lightly tap the\nL Button to point the camera toward\nthe targeted monster.",
+      "source_offset": 9280,
+      "label_references": [
+        {
+          "label_ordinal": 46,
+          "identifier_hex": "cbc187ce",
+          "label_unknown_u16": 64,
+          "control_index": 92
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10,
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "No modo de alvo, dê um toque rápido\nno botão L para apontar a câmera\npara o monstro selecionado.",
+      "review_status": "draft"
+    },
+    {
+      "key": "Help:000047",
+      "text_index": 47,
+      "source_text": "Quickly tap the L Button twice while in\nTarget Mode to reset the camera behind\nyour hunter. These controls can be\ncustomized in the Options menu.",
+      "source_offset": 9472,
+      "label_references": [
+        {
+          "label_ordinal": 47,
+          "identifier_hex": "bcc6b758",
+          "label_unknown_u16": 64,
+          "control_index": 94
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10,
+          10,
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "No modo de alvo, toque duas vezes\nrapidamente em L para pôr a câmera\natrás do caçador. Ajuste esses\ncontroles no menu Opções.",
+      "review_status": "draft"
+    },
+    {
+      "key": "Help:000048",
+      "text_index": 48,
+      "source_text": "When faced with a pair of large monsters,\nboth will appear in the Target Cam panel.\nSimply touch the one you wish to target\nto focus on that particular foe.",
+      "source_offset": 9764,
+      "label_references": [
+        {
+          "label_ordinal": 48,
+          "identifier_hex": "25cfe6e2",
+          "label_unknown_u16": 64,
+          "control_index": 96
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10,
+          10,
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "Se houver dois monstros grandes,\nambos aparecem no painel da câmera\nde alvo. Toque no monstro desejado\npara focar nele.",
+      "review_status": "draft"
+    },
+    {
+      "key": "Help:000049",
+      "text_index": 49,
+      "source_text": "This panel displays Health, Stamina,\nSharpness, Ammo, and other info on the\nTouch Screen. Once set, this same info\nwill disappear from the top screen.",
+      "source_offset": 10080,
+      "label_references": [
+        {
+          "label_ordinal": 49,
+          "identifier_hex": "52c8d674",
+          "label_unknown_u16": 64,
+          "control_index": 98
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10,
+          10,
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "Este painel exibe vida, vigor, afiação,\nmunição e outros dados na tela\nde toque. Ao colocá-lo, esses dados\ndesaparecem da tela superior.",
+      "review_status": "draft"
+    },
+    {
+      "key": "Help:000050",
+      "text_index": 50,
+      "source_text": "Some panels come in larger sizes to\naid in readability. These large panels\nfunction exactly the same as their\nnormal-sized counterparts.",
+      "source_offset": 10384,
+      "label_references": [
+        {
+          "label_ordinal": 50,
+          "identifier_hex": "c277cbe5",
+          "label_unknown_u16": 64,
+          "control_index": 100
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10,
+          10,
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "Alguns painéis têm versões maiores\npara facilitar a leitura. Esses\npainéis funcionam exatamente como\nas versões de tamanho normal.",
+      "review_status": "draft"
+    },
+    {
+      "key": "Help:000051",
+      "text_index": 51,
+      "source_text": "If you touch this panel, you can view the\nstatus of your entire group, as well as\nkey information about the current Quest.",
+      "source_offset": 10660,
+      "label_references": [
+        {
+          "label_ordinal": 51,
+          "identifier_hex": "b570fb73",
+          "label_unknown_u16": 64,
+          "control_index": 102
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10,
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "Toque neste painel para ver o status\nde todo o grupo e informações\nimportantes sobre a missão atual.",
+      "review_status": "draft"
+    },
+    {
+      "key": "Help:000052",
+      "text_index": 52,
+      "source_text": "This panel allows companion status info\nto appear on the Touch Screen. Once\nthe panel is set, this same info will\ndisappear from the top screen.",
+      "source_offset": 10908,
+      "label_references": [
+        {
+          "label_ordinal": 52,
+          "identifier_hex": "d5b77296",
+          "label_unknown_u16": 64,
+          "control_index": 104
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10,
+          10,
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "Este painel mostra o status dos\ncompanheiros na tela de toque.\nAo colocá-lo, esses dados\ndesaparecem da tela superior.",
+      "review_status": "draft"
+    },
+    {
+      "key": "Help:000053",
+      "text_index": 53,
+      "source_text": "If you touch this panel, you can view the\nstatus of your entire group, as well as\nkey information about the current Quest.",
+      "source_offset": 11200,
+      "label_references": [
+        {
+          "label_ordinal": 53,
+          "identifier_hex": "a2b04200",
+          "label_unknown_u16": 64,
+          "control_index": 106
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10,
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "Toque neste painel para ver o status\nde todo o grupo e informações\nimportantes sobre a missão atual.",
+      "review_status": "draft"
+    },
+    {
+      "key": "Help:000054",
+      "text_index": 54,
+      "source_text": "This panel makes the Map appear on the\nTouch Screen. Once the panel is set, the\nMap will disappear from the top screen.",
+      "source_offset": 11448,
+      "label_references": [
+        {
+          "label_ordinal": 54,
+          "identifier_hex": "3bb913ba",
+          "label_unknown_u16": 64,
+          "control_index": 108
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10,
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "Este painel mostra o mapa na tela\nde toque. Ao colocá-lo, o mapa\ndesaparece da tela superior.",
+      "review_status": "draft"
+    },
+    {
+      "key": "Help:000055",
+      "text_index": 55,
+      "source_text": "You can touch this panel to switch\nbetween a close-up of the current area\nand a zoomed-out view of the whole Map.\n(Some Quests do not have a close-up.)",
+      "source_offset": 11688,
+      "label_references": [
+        {
+          "label_ordinal": 55,
+          "identifier_hex": "4cbe232c",
+          "label_unknown_u16": 64,
+          "control_index": 110
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10,
+          10,
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "Toque neste painel para alternar\nentre a área atual ampliada\ne a visão geral do mapa.\n(Algumas missões não têm ampliação.)",
+      "review_status": "draft"
+    },
+    {
+      "key": "Help:000056",
+      "text_index": 56,
+      "source_text": "Touch this panel's left and right arrows\nto cycle through your items. Press the\nY Button to use the selected item.",
+      "source_offset": 11992,
+      "label_references": [
+        {
+          "label_ordinal": 56,
+          "identifier_hex": "d2dab68f",
+          "label_unknown_u16": 64,
+          "control_index": 112
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10,
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "Toque nas setas esquerda e direita\ndeste painel para alternar os itens.\nPressione Y para usar o item escolhido.",
+      "review_status": "draft"
+    },
+    {
+      "key": "Help:000057",
+      "text_index": 57,
+      "source_text": "Use this panel to give yourself one-touch\naccess to the items you use most often.\nTo assign specific items, touch the\nOptions button while customizing panels.",
+      "source_offset": 12224,
+      "label_references": [
+        {
+          "label_ordinal": 57,
+          "identifier_hex": "a5dd8619",
+          "label_unknown_u16": 64,
+          "control_index": 114
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10,
+          10,
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "Este painel dá acesso aos seus itens\nmais usados com um toque.\nPara escolher os itens, toque em Opções\nao personalizar os painéis.",
+      "review_status": "draft"
+    },
+    {
+      "key": "Help:000058",
+      "text_index": 58,
+      "source_text": "Use this panel to cycle through your\nBowgun ammo or Bow coatings.",
+      "source_offset": 12544,
+      "label_references": [
+        {
+          "label_ordinal": 58,
+          "identifier_hex": "3cd4d7a3",
+          "label_unknown_u16": 64,
+          "control_index": 116
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "Use este painel para alternar a munição\ndo fuzilarco ou os revestimentos do arco.",
+      "review_status": "draft"
+    },
+    {
+      "key": "Help:000059",
+      "text_index": 59,
+      "source_text": "Touch this panel to display a list of items\ncurrently in your Item Pouch. Touch an\nitem's panel to use it immediately.",
+      "source_offset": 12676,
+      "label_references": [
+        {
+          "label_ordinal": 59,
+          "identifier_hex": "4bd3e735",
+          "label_unknown_u16": 64,
+          "control_index": 118
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10,
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "Toque aqui para listar os itens\nda bolsa. Toque no painel de\num item para usá-lo imediatamente.",
+      "review_status": "draft"
+    },
+    {
+      "key": "Help:000060",
+      "text_index": 60,
+      "source_text": "Touch this panel to display a version\nof the Combo List on the Touch Screen.\nSimply tap the item you want to create\nto initiate the combination process.",
+      "source_offset": 12916,
+      "label_references": [
+        {
+          "label_ordinal": 60,
+          "identifier_hex": "db6cfaa4",
+          "label_unknown_u16": 64,
+          "control_index": 120
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10,
+          10,
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "Toque neste painel para exibir\na lista de combinações na tela de toque.\nToque no item que deseja criar\npara iniciar a combinação.",
+      "review_status": "draft"
+    },
+    {
+      "key": "Help:000061",
+      "text_index": 61,
+      "source_text": "Touch this panel to display a list of\ngestures on the Touch Screen. Simply\ntap a gesture's panel to perform it.",
+      "source_offset": 13224,
+      "label_references": [
+        {
+          "label_ordinal": 61,
+          "identifier_hex": "ac6bca32",
+          "label_unknown_u16": 64,
+          "control_index": 122
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10,
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "Toque neste painel para ver a lista\nde gestos na tela de toque. Toque\nno painel de um gesto para executá-lo.",
+      "review_status": "draft"
+    },
+    {
+      "key": "Help:000062",
+      "text_index": 62,
+      "source_text": "Touch this panel to perform your\nequipped weapon's special attack\n(when the weapon is drawn) or a\nkick (when it is not).",
+      "source_offset": 13448,
+      "label_references": [
+        {
+          "label_ordinal": 62,
+          "identifier_hex": "fe9a2155",
+          "label_unknown_u16": 64,
+          "control_index": 124
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10,
+          10,
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "Toque neste painel para executar\no ataque especial da arma equipada\n(se estiver em mãos) ou dar\num chute (se estiver guardada).",
+      "review_status": "draft"
+    },
+    {
+      "key": "Help:000063",
+      "text_index": 63,
+      "source_text": "Touch the icon on this panel\nto send out a signal.",
+      "source_offset": 13692,
+      "label_references": [
+        {
+          "label_ordinal": 63,
+          "identifier_hex": "899d11c3",
+          "label_unknown_u16": 64,
+          "control_index": 126
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "Toque no ícone deste painel\npara emitir um sinal.",
+      "review_status": "draft"
+    },
+    {
+      "key": "Help:000064",
+      "text_index": 64,
+      "source_text": "If you register your current layout as\na panel scheme, you can quickly revert\nto it whenever you like.",
+      "source_offset": 13796,
+      "label_references": [
+        {
+          "label_ordinal": 64,
+          "identifier_hex": "10944079",
+          "label_unknown_u16": 64,
+          "control_index": 128
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10,
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "Registre a disposição atual dos painéis\ncomo uma configuração para voltar\na ela rapidamente quando quiser.",
+      "review_status": "draft"
+    }
+  ],
+  "glossary": [
+    {
+      "source": "Item Box / Box",
+      "target": "baú de itens / baú",
+      "note": "Mesmo recipiente nos três documentos novos; forma curta quando a fonte também abrevia."
+    },
+    {
+      "source": "Item Pouch / Pouch",
+      "target": "bolsa de itens / bolsa",
+      "note": "Inventário levado pelo caçador; distinto do baú."
+    },
+    {
+      "source": "Item Set / Equipment Set",
+      "target": "conjunto de itens / conjunto de equipamentos",
+      "note": "Unregister remove o registro do conjunto, não os itens; excluir se refere ao conjunto."
+    },
+    {
+      "source": "Decoration / Slot",
+      "target": "joia / espaço",
+      "note": "Escolha editorial para adorno de habilidade e sua capacidade; conferir contexto visual."
+    },
+    {
+      "source": "Talisman / Combo List",
+      "target": "talismã / combinações",
+      "note": "Terminologia uniforme nas lojas e no baú."
+    },
+    {
+      "source": "Bowgun / Bow / Blademaster / Gunner",
+      "target": "fuzilarco / arco / espadachim / atirador",
+      "note": "Categorias de arma/caçador, sem alteração de regras."
+    },
+    {
+      "source": "Features",
+      "target": "detalhes",
+      "note": "Preserva a escolha do catálogo CharMake existente."
+    },
+    {
+      "source": "Palico / Circle Pad / HR / z",
+      "target": "Palico / Circle Pad / HR / z",
+      "note": "Termos/símbolos mantidos; texto legado de controle não implementa esse dispositivo."
+    },
+    {
+      "source": "Common NPC titles",
+      "target": "títulos funcionais em português",
+      "note": "Caravaneiro, Assistente da Guilda, Mercador wyveriano e Transportador Palico são escolhas editoriais do projeto, sem alegação de tradução oficial. Topônimos e nomes Cha-Cha, Felcote, Kayamba e Poogie são preservados."
+    },
+    {
+      "source": "Forge / Upgrade / Hone",
+      "target": "forjar / melhorar / aprimorar",
+      "note": "Preserva a distinção entre criar, melhorar e aplicar o aprimoramento às armas já no máximo; não confundir com afiação ou polimento."
+    },
+    {
+      "source": "Kinsect / Insect Glaive / Nectar",
+      "target": "Kinseto / Glaive Inseto / néctar",
+      "note": "As duas primeiras formas mantêm Common v3; néctar permanece distinto de material genérico."
+    },
+    {
+      "source": "Quest / Subquest / Expedition",
+      "target": "missão / missão secundária / expedição",
+      "note": "Fluxos distintos preservados, inclusive consequências de abandono e retorno."
+    },
+    {
+      "source": "Hunter Search / Gathering Hall",
+      "target": "busca de caçadores / Salão de Reunião",
+      "note": "Nomes traduzidos do recurso legado. Não afirmam rede local ou serviços implementados no PC."
+    },
+    {
+      "source": "Panel / Target Cam / +Control Pad",
+      "target": "painel / câmera de alvo / direcional",
+      "note": "Tradução das instruções originais, sem remapeá-las para mouse, teclado ou joystick do laboratório."
+    },
+    {
+      "source": "Health / Stamina / Sharpness",
+      "target": "vida / vigor / afiação",
+      "note": "Termos distintos de atributos; afiação não substitui o verbo aprimorar (Hone)."
+    },
+    {
+      "source": "Rapid Fire / Crouching Fire / WyvernFire",
+      "target": "tiro rápido / tiro agachado / Fogo de wyvern",
+      "note": "Escolhas editoriais para os modos descritos pela fonte; sem alegação de terminologia oficial."
+    },
+    {
+      "source": "HR / Arena / VS / G1★ / G2★ / G3★",
+      "target": "HR / Arena / VS / G1★ / G2★ / G3★",
+      "note": "Siglas, palavra idêntica em português e símbolos de requisitos preservados; não contam como traduções."
+    },
+    {
+      "source": "Val Habar / Congalala / Kecha Wacha / A.Kecha Wacha / Rathian",
+      "target": "Val Habar / Congalala / Kecha Wacha / A.Kecha Wacha / Rathian",
+      "note": "Nomes e abreviação A. mantidos exatamente; não expandir a abreviação sem fonte."
+    }
+  ],
+  "coverage": {
+    "source_file_fragments": 65,
+    "catalog_entries": 65,
+    "translated_fragments": 65,
+    "entire_game_total": null,
+    "excluded_fragments": []
+  },
+  "limitations": [
+    "Editorial draft, not official terminology or human-reviewed readiness.",
+    "No original layout/glyph or execution validation; no menu/gameplay functionality follows from this translation.",
+    "Help describes legacy 3DS screens, wireless search and controls; no PC implementation or remapping is asserted.",
+    "Fragment references, protected tokens, blank lines and leading/trailing whitespace remain intact."
+  ]
+}

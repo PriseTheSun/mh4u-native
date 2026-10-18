@@ -1,0 +1,12 @@
+{
+  "purpose": "Optional independent historical RGB decoder used only by validate_probe.py",
+  "repository": "https://github.com/svanheulen/mhff",
+  "commit": "6ef14c8ffa341ccbe44e0e6a93eb4bfe541265cf",
+  "path": "n3ds/io_import_scene_mod.py",
+  "url": "https://raw.githubusercontent.com/svanheulen/mhff/6ef14c8ffa341ccbe44e0e6a93eb4bfe541265cf/n3ds/io_import_scene_mod.py",
+  "sha256": "af2d5c18d226d02644695b339e7fd8edae9041518284d7e91c0814d8c809eb68",
+  "license_from_file_header": "GPL-3.0-or-later",
+  "copyright_from_file_header": "Copyright 2015 Seth VanHeulen",
+  "reviewed_execution": ["modifier_tables assignment", "decode_etc1 function"],
+  "excluded_execution": "bpy import and all other top-level source nodes"
+}

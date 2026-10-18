@@ -1,0 +1,59 @@
+[
+  {
+    "name": "Ghidra",
+    "version": "12.1.4",
+    "url": "https://github.com/NationalSecurityAgency/ghidra/releases/download/Ghidra_12.1.4_build/ghidra_12.1.4_PUBLIC_20260921.zip",
+    "sha256": "ddac49f903da9d5bac833e5cc79395098b9c33cfd3279be5f31bd00387d2d4db",
+    "destination": ".tools",
+    "root": "ghidra_12.1.4_PUBLIC"
+  },
+  {
+    "name": "Temurin JDK",
+    "version": "21.0.12.1+1",
+    "url": "https://github.com/adoptium/temurin21-binaries/releases/download/jdk-21.0.12.1%2B1/OpenJDK21U-jdk_aarch64_mac_hotspot_21.0.12.1_1.tar.gz",
+    "sha256": "3623232f33a9c3baadf304480b2535f9a3cba8a58d42ecbb438ba267315d9998",
+    "destination": ".tools",
+    "root": "jdk-21.0.12.1+1"
+  },
+  {
+    "name": "CMake",
+    "version": "4.4.4",
+    "url": "https://github.com/Kitware/CMake/releases/download/v4.4.4/cmake-4.4.4-macos-universal.tar.gz",
+    "sha256": "4b7b73704b1db9b374e5c9ab8e17ac6148b817b6396ee75cd94a852cbac9d305",
+    "destination": ".tools",
+    "root": "cmake-4.4.4-macos-universal"
+  },
+  {
+    "name": "SDL",
+    "version": "3.4.18",
+    "url": "https://github.com/libsdl-org/SDL/releases/download/release-3.4.18/SDL3-3.4.18.tar.gz",
+    "sha256": "9c75cf16330322c217dedd2e0609f1124f1b54b8633e763467b4684d0f4334a3",
+    "destination": "vendor",
+    "root": "SDL3-3.4.18"
+  },
+  {
+    "name": "LLVM MinGW",
+    "version": "20261006",
+    "url": "https://github.com/mstorsjo/llvm-mingw/releases/download/20261006/llvm-mingw-20261006-ucrt-macos-universal.tar.xz",
+    "sha256": "a7a19b11048e89372637d26279cdb7c430ed3cf8c1e224310421312bf986ebf6",
+    "destination": ".tools",
+    "root": "llvm-mingw-20261006-ucrt-macos-universal"
+  },
+  {
+    "name": "Dear ImGui",
+    "version": "1.93.0",
+    "url": "https://github.com/ocornut/imgui.git",
+    "tag": "v1.93.0",
+    "commit": "c1aaac65e896a45f81f47a4d68f9959e0f86c859"
+  },
+  {
+    "name": "REA",
+    "version": "6.5.0",
+    "lockfile": "tools/rea/package-lock.json"
+  },
+  {
+    "name": "cgltf",
+    "commit": "85cd62382dfea638278962690cf515023f33ed00",
+    "lockfile": "tools/dependencies/cgltf.lock.json"
+  }
+]

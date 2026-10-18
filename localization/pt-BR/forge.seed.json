@@ -1,0 +1,3774 @@
+{
+  "schema": "mh4u-translation-seed-v1",
+  "locale": "pt-BR",
+  "status": "draft; full source messages translated; linguistic/layout review pending; no human review claimed",
+  "source": {
+    "internal_name": "E_makeshop",
+    "sha256": "55445e08302b507132a01d008abaea8dab60fb828d843fcfaa50a86dd6e1ead7",
+    "size": 20691,
+    "archive": "/eng/data/core_arena.arc",
+    "entry_path": "eng\\msg\\lobby\\E_makeshop_eng",
+    "rom_sha256": "c16b6cd17cb761508d3077c99be3fb310b460aa8fcf57d3c651310f082bda666"
+  },
+  "entries": [
+    {
+      "key": "E_makeshop:000000",
+      "text_index": 0,
+      "source_text": "Forge Weapons",
+      "source_offset": 9740,
+      "label_references": [
+        {
+          "label_ordinal": 0,
+          "identifier_hex": "2e80eee7",
+          "label_unknown_u16": 64,
+          "control_index": 0
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Forjar armas",
+      "review_status": "draft"
+    },
+    {
+      "key": "E_makeshop:000001",
+      "text_index": 1,
+      "source_text": "Forge Armor",
+      "source_offset": 9768,
+      "label_references": [
+        {
+          "label_ordinal": 1,
+          "identifier_hex": "b789bf5d",
+          "label_unknown_u16": 64,
+          "control_index": 2
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Forjar armaduras",
+      "review_status": "draft"
+    },
+    {
+      "key": "E_makeshop:000002",
+      "text_index": 2,
+      "source_text": "Upgrade Equipment",
+      "source_offset": 9792,
+      "label_references": [
+        {
+          "label_ordinal": 2,
+          "identifier_hex": "c08e8fcb",
+          "label_unknown_u16": 64,
+          "control_index": 4
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Melhorar equipamentos",
+      "review_status": "draft"
+    },
+    {
+      "key": "E_makeshop:000003",
+      "text_index": 3,
+      "source_text": "Decorations",
+      "source_offset": 9828,
+      "label_references": [
+        {
+          "label_ordinal": 3,
+          "identifier_hex": "5eea1a68",
+          "label_unknown_u16": 64,
+          "control_index": 6
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Joias",
+      "review_status": "draft"
+    },
+    {
+      "key": "E_makeshop:000004",
+      "text_index": 4,
+      "source_text": "Forge Decorations",
+      "source_offset": 9852,
+      "label_references": [
+        {
+          "label_ordinal": 4,
+          "identifier_hex": "29ed2afe",
+          "label_unknown_u16": 64,
+          "control_index": 8
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Forjar joias",
+      "review_status": "draft"
+    },
+    {
+      "key": "E_makeshop:000005",
+      "text_index": 5,
+      "source_text": "Set Decorations",
+      "source_offset": 9888,
+      "label_references": [
+        {
+          "label_ordinal": 5,
+          "identifier_hex": "b0e47b44",
+          "label_unknown_u16": 64,
+          "control_index": 10
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Instalar joias",
+      "review_status": "draft"
+    },
+    {
+      "key": "E_makeshop:000006",
+      "text_index": 6,
+      "source_text": "Forge Palico Gear",
+      "source_offset": 9920,
+      "label_references": [
+        {
+          "label_ordinal": 6,
+          "identifier_hex": "c7e34bd2",
+          "label_unknown_u16": 64,
+          "control_index": 12
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Forjar equipamentos de Palico",
+      "review_status": "draft"
+    },
+    {
+      "key": "E_makeshop:000007",
+      "text_index": 7,
+      "source_text": "Hone",
+      "source_offset": 9956,
+      "label_references": [
+        {
+          "label_ordinal": 7,
+          "identifier_hex": "575c5643",
+          "label_unknown_u16": 64,
+          "control_index": 14
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Aprimorar",
+      "review_status": "draft"
+    },
+    {
+      "key": "E_makeshop:000008",
+      "text_index": 8,
+      "source_text": "Hand over materials and money\nto craft weapons.",
+      "source_offset": 9968,
+      "label_references": [
+        {
+          "label_ordinal": 8,
+          "identifier_hex": "31b157b8",
+          "label_unknown_u16": 64,
+          "control_index": 16
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "Entregue materiais e dinheiro\npara forjar armas.",
+      "review_status": "draft"
+    },
+    {
+      "key": "E_makeshop:000009",
+      "text_index": 9,
+      "source_text": "Hand over materials and money\nto craft armor.",
+      "source_offset": 10064,
+      "label_references": [
+        {
+          "label_ordinal": 9,
+          "identifier_hex": "a8b80602",
+          "label_unknown_u16": 64,
+          "control_index": 18
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "Entregue materiais e dinheiro\npara forjar armaduras.",
+      "review_status": "draft"
+    },
+    {
+      "key": "E_makeshop:000010",
+      "text_index": 10,
+      "source_text": "Hand over materials and money\nto upgrade weapons or armor.",
+      "source_offset": 10156,
+      "label_references": [
+        {
+          "label_ordinal": 10,
+          "identifier_hex": "dfbf3694",
+          "label_unknown_u16": 64,
+          "control_index": 20
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "Entregue materiais e dinheiro\npara melhorar armas ou armaduras.",
+      "review_status": "draft"
+    },
+    {
+      "key": "E_makeshop:000011",
+      "text_index": 11,
+      "source_text": "Craft, attach, or remove\nDecorations.",
+      "source_offset": 10276,
+      "label_references": [
+        {
+          "label_ordinal": 11,
+          "identifier_hex": "41dba337",
+          "label_unknown_u16": 64,
+          "control_index": 22
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "Forje, instale ou remova\njoias.",
+      "review_status": "draft"
+    },
+    {
+      "key": "E_makeshop:000012",
+      "text_index": 12,
+      "source_text": "Craft Decorations.",
+      "source_offset": 10352,
+      "label_references": [
+        {
+          "label_ordinal": 12,
+          "identifier_hex": "36dc93a1",
+          "label_unknown_u16": 64,
+          "control_index": 24
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Forje joias.",
+      "review_status": "draft"
+    },
+    {
+      "key": "E_makeshop:000013",
+      "text_index": 13,
+      "source_text": "Attach or remove Decorations\nfrom your equipment.",
+      "source_offset": 10392,
+      "label_references": [
+        {
+          "label_ordinal": 13,
+          "identifier_hex": "afd5c21b",
+          "label_unknown_u16": 64,
+          "control_index": 26
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "Instale ou remova joias\ndo seu equipamento.",
+      "review_status": "draft"
+    },
+    {
+      "key": "E_makeshop:000014",
+      "text_index": 14,
+      "source_text": "Hand over materials and money\nto craft weapons or armor for\nyour Palicoes.",
+      "source_offset": 10492,
+      "label_references": [
+        {
+          "label_ordinal": 14,
+          "identifier_hex": "d8d2f28d",
+          "label_unknown_u16": 64,
+          "control_index": 28
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10,
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "Entregue materiais e dinheiro\npara forjar armas ou armaduras\npara seus Palicos.",
+      "review_status": "draft"
+    },
+    {
+      "key": "E_makeshop:000015",
+      "text_index": 15,
+      "source_text": "Hand over materials and money\nto further improve weapons that\nhave been upgraded to the max.",
+      "source_offset": 10644,
+      "label_references": [
+        {
+          "label_ordinal": 15,
+          "identifier_hex": "486def1c",
+          "label_unknown_u16": 64,
+          "control_index": 30
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10,
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "Entregue materiais e dinheiro\npara aprimorar armas que já\natingiram a melhoria máxima.",
+      "review_status": "draft"
+    },
+    {
+      "key": "E_makeshop:000016",
+      "text_index": 16,
+      "source_text": "Req. Materials",
+      "source_offset": 10832,
+      "label_references": [
+        {
+          "label_ordinal": 16,
+          "identifier_hex": "5f529d27",
+          "label_unknown_u16": 64,
+          "control_index": 32
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Materiais necessários",
+      "review_status": "draft"
+    },
+    {
+      "key": "E_makeshop:000017",
+      "text_index": 17,
+      "source_text": "Owned/Needed",
+      "source_offset": 10864,
+      "label_references": [
+        {
+          "label_ordinal": 17,
+          "identifier_hex": "c65bcc9d",
+          "label_unknown_u16": 64,
+          "control_index": 34
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Possui/precisa",
+      "review_status": "draft"
+    },
+    {
+      "key": "E_makeshop:000019",
+      "text_index": 19,
+      "source_text": "Toggle Display",
+      "source_offset": 10896,
+      "label_references": [
+        {
+          "label_ordinal": 19,
+          "identifier_hex": "2f3869a8",
+          "label_unknown_u16": 64,
+          "control_index": 40
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Alternar exibição",
+      "review_status": "draft"
+    },
+    {
+      "key": "E_makeshop:000020",
+      "text_index": 20,
+      "source_text": "Skills",
+      "source_offset": 10928,
+      "label_references": [
+        {
+          "label_ordinal": 20,
+          "identifier_hex": "583f593e",
+          "label_unknown_u16": 64,
+          "control_index": 42
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Habilidades",
+      "review_status": "draft"
+    },
+    {
+      "key": "E_makeshop:000021",
+      "text_index": 21,
+      "source_text": "Details",
+      "source_offset": 10944,
+      "label_references": [
+        {
+          "label_ordinal": 21,
+          "identifier_hex": "c1360884",
+          "label_unknown_u16": 64,
+          "control_index": 44
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Detalhes",
+      "review_status": "draft"
+    },
+    {
+      "key": "E_makeshop:000022",
+      "text_index": 22,
+      "source_text": "Close",
+      "source_offset": 10960,
+      "label_references": [
+        {
+          "label_ordinal": 22,
+          "identifier_hex": "b6313812",
+          "label_unknown_u16": 64,
+          "control_index": 46
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Fechar",
+      "review_status": "draft"
+    },
+    {
+      "key": "E_makeshop:000023",
+      "text_index": 23,
+      "source_text": "Upgrade",
+      "source_offset": 10972,
+      "label_references": [
+        {
+          "label_ordinal": 23,
+          "identifier_hex": "268e2583",
+          "label_unknown_u16": 64,
+          "control_index": 48
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Melhorar",
+      "review_status": "draft"
+    },
+    {
+      "key": "E_makeshop:000024",
+      "text_index": 24,
+      "source_text": "Current List",
+      "source_offset": 10988,
+      "label_references": [
+        {
+          "label_ordinal": 24,
+          "identifier_hex": "51891515",
+          "label_unknown_u16": 64,
+          "control_index": 50
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Lista atual",
+      "review_status": "draft"
+    },
+    {
+      "key": "E_makeshop:000025",
+      "text_index": 25,
+      "source_text": "All",
+      "source_offset": 11016,
+      "label_references": [
+        {
+          "label_ordinal": 25,
+          "identifier_hex": "314e9cf0",
+          "label_unknown_u16": 64,
+          "control_index": 52
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Todos",
+      "review_status": "draft"
+    },
+    {
+      "key": "E_makeshop:000026",
+      "text_index": 26,
+      "source_text": "Blademaster",
+      "source_offset": 11024,
+      "label_references": [
+        {
+          "label_ordinal": 26,
+          "identifier_hex": "4649ac66",
+          "label_unknown_u16": 64,
+          "control_index": 54
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Espadachim",
+      "review_status": "draft"
+    },
+    {
+      "key": "E_makeshop:000027",
+      "text_index": 27,
+      "source_text": "Gunner",
+      "source_offset": 11048,
+      "label_references": [
+        {
+          "label_ordinal": 27,
+          "identifier_hex": "df40fddc",
+          "label_unknown_u16": 64,
+          "control_index": 56
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Atirador",
+      "review_status": "draft"
+    },
+    {
+      "key": "E_makeshop:000028",
+      "text_index": 28,
+      "source_text": "Displaying:",
+      "source_offset": 11064,
+      "label_references": [
+        {
+          "label_ordinal": 28,
+          "identifier_hex": "a847cd4a",
+          "label_unknown_u16": 64,
+          "control_index": 58
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Exibindo:",
+      "review_status": "draft"
+    },
+    {
+      "key": "E_makeshop:000029",
+      "text_index": 29,
+      "source_text": "Names",
+      "source_offset": 11088,
+      "label_references": [
+        {
+          "label_ordinal": 29,
+          "identifier_hex": "362358e9",
+          "label_unknown_u16": 64,
+          "control_index": 60
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Nomes",
+      "review_status": "draft"
+    },
+    {
+      "key": "E_makeshop:000030",
+      "text_index": 30,
+      "source_text": "Skills",
+      "source_offset": 11100,
+      "label_references": [
+        {
+          "label_ordinal": 30,
+          "identifier_hex": "4124687f",
+          "label_unknown_u16": 64,
+          "control_index": 62
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Habilidades",
+      "review_status": "draft"
+    },
+    {
+      "key": "E_makeshop:000031",
+      "text_index": 31,
+      "source_text": "Show skills",
+      "source_offset": 11116,
+      "label_references": [
+        {
+          "label_ordinal": 31,
+          "identifier_hex": "d82d39c5",
+          "label_unknown_u16": 64,
+          "control_index": 64
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Mostrar habilidades",
+      "review_status": "draft"
+    },
+    {
+      "key": "E_makeshop:000032",
+      "text_index": 32,
+      "source_text": "Sort",
+      "source_offset": 11140,
+      "label_references": [
+        {
+          "label_ordinal": 32,
+          "identifier_hex": "af2a0953",
+          "label_unknown_u16": 64,
+          "control_index": 66
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Ordenar",
+      "review_status": "draft"
+    },
+    {
+      "key": "E_makeshop:000033",
+      "text_index": 33,
+      "source_text": "Remove Decoration",
+      "source_offset": 11152,
+      "label_references": [
+        {
+          "label_ordinal": 33,
+          "identifier_hex": "3f9514c2",
+          "label_unknown_u16": 64,
+          "control_index": 68
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Remover joia",
+      "review_status": "draft"
+    },
+    {
+      "key": "E_makeshop:000034",
+      "text_index": 34,
+      "source_text": "Req. Slots",
+      "source_offset": 11188,
+      "label_references": [
+        {
+          "label_ordinal": 34,
+          "identifier_hex": "48922454",
+          "label_unknown_u16": 64,
+          "control_index": 70
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Espaços necessários",
+      "review_status": "draft"
+    },
+    {
+      "key": "E_makeshop:000035",
+      "text_index": 35,
+      "source_text": "Skill Tree",
+      "source_offset": 11212,
+      "label_references": [
+        {
+          "label_ordinal": 35,
+          "identifier_hex": "1a63cf33",
+          "label_unknown_u16": 64,
+          "control_index": 72
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Árvore de habilidades",
+      "review_status": "draft"
+    },
+    {
+      "key": "E_makeshop:000036",
+      "text_index": 36,
+      "source_text": "Level Up",
+      "source_offset": 11236,
+      "label_references": [
+        {
+          "label_ordinal": 36,
+          "identifier_hex": "6d64ffa5",
+          "label_unknown_u16": 64,
+          "control_index": 74
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Subir de nível",
+      "review_status": "draft"
+    },
+    {
+      "key": "E_makeshop:000037",
+      "text_index": 37,
+      "source_text": "Toggle Info",
+      "source_offset": 11256,
+      "label_references": [
+        {
+          "label_ordinal": 37,
+          "identifier_hex": "f46dae1f",
+          "label_unknown_u16": 64,
+          "control_index": 76
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Alternar informações",
+      "review_status": "draft"
+    },
+    {
+      "key": "E_makeshop:000038",
+      "text_index": 38,
+      "source_text": "Change List",
+      "source_offset": 11280,
+      "label_references": [
+        {
+          "label_ordinal": 38,
+          "identifier_hex": "836a9e89",
+          "label_unknown_u16": 64,
+          "control_index": 78
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Mudar lista",
+      "review_status": "draft"
+    },
+    {
+      "key": "E_makeshop:000039",
+      "text_index": 39,
+      "source_text": "Select a weapon category.",
+      "source_offset": 11304,
+      "label_references": [
+        {
+          "label_ordinal": 39,
+          "identifier_hex": "190719f8",
+          "label_unknown_u16": 64,
+          "control_index": 80
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Selecione a categoria de arma.",
+      "review_status": "draft"
+    },
+    {
+      "key": "E_makeshop:000040",
+      "text_index": 40,
+      "source_text": "Select an armor category.",
+      "source_offset": 11356,
+      "label_references": [
+        {
+          "label_ordinal": 40,
+          "identifier_hex": "800e4842",
+          "label_unknown_u16": 64,
+          "control_index": 82
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Selecione a categoria de armadura.",
+      "review_status": "draft"
+    },
+    {
+      "key": "E_makeshop:000041",
+      "text_index": 41,
+      "source_text": "Select the equipment to craft.",
+      "source_offset": 11408,
+      "label_references": [
+        {
+          "label_ordinal": 41,
+          "identifier_hex": "f70978d4",
+          "label_unknown_u16": 64,
+          "control_index": 84
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Selecione o equipamento para forjar.",
+      "review_status": "draft"
+    },
+    {
+      "key": "E_makeshop:000042",
+      "text_index": 42,
+      "source_text": "Select the equipment to craft.\n",
+      "source_offset": 11472,
+      "label_references": [
+        {
+          "label_ordinal": 42,
+          "identifier_hex": "4e7e1e07",
+          "label_unknown_u16": 64,
+          "control_index": 86
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "Selecione o equipamento para forjar.\n",
+      "review_status": "draft"
+    },
+    {
+      "key": "E_makeshop:000043",
+      "text_index": 43,
+      "source_text": "(With this equipment, head armor\nwill not be visible on-screen.)",
+      "source_offset": 11536,
+      "label_references": [
+        {
+          "label_ordinal": 42,
+          "identifier_hex": "4e7e1e07",
+          "label_unknown_u16": 64,
+          "control_index": 88
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "(Com este equipamento, a peça\nda cabeça não aparece na tela.)",
+      "review_status": "draft"
+    },
+    {
+      "key": "E_makeshop:000044",
+      "text_index": 44,
+      "source_text": "Use the required materials and\ncraft for ",
+      "source_offset": 11668,
+      "label_references": [
+        {
+          "label_ordinal": 43,
+          "identifier_hex": "696ded77",
+          "label_unknown_u16": 64,
+          "control_index": 91
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "Usar os materiais necessários\ne forjar por ",
+      "review_status": "draft"
+    },
+    {
+      "key": "E_makeshop:000046",
+      "text_index": 46,
+      "source_text": "Equip now?",
+      "source_offset": 11760,
+      "label_references": [
+        {
+          "label_ordinal": 44,
+          "identifier_hex": "1e6adde1",
+          "label_unknown_u16": 64,
+          "control_index": 95
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Equipar agora?",
+      "review_status": "draft"
+    },
+    {
+      "key": "E_makeshop:000047",
+      "text_index": 47,
+      "source_text": "Sent to Equipment Box.",
+      "source_offset": 11784,
+      "label_references": [
+        {
+          "label_ordinal": 45,
+          "identifier_hex": "87638c5b",
+          "label_unknown_u16": 64,
+          "control_index": 97
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Enviado ao baú de equipamentos.",
+      "review_status": "draft"
+    },
+    {
+      "key": "E_makeshop:000048",
+      "text_index": 48,
+      "source_text": "Select the equipment to upgrade.",
+      "source_offset": 11832,
+      "label_references": [
+        {
+          "label_ordinal": 46,
+          "identifier_hex": "f064bccd",
+          "label_unknown_u16": 64,
+          "control_index": 99
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Selecione o equipamento para melhorar.",
+      "review_status": "draft"
+    },
+    {
+      "key": "E_makeshop:000049",
+      "text_index": 49,
+      "source_text": "Select an upgrade.",
+      "source_offset": 11900,
+      "label_references": [
+        {
+          "label_ordinal": 47,
+          "identifier_hex": "60dba15c",
+          "label_unknown_u16": 64,
+          "control_index": 101
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Selecione uma melhoria.",
+      "review_status": "draft"
+    },
+    {
+      "key": "E_makeshop:000050",
+      "text_index": 50,
+      "source_text": "Use the required materials and\nupgrade for ",
+      "source_offset": 11940,
+      "label_references": [
+        {
+          "label_ordinal": 48,
+          "identifier_hex": "17dc91ca",
+          "label_unknown_u16": 64,
+          "control_index": 103
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "Usar os materiais necessários\ne melhorar por ",
+      "review_status": "draft"
+    },
+    {
+      "key": "E_makeshop:000052",
+      "text_index": 52,
+      "source_text": "Alter the weapon for ",
+      "source_offset": 12036,
+      "label_references": [
+        {
+          "label_ordinal": 49,
+          "identifier_hex": "771b182f",
+          "label_unknown_u16": 64,
+          "control_index": 107
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Modificar a arma por ",
+      "review_status": "draft"
+    },
+    {
+      "key": "E_makeshop:000054",
+      "text_index": 54,
+      "source_text": "Reorder equipment?",
+      "source_offset": 12088,
+      "label_references": [
+        {
+          "label_ordinal": 50,
+          "identifier_hex": "001c28b9",
+          "label_unknown_u16": 64,
+          "control_index": 111
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Reordenar equipamentos?",
+      "review_status": "draft"
+    },
+    {
+      "key": "E_makeshop:000055",
+      "text_index": 55,
+      "source_text": "Forge Decorations",
+      "source_offset": 12128,
+      "label_references": [
+        {
+          "label_ordinal": 51,
+          "identifier_hex": "99157903",
+          "label_unknown_u16": 64,
+          "control_index": 113
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Forjar joias",
+      "review_status": "draft"
+    },
+    {
+      "key": "E_makeshop:000056",
+      "text_index": 56,
+      "source_text": "Set Decorations",
+      "source_offset": 12164,
+      "label_references": [
+        {
+          "label_ordinal": 52,
+          "identifier_hex": "ee124995",
+          "label_unknown_u16": 64,
+          "control_index": 115
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Instalar joias",
+      "review_status": "draft"
+    },
+    {
+      "key": "E_makeshop:000057",
+      "text_index": 57,
+      "source_text": "Hand over materials and money\nto craft Decorations.",
+      "source_offset": 12196,
+      "label_references": [
+        {
+          "label_ordinal": 53,
+          "identifier_hex": "7076dc36",
+          "label_unknown_u16": 64,
+          "control_index": 117
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "Entregue materiais e dinheiro\npara forjar joias.",
+      "review_status": "draft"
+    },
+    {
+      "key": "E_makeshop:000058",
+      "text_index": 58,
+      "source_text": "Select the Decoration to craft.",
+      "source_offset": 12300,
+      "label_references": [
+        {
+          "label_ordinal": 54,
+          "identifier_hex": "0771eca0",
+          "label_unknown_u16": 64,
+          "control_index": 119
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Selecione a joia para forjar.",
+      "review_status": "draft"
+    },
+    {
+      "key": "E_makeshop:000059",
+      "text_index": 59,
+      "source_text": "Decoration sent to Item Box.",
+      "source_offset": 12364,
+      "label_references": [
+        {
+          "label_ordinal": 55,
+          "identifier_hex": "9e78bd1a",
+          "label_unknown_u16": 64,
+          "control_index": 121
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Joia enviada ao baú de itens.",
+      "review_status": "draft"
+    },
+    {
+      "key": "E_makeshop:000060",
+      "text_index": 60,
+      "source_text": "Attach or remove Decorations.",
+      "source_offset": 12424,
+      "label_references": [
+        {
+          "label_ordinal": 56,
+          "identifier_hex": "e97f8d8c",
+          "label_unknown_u16": 64,
+          "control_index": 123
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Instale ou remova joias.",
+      "review_status": "draft"
+    },
+    {
+      "key": "E_makeshop:000061",
+      "text_index": 61,
+      "source_text": "Select the equipment to attach\nor remove Decorations from.",
+      "source_offset": 12484,
+      "label_references": [
+        {
+          "label_ordinal": 57,
+          "identifier_hex": "79c0901d",
+          "label_unknown_u16": 64,
+          "control_index": 125
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "Selecione o equipamento para\ninstalar ou remover joias.",
+      "review_status": "draft"
+    },
+    {
+      "key": "E_makeshop:000062",
+      "text_index": 62,
+      "source_text": "Select the equipment to attach\nor remove Decorations from.\n",
+      "source_offset": 12604,
+      "label_references": [
+        {
+          "label_ordinal": 58,
+          "identifier_hex": "34f6721c",
+          "label_unknown_u16": 64,
+          "control_index": 127
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10,
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "Selecione o equipamento para\ninstalar ou remover joias.\n",
+      "review_status": "draft"
+    },
+    {
+      "key": "E_makeshop:000063",
+      "text_index": 63,
+      "source_text": "(Decorations cannot be removed.)",
+      "source_offset": 12724,
+      "label_references": [
+        {
+          "label_ordinal": 58,
+          "identifier_hex": "34f6721c",
+          "label_unknown_u16": 64,
+          "control_index": 129
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "(Não é possível remover as joias.)",
+      "review_status": "draft"
+    },
+    {
+      "key": "E_makeshop:000064",
+      "text_index": 64,
+      "source_text": "Select a Slot.",
+      "source_offset": 12792,
+      "label_references": [
+        {
+          "label_ordinal": 59,
+          "identifier_hex": "0ec7a08b",
+          "label_unknown_u16": 64,
+          "control_index": 132
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Selecione um espaço.",
+      "review_status": "draft"
+    },
+    {
+      "key": "E_makeshop:000065",
+      "text_index": 65,
+      "source_text": "Select a Decoration.",
+      "source_offset": 12824,
+      "label_references": [
+        {
+          "label_ordinal": 60,
+          "identifier_hex": "5c364bec",
+          "label_unknown_u16": 64,
+          "control_index": 134
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Selecione uma joia.",
+      "review_status": "draft"
+    },
+    {
+      "key": "E_makeshop:000066",
+      "text_index": 66,
+      "source_text": "Select a Decoration.\n",
+      "source_offset": 12868,
+      "label_references": [
+        {
+          "label_ordinal": 61,
+          "identifier_hex": "2b317b7a",
+          "label_unknown_u16": 64,
+          "control_index": 136
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "Selecione uma joia.\n",
+      "review_status": "draft"
+    },
+    {
+      "key": "E_makeshop:000067",
+      "text_index": 67,
+      "source_text": "(Not enough Slots.)",
+      "source_offset": 12912,
+      "label_references": [
+        {
+          "label_ordinal": 61,
+          "identifier_hex": "2b317b7a",
+          "label_unknown_u16": 64,
+          "control_index": 138
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "(Espaços insuficientes.)",
+      "review_status": "draft"
+    },
+    {
+      "key": "E_makeshop:000068",
+      "text_index": 68,
+      "source_text": "Sent to Palico Box.",
+      "source_offset": 12952,
+      "label_references": [
+        {
+          "label_ordinal": 62,
+          "identifier_hex": "b2382ac0",
+          "label_unknown_u16": 64,
+          "control_index": 141
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Enviado ao baú de Palico.",
+      "review_status": "draft"
+    },
+    {
+      "key": "E_makeshop:000069",
+      "text_index": 69,
+      "source_text": "Select an equipment category.",
+      "source_offset": 12992,
+      "label_references": [
+        {
+          "label_ordinal": 63,
+          "identifier_hex": "c53f1a56",
+          "label_unknown_u16": 64,
+          "control_index": 143
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Selecione a categoria de equipamento.",
+      "review_status": "draft"
+    },
+    {
+      "key": "E_makeshop:000070",
+      "text_index": 70,
+      "source_text": "Equip the selected Palico?",
+      "source_offset": 13052,
+      "label_references": [
+        {
+          "label_ordinal": 64,
+          "identifier_hex": "5b5b8ff5",
+          "label_unknown_u16": 64,
+          "control_index": 145
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Equipar o Palico selecionado?",
+      "review_status": "draft"
+    },
+    {
+      "key": "E_makeshop:000071",
+      "text_index": 71,
+      "source_text": "Send to Palico Box",
+      "source_offset": 13108,
+      "label_references": [
+        {
+          "label_ordinal": 65,
+          "identifier_hex": "2c5cbf63",
+          "label_unknown_u16": 64,
+          "control_index": 147
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Enviar ao baú de Palico",
+      "review_status": "draft"
+    },
+    {
+      "key": "E_makeshop:000072",
+      "text_index": 72,
+      "source_text": "Select a Palico.",
+      "source_offset": 13148,
+      "label_references": [
+        {
+          "label_ordinal": 66,
+          "identifier_hex": "b555eed9",
+          "label_unknown_u16": 64,
+          "control_index": 149
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Selecione um Palico.",
+      "review_status": "draft"
+    },
+    {
+      "key": "E_makeshop:000073",
+      "text_index": 73,
+      "source_text": "Select a Palico.\n",
+      "source_offset": 13184,
+      "label_references": [
+        {
+          "label_ordinal": 67,
+          "identifier_hex": "c252de4f",
+          "label_unknown_u16": 64,
+          "control_index": 151
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "Selecione um Palico.\n",
+      "review_status": "draft"
+    },
+    {
+      "key": "E_makeshop:000074",
+      "text_index": 74,
+      "source_text": "Cannot alter equipment while\non Val Habar Quest.",
+      "source_offset": 13220,
+      "label_references": [
+        {
+          "label_ordinal": 67,
+          "identifier_hex": "c252de4f",
+          "label_unknown_u16": 64,
+          "control_index": 153
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "Não é possível trocar equipamentos\ndurante uma missão de Val Habar.",
+      "review_status": "draft"
+    },
+    {
+      "key": "E_makeshop:000075",
+      "text_index": 75,
+      "source_text": "Selected Palico",
+      "source_offset": 13320,
+      "label_references": [
+        {
+          "label_ordinal": 68,
+          "identifier_hex": "52edc3de",
+          "label_unknown_u16": 64,
+          "control_index": 156
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Palico selecionado",
+      "review_status": "draft"
+    },
+    {
+      "key": "E_makeshop:000076",
+      "text_index": 76,
+      "source_text": "Select Palico",
+      "source_offset": 13352,
+      "label_references": [
+        {
+          "label_ordinal": 69,
+          "identifier_hex": "25eaf348",
+          "label_unknown_u16": 64,
+          "control_index": 158
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Selecionar Palico",
+      "review_status": "draft"
+    },
+    {
+      "key": "E_makeshop:000077",
+      "text_index": 77,
+      "source_text": "Equipment sent to Palico Box.",
+      "source_offset": 13380,
+      "label_references": [
+        {
+          "label_ordinal": 70,
+          "identifier_hex": "452d7aad",
+          "label_unknown_u16": 64,
+          "control_index": 160
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Equipamento enviado ao baú de Palico.",
+      "review_status": "draft"
+    },
+    {
+      "key": "E_makeshop:000078",
+      "text_index": 78,
+      "source_text": "Select the equipment to upgrade.",
+      "source_offset": 13440,
+      "label_references": [
+        {
+          "label_ordinal": 71,
+          "identifier_hex": "322a4a3b",
+          "label_unknown_u16": 64,
+          "control_index": 162
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Selecione o equipamento para melhorar.",
+      "review_status": "draft"
+    },
+    {
+      "key": "E_makeshop:000079",
+      "text_index": 79,
+      "source_text": "Select an upgrade.\n",
+      "source_offset": 13508,
+      "label_references": [
+        {
+          "label_ordinal": 72,
+          "identifier_hex": "ab231b81",
+          "label_unknown_u16": 64,
+          "control_index": 164
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "Selecione uma melhoria.\n",
+      "review_status": "draft"
+    },
+    {
+      "key": "E_makeshop:000080",
+      "text_index": 80,
+      "source_text": "(This weapon has not yet been\nHoned.)",
+      "source_offset": 13548,
+      "label_references": [
+        {
+          "label_ordinal": 72,
+          "identifier_hex": "ab231b81",
+          "label_unknown_u16": 64,
+          "control_index": 166
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "(Esta arma ainda não foi\naprimorada.)",
+      "review_status": "draft"
+    },
+    {
+      "key": "E_makeshop:000081",
+      "text_index": 81,
+      "source_text": "Select an upgrade.\n",
+      "source_offset": 13624,
+      "label_references": [
+        {
+          "label_ordinal": 73,
+          "identifier_hex": "dc242b17",
+          "label_unknown_u16": 64,
+          "control_index": 169
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "Selecione uma melhoria.\n",
+      "review_status": "draft"
+    },
+    {
+      "key": "E_makeshop:000082",
+      "text_index": 82,
+      "source_text": "(Already upgraded.)",
+      "source_offset": 13664,
+      "label_references": [
+        {
+          "label_ordinal": 73,
+          "identifier_hex": "dc242b17",
+          "label_unknown_u16": 64,
+          "control_index": 171
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "(Já melhorado.)",
+      "review_status": "draft"
+    },
+    {
+      "key": "E_makeshop:000083",
+      "text_index": 83,
+      "source_text": "Use the required materials and\nupgrade for ",
+      "source_offset": 13704,
+      "label_references": [
+        {
+          "label_ordinal": 74,
+          "identifier_hex": "4240beb4",
+          "label_unknown_u16": 64,
+          "control_index": 174
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "Usar os materiais necessários\ne melhorar por ",
+      "review_status": "draft"
+    },
+    {
+      "key": "E_makeshop:000085",
+      "text_index": 85,
+      "source_text": "(Current upgrade will be removed.)",
+      "source_offset": 13800,
+      "label_references": [
+        {
+          "label_ordinal": 74,
+          "identifier_hex": "4240beb4",
+          "label_unknown_u16": 64,
+          "control_index": 178
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "(A melhoria atual será removida.)",
+      "review_status": "draft"
+    },
+    {
+      "key": "E_makeshop:000086",
+      "text_index": 86,
+      "source_text": "Use the required materials and\nupgrade for ",
+      "source_offset": 13872,
+      "label_references": [
+        {
+          "label_ordinal": 75,
+          "identifier_hex": "35478e22",
+          "label_unknown_u16": 64,
+          "control_index": 181
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "Usar os materiais necessários\ne melhorar por ",
+      "review_status": "draft"
+    },
+    {
+      "key": "E_makeshop:000088",
+      "text_index": 88,
+      "source_text": "Select the equipment to craft.\n",
+      "source_offset": 13968,
+      "label_references": [
+        {
+          "label_ordinal": 76,
+          "identifier_hex": "5e9ac140",
+          "label_unknown_u16": 64,
+          "control_index": 185
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "Selecione o equipamento para forjar.\n",
+      "review_status": "draft"
+    },
+    {
+      "key": "E_makeshop:000089",
+      "text_index": 89,
+      "source_text": "(Not enough materials.)",
+      "source_offset": 14032,
+      "label_references": [
+        {
+          "label_ordinal": 76,
+          "identifier_hex": "5e9ac140",
+          "label_unknown_u16": 64,
+          "control_index": 187
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "(Materiais insuficientes.)",
+      "review_status": "draft"
+    },
+    {
+      "key": "E_makeshop:000090",
+      "text_index": 90,
+      "source_text": "Select the equipment to craft.\n",
+      "source_offset": 14080,
+      "label_references": [
+        {
+          "label_ordinal": 77,
+          "identifier_hex": "c79390fa",
+          "label_unknown_u16": 64,
+          "control_index": 190
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "Selecione o equipamento para forjar.\n",
+      "review_status": "draft"
+    },
+    {
+      "key": "E_makeshop:000091",
+      "text_index": 91,
+      "source_text": "(Not enough funds.)",
+      "source_offset": 14144,
+      "label_references": [
+        {
+          "label_ordinal": 77,
+          "identifier_hex": "c79390fa",
+          "label_unknown_u16": 64,
+          "control_index": 192
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "(Dinheiro insuficiente.)",
+      "review_status": "draft"
+    },
+    {
+      "key": "E_makeshop:000092",
+      "text_index": 92,
+      "source_text": "Select the equipment to craft.\n",
+      "source_offset": 14184,
+      "label_references": [
+        {
+          "label_ordinal": 78,
+          "identifier_hex": "b094a06c",
+          "label_unknown_u16": 64,
+          "control_index": 195
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "Selecione o equipamento para forjar.\n",
+      "review_status": "draft"
+    },
+    {
+      "key": "E_makeshop:000093",
+      "text_index": 93,
+      "source_text": "(Not enough materials/funds.)",
+      "source_offset": 14248,
+      "label_references": [
+        {
+          "label_ordinal": 78,
+          "identifier_hex": "b094a06c",
+          "label_unknown_u16": 64,
+          "control_index": 197
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "(Materiais/dinheiro insuficientes.)",
+      "review_status": "draft"
+    },
+    {
+      "key": "E_makeshop:000094",
+      "text_index": 94,
+      "source_text": "Select the equipment to craft.\n",
+      "source_offset": 14308,
+      "label_references": [
+        {
+          "label_ordinal": 79,
+          "identifier_hex": "2ef035cf",
+          "label_unknown_u16": 64,
+          "control_index": 200
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "Selecione o equipamento para forjar.\n",
+      "review_status": "draft"
+    },
+    {
+      "key": "E_makeshop:000095",
+      "text_index": 95,
+      "source_text": "(Your Item Box is full.)",
+      "source_offset": 14372,
+      "label_references": [
+        {
+          "label_ordinal": 79,
+          "identifier_hex": "2ef035cf",
+          "label_unknown_u16": 64,
+          "control_index": 202
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "(Seu baú de itens está cheio.)",
+      "review_status": "draft"
+    },
+    {
+      "key": "E_makeshop:000096",
+      "text_index": 96,
+      "source_text": "Select the equipment to craft.\n",
+      "source_offset": 14424,
+      "label_references": [
+        {
+          "label_ordinal": 80,
+          "identifier_hex": "ef253149",
+          "label_unknown_u16": 64,
+          "control_index": 205
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "Selecione o equipamento para forjar.\n",
+      "review_status": "draft"
+    },
+    {
+      "key": "E_makeshop:000097",
+      "text_index": 97,
+      "source_text": "(Your Palico Box is full.)",
+      "source_offset": 14488,
+      "label_references": [
+        {
+          "label_ordinal": 80,
+          "identifier_hex": "ef253149",
+          "label_unknown_u16": 64,
+          "control_index": 207
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "(Seu baú de Palico está cheio.)",
+      "review_status": "draft"
+    },
+    {
+      "key": "E_makeshop:000098",
+      "text_index": 98,
+      "source_text": "Select the Decoration to craft.\n",
+      "source_offset": 14544,
+      "label_references": [
+        {
+          "label_ordinal": 81,
+          "identifier_hex": "77fdf311",
+          "label_unknown_u16": 64,
+          "control_index": 210
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "Selecione a joia para forjar.\n",
+      "review_status": "draft"
+    },
+    {
+      "key": "E_makeshop:000099",
+      "text_index": 99,
+      "source_text": "(Not enough materials.)",
+      "source_offset": 14612,
+      "label_references": [
+        {
+          "label_ordinal": 81,
+          "identifier_hex": "77fdf311",
+          "label_unknown_u16": 64,
+          "control_index": 212
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "(Materiais insuficientes.)",
+      "review_status": "draft"
+    },
+    {
+      "key": "E_makeshop:000100",
+      "text_index": 100,
+      "source_text": "Select the Decoration to craft.\n",
+      "source_offset": 14660,
+      "label_references": [
+        {
+          "label_ordinal": 82,
+          "identifier_hex": "eef4a2ab",
+          "label_unknown_u16": 64,
+          "control_index": 215
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "Selecione a joia para forjar.\n",
+      "review_status": "draft"
+    },
+    {
+      "key": "E_makeshop:000101",
+      "text_index": 101,
+      "source_text": "(Not enough funds.)",
+      "source_offset": 14728,
+      "label_references": [
+        {
+          "label_ordinal": 82,
+          "identifier_hex": "eef4a2ab",
+          "label_unknown_u16": 64,
+          "control_index": 217
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "(Dinheiro insuficiente.)",
+      "review_status": "draft"
+    },
+    {
+      "key": "E_makeshop:000102",
+      "text_index": 102,
+      "source_text": "Select the Decoration to craft.\n",
+      "source_offset": 14768,
+      "label_references": [
+        {
+          "label_ordinal": 83,
+          "identifier_hex": "99f3923d",
+          "label_unknown_u16": 64,
+          "control_index": 220
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "Selecione a joia para forjar.\n",
+      "review_status": "draft"
+    },
+    {
+      "key": "E_makeshop:000103",
+      "text_index": 103,
+      "source_text": "(Not enough materials/funds.)",
+      "source_offset": 14836,
+      "label_references": [
+        {
+          "label_ordinal": 83,
+          "identifier_hex": "99f3923d",
+          "label_unknown_u16": 64,
+          "control_index": 222
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "(Materiais/dinheiro insuficientes.)",
+      "review_status": "draft"
+    },
+    {
+      "key": "E_makeshop:000104",
+      "text_index": 104,
+      "source_text": "Select the Decoration to craft.\n",
+      "source_offset": 14896,
+      "label_references": [
+        {
+          "label_ordinal": 84,
+          "identifier_hex": "0797079e",
+          "label_unknown_u16": 64,
+          "control_index": 225
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "Selecione a joia para forjar.\n",
+      "review_status": "draft"
+    },
+    {
+      "key": "E_makeshop:000105",
+      "text_index": 105,
+      "source_text": "(Your Item Box is full.)",
+      "source_offset": 14964,
+      "label_references": [
+        {
+          "label_ordinal": 84,
+          "identifier_hex": "0797079e",
+          "label_unknown_u16": 64,
+          "control_index": 227
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "(Seu baú de itens está cheio.)",
+      "review_status": "draft"
+    },
+    {
+      "key": "E_makeshop:000106",
+      "text_index": 106,
+      "source_text": "Select an upgrade.\n",
+      "source_offset": 15016,
+      "label_references": [
+        {
+          "label_ordinal": 85,
+          "identifier_hex": "912c7a28",
+          "label_unknown_u16": 64,
+          "control_index": 230
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "Selecione uma melhoria.\n",
+      "review_status": "draft"
+    },
+    {
+      "key": "E_makeshop:000107",
+      "text_index": 107,
+      "source_text": "(Not enough materials.)",
+      "source_offset": 15056,
+      "label_references": [
+        {
+          "label_ordinal": 85,
+          "identifier_hex": "912c7a28",
+          "label_unknown_u16": 64,
+          "control_index": 232
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "(Materiais insuficientes.)",
+      "review_status": "draft"
+    },
+    {
+      "key": "E_makeshop:000108",
+      "text_index": 108,
+      "source_text": "Select an upgrade.\n",
+      "source_offset": 15104,
+      "label_references": [
+        {
+          "label_ordinal": 86,
+          "identifier_hex": "08252b92",
+          "label_unknown_u16": 64,
+          "control_index": 235
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "Selecione uma melhoria.\n",
+      "review_status": "draft"
+    },
+    {
+      "key": "E_makeshop:000109",
+      "text_index": 109,
+      "source_text": "(Not enough funds.)",
+      "source_offset": 15144,
+      "label_references": [
+        {
+          "label_ordinal": 86,
+          "identifier_hex": "08252b92",
+          "label_unknown_u16": 64,
+          "control_index": 237
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "(Dinheiro insuficiente.)",
+      "review_status": "draft"
+    },
+    {
+      "key": "E_makeshop:000110",
+      "text_index": 110,
+      "source_text": "Select an upgrade.\n",
+      "source_offset": 15184,
+      "label_references": [
+        {
+          "label_ordinal": 87,
+          "identifier_hex": "7f221b04",
+          "label_unknown_u16": 64,
+          "control_index": 240
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "Selecione uma melhoria.\n",
+      "review_status": "draft"
+    },
+    {
+      "key": "E_makeshop:000111",
+      "text_index": 111,
+      "source_text": "(Not enough materials/funds.)",
+      "source_offset": 15224,
+      "label_references": [
+        {
+          "label_ordinal": 87,
+          "identifier_hex": "7f221b04",
+          "label_unknown_u16": 64,
+          "control_index": 242
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "(Materiais/dinheiro insuficientes.)",
+      "review_status": "draft"
+    },
+    {
+      "key": "E_makeshop:000112",
+      "text_index": 112,
+      "source_text": "Select an upgrade.\n",
+      "source_offset": 15284,
+      "label_references": [
+        {
+          "label_ordinal": 88,
+          "identifier_hex": "e1468ea7",
+          "label_unknown_u16": 64,
+          "control_index": 245
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "Selecione uma melhoria.\n",
+      "review_status": "draft"
+    },
+    {
+      "key": "E_makeshop:000113",
+      "text_index": 113,
+      "source_text": "(Your Item Box is full.)",
+      "source_offset": 15324,
+      "label_references": [
+        {
+          "label_ordinal": 88,
+          "identifier_hex": "e1468ea7",
+          "label_unknown_u16": 64,
+          "control_index": 247
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "(Seu baú de itens está cheio.)",
+      "review_status": "draft"
+    },
+    {
+      "key": "E_makeshop:000114",
+      "text_index": 114,
+      "source_text": "Equip your creation now?\n",
+      "source_offset": 15376,
+      "label_references": [
+        {
+          "label_ordinal": 89,
+          "identifier_hex": "9641be31",
+          "label_unknown_u16": 64,
+          "control_index": 250
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "Equipar sua criação agora?\n",
+      "review_status": "draft"
+    },
+    {
+      "key": "E_makeshop:000115",
+      "text_index": 115,
+      "source_text": "(Changing your weapon may\ncause armor to be removed.)",
+      "source_offset": 15428,
+      "label_references": [
+        {
+          "label_ordinal": 89,
+          "identifier_hex": "9641be31",
+          "label_unknown_u16": 64,
+          "control_index": 252
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "(Trocar de arma pode\nremover sua armadura.)",
+      "review_status": "draft"
+    },
+    {
+      "key": "E_makeshop:000116",
+      "text_index": 116,
+      "source_text": "Max upgrade reached.",
+      "source_offset": 15536,
+      "label_references": [
+        {
+          "label_ordinal": 90,
+          "identifier_hex": "0f48ef8b",
+          "label_unknown_u16": 64,
+          "control_index": 256
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Melhoria máxima atingida.",
+      "review_status": "draft"
+    },
+    {
+      "key": "E_makeshop:000117",
+      "text_index": 117,
+      "source_text": "This cannot be upgraded.",
+      "source_offset": 15580,
+      "label_references": [
+        {
+          "label_ordinal": 91,
+          "identifier_hex": "784fdf1d",
+          "label_unknown_u16": 64,
+          "control_index": 260
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Isto não pode ser melhorado.",
+      "review_status": "draft"
+    },
+    {
+      "key": "E_makeshop:000118",
+      "text_index": 118,
+      "source_text": "Max upgrade reached.",
+      "source_offset": 15632,
+      "label_references": [
+        {
+          "label_ordinal": 92,
+          "identifier_hex": "e8f0c28c",
+          "label_unknown_u16": 64,
+          "control_index": 264
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Melhoria máxima atingida.",
+      "review_status": "draft"
+    },
+    {
+      "key": "E_makeshop:000119",
+      "text_index": 119,
+      "source_text": "Cannot upgrade at this facility.",
+      "source_offset": 15676,
+      "label_references": [
+        {
+          "label_ordinal": 93,
+          "identifier_hex": "88374b69",
+          "label_unknown_u16": 64,
+          "control_index": 268
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Não é possível melhorar aqui.",
+      "review_status": "draft"
+    },
+    {
+      "key": "E_makeshop:000120",
+      "text_index": 120,
+      "source_text": "Select an upgrade.\n",
+      "source_offset": 15744,
+      "label_references": [
+        {
+          "label_ordinal": 94,
+          "identifier_hex": "9ff7f21a",
+          "label_unknown_u16": 64,
+          "control_index": 271
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "Selecione uma melhoria.\n",
+      "review_status": "draft"
+    },
+    {
+      "key": "E_makeshop:000121",
+      "text_index": 121,
+      "source_text": "(Attached Decorations will be\nsent to the Item Box.)",
+      "source_offset": 15784,
+      "label_references": [
+        {
+          "label_ordinal": 94,
+          "identifier_hex": "9ff7f21a",
+          "label_unknown_u16": 64,
+          "control_index": 273
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "(As joias instaladas serão\nenviadas ao baú de itens.)",
+      "review_status": "draft"
+    },
+    {
+      "key": "E_makeshop:000122",
+      "text_index": 122,
+      "source_text": "Select an upgrade.\n",
+      "source_offset": 15892,
+      "label_references": [
+        {
+          "label_ordinal": 95,
+          "identifier_hex": "ff307bff",
+          "label_unknown_u16": 64,
+          "control_index": 276
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "Selecione uma melhoria.\n",
+      "review_status": "draft"
+    },
+    {
+      "key": "E_makeshop:000123",
+      "text_index": 123,
+      "source_text": "(Cannot upgrade. Item Box cannot\nhold any more Decorations.)",
+      "source_offset": 15932,
+      "label_references": [
+        {
+          "label_ordinal": 95,
+          "identifier_hex": "ff307bff",
+          "label_unknown_u16": 64,
+          "control_index": 278
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "(Não é possível melhorar: o baú\nnão comporta mais joias.)",
+      "review_status": "draft"
+    },
+    {
+      "key": "E_makeshop:000124",
+      "text_index": 124,
+      "source_text": "This equipment cannot be Honed.",
+      "source_offset": 16056,
+      "label_references": [
+        {
+          "label_ordinal": 96,
+          "identifier_hex": "113e1ad3",
+          "label_unknown_u16": 64,
+          "control_index": 281
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Este equipamento não pode ser aprimorado.",
+      "review_status": "draft"
+    },
+    {
+      "key": "E_makeshop:000125",
+      "text_index": 125,
+      "source_text": "Armor/Talismans cannot be Honed.",
+      "source_offset": 16120,
+      "label_references": [
+        {
+          "label_ordinal": 97,
+          "identifier_hex": "66392a45",
+          "label_unknown_u16": 64,
+          "control_index": 283
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Armaduras/talismãs não podem ser aprimorados.",
+      "review_status": "draft"
+    },
+    {
+      "key": "E_makeshop:000126",
+      "text_index": 126,
+      "source_text": "Give Nectar to Kinsect",
+      "source_offset": 16188,
+      "label_references": [
+        {
+          "label_ordinal": 98,
+          "identifier_hex": "8c734cb6",
+          "label_unknown_u16": 64,
+          "control_index": 285
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Dar néctar ao Kinseto",
+      "review_status": "draft"
+    },
+    {
+      "key": "E_makeshop:000127",
+      "text_index": 127,
+      "source_text": "Upgrade Kinsect/Glaive",
+      "source_offset": 16236,
+      "label_references": [
+        {
+          "label_ordinal": 99,
+          "identifier_hex": "157a1d0c",
+          "label_unknown_u16": 64,
+          "control_index": 287
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Melhorar Kinseto/Glaive",
+      "review_status": "draft"
+    },
+    {
+      "key": "E_makeshop:000128",
+      "text_index": 128,
+      "source_text": "Level Up Kinsect",
+      "source_offset": 16284,
+      "label_references": [
+        {
+          "label_ordinal": 100,
+          "identifier_hex": "7c0bd8c2",
+          "label_unknown_u16": 64,
+          "control_index": 289
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Subir nível do Kinseto",
+      "review_status": "draft"
+    },
+    {
+      "key": "E_makeshop:000129",
+      "text_index": 129,
+      "source_text": "Give Nectar to a Kinsect to\nimprove its stats.",
+      "source_offset": 16320,
+      "label_references": [
+        {
+          "label_ordinal": 101,
+          "identifier_hex": "627d2d9a",
+          "label_unknown_u16": 64,
+          "control_index": 291
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "Dê néctar ao Kinseto para\nmelhorar seus atributos.",
+      "review_status": "draft"
+    },
+    {
+      "key": "E_makeshop:000130",
+      "text_index": 130,
+      "source_text": "Use materials/money to level up\na Kinsect. The Insect Glaive can\nbe upgraded at a certain level.",
+      "source_offset": 16416,
+      "label_references": [
+        {
+          "label_ordinal": 102,
+          "identifier_hex": "fc19b839",
+          "label_unknown_u16": 64,
+          "control_index": 293
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10,
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "Use materiais/dinheiro para subir\nníveis do Kinseto. Em certo nível,\na Glaive Inseto pode ser melhorada.",
+      "review_status": "draft"
+    },
+    {
+      "key": "E_makeshop:000131",
+      "text_index": 131,
+      "source_text": "Give Nectar to a Kinsect to\nimprove its stats.\n",
+      "source_offset": 16612,
+      "label_references": [
+        {
+          "label_ordinal": 103,
+          "identifier_hex": "8b1e88af",
+          "label_unknown_u16": 64,
+          "control_index": 295
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10,
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "Dê néctar ao Kinseto para\nmelhorar seus atributos.\n",
+      "review_status": "draft"
+    },
+    {
+      "key": "E_makeshop:000132",
+      "text_index": 132,
+      "source_text": "(You don't have any Nectar.)",
+      "source_offset": 16708,
+      "label_references": [
+        {
+          "label_ordinal": 103,
+          "identifier_hex": "8b1e88af",
+          "label_unknown_u16": 64,
+          "control_index": 297
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "(Você não tem néctar.)",
+      "review_status": "draft"
+    },
+    {
+      "key": "E_makeshop:000133",
+      "text_index": 133,
+      "source_text": "Use materials/money to level up\na Kinsect.\n",
+      "source_offset": 16768,
+      "label_references": [
+        {
+          "label_ordinal": 104,
+          "identifier_hex": "0b0ce854",
+          "label_unknown_u16": 64,
+          "control_index": 300
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10,
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "Use materiais/dinheiro para\nsubir o nível do Kinseto.\n",
+      "review_status": "draft"
+    },
+    {
+      "key": "E_makeshop:000134",
+      "text_index": 134,
+      "source_text": "(Max upgrade reached.)",
+      "source_offset": 16856,
+      "label_references": [
+        {
+          "label_ordinal": 104,
+          "identifier_hex": "0b0ce854",
+          "label_unknown_u16": 64,
+          "control_index": 302
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "(Melhoria máxima atingida.)",
+      "review_status": "draft"
+    },
+    {
+      "key": "E_makeshop:000135",
+      "text_index": 135,
+      "source_text": "Select the Nectar to use.",
+      "source_offset": 16904,
+      "label_references": [
+        {
+          "label_ordinal": 105,
+          "identifier_hex": "1217d915",
+          "label_unknown_u16": 64,
+          "control_index": 305
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Selecione o néctar para usar.",
+      "review_status": "draft"
+    },
+    {
+      "key": "E_makeshop:000136",
+      "text_index": 136,
+      "source_text": "Req. Points",
+      "source_offset": 16956,
+      "label_references": [
+        {
+          "label_ordinal": 106,
+          "identifier_hex": "7b661cdb",
+          "label_unknown_u16": 64,
+          "control_index": 307
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Pontos necessários",
+      "review_status": "draft"
+    },
+    {
+      "key": "E_makeshop:000137",
+      "text_index": 137,
+      "source_text": "Current/Needed",
+      "source_offset": 16980,
+      "label_references": [
+        {
+          "label_ordinal": 107,
+          "identifier_hex": "e5028978",
+          "label_unknown_u16": 64,
+          "control_index": 309
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Atual/necessário",
+      "review_status": "draft"
+    },
+    {
+      "key": "E_makeshop:000138",
+      "text_index": 138,
+      "source_text": "Points",
+      "source_offset": 17012,
+      "label_references": [
+        {
+          "label_ordinal": 108,
+          "identifier_hex": "9205b9ee",
+          "label_unknown_u16": 64,
+          "control_index": 311
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Pontos",
+      "review_status": "draft"
+    },
+    {
+      "key": "E_makeshop:000139",
+      "text_index": 139,
+      "source_text": "Selected Nectar",
+      "source_offset": 17028,
+      "label_references": [
+        {
+          "label_ordinal": 109,
+          "identifier_hex": "6510e983",
+          "label_unknown_u16": 64,
+          "control_index": 313
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Néctar selecionado",
+      "review_status": "draft"
+    },
+    {
+      "key": "E_makeshop:000140",
+      "text_index": 140,
+      "source_text": "Give Nectar",
+      "source_offset": 17060,
+      "label_references": [
+        {
+          "label_ordinal": 110,
+          "identifier_hex": "f5aff412",
+          "label_unknown_u16": 64,
+          "control_index": 315
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Dar néctar",
+      "review_status": "draft"
+    },
+    {
+      "key": "E_makeshop:000141",
+      "text_index": 141,
+      "source_text": "Kinsect Stats",
+      "source_offset": 17084,
+      "label_references": [
+        {
+          "label_ordinal": 111,
+          "identifier_hex": "82a8c484",
+          "label_unknown_u16": 64,
+          "control_index": 317
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Atributos do Kinseto",
+      "review_status": "draft"
+    },
+    {
+      "key": "E_makeshop:000142",
+      "text_index": 142,
+      "source_text": "Select the Nectar to use.\n",
+      "source_offset": 17112,
+      "label_references": [
+        {
+          "label_ordinal": 112,
+          "identifier_hex": "e26f4d61",
+          "label_unknown_u16": 64,
+          "control_index": 319
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "Selecione o néctar para usar.\n",
+      "review_status": "draft"
+    },
+    {
+      "key": "E_makeshop:000143",
+      "text_index": 143,
+      "source_text": "(You don't have any Nectar.)",
+      "source_offset": 17168,
+      "label_references": [
+        {
+          "label_ordinal": 112,
+          "identifier_hex": "e26f4d61",
+          "label_unknown_u16": 64,
+          "control_index": 321
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "(Você não tem néctar.)",
+      "review_status": "draft"
+    },
+    {
+      "key": "E_makeshop:000144",
+      "text_index": 144,
+      "source_text": "Select the Nectar to use.\n",
+      "source_offset": 17228,
+      "label_references": [
+        {
+          "label_ordinal": 113,
+          "identifier_hex": "ecb4c553",
+          "label_unknown_u16": 64,
+          "control_index": 324
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "Selecione o néctar para usar.\n",
+      "review_status": "draft"
+    },
+    {
+      "key": "E_makeshop:000145",
+      "text_index": 145,
+      "source_text": "(No effect on points.)",
+      "source_offset": 17284,
+      "label_references": [
+        {
+          "label_ordinal": 113,
+          "identifier_hex": "ecb4c553",
+          "label_unknown_u16": 64,
+          "control_index": 326
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "(Sem efeito nos pontos.)",
+      "review_status": "draft"
+    },
+    {
+      "key": "E_makeshop:000146",
+      "text_index": 146,
+      "source_text": "Give selected item to Kinsect?",
+      "source_offset": 17332,
+      "label_references": [
+        {
+          "label_ordinal": 114,
+          "identifier_hex": "95687df7",
+          "label_unknown_u16": 64,
+          "control_index": 329
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Dar o item selecionado ao Kinseto?",
+      "review_status": "draft"
+    },
+    {
+      "key": "E_makeshop:000147",
+      "text_index": 147,
+      "source_text": "Select an upgrade.\n",
+      "source_offset": 17396,
+      "label_references": [
+        {
+          "label_ordinal": 115,
+          "identifier_hex": "0c612c4d",
+          "label_unknown_u16": 64,
+          "control_index": 331
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "Selecione uma melhoria.\n",
+      "review_status": "draft"
+    },
+    {
+      "key": "E_makeshop:000148",
+      "text_index": 148,
+      "source_text": "(This Kinsect's stats don't\nmeet the required conditions.)",
+      "source_offset": 17436,
+      "label_references": [
+        {
+          "label_ordinal": 115,
+          "identifier_hex": "0c612c4d",
+          "label_unknown_u16": 64,
+          "control_index": 333
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "(Os atributos deste Kinseto não\natendem aos requisitos.)",
+      "review_status": "draft"
+    },
+    {
+      "key": "E_makeshop:000149",
+      "text_index": 149,
+      "source_text": "Attach Silencer",
+      "source_offset": 17556,
+      "label_references": [
+        {
+          "label_ordinal": 116,
+          "identifier_hex": "9a7d2278",
+          "label_unknown_u16": 64,
+          "control_index": 336
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Instalar silenciador",
+      "review_status": "draft"
+    },
+    {
+      "key": "E_makeshop:000150",
+      "text_index": 150,
+      "source_text": "Attach Long Barrel",
+      "source_offset": 17588,
+      "label_references": [
+        {
+          "label_ordinal": 117,
+          "identifier_hex": "037473c2",
+          "label_unknown_u16": 64,
+          "control_index": 338
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Instalar cano longo",
+      "review_status": "draft"
+    },
+    {
+      "key": "E_makeshop:000151",
+      "text_index": 151,
+      "source_text": "Attach V.Zoom Scope",
+      "source_offset": 17628,
+      "label_references": [
+        {
+          "label_ordinal": 118,
+          "identifier_hex": "74734354",
+          "label_unknown_u16": 64,
+          "control_index": 340
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Instalar mira de zoom variável",
+      "review_status": "draft"
+    },
+    {
+      "key": "E_makeshop:000152",
+      "text_index": 152,
+      "source_text": "Attach Shield",
+      "source_offset": 17668,
+      "label_references": [
+        {
+          "label_ordinal": 119,
+          "identifier_hex": "ea17d6f7",
+          "label_unknown_u16": 64,
+          "control_index": 342
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Instalar escudo",
+      "review_status": "draft"
+    },
+    {
+      "key": "E_makeshop:000153",
+      "text_index": 153,
+      "source_text": "Attach Power Barrel",
+      "source_offset": 17696,
+      "label_references": [
+        {
+          "label_ordinal": 120,
+          "identifier_hex": "9d10e661",
+          "label_unknown_u16": 64,
+          "control_index": 344
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Instalar cano potente",
+      "review_status": "draft"
+    },
+    {
+      "key": "E_makeshop:000154",
+      "text_index": 154,
+      "source_text": "Limiter Removal",
+      "source_offset": 17736,
+      "label_references": [
+        {
+          "label_ordinal": 121,
+          "identifier_hex": "0419b7db",
+          "label_unknown_u16": 64,
+          "control_index": 346
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Remover limitador",
+      "review_status": "draft"
+    },
+    {
+      "key": "E_makeshop:000155",
+      "text_index": 155,
+      "source_text": "Remove Silencer",
+      "source_offset": 17768,
+      "label_references": [
+        {
+          "label_ordinal": 122,
+          "identifier_hex": "731e874d",
+          "label_unknown_u16": 64,
+          "control_index": 348
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Remover silenciador",
+      "review_status": "draft"
+    },
+    {
+      "key": "E_makeshop:000156",
+      "text_index": 156,
+      "source_text": "Remove Long Barrel",
+      "source_offset": 17800,
+      "label_references": [
+        {
+          "label_ordinal": 123,
+          "identifier_hex": "e3a19adc",
+          "label_unknown_u16": 64,
+          "control_index": 350
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Remover cano longo",
+      "review_status": "draft"
+    },
+    {
+      "key": "E_makeshop:000157",
+      "text_index": 157,
+      "source_text": "Attach Fixed Scope",
+      "source_offset": 17840,
+      "label_references": [
+        {
+          "label_ordinal": 124,
+          "identifier_hex": "94a6aa4a",
+          "label_unknown_u16": 64,
+          "control_index": 352
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Instalar mira fixa",
+      "review_status": "draft"
+    },
+    {
+      "key": "E_makeshop:000158",
+      "text_index": 158,
+      "source_text": "Remove Shield",
+      "source_offset": 17880,
+      "label_references": [
+        {
+          "label_ordinal": 125,
+          "identifier_hex": "f46123af",
+          "label_unknown_u16": 64,
+          "control_index": 354
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Remover escudo",
+      "review_status": "draft"
+    },
+    {
+      "key": "E_makeshop:000159",
+      "text_index": 159,
+      "source_text": "Remove Power Barrel",
+      "source_offset": 17908,
+      "label_references": [
+        {
+          "label_ordinal": 126,
+          "identifier_hex": "83661339",
+          "label_unknown_u16": 64,
+          "control_index": 356
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Remover cano potente",
+      "review_status": "draft"
+    },
+    {
+      "key": "E_makeshop:000160",
+      "text_index": 160,
+      "source_text": "Reinstall Limiter",
+      "source_offset": 17948,
+      "label_references": [
+        {
+          "label_ordinal": 127,
+          "identifier_hex": "1a6f4283",
+          "label_unknown_u16": 64,
+          "control_index": 358
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Reinstalar limitador",
+      "review_status": "draft"
+    },
+    {
+      "key": "E_makeshop:000161",
+      "text_index": 161,
+      "source_text": "Change Parts",
+      "source_offset": 17984,
+      "label_references": [
+        {
+          "label_ordinal": 128,
+          "identifier_hex": "4128e5cf",
+          "label_unknown_u16": 64,
+          "control_index": 360
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Trocar peças",
+      "review_status": "draft"
+    },
+    {
+      "key": "E_makeshop:000162",
+      "text_index": 162,
+      "source_text": "A part loaned from the Armory.\nDampens sound, making it hard\nfor monsters to target the user.\nAlso slightly reduces recoil.",
+      "source_offset": 18012,
+      "label_references": [
+        {
+          "label_ordinal": 129,
+          "identifier_hex": "6d687215",
+          "label_unknown_u16": 64,
+          "control_index": 362
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10,
+          10,
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "Peça emprestada pela loja de armas.\nAbafa o som, dificultando que os\nmonstros escolham você como alvo.\nTambém reduz um pouco o recuo.",
+      "review_status": "draft"
+    },
+    {
+      "key": "E_makeshop:000163",
+      "text_index": 163,
+      "source_text": "A part loaned from the Armory.\nIt increases Attack.",
+      "source_offset": 18260,
+      "label_references": [
+        {
+          "label_ordinal": 130,
+          "identifier_hex": "f30ce7b6",
+          "label_unknown_u16": 64,
+          "control_index": 364
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "Peça emprestada pela loja de armas.\nAumenta o ataque.",
+      "review_status": "draft"
+    },
+    {
+      "key": "E_makeshop:000164",
+      "text_index": 164,
+      "source_text": "A part loaned from the Armory.\nAllows you to zoom using Left\nand Right on the +Control Pad.",
+      "source_offset": 18364,
+      "label_references": [
+        {
+          "label_ordinal": 131,
+          "identifier_hex": "840bd720",
+          "label_unknown_u16": 64,
+          "control_index": 366
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10,
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "Peça emprestada pela loja de armas.\nAjuste o zoom pressionando esquerda\ne direita no direcional.",
+      "review_status": "draft"
+    },
+    {
+      "key": "E_makeshop:000165",
+      "text_index": 165,
+      "source_text": "A part loaned from the Armory.\nAdding a Shield makes it possible\nto Auto-Guard.",
+      "source_offset": 18548,
+      "label_references": [
+        {
+          "label_ordinal": 132,
+          "identifier_hex": "1d02869a",
+          "label_unknown_u16": 64,
+          "control_index": 368
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10,
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "Peça emprestada pela loja de armas.\nO escudo permite bloquear\nataques automaticamente.",
+      "review_status": "draft"
+    },
+    {
+      "key": "E_makeshop:000166",
+      "text_index": 166,
+      "source_text": "A part loaned from the Armory.\nIt increases Attack.",
+      "source_offset": 18708,
+      "label_references": [
+        {
+          "label_ordinal": 133,
+          "identifier_hex": "6a05b60c",
+          "label_unknown_u16": 64,
+          "control_index": 370
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "Peça emprestada pela loja de armas.\nAumenta o ataque.",
+      "review_status": "draft"
+    },
+    {
+      "key": "E_makeshop:000167",
+      "text_index": 167,
+      "source_text": "For Light Bowguns of Rarity 6+.\nKeeps reload state after ammo\nchanges and reloads all ammo if\nyou press the X and A Buttons\ntogether. Disables Rapid Fire.",
+      "source_offset": 18812,
+      "label_references": [
+        {
+          "label_ordinal": 134,
+          "identifier_hex": "fabaab9d",
+          "label_unknown_u16": 64,
+          "control_index": 372
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10,
+          10,
+          10,
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "Para fuzilarcos leves de raridade 6+.\nPreserva a munição carregada ao mudar\nde tipo e recarrega todas ao apertar\nos botões X e A juntos.\nDesativa o tiro rápido.",
+      "review_status": "draft"
+    },
+    {
+      "key": "E_makeshop:000168",
+      "text_index": 168,
+      "source_text": "For Heavy Bowguns of Rarity 6+.\nBoosts firepower and enables\nuse of WyvernFire. Reduces your\nmobility and also disables\nCrouching Fire.",
+      "source_offset": 19124,
+      "label_references": [
+        {
+          "label_ordinal": 135,
+          "identifier_hex": "8dbd9b0b",
+          "label_unknown_u16": 64,
+          "control_index": 374
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10,
+          10,
+          10,
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "Para fuzilarcos pesados de raridade 6+.\nAumenta o poder de fogo e permite\nusar Fogo de wyvern. Reduz a\nmobilidade e também desativa\no tiro agachado.",
+      "review_status": "draft"
+    },
+    {
+      "key": "E_makeshop:000169",
+      "text_index": 169,
+      "source_text": "Removes the Silencer attachment\nfrom the weapon and returns it\nto the Armory.",
+      "source_offset": 19396,
+      "label_references": [
+        {
+          "label_ordinal": 136,
+          "identifier_hex": "df4c706c",
+          "label_unknown_u16": 64,
+          "control_index": 376
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10,
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "Remove o silenciador\nda arma e o devolve\nà loja de armas.",
+      "review_status": "draft"
+    },
+    {
+      "key": "E_makeshop:000170",
+      "text_index": 170,
+      "source_text": "Removes the Long Barrel\nattachment from the weapon\nand returns it to the Armory.",
+      "source_offset": 19552,
+      "label_references": [
+        {
+          "label_ordinal": 137,
+          "identifier_hex": "a84b40fa",
+          "label_unknown_u16": 64,
+          "control_index": 378
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10,
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "Remove o cano longo\nda arma e o devolve\nà loja de armas.",
+      "review_status": "draft"
+    },
+    {
+      "key": "E_makeshop:000171",
+      "text_index": 171,
+      "source_text": "Removes the Variable Zoom Scope\nattachment from the weapon and\nrestores the standard scope.",
+      "source_offset": 19716,
+      "label_references": [
+        {
+          "label_ordinal": 138,
+          "identifier_hex": "31421140",
+          "label_unknown_u16": 64,
+          "control_index": 380
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10,
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "Remove a mira de zoom variável\nda arma e restaura\na mira padrão.",
+      "review_status": "draft"
+    },
+    {
+      "key": "E_makeshop:000172",
+      "text_index": 172,
+      "source_text": "Removes the Shield attachment\nfrom the weapon and returns it\nto the Armory.",
+      "source_offset": 19900,
+      "label_references": [
+        {
+          "label_ordinal": 139,
+          "identifier_hex": "464521d6",
+          "label_unknown_u16": 64,
+          "control_index": 382
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10,
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "Remove o escudo\nda arma e o devolve\nà loja de armas.",
+      "review_status": "draft"
+    },
+    {
+      "key": "E_makeshop:000173",
+      "text_index": 173,
+      "source_text": "Removes the Power Barrel\nattachment from the weapon\nand returns it to the Armory.",
+      "source_offset": 20052,
+      "label_references": [
+        {
+          "label_ordinal": 140,
+          "identifier_hex": "d821b475",
+          "label_unknown_u16": 64,
+          "control_index": 384
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10,
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "Remove o cano potente\nda arma e o devolve\nà loja de armas.",
+      "review_status": "draft"
+    },
+    {
+      "key": "E_makeshop:000174",
+      "text_index": 174,
+      "source_text": "For Light Bowguns of Rarity 6+.\nReattaches the Limiter and\nrestores the weapon to normal.",
+      "source_offset": 20216,
+      "label_references": [
+        {
+          "label_ordinal": 141,
+          "identifier_hex": "af2684e3",
+          "label_unknown_u16": 64,
+          "control_index": 386
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10,
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "Para fuzilarcos leves de raridade 6+.\nReinstala o limitador e\nrestaura o estado normal da arma.",
+      "review_status": "draft"
+    },
+    {
+      "key": "E_makeshop:000175",
+      "text_index": 175,
+      "source_text": "For Heavy Bowguns of Rarity 6+.\nReattaches the Limiter and\nrestores the weapon to normal.",
+      "source_offset": 20396,
+      "label_references": [
+        {
+          "label_ordinal": 142,
+          "identifier_hex": "362fd559",
+          "label_unknown_u16": 64,
+          "control_index": 388
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10,
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "Para fuzilarcos pesados de raridade 6+.\nReinstala o limitador e\nrestaura o estado normal da arma.",
+      "review_status": "draft"
+    },
+    {
+      "key": "E_makeshop:000176",
+      "text_index": 176,
+      "source_text": "Hone Attack",
+      "source_offset": 20576,
+      "label_references": [
+        {
+          "label_ordinal": 143,
+          "identifier_hex": "56563503",
+          "label_unknown_u16": 64,
+          "control_index": 390
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Aprimorar ataque",
+      "review_status": "draft"
+    },
+    {
+      "key": "E_makeshop:000177",
+      "text_index": 177,
+      "source_text": "Hone Defense",
+      "source_offset": 20600,
+      "label_references": [
+        {
+          "label_ordinal": 144,
+          "identifier_hex": "21510595",
+          "label_unknown_u16": 64,
+          "control_index": 392
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Aprimorar defesa",
+      "review_status": "draft"
+    },
+    {
+      "key": "E_makeshop:000178",
+      "text_index": 178,
+      "source_text": "Hone Life",
+      "source_offset": 20628,
+      "label_references": [
+        {
+          "label_ordinal": 145,
+          "identifier_hex": "b858542f",
+          "label_unknown_u16": 64,
+          "control_index": 394
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Aprimorar vida",
+      "review_status": "draft"
+    },
+    {
+      "key": "E_makeshop:000179",
+      "text_index": 179,
+      "source_text": "Remove upgrade",
+      "source_offset": 20648,
+      "label_references": [
+        {
+          "label_ordinal": 146,
+          "identifier_hex": "cf5f64b9",
+          "label_unknown_u16": 64,
+          "control_index": 396
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Remover melhoria",
+      "review_status": "draft"
+    }
+  ],
+  "glossary": [
+    {
+      "source": "Item Box / Box",
+      "target": "baú de itens / baú",
+      "note": "Mesmo recipiente nos três documentos novos; forma curta quando a fonte também abrevia."
+    },
+    {
+      "source": "Item Pouch / Pouch",
+      "target": "bolsa de itens / bolsa",
+      "note": "Inventário levado pelo caçador; distinto do baú."
+    },
+    {
+      "source": "Item Set / Equipment Set",
+      "target": "conjunto de itens / conjunto de equipamentos",
+      "note": "Unregister remove o registro do conjunto, não os itens; excluir se refere ao conjunto."
+    },
+    {
+      "source": "Decoration / Slot",
+      "target": "joia / espaço",
+      "note": "Escolha editorial para adorno de habilidade e sua capacidade; conferir contexto visual."
+    },
+    {
+      "source": "Talisman / Combo List",
+      "target": "talismã / combinações",
+      "note": "Terminologia uniforme nas lojas e no baú."
+    },
+    {
+      "source": "Bowgun / Bow / Blademaster / Gunner",
+      "target": "fuzilarco / arco / espadachim / atirador",
+      "note": "Categorias de arma/caçador, sem alteração de regras."
+    },
+    {
+      "source": "Features",
+      "target": "detalhes",
+      "note": "Preserva a escolha do catálogo CharMake existente."
+    },
+    {
+      "source": "Palico / Circle Pad / HR / z",
+      "target": "Palico / Circle Pad / HR / z",
+      "note": "Termos/símbolos mantidos; texto legado de controle não implementa esse dispositivo."
+    },
+    {
+      "source": "Common NPC titles",
+      "target": "títulos funcionais em português",
+      "note": "Caravaneiro, Assistente da Guilda, Mercador wyveriano e Transportador Palico são escolhas editoriais do projeto, sem alegação de tradução oficial. Topônimos e nomes Cha-Cha, Felcote, Kayamba e Poogie são preservados."
+    },
+    {
+      "source": "Forge / Upgrade / Hone",
+      "target": "forjar / melhorar / aprimorar",
+      "note": "Preserva a distinção entre criar, melhorar e aplicar o aprimoramento às armas já no máximo; não confundir com afiação ou polimento."
+    },
+    {
+      "source": "Kinsect / Insect Glaive / Nectar",
+      "target": "Kinseto / Glaive Inseto / néctar",
+      "note": "As duas primeiras formas mantêm Common v3; néctar permanece distinto de material genérico."
+    },
+    {
+      "source": "Quest / Subquest / Expedition",
+      "target": "missão / missão secundária / expedição",
+      "note": "Fluxos distintos preservados, inclusive consequências de abandono e retorno."
+    },
+    {
+      "source": "Hunter Search / Gathering Hall",
+      "target": "busca de caçadores / Salão de Reunião",
+      "note": "Nomes traduzidos do recurso legado. Não afirmam rede local ou serviços implementados no PC."
+    },
+    {
+      "source": "Panel / Target Cam / +Control Pad",
+      "target": "painel / câmera de alvo / direcional",
+      "note": "Tradução das instruções originais, sem remapeá-las para mouse, teclado ou joystick do laboratório."
+    },
+    {
+      "source": "Health / Stamina / Sharpness",
+      "target": "vida / vigor / afiação",
+      "note": "Termos distintos de atributos; afiação não substitui o verbo aprimorar (Hone)."
+    },
+    {
+      "source": "Rapid Fire / Crouching Fire / WyvernFire",
+      "target": "tiro rápido / tiro agachado / Fogo de wyvern",
+      "note": "Escolhas editoriais para os modos descritos pela fonte; sem alegação de terminologia oficial."
+    },
+    {
+      "source": "HR / Arena / VS / G1★ / G2★ / G3★",
+      "target": "HR / Arena / VS / G1★ / G2★ / G3★",
+      "note": "Siglas, palavra idêntica em português e símbolos de requisitos preservados; não contam como traduções."
+    },
+    {
+      "source": "Val Habar / Congalala / Kecha Wacha / A.Kecha Wacha / Rathian",
+      "target": "Val Habar / Congalala / Kecha Wacha / A.Kecha Wacha / Rathian",
+      "note": "Nomes e abreviação A. mantidos exatamente; não expandir a abreviação sem fonte."
+    }
+  ],
+  "coverage": {
+    "source_file_fragments": 180,
+    "catalog_entries": 174,
+    "translated_fragments": 174,
+    "entire_game_total": null,
+    "excluded_fragments": [
+      {
+        "text_index": 18,
+        "reason": "preserved currency, requirement acronym, symbol or identical Portuguese word"
+      },
+      {
+        "text_index": 45,
+        "reason": "preserved currency, requirement acronym, symbol or identical Portuguese word"
+      },
+      {
+        "text_index": 51,
+        "reason": "preserved currency, requirement acronym, symbol or identical Portuguese word"
+      },
+      {
+        "text_index": 53,
+        "reason": "preserved currency, requirement acronym, symbol or identical Portuguese word"
+      },
+      {
+        "text_index": 84,
+        "reason": "preserved currency, requirement acronym, symbol or identical Portuguese word"
+      },
+      {
+        "text_index": 87,
+        "reason": "preserved currency, requirement acronym, symbol or identical Portuguese word"
+      }
+    ]
+  },
+  "limitations": [
+    "Editorial draft, not official terminology or human-reviewed readiness.",
+    "No original layout/glyph or execution validation; no menu/gameplay functionality follows from this translation.",
+    "Help describes legacy 3DS screens, wireless search and controls; no PC implementation or remapping is asserted.",
+    "Fragment references, protected tokens, blank lines and leading/trailing whitespace remain intact."
+  ]
+}

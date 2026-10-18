@@ -1,0 +1,153 @@
+{
+  "schema": "mh4u-translation-seed-v1",
+  "locale": "pt-BR",
+  "status": "draft; data roundtrip verified, game layout and glyph coverage unverified",
+  "source": {
+    "internal_name": "Title",
+    "sha256": "c88fa845d4a64374c3998da43f84feed14d407a72c951c5c118cd1aabae13eed",
+    "size": 13506,
+    "archive": "/eng/data/core_title.arc",
+    "entry_path": "eng\\msg\\common\\Title_eng",
+    "rom_sha256": "c16b6cd17cb761508d3077c99be3fb310b460aa8fcf57d3c651310f082bda666"
+  },
+  "coverage": {
+    "translated_fragments": 8,
+    "source_file_fragments": 136,
+    "entire_game_total": null
+  },
+  "entries": [
+    {
+      "key": "Title:000001",
+      "text_index": 1,
+      "source_text": "Main Menu",
+      "source_offset": 7552,
+      "label_references": [
+        {
+          "label_ordinal": 1,
+          "identifier_hex": "9f1d6f70",
+          "label_unknown_u16": 64,
+          "control_index": 2
+        }
+      ],
+      "target_text": "Menu principal",
+      "review_status": "draft"
+    },
+    {
+      "key": "Title:000002",
+      "text_index": 2,
+      "source_text": "Character Select",
+      "source_offset": 7572,
+      "label_references": [
+        {
+          "label_ordinal": 2,
+          "identifier_hex": "e81a5fe6",
+          "label_unknown_u16": 64,
+          "control_index": 4
+        }
+      ],
+      "target_text": "Selecionar personagem",
+      "review_status": "draft"
+    },
+    {
+      "key": "Title:000003",
+      "text_index": 3,
+      "source_text": "Game Options",
+      "source_offset": 7608,
+      "label_references": [
+        {
+          "label_ordinal": 3,
+          "identifier_hex": "767eca45",
+          "label_unknown_u16": 64,
+          "control_index": 6
+        }
+      ],
+      "target_text": "Opções de jogo",
+      "review_status": "draft"
+    },
+    {
+      "key": "Title:000004",
+      "text_index": 4,
+      "source_text": "Main Menu",
+      "source_offset": 7636,
+      "label_references": [
+        {
+          "label_ordinal": 4,
+          "identifier_hex": "0179fad3",
+          "label_unknown_u16": 64,
+          "control_index": 8
+        }
+      ],
+      "target_text": "Menu principal",
+      "review_status": "draft"
+    },
+    {
+      "key": "Title:000005",
+      "text_index": 5,
+      "source_text": "New Game",
+      "source_offset": 7656,
+      "label_references": [
+        {
+          "label_ordinal": 5,
+          "identifier_hex": "9870ab69",
+          "label_unknown_u16": 64,
+          "control_index": 10
+        }
+      ],
+      "target_text": "Novo jogo",
+      "review_status": "draft"
+    },
+    {
+      "key": "Title:000007",
+      "text_index": 7,
+      "source_text": "Continue",
+      "source_offset": 7792,
+      "label_references": [
+        {
+          "label_ordinal": 7,
+          "identifier_hex": "7fc8866e",
+          "label_unknown_u16": 64,
+          "control_index": 14
+        }
+      ],
+      "target_text": "Continuar",
+      "review_status": "draft"
+    },
+    {
+      "key": "Title:000009",
+      "text_index": 9,
+      "source_text": "Options",
+      "source_offset": 7960,
+      "label_references": [
+        {
+          "label_ordinal": 9,
+          "identifier_hex": "68083f1d",
+          "label_unknown_u16": 64,
+          "control_index": 18
+        }
+      ],
+      "target_text": "Opções",
+      "review_status": "draft"
+    },
+    {
+      "key": "Title:000011",
+      "text_index": 11,
+      "source_text": "Downloadable Content",
+      "source_offset": 8156,
+      "label_references": [
+        {
+          "label_ordinal": 11,
+          "identifier_hex": "86065e31",
+          "label_unknown_u16": 64,
+          "control_index": 22
+        }
+      ],
+      "target_text": "Conteúdo para download",
+      "review_status": "draft"
+    }
+  ],
+  "limitations": [
+    "Not a distributable or installable game patch",
+    "Only eight plain title-menu labels; other game text is untranslated",
+    "Control opcodes and font/rendering behavior have not been validated in the game"
+  ]
+}

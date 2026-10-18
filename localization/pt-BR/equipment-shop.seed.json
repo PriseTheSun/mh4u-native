@@ -1,0 +1,779 @@
+{
+  "schema": "mh4u-translation-seed-v1",
+  "locale": "pt-BR",
+  "source": {
+    "internal_name": "E_shop",
+    "sha256": "ec4295693e69993423b2dd111b3c61984cbe155107b6fde2d7181c33b14888f5",
+    "size": 3663,
+    "archive": "/eng/data/core_arena.arc",
+    "entry_path": "eng\\msg\\lobby\\E_shop_eng",
+    "rom_sha256": "c16b6cd17cb761508d3077c99be3fb310b460aa8fcf57d3c651310f082bda666"
+  },
+  "entries": [
+    {
+      "key": "E_shop:000000",
+      "text_index": 0,
+      "source_text": "Buy Weapons",
+      "source_offset": 1844,
+      "label_references": [
+        {
+          "label_ordinal": 0,
+          "identifier_hex": "5b3507fc",
+          "label_unknown_u16": 64,
+          "control_index": 0
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Comprar armas",
+      "review_status": "draft"
+    },
+    {
+      "key": "E_shop:000001",
+      "text_index": 1,
+      "source_text": "Buy Armor",
+      "source_offset": 1868,
+      "label_references": [
+        {
+          "label_ordinal": 1,
+          "identifier_hex": "c23c5646",
+          "label_unknown_u16": 64,
+          "control_index": 2
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Comprar armaduras",
+      "review_status": "draft"
+    },
+    {
+      "key": "E_shop:000002",
+      "text_index": 2,
+      "source_text": "Sell",
+      "source_offset": 1888,
+      "label_references": [
+        {
+          "label_ordinal": 2,
+          "identifier_hex": "b53b66d0",
+          "label_unknown_u16": 64,
+          "control_index": 4
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Vender",
+      "review_status": "draft"
+    },
+    {
+      "key": "E_shop:000003",
+      "text_index": 3,
+      "source_text": "Purchase weapons.",
+      "source_offset": 1900,
+      "label_references": [
+        {
+          "label_ordinal": 3,
+          "identifier_hex": "1c2b4ed1",
+          "label_unknown_u16": 64,
+          "control_index": 6
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Comprar armas.",
+      "review_status": "draft"
+    },
+    {
+      "key": "E_shop:000004",
+      "text_index": 4,
+      "source_text": "Purchase armor.",
+      "source_offset": 1936,
+      "label_references": [
+        {
+          "label_ordinal": 4,
+          "identifier_hex": "85221f6b",
+          "label_unknown_u16": 64,
+          "control_index": 8
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Comprar armaduras.",
+      "review_status": "draft"
+    },
+    {
+      "key": "E_shop:000005",
+      "text_index": 5,
+      "source_text": "Sell equipment.",
+      "source_offset": 1968,
+      "label_references": [
+        {
+          "label_ordinal": 5,
+          "identifier_hex": "f2252ffd",
+          "label_unknown_u16": 64,
+          "control_index": 10
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Vender equipamentos.",
+      "review_status": "draft"
+    },
+    {
+      "key": "E_shop:000006",
+      "text_index": 6,
+      "source_text": "Select a weapon category.",
+      "source_offset": 2000,
+      "label_references": [
+        {
+          "label_ordinal": 6,
+          "identifier_hex": "3c214417",
+          "label_unknown_u16": 64,
+          "control_index": 12
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Selecione a categoria de arma.",
+      "review_status": "draft"
+    },
+    {
+      "key": "E_shop:000007",
+      "text_index": 7,
+      "source_text": "Select an armor category.",
+      "source_offset": 2052,
+      "label_references": [
+        {
+          "label_ordinal": 7,
+          "identifier_hex": "ac9e5986",
+          "label_unknown_u16": 64,
+          "control_index": 14
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Selecione a categoria de armadura.",
+      "review_status": "draft"
+    },
+    {
+      "key": "E_shop:000008",
+      "text_index": 8,
+      "source_text": "Select the weapon to purchase.",
+      "source_offset": 2104,
+      "label_references": [
+        {
+          "label_ordinal": 8,
+          "identifier_hex": "db996910",
+          "label_unknown_u16": 64,
+          "control_index": 16
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Selecione a arma para comprar.",
+      "review_status": "draft"
+    },
+    {
+      "key": "E_shop:000009",
+      "text_index": 9,
+      "source_text": "Select the armor to purchase.",
+      "source_offset": 2168,
+      "label_references": [
+        {
+          "label_ordinal": 9,
+          "identifier_hex": "bb5ee0f5",
+          "label_unknown_u16": 64,
+          "control_index": 18
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Selecione a armadura para comprar.",
+      "review_status": "draft"
+    },
+    {
+      "key": "E_shop:000010",
+      "text_index": 10,
+      "source_text": "Select the equipment to sell.",
+      "source_offset": 2228,
+      "label_references": [
+        {
+          "label_ordinal": 10,
+          "identifier_hex": "cc59d063",
+          "label_unknown_u16": 64,
+          "control_index": 20
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Selecione o equipamento para vender.",
+      "review_status": "draft"
+    },
+    {
+      "key": "E_shop:000011",
+      "text_index": 11,
+      "source_text": "Select the weapon to purchase.\n",
+      "source_offset": 2288,
+      "label_references": [
+        {
+          "label_ordinal": 11,
+          "identifier_hex": "f26bb2a4",
+          "label_unknown_u16": 64,
+          "control_index": 22
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "Selecione a arma para comprar.\n",
+      "review_status": "draft"
+    },
+    {
+      "key": "E_shop:000012",
+      "text_index": 12,
+      "source_text": "(Not enough funds.)",
+      "source_offset": 2352,
+      "label_references": [
+        {
+          "label_ordinal": 11,
+          "identifier_hex": "f26bb2a4",
+          "label_unknown_u16": 64,
+          "control_index": 24
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "(Dinheiro insuficiente.)",
+      "review_status": "draft"
+    },
+    {
+      "key": "E_shop:000013",
+      "text_index": 13,
+      "source_text": "Select the weapon to purchase.\n",
+      "source_offset": 2392,
+      "label_references": [
+        {
+          "label_ordinal": 12,
+          "identifier_hex": "6b62e31e",
+          "label_unknown_u16": 64,
+          "control_index": 27
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "Selecione a arma para comprar.\n",
+      "review_status": "draft"
+    },
+    {
+      "key": "E_shop:000014",
+      "text_index": 14,
+      "source_text": "(Your Item Box is full.)",
+      "source_offset": 2456,
+      "label_references": [
+        {
+          "label_ordinal": 12,
+          "identifier_hex": "6b62e31e",
+          "label_unknown_u16": 64,
+          "control_index": 29
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "(Seu baú de itens está cheio.)",
+      "review_status": "draft"
+    },
+    {
+      "key": "E_shop:000015",
+      "text_index": 15,
+      "source_text": "Select the armor to purchase.\n",
+      "source_offset": 2508,
+      "label_references": [
+        {
+          "label_ordinal": 13,
+          "identifier_hex": "1c65d388",
+          "label_unknown_u16": 64,
+          "control_index": 32
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "Selecione a armadura para comprar.\n",
+      "review_status": "draft"
+    },
+    {
+      "key": "E_shop:000016",
+      "text_index": 16,
+      "source_text": "(Not enough funds.)",
+      "source_offset": 2572,
+      "label_references": [
+        {
+          "label_ordinal": 13,
+          "identifier_hex": "1c65d388",
+          "label_unknown_u16": 64,
+          "control_index": 34
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "(Dinheiro insuficiente.)",
+      "review_status": "draft"
+    },
+    {
+      "key": "E_shop:000017",
+      "text_index": 17,
+      "source_text": "Select the armor to purchase.\n",
+      "source_offset": 2612,
+      "label_references": [
+        {
+          "label_ordinal": 14,
+          "identifier_hex": "8201462b",
+          "label_unknown_u16": 64,
+          "control_index": 37
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "Selecione a armadura para comprar.\n",
+      "review_status": "draft"
+    },
+    {
+      "key": "E_shop:000018",
+      "text_index": 18,
+      "source_text": "(Your Item Box is full.)",
+      "source_offset": 2676,
+      "label_references": [
+        {
+          "label_ordinal": 14,
+          "identifier_hex": "8201462b",
+          "label_unknown_u16": 64,
+          "control_index": 39
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "(Seu baú de itens está cheio.)",
+      "review_status": "draft"
+    },
+    {
+      "key": "E_shop:000019",
+      "text_index": 19,
+      "source_text": "Select the equipment to sell.\n",
+      "source_offset": 2728,
+      "label_references": [
+        {
+          "label_ordinal": 15,
+          "identifier_hex": "f50676bd",
+          "label_unknown_u16": 64,
+          "control_index": 42
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "Selecione o equipamento para vender.\n",
+      "review_status": "draft"
+    },
+    {
+      "key": "E_shop:000020",
+      "text_index": 20,
+      "source_text": "(You cannot sell equipment\ncurrently in use.)",
+      "source_offset": 2792,
+      "label_references": [
+        {
+          "label_ordinal": 15,
+          "identifier_hex": "f50676bd",
+          "label_unknown_u16": 64,
+          "control_index": 44
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "(Não é possível vender um\nequipamento em uso.)",
+      "review_status": "draft"
+    },
+    {
+      "key": "E_shop:000021",
+      "text_index": 21,
+      "source_text": "Equip your purchase now?",
+      "source_offset": 2884,
+      "label_references": [
+        {
+          "label_ordinal": 16,
+          "identifier_hex": "555081d9",
+          "label_unknown_u16": 64,
+          "control_index": 47
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Equipar a compra agora?",
+      "review_status": "draft"
+    },
+    {
+      "key": "E_shop:000022",
+      "text_index": 22,
+      "source_text": "Equip your purchase now?\n",
+      "source_offset": 2936,
+      "label_references": [
+        {
+          "label_ordinal": 17,
+          "identifier_hex": "2257b14f",
+          "label_unknown_u16": 64,
+          "control_index": 49
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "Equipar a compra agora?\n",
+      "review_status": "draft"
+    },
+    {
+      "key": "E_shop:000023",
+      "text_index": 23,
+      "source_text": "(Changing your weapon may\ncause armor to be removed.)",
+      "source_offset": 2988,
+      "label_references": [
+        {
+          "label_ordinal": 17,
+          "identifier_hex": "2257b14f",
+          "label_unknown_u16": 64,
+          "control_index": 51
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "(Trocar de arma pode\nremover sua armadura.)",
+      "review_status": "draft"
+    },
+    {
+      "key": "E_shop:000024",
+      "text_index": 24,
+      "source_text": "The equipment was sent to your Box.",
+      "source_offset": 3096,
+      "label_references": [
+        {
+          "label_ordinal": 18,
+          "identifier_hex": "bc3324ec",
+          "label_unknown_u16": 64,
+          "control_index": 54
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "O equipamento foi enviado ao baú.",
+      "review_status": "draft"
+    },
+    {
+      "key": "E_shop:000025",
+      "text_index": 25,
+      "source_text": "Are you sure? Your current\nHunter Type cannot equip this.",
+      "source_offset": 3168,
+      "label_references": [
+        {
+          "label_ordinal": 19,
+          "identifier_hex": "cb34147a",
+          "label_unknown_u16": 64,
+          "control_index": 56
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "Tem certeza? Seu tipo de\ncaçador não pode equipar isto.",
+      "review_status": "draft"
+    },
+    {
+      "key": "E_shop:000026",
+      "text_index": 26,
+      "source_text": "Changing equipment...",
+      "source_offset": 3284,
+      "label_references": [
+        {
+          "label_ordinal": 20,
+          "identifier_hex": "523d45c0",
+          "label_unknown_u16": 64,
+          "control_index": 58
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Trocando equipamento...",
+      "review_status": "draft"
+    },
+    {
+      "key": "E_shop:000027",
+      "text_index": 27,
+      "source_text": "The total comes to ",
+      "source_offset": 3328,
+      "label_references": [
+        {
+          "label_ordinal": 21,
+          "identifier_hex": "b58568c7",
+          "label_unknown_u16": 64,
+          "control_index": 60
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "O total é de ",
+      "review_status": "draft"
+    },
+    {
+      "key": "E_shop:000028",
+      "text_index": 28,
+      "source_text": "z.\nProceed with the sale?",
+      "source_offset": 3368,
+      "label_references": [
+        {
+          "label_ordinal": 21,
+          "identifier_hex": "b58568c7",
+          "label_unknown_u16": 64,
+          "control_index": 62
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "z.\nConfirmar a venda?",
+      "review_status": "draft"
+    },
+    {
+      "key": "E_shop:000029",
+      "text_index": 29,
+      "source_text": "Including attached Decorations,",
+      "source_offset": 3420,
+      "label_references": [
+        {
+          "label_ordinal": 22,
+          "identifier_hex": "c2825851",
+          "label_unknown_u16": 64,
+          "control_index": 65
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Com as joias instaladas,",
+      "review_status": "draft"
+    },
+    {
+      "key": "E_shop:000030",
+      "text_index": 30,
+      "source_text": "\nthe total comes to ",
+      "source_offset": 3484,
+      "label_references": [
+        {
+          "label_ordinal": 22,
+          "identifier_hex": "c2825851",
+          "label_unknown_u16": 64,
+          "control_index": 67
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "\no total é de ",
+      "review_status": "draft"
+    },
+    {
+      "key": "E_shop:000031",
+      "text_index": 31,
+      "source_text": "z.\nProceed with the sale?",
+      "source_offset": 3528,
+      "label_references": [
+        {
+          "label_ordinal": 22,
+          "identifier_hex": "c2825851",
+          "label_unknown_u16": 64,
+          "control_index": 69
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "z.\nConfirmar a venda?",
+      "review_status": "draft"
+    },
+    {
+      "key": "E_shop:000032",
+      "text_index": 32,
+      "source_text": "Sort your items as shown?",
+      "source_offset": 3580,
+      "label_references": [
+        {
+          "label_ordinal": 23,
+          "identifier_hex": "9073b336",
+          "label_unknown_u16": 64,
+          "control_index": 71
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Ordenar os itens como mostrado?",
+      "review_status": "draft"
+    },
+    {
+      "key": "E_shop:000033",
+      "text_index": 33,
+      "source_text": "Currently:",
+      "source_offset": 3632,
+      "label_references": [
+        {
+          "label_ordinal": 24,
+          "identifier_hex": "8829b140",
+          "label_unknown_u16": 64,
+          "control_index": 73
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Atualmente:",
+      "review_status": "draft"
+    }
+  ],
+  "status": "draft; source-bound native catalog; linguistic/layout review pending; no human review claimed",
+  "glossary": [
+    {
+      "source": "Item Box / Box",
+      "target": "baú de itens / baú",
+      "note": "Mesmo recipiente nos três documentos novos; forma curta quando a fonte também abrevia."
+    },
+    {
+      "source": "Item Pouch / Pouch",
+      "target": "bolsa de itens / bolsa",
+      "note": "Inventário levado pelo caçador; distinto do baú."
+    },
+    {
+      "source": "Item Set / Equipment Set",
+      "target": "conjunto de itens / conjunto de equipamentos",
+      "note": "Unregister remove o registro do conjunto, não os itens; excluir se refere ao conjunto."
+    },
+    {
+      "source": "Decoration / Slot",
+      "target": "joia / espaço",
+      "note": "Escolha editorial para adorno de habilidade e sua capacidade; conferir contexto visual."
+    },
+    {
+      "source": "Talisman / Combo List",
+      "target": "talismã / combinações",
+      "note": "Terminologia uniforme nas lojas e no baú."
+    },
+    {
+      "source": "Bowgun / Bow / Blademaster / Gunner",
+      "target": "fuzilarco / arco / espadachim / atirador",
+      "note": "Categorias de arma/caçador, sem alteração de regras."
+    },
+    {
+      "source": "Features",
+      "target": "detalhes",
+      "note": "Preserva a escolha do catálogo CharMake existente."
+    },
+    {
+      "source": "Palico / Circle Pad / HR / z",
+      "target": "Palico / Circle Pad / HR / z",
+      "note": "Termos/símbolos mantidos; texto legado de controle não implementa esse dispositivo."
+    },
+    {
+      "source": "Common NPC titles",
+      "target": "títulos funcionais em português",
+      "note": "Caravaneiro, Assistente da Guilda, Mercador wyveriano e Transportador Palico são escolhas editoriais do projeto, sem alegação de tradução oficial. Topônimos e nomes Cha-Cha, Felcote, Kayamba e Poogie são preservados."
+    }
+  ],
+  "coverage": {
+    "source_file_fragments": 34,
+    "catalog_entries": 34,
+    "translated_fragments": 34,
+    "entire_game_total": null,
+    "excluded_fragments": []
+  },
+  "limitations": [
+    "Draft translation, not official terminology or human-reviewed readiness.",
+    "No original menu layout, opcode execution, device functionality or gameplay is implemented by these strings.",
+    "Source fragments, placeholders, leading/trailing whitespace and line structure are preserved.",
+    "No installation into a reference runtime and no mutation of the ROM."
+  ]
+}

@@ -1,0 +1,3256 @@
+{
+  "schema": "mh4u-translation-seed-v1",
+  "locale": "pt-BR",
+  "status": "draft",
+  "source": {
+    "internal_name": "CharMake",
+    "sha256": "1e8ae9bb6afe30949e50e17a7b636584926425645f88395b2162e48ba624c052",
+    "size": 15737,
+    "archive": "/eng/data/core_title.arc",
+    "entry_path": "eng\\msg\\common\\CharMake_eng",
+    "rom_sha256": "c16b6cd17cb761508d3077c99be3fb310b460aa8fcf57d3c651310f082bda666"
+  },
+  "coverage": {
+    "catalog_entries": 151,
+    "translated_fragments": 150,
+    "substantive_fragments": 151,
+    "unchanged_terminology_fragments": [
+      158
+    ],
+    "excluded_fragments": [
+      {
+        "text_index": 63,
+        "reason": "whitespace_only"
+      },
+      {
+        "text_index": 64,
+        "reason": "whitespace_only"
+      },
+      {
+        "text_index": 65,
+        "reason": "whitespace_only"
+      },
+      {
+        "text_index": 66,
+        "reason": "whitespace_only"
+      },
+      {
+        "text_index": 67,
+        "reason": "whitespace_only"
+      },
+      {
+        "text_index": 68,
+        "reason": "whitespace_only"
+      },
+      {
+        "text_index": 69,
+        "reason": "whitespace_only"
+      },
+      {
+        "text_index": 70,
+        "reason": "whitespace_only"
+      },
+      {
+        "text_index": 71,
+        "reason": "whitespace_only"
+      },
+      {
+        "text_index": 72,
+        "reason": "whitespace_only"
+      },
+      {
+        "text_index": 73,
+        "reason": "whitespace_only"
+      },
+      {
+        "text_index": 74,
+        "reason": "whitespace_only"
+      },
+      {
+        "text_index": 75,
+        "reason": "whitespace_only"
+      },
+      {
+        "text_index": 76,
+        "reason": "whitespace_only"
+      },
+      {
+        "text_index": 77,
+        "reason": "whitespace_only"
+      },
+      {
+        "text_index": 78,
+        "reason": "whitespace_only"
+      },
+      {
+        "text_index": 79,
+        "reason": "whitespace_only"
+      },
+      {
+        "text_index": 80,
+        "reason": "whitespace_only"
+      },
+      {
+        "text_index": 81,
+        "reason": "whitespace_only"
+      },
+      {
+        "text_index": 82,
+        "reason": "whitespace_only"
+      },
+      {
+        "text_index": 133,
+        "reason": "dummy"
+      },
+      {
+        "text_index": 134,
+        "reason": "dummy"
+      },
+      {
+        "text_index": 135,
+        "reason": "dummy"
+      },
+      {
+        "text_index": 136,
+        "reason": "dummy"
+      },
+      {
+        "text_index": 137,
+        "reason": "dummy"
+      },
+      {
+        "text_index": 138,
+        "reason": "dummy"
+      },
+      {
+        "text_index": 139,
+        "reason": "dummy"
+      },
+      {
+        "text_index": 159,
+        "reason": "separator"
+      }
+    ],
+    "source_file_fragments": 179,
+    "entire_game_total": null
+  },
+  "glossary": [
+    {
+      "source": "Palico",
+      "target": "Palico",
+      "note": "Nome do companheiro mantido em todos os textos desta tela."
+    },
+    {
+      "source": "Monster Hunter",
+      "target": "Monster Hunter",
+      "note": "Nome da franquia mantido sem tradução."
+    },
+    {
+      "source": "HR",
+      "target": "HR",
+      "note": "Sigla do rótulo de dados do personagem mantida como no original, sem expandi-la na tela."
+    },
+    {
+      "source": "Features / cosmetic features",
+      "target": "Detalhes / detalhes do rosto",
+      "note": "Termo curto e abrangente para as opções cosméticas do rosto."
+    },
+    {
+      "source": "Combo List",
+      "target": "Combinações",
+      "note": "Rótulo conciso; conferir o contexto do painel na revisão visual."
+    },
+    {
+      "source": "Reset",
+      "target": "Redefinir",
+      "note": "Mesmo termo no botão e nas duas instruções de restauração."
+    },
+    {
+      "source": "Slot",
+      "target": "espaço",
+      "note": "Espaço de dados salvos; termo usado também na confirmação de substituição."
+    },
+    {
+      "source": "HUD",
+      "target": "interface",
+      "note": "Termo curto na instrução de ajustes de tela."
+    }
+  ],
+  "entries": [
+    {
+      "key": "CharMake:000000",
+      "text_index": 0,
+      "source_text": "Character Creation",
+      "source_offset": 9496,
+      "label_references": [
+        {
+          "label_ordinal": 0,
+          "identifier_hex": "683ce823",
+          "label_unknown_u16": 64,
+          "control_index": 0
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Criação de personagem",
+      "review_status": "draft"
+    },
+    {
+      "key": "CharMake:000001",
+      "text_index": 1,
+      "source_text": "Hunter Name",
+      "source_offset": 9536,
+      "label_references": [
+        {
+          "label_ordinal": 1,
+          "identifier_hex": "1f3bd8b5",
+          "label_unknown_u16": 64,
+          "control_index": 2
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Nome do caçador",
+      "review_status": "draft"
+    },
+    {
+      "key": "CharMake:000002",
+      "text_index": 2,
+      "source_text": "Palico Name",
+      "source_offset": 9560,
+      "label_references": [
+        {
+          "label_ordinal": 2,
+          "identifier_hex": "8632890f",
+          "label_unknown_u16": 64,
+          "control_index": 4
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Nome do Palico",
+      "review_status": "draft"
+    },
+    {
+      "key": "CharMake:000003",
+      "text_index": 3,
+      "source_text": "Zoom",
+      "source_offset": 9584,
+      "label_references": [
+        {
+          "label_ordinal": 3,
+          "identifier_hex": "f135b999",
+          "label_unknown_u16": 64,
+          "control_index": 6
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Ampliar",
+      "review_status": "draft"
+    },
+    {
+      "key": "CharMake:000004",
+      "text_index": 4,
+      "source_text": "Rotate",
+      "source_offset": 9596,
+      "label_references": [
+        {
+          "label_ordinal": 4,
+          "identifier_hex": "6f512c3a",
+          "label_unknown_u16": 64,
+          "control_index": 8
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Girar",
+      "review_status": "draft"
+    },
+    {
+      "key": "CharMake:000005",
+      "text_index": 5,
+      "source_text": "Name",
+      "source_offset": 9612,
+      "label_references": [
+        {
+          "label_ordinal": 5,
+          "identifier_hex": "18561cac",
+          "label_unknown_u16": 64,
+          "control_index": 10
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Nome",
+      "review_status": "draft"
+    },
+    {
+      "key": "CharMake:000006",
+      "text_index": 6,
+      "source_text": "Gender",
+      "source_offset": 9624,
+      "label_references": [
+        {
+          "label_ordinal": 6,
+          "identifier_hex": "815f4d16",
+          "label_unknown_u16": 64,
+          "control_index": 12
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Gênero",
+      "review_status": "draft"
+    },
+    {
+      "key": "CharMake:000007",
+      "text_index": 7,
+      "source_text": "Skin Tone",
+      "source_offset": 9640,
+      "label_references": [
+        {
+          "label_ordinal": 7,
+          "identifier_hex": "f6587d80",
+          "label_unknown_u16": 64,
+          "control_index": 14
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Tom de pele",
+      "review_status": "draft"
+    },
+    {
+      "key": "CharMake:000008",
+      "text_index": 8,
+      "source_text": "Clothing",
+      "source_offset": 9660,
+      "label_references": [
+        {
+          "label_ordinal": 8,
+          "identifier_hex": "66e76011",
+          "label_unknown_u16": 64,
+          "control_index": 16
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Roupa",
+      "review_status": "draft"
+    },
+    {
+      "key": "CharMake:000009",
+      "text_index": 9,
+      "source_text": "Clothing Color",
+      "source_offset": 9680,
+      "label_references": [
+        {
+          "label_ordinal": 9,
+          "identifier_hex": "11e05087",
+          "label_unknown_u16": 64,
+          "control_index": 18
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Cor da roupa",
+      "review_status": "draft"
+    },
+    {
+      "key": "CharMake:000010",
+      "text_index": 10,
+      "source_text": "Face",
+      "source_offset": 9712,
+      "label_references": [
+        {
+          "label_ordinal": 10,
+          "identifier_hex": "7127d962",
+          "label_unknown_u16": 64,
+          "control_index": 20
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Rosto",
+      "review_status": "draft"
+    },
+    {
+      "key": "CharMake:000011",
+      "text_index": 11,
+      "source_text": "Features",
+      "source_offset": 9724,
+      "label_references": [
+        {
+          "label_ordinal": 11,
+          "identifier_hex": "0620e9f4",
+          "label_unknown_u16": 64,
+          "control_index": 22
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Detalhes",
+      "review_status": "draft"
+    },
+    {
+      "key": "CharMake:000012",
+      "text_index": 12,
+      "source_text": "Feature Color",
+      "source_offset": 9744,
+      "label_references": [
+        {
+          "label_ordinal": 12,
+          "identifier_hex": "9f29b84e",
+          "label_unknown_u16": 64,
+          "control_index": 24
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Cor dos detalhes",
+      "review_status": "draft"
+    },
+    {
+      "key": "CharMake:000013",
+      "text_index": 13,
+      "source_text": "Eye Color",
+      "source_offset": 9772,
+      "label_references": [
+        {
+          "label_ordinal": 13,
+          "identifier_hex": "e82e88d8",
+          "label_unknown_u16": 64,
+          "control_index": 26
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Cor dos olhos",
+      "review_status": "draft"
+    },
+    {
+      "key": "CharMake:000014",
+      "text_index": 14,
+      "source_text": "Hairstyle",
+      "source_offset": 9792,
+      "label_references": [
+        {
+          "label_ordinal": 14,
+          "identifier_hex": "764a1d7b",
+          "label_unknown_u16": 64,
+          "control_index": 28
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Penteado",
+      "review_status": "draft"
+    },
+    {
+      "key": "CharMake:000015",
+      "text_index": 15,
+      "source_text": "Hair Color",
+      "source_offset": 9812,
+      "label_references": [
+        {
+          "label_ordinal": 15,
+          "identifier_hex": "014d2ded",
+          "label_unknown_u16": 64,
+          "control_index": 30
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Cor do cabelo",
+      "review_status": "draft"
+    },
+    {
+      "key": "CharMake:000016",
+      "text_index": 16,
+      "source_text": "Voice",
+      "source_offset": 9836,
+      "label_references": [
+        {
+          "label_ordinal": 16,
+          "identifier_hex": "98447c57",
+          "label_unknown_u16": 64,
+          "control_index": 32
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Voz",
+      "review_status": "draft"
+    },
+    {
+      "key": "CharMake:000017",
+      "text_index": 17,
+      "source_text": "Coat",
+      "source_offset": 9848,
+      "label_references": [
+        {
+          "label_ordinal": 17,
+          "identifier_hex": "ef434cc1",
+          "label_unknown_u16": 64,
+          "control_index": 34
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Pelagem",
+      "review_status": "draft"
+    },
+    {
+      "key": "CharMake:000018",
+      "text_index": 18,
+      "source_text": "Coat Color",
+      "source_offset": 9860,
+      "label_references": [
+        {
+          "label_ordinal": 18,
+          "identifier_hex": "7ffc5150",
+          "label_unknown_u16": 64,
+          "control_index": 36
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Cor da pelagem",
+      "review_status": "draft"
+    },
+    {
+      "key": "CharMake:000019",
+      "text_index": 19,
+      "source_text": "Ears",
+      "source_offset": 9884,
+      "label_references": [
+        {
+          "label_ordinal": 19,
+          "identifier_hex": "08fb61c6",
+          "label_unknown_u16": 64,
+          "control_index": 38
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Orelhas",
+      "review_status": "draft"
+    },
+    {
+      "key": "CharMake:000020",
+      "text_index": 20,
+      "source_text": "Tail",
+      "source_offset": 9896,
+      "label_references": [
+        {
+          "label_ordinal": 20,
+          "identifier_hex": "5a0a8aa1",
+          "label_unknown_u16": 64,
+          "control_index": 40
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Cauda",
+      "review_status": "draft"
+    },
+    {
+      "key": "CharMake:000021",
+      "text_index": 21,
+      "source_text": "Eye Shape",
+      "source_offset": 9908,
+      "label_references": [
+        {
+          "label_ordinal": 21,
+          "identifier_hex": "5f76bc30",
+          "label_unknown_u16": 64,
+          "control_index": 42
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Forma dos olhos",
+      "review_status": "draft"
+    },
+    {
+      "key": "CharMake:000022",
+      "text_index": 22,
+      "source_text": "Back",
+      "source_offset": 9928,
+      "label_references": [
+        {
+          "label_ordinal": 22,
+          "identifier_hex": "2d0dba37",
+          "label_unknown_u16": 64,
+          "control_index": 44
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Voltar",
+      "review_status": "draft"
+    },
+    {
+      "key": "CharMake:000023",
+      "text_index": 23,
+      "source_text": "Confirm",
+      "source_offset": 9940,
+      "label_references": [
+        {
+          "label_ordinal": 23,
+          "identifier_hex": "b404eb8d",
+          "label_unknown_u16": 64,
+          "control_index": 46
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Confirmar",
+      "review_status": "draft"
+    },
+    {
+      "key": "CharMake:000024",
+      "text_index": 24,
+      "source_text": "Test",
+      "source_offset": 9956,
+      "label_references": [
+        {
+          "label_ordinal": 24,
+          "identifier_hex": "c303db1b",
+          "label_unknown_u16": 64,
+          "control_index": 48
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Testar",
+      "review_status": "draft"
+    },
+    {
+      "key": "CharMake:000025",
+      "text_index": 25,
+      "source_text": "Yes",
+      "source_offset": 9968,
+      "label_references": [
+        {
+          "label_ordinal": 25,
+          "identifier_hex": "5d674eb8",
+          "label_unknown_u16": 64,
+          "control_index": 50
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Sim",
+      "review_status": "draft"
+    },
+    {
+      "key": "CharMake:000026",
+      "text_index": 26,
+      "source_text": "No",
+      "source_offset": 9976,
+      "label_references": [
+        {
+          "label_ordinal": 26,
+          "identifier_hex": "2a607e2e",
+          "label_unknown_u16": 64,
+          "control_index": 52
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Não",
+      "review_status": "draft"
+    },
+    {
+      "key": "CharMake:000027",
+      "text_index": 27,
+      "source_text": "(None)",
+      "source_offset": 9984,
+      "label_references": [
+        {
+          "label_ordinal": 27,
+          "identifier_hex": "b3692f94",
+          "label_unknown_u16": 64,
+          "control_index": 54
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "(Nenhum)",
+      "review_status": "draft"
+    },
+    {
+      "key": "CharMake:000028",
+      "text_index": 28,
+      "source_text": "Reset",
+      "source_offset": 10000,
+      "label_references": [
+        {
+          "label_ordinal": 28,
+          "identifier_hex": "c46e1f02",
+          "label_unknown_u16": 64,
+          "control_index": 56
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Redefinir",
+      "review_status": "draft"
+    },
+    {
+      "key": "CharMake:000029",
+      "text_index": 29,
+      "source_text": "Next Page",
+      "source_offset": 10012,
+      "label_references": [
+        {
+          "label_ordinal": 29,
+          "identifier_hex": "54d10293",
+          "label_unknown_u16": 64,
+          "control_index": 58
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Próxima página",
+      "review_status": "draft"
+    },
+    {
+      "key": "CharMake:000030",
+      "text_index": 30,
+      "source_text": "Page 1",
+      "source_offset": 10032,
+      "label_references": [
+        {
+          "label_ordinal": 30,
+          "identifier_hex": "23d63205",
+          "label_unknown_u16": 64,
+          "control_index": 60
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Página 1",
+      "review_status": "draft"
+    },
+    {
+      "key": "CharMake:000031",
+      "text_index": 31,
+      "source_text": "Page 2",
+      "source_offset": 10048,
+      "label_references": [
+        {
+          "label_ordinal": 31,
+          "identifier_hex": "4311bbe0",
+          "label_unknown_u16": 64,
+          "control_index": 62
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Página 2",
+      "review_status": "draft"
+    },
+    {
+      "key": "CharMake:000032",
+      "text_index": 32,
+      "source_text": "Color",
+      "source_offset": 10064,
+      "label_references": [
+        {
+          "label_ordinal": 32,
+          "identifier_hex": "34168b76",
+          "label_unknown_u16": 64,
+          "control_index": 64
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Cor",
+      "review_status": "draft"
+    },
+    {
+      "key": "CharMake:000033",
+      "text_index": 33,
+      "source_text": "Category",
+      "source_offset": 10076,
+      "label_references": [
+        {
+          "label_ordinal": 33,
+          "identifier_hex": "ad1fdacc",
+          "label_unknown_u16": 64,
+          "control_index": 66
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Categoria",
+      "review_status": "draft"
+    },
+    {
+      "key": "CharMake:000034",
+      "text_index": 34,
+      "source_text": "Change Color",
+      "source_offset": 10096,
+      "label_references": [
+        {
+          "label_ordinal": 34,
+          "identifier_hex": "da18ea5a",
+          "label_unknown_u16": 64,
+          "control_index": 68
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Mudar cor",
+      "review_status": "draft"
+    },
+    {
+      "key": "CharMake:000035",
+      "text_index": 35,
+      "source_text": "Type 1",
+      "source_offset": 10124,
+      "label_references": [
+        {
+          "label_ordinal": 35,
+          "identifier_hex": "639362bb",
+          "label_unknown_u16": 64,
+          "control_index": 70
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Tipo 1",
+      "review_status": "draft"
+    },
+    {
+      "key": "CharMake:000036",
+      "text_index": 36,
+      "source_text": "Type 2",
+      "source_offset": 10140,
+      "label_references": [
+        {
+          "label_ordinal": 36,
+          "identifier_hex": "fa9a3301",
+          "label_unknown_u16": 64,
+          "control_index": 72
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Tipo 2",
+      "review_status": "draft"
+    },
+    {
+      "key": "CharMake:000037",
+      "text_index": 37,
+      "source_text": "Type 3",
+      "source_offset": 10156,
+      "label_references": [
+        {
+          "label_ordinal": 37,
+          "identifier_hex": "8d9d0397",
+          "label_unknown_u16": 64,
+          "control_index": 74
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Tipo 3",
+      "review_status": "draft"
+    },
+    {
+      "key": "CharMake:000038",
+      "text_index": 38,
+      "source_text": "Type 4",
+      "source_offset": 10172,
+      "label_references": [
+        {
+          "label_ordinal": 38,
+          "identifier_hex": "13f99634",
+          "label_unknown_u16": 64,
+          "control_index": 76
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Tipo 4",
+      "review_status": "draft"
+    },
+    {
+      "key": "CharMake:000039",
+      "text_index": 39,
+      "source_text": "Type 5",
+      "source_offset": 10188,
+      "label_references": [
+        {
+          "label_ordinal": 39,
+          "identifier_hex": "64fea6a2",
+          "label_unknown_u16": 64,
+          "control_index": 78
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Tipo 5",
+      "review_status": "draft"
+    },
+    {
+      "key": "CharMake:000040",
+      "text_index": 40,
+      "source_text": "Type 6",
+      "source_offset": 10204,
+      "label_references": [
+        {
+          "label_ordinal": 40,
+          "identifier_hex": "fdf7f718",
+          "label_unknown_u16": 64,
+          "control_index": 80
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Tipo 6",
+      "review_status": "draft"
+    },
+    {
+      "key": "CharMake:000041",
+      "text_index": 41,
+      "source_text": "Type 7",
+      "source_offset": 10220,
+      "label_references": [
+        {
+          "label_ordinal": 41,
+          "identifier_hex": "8af0c78e",
+          "label_unknown_u16": 64,
+          "control_index": 82
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Tipo 7",
+      "review_status": "draft"
+    },
+    {
+      "key": "CharMake:000042",
+      "text_index": 42,
+      "source_text": "Type 8",
+      "source_offset": 10236,
+      "label_references": [
+        {
+          "label_ordinal": 42,
+          "identifier_hex": "1a4fda1f",
+          "label_unknown_u16": 64,
+          "control_index": 84
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Tipo 8",
+      "review_status": "draft"
+    },
+    {
+      "key": "CharMake:000043",
+      "text_index": 43,
+      "source_text": "Type 9",
+      "source_offset": 10252,
+      "label_references": [
+        {
+          "label_ordinal": 43,
+          "identifier_hex": "6d48ea89",
+          "label_unknown_u16": 64,
+          "control_index": 86
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Tipo 9",
+      "review_status": "draft"
+    },
+    {
+      "key": "CharMake:000044",
+      "text_index": 44,
+      "source_text": "Type 10",
+      "source_offset": 10268,
+      "label_references": [
+        {
+          "label_ordinal": 44,
+          "identifier_hex": "0d8f636c",
+          "label_unknown_u16": 64,
+          "control_index": 88
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Tipo 10",
+      "review_status": "draft"
+    },
+    {
+      "key": "CharMake:000045",
+      "text_index": 45,
+      "source_text": "Type 11",
+      "source_offset": 10284,
+      "label_references": [
+        {
+          "label_ordinal": 45,
+          "identifier_hex": "7a8853fa",
+          "label_unknown_u16": 64,
+          "control_index": 90
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Tipo 11",
+      "review_status": "draft"
+    },
+    {
+      "key": "CharMake:000046",
+      "text_index": 46,
+      "source_text": "Type 12",
+      "source_offset": 10300,
+      "label_references": [
+        {
+          "label_ordinal": 46,
+          "identifier_hex": "e3810240",
+          "label_unknown_u16": 64,
+          "control_index": 92
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Tipo 12",
+      "review_status": "draft"
+    },
+    {
+      "key": "CharMake:000047",
+      "text_index": 47,
+      "source_text": "Type 13",
+      "source_offset": 10316,
+      "label_references": [
+        {
+          "label_ordinal": 47,
+          "identifier_hex": "948632d6",
+          "label_unknown_u16": 64,
+          "control_index": 94
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Tipo 13",
+      "review_status": "draft"
+    },
+    {
+      "key": "CharMake:000048",
+      "text_index": 48,
+      "source_text": "Type 14",
+      "source_offset": 10332,
+      "label_references": [
+        {
+          "label_ordinal": 48,
+          "identifier_hex": "0ae2a775",
+          "label_unknown_u16": 64,
+          "control_index": 96
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Tipo 14",
+      "review_status": "draft"
+    },
+    {
+      "key": "CharMake:000049",
+      "text_index": 49,
+      "source_text": "Type 15",
+      "source_offset": 10348,
+      "label_references": [
+        {
+          "label_ordinal": 49,
+          "identifier_hex": "7de597e3",
+          "label_unknown_u16": 64,
+          "control_index": 98
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Tipo 15",
+      "review_status": "draft"
+    },
+    {
+      "key": "CharMake:000050",
+      "text_index": 50,
+      "source_text": "Type 16",
+      "source_offset": 10364,
+      "label_references": [
+        {
+          "label_ordinal": 50,
+          "identifier_hex": "e4ecc659",
+          "label_unknown_u16": 64,
+          "control_index": 100
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Tipo 16",
+      "review_status": "draft"
+    },
+    {
+      "key": "CharMake:000051",
+      "text_index": 51,
+      "source_text": "Type 17",
+      "source_offset": 10380,
+      "label_references": [
+        {
+          "label_ordinal": 51,
+          "identifier_hex": "93ebf6cf",
+          "label_unknown_u16": 64,
+          "control_index": 102
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Tipo 17",
+      "review_status": "draft"
+    },
+    {
+      "key": "CharMake:000052",
+      "text_index": 52,
+      "source_text": "Type 18",
+      "source_offset": 10396,
+      "label_references": [
+        {
+          "label_ordinal": 52,
+          "identifier_hex": "0354eb5e",
+          "label_unknown_u16": 64,
+          "control_index": 104
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Tipo 18",
+      "review_status": "draft"
+    },
+    {
+      "key": "CharMake:000053",
+      "text_index": 53,
+      "source_text": "Type 19",
+      "source_offset": 10412,
+      "label_references": [
+        {
+          "label_ordinal": 53,
+          "identifier_hex": "7453dbc8",
+          "label_unknown_u16": 64,
+          "control_index": 106
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Tipo 19",
+      "review_status": "draft"
+    },
+    {
+      "key": "CharMake:000054",
+      "text_index": 54,
+      "source_text": "Type 20",
+      "source_offset": 10428,
+      "label_references": [
+        {
+          "label_ordinal": 54,
+          "identifier_hex": "26a230af",
+          "label_unknown_u16": 64,
+          "control_index": 108
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Tipo 20",
+      "review_status": "draft"
+    },
+    {
+      "key": "CharMake:000055",
+      "text_index": 55,
+      "source_text": "Type 21",
+      "source_offset": 10444,
+      "label_references": [
+        {
+          "label_ordinal": 55,
+          "identifier_hex": "51a50039",
+          "label_unknown_u16": 64,
+          "control_index": 110
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Tipo 21",
+      "review_status": "draft"
+    },
+    {
+      "key": "CharMake:000056",
+      "text_index": 56,
+      "source_text": "Type 22",
+      "source_offset": 10460,
+      "label_references": [
+        {
+          "label_ordinal": 56,
+          "identifier_hex": "c8ac5183",
+          "label_unknown_u16": 64,
+          "control_index": 112
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Tipo 22",
+      "review_status": "draft"
+    },
+    {
+      "key": "CharMake:000057",
+      "text_index": 57,
+      "source_text": "Type 23",
+      "source_offset": 10476,
+      "label_references": [
+        {
+          "label_ordinal": 57,
+          "identifier_hex": "bfab6115",
+          "label_unknown_u16": 64,
+          "control_index": 114
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Tipo 23",
+      "review_status": "draft"
+    },
+    {
+      "key": "CharMake:000058",
+      "text_index": 58,
+      "source_text": "Type 24",
+      "source_offset": 10492,
+      "label_references": [
+        {
+          "label_ordinal": 58,
+          "identifier_hex": "21cff4b6",
+          "label_unknown_u16": 64,
+          "control_index": 116
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Tipo 24",
+      "review_status": "draft"
+    },
+    {
+      "key": "CharMake:000059",
+      "text_index": 59,
+      "source_text": "Type 25",
+      "source_offset": 10508,
+      "label_references": [
+        {
+          "label_ordinal": 59,
+          "identifier_hex": "56c8c420",
+          "label_unknown_u16": 64,
+          "control_index": 118
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Tipo 25",
+      "review_status": "draft"
+    },
+    {
+      "key": "CharMake:000060",
+      "text_index": 60,
+      "source_text": "Type 26",
+      "source_offset": 10524,
+      "label_references": [
+        {
+          "label_ordinal": 60,
+          "identifier_hex": "cfc1959a",
+          "label_unknown_u16": 64,
+          "control_index": 120
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Tipo 26",
+      "review_status": "draft"
+    },
+    {
+      "key": "CharMake:000061",
+      "text_index": 61,
+      "source_text": "Type 27",
+      "source_offset": 10540,
+      "label_references": [
+        {
+          "label_ordinal": 61,
+          "identifier_hex": "b8c6a50c",
+          "label_unknown_u16": 64,
+          "control_index": 122
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Tipo 27",
+      "review_status": "draft"
+    },
+    {
+      "key": "CharMake:000062",
+      "text_index": 62,
+      "source_text": "Type 28",
+      "source_offset": 10556,
+      "label_references": [
+        {
+          "label_ordinal": 62,
+          "identifier_hex": "2879b89d",
+          "label_unknown_u16": 64,
+          "control_index": 124
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Tipo 28",
+      "review_status": "draft"
+    },
+    {
+      "key": "CharMake:000083",
+      "text_index": 83,
+      "source_text": "Select",
+      "source_offset": 10652,
+      "label_references": [
+        {
+          "label_ordinal": 83,
+          "identifier_hex": "447c7ff9",
+          "label_unknown_u16": 64,
+          "control_index": 166
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Selecionar",
+      "review_status": "draft"
+    },
+    {
+      "key": "CharMake:000084",
+      "text_index": 84,
+      "source_text": "Color",
+      "source_offset": 10668,
+      "label_references": [
+        {
+          "label_ordinal": 84,
+          "identifier_hex": "337b4f6f",
+          "label_unknown_u16": 64,
+          "control_index": 168
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Cor",
+      "review_status": "draft"
+    },
+    {
+      "key": "CharMake:000085",
+      "text_index": 85,
+      "source_text": "Color",
+      "source_offset": 10680,
+      "label_references": [
+        {
+          "label_ordinal": 85,
+          "identifier_hex": "aa721ed5",
+          "label_unknown_u16": 64,
+          "control_index": 170
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Cor",
+      "review_status": "draft"
+    },
+    {
+      "key": "CharMake:000086",
+      "text_index": 86,
+      "source_text": "Next Page",
+      "source_offset": 10692,
+      "label_references": [
+        {
+          "label_ordinal": 86,
+          "identifier_hex": "dd752e43",
+          "label_unknown_u16": 64,
+          "control_index": 172
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Próxima página",
+      "review_status": "draft"
+    },
+    {
+      "key": "CharMake:000087",
+      "text_index": 87,
+      "source_text": "None",
+      "source_offset": 10712,
+      "label_references": [
+        {
+          "label_ordinal": 87,
+          "identifier_hex": "ec68c702",
+          "label_unknown_u16": 64,
+          "control_index": 174
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Nenhum",
+      "review_status": "draft"
+    },
+    {
+      "key": "CharMake:000088",
+      "text_index": 88,
+      "source_text": "Choose a name for your hunter.\n",
+      "source_offset": 10724,
+      "label_references": [
+        {
+          "label_ordinal": 88,
+          "identifier_hex": "e25523ef",
+          "label_unknown_u16": 64,
+          "control_index": 176
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "Escolha o nome do seu caçador.\n",
+      "review_status": "draft"
+    },
+    {
+      "key": "CharMake:000089",
+      "text_index": 89,
+      "source_text": "(Names must be 10 characters\nor less.)",
+      "source_offset": 10788,
+      "label_references": [
+        {
+          "label_ordinal": 88,
+          "identifier_hex": "e25523ef",
+          "label_unknown_u16": 64,
+          "control_index": 178
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "(O nome deve ter no máximo\n10 caracteres.)",
+      "review_status": "draft"
+    },
+    {
+      "key": "CharMake:000090",
+      "text_index": 90,
+      "source_text": "The name you choose may be viewed\nby a large number of people.\n\nPlease refrain from using content that\nis illegal, offensive, personal, or that\ncould infringe upon others' rights.",
+      "source_offset": 10868,
+      "label_references": [
+        {
+          "label_ordinal": 89,
+          "identifier_hex": "95521379",
+          "label_unknown_u16": 64,
+          "control_index": 181
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10,
+          10,
+          10,
+          10,
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "O nome escolhido pode ser visto\npor muitas pessoas.\n\nEvite conteúdo ilegal, ofensivo,\ndados pessoais ou conteúdo que\nviole direitos de outras pessoas.",
+      "review_status": "draft"
+    },
+    {
+      "key": "CharMake:000091",
+      "text_index": 91,
+      "source_text": "Set your hunter's gender.",
+      "source_offset": 11228,
+      "label_references": [
+        {
+          "label_ordinal": 90,
+          "identifier_hex": "0c5b42c3",
+          "label_unknown_u16": 64,
+          "control_index": 183
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Defina o gênero do seu caçador.",
+      "review_status": "draft"
+    },
+    {
+      "key": "CharMake:000092",
+      "text_index": 92,
+      "source_text": "Choose a gender.",
+      "source_offset": 11280,
+      "label_references": [
+        {
+          "label_ordinal": 91,
+          "identifier_hex": "7b5c7255",
+          "label_unknown_u16": 64,
+          "control_index": 185
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Escolha um gênero.",
+      "review_status": "draft"
+    },
+    {
+      "key": "CharMake:000093",
+      "text_index": 93,
+      "source_text": "Set your hunter's skin tone.",
+      "source_offset": 11316,
+      "label_references": [
+        {
+          "label_ordinal": 92,
+          "identifier_hex": "e538e7f6",
+          "label_unknown_u16": 64,
+          "control_index": 187
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Defina o tom de pele do caçador.",
+      "review_status": "draft"
+    },
+    {
+      "key": "CharMake:000094",
+      "text_index": 94,
+      "source_text": "Choose a skin tone.",
+      "source_offset": 11376,
+      "label_references": [
+        {
+          "label_ordinal": 93,
+          "identifier_hex": "923fd760",
+          "label_unknown_u16": 64,
+          "control_index": 189
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Escolha um tom de pele.",
+      "review_status": "draft"
+    },
+    {
+      "key": "CharMake:000095",
+      "text_index": 95,
+      "source_text": "Set your hunter's clothing.",
+      "source_offset": 11416,
+      "label_references": [
+        {
+          "label_ordinal": 94,
+          "identifier_hex": "0b3686da",
+          "label_unknown_u16": 64,
+          "control_index": 191
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Defina a roupa do seu caçador.",
+      "review_status": "draft"
+    },
+    {
+      "key": "CharMake:000096",
+      "text_index": 96,
+      "source_text": "Choose a clothing type.",
+      "source_offset": 11472,
+      "label_references": [
+        {
+          "label_ordinal": 95,
+          "identifier_hex": "7c31b64c",
+          "label_unknown_u16": 64,
+          "control_index": 193
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Escolha um tipo de roupa.",
+      "review_status": "draft"
+    },
+    {
+      "key": "CharMake:000097",
+      "text_index": 97,
+      "source_text": "Set the color of your\nhunter's clothing.",
+      "source_offset": 11520,
+      "label_references": [
+        {
+          "label_ordinal": 96,
+          "identifier_hex": "ec8eabdd",
+          "label_unknown_u16": 64,
+          "control_index": 195
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "Defina a cor da roupa\ndo seu caçador.",
+      "review_status": "draft"
+    },
+    {
+      "key": "CharMake:000098",
+      "text_index": 98,
+      "source_text": "Choose a clothing color.",
+      "source_offset": 11604,
+      "label_references": [
+        {
+          "label_ordinal": 97,
+          "identifier_hex": "9b899b4b",
+          "label_unknown_u16": 64,
+          "control_index": 197
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Escolha uma cor para a roupa.",
+      "review_status": "draft"
+    },
+    {
+      "key": "CharMake:000099",
+      "text_index": 99,
+      "source_text": "Set the shape of your hunter's face.",
+      "source_offset": 11656,
+      "label_references": [
+        {
+          "label_ordinal": 98,
+          "identifier_hex": "fb4e12ae",
+          "label_unknown_u16": 64,
+          "control_index": 199
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Defina a forma do rosto do caçador.",
+      "review_status": "draft"
+    },
+    {
+      "key": "CharMake:000100",
+      "text_index": 100,
+      "source_text": "Choose a face type.",
+      "source_offset": 11732,
+      "label_references": [
+        {
+          "label_ordinal": 99,
+          "identifier_hex": "8c492238",
+          "label_unknown_u16": 64,
+          "control_index": 201
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Escolha um tipo de rosto.",
+      "review_status": "draft"
+    },
+    {
+      "key": "CharMake:000101",
+      "text_index": 101,
+      "source_text": "Set your hunter's cosmetic features.",
+      "source_offset": 11772,
+      "label_references": [
+        {
+          "label_ordinal": 100,
+          "identifier_hex": "15407382",
+          "label_unknown_u16": 64,
+          "control_index": 203
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Defina os detalhes do rosto.",
+      "review_status": "draft"
+    },
+    {
+      "key": "CharMake:000102",
+      "text_index": 102,
+      "source_text": "Choose a cosmetic feature.",
+      "source_offset": 11848,
+      "label_references": [
+        {
+          "label_ordinal": 101,
+          "identifier_hex": "62474314",
+          "label_unknown_u16": 64,
+          "control_index": 205
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Escolha um detalhe facial.",
+      "review_status": "draft"
+    },
+    {
+      "key": "CharMake:000103",
+      "text_index": 103,
+      "source_text": "Set the cosmetic feature's color.",
+      "source_offset": 11904,
+      "label_references": [
+        {
+          "label_ordinal": 102,
+          "identifier_hex": "fc23d6b7",
+          "label_unknown_u16": 64,
+          "control_index": 207
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Defina a cor do detalhe facial.",
+      "review_status": "draft"
+    },
+    {
+      "key": "CharMake:000104",
+      "text_index": 104,
+      "source_text": "Choose the cosmetic feature's color.",
+      "source_offset": 11972,
+      "label_references": [
+        {
+          "label_ordinal": 103,
+          "identifier_hex": "8b24e621",
+          "label_unknown_u16": 64,
+          "control_index": 209
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Escolha a cor do detalhe facial.",
+      "review_status": "draft"
+    },
+    {
+      "key": "CharMake:000105",
+      "text_index": 105,
+      "source_text": "Set your hunter's eye color.",
+      "source_offset": 12048,
+      "label_references": [
+        {
+          "label_ordinal": 104,
+          "identifier_hex": "122db79b",
+          "label_unknown_u16": 64,
+          "control_index": 211
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Defina a cor dos olhos do caçador.",
+      "review_status": "draft"
+    },
+    {
+      "key": "CharMake:000106",
+      "text_index": 106,
+      "source_text": "Choose an eye color.",
+      "source_offset": 12108,
+      "label_references": [
+        {
+          "label_ordinal": 105,
+          "identifier_hex": "652a870d",
+          "label_unknown_u16": 64,
+          "control_index": 213
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Escolha uma cor para os olhos.",
+      "review_status": "draft"
+    },
+    {
+      "key": "CharMake:000107",
+      "text_index": 107,
+      "source_text": "Set your hunter's hairstyle.",
+      "source_offset": 12152,
+      "label_references": [
+        {
+          "label_ordinal": 106,
+          "identifier_hex": "f5959a9c",
+          "label_unknown_u16": 64,
+          "control_index": 215
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Defina o penteado do caçador.",
+      "review_status": "draft"
+    },
+    {
+      "key": "CharMake:000108",
+      "text_index": 108,
+      "source_text": "Choose a hairstyle.",
+      "source_offset": 12212,
+      "label_references": [
+        {
+          "label_ordinal": 107,
+          "identifier_hex": "8292aa0a",
+          "label_unknown_u16": 64,
+          "control_index": 217
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Escolha um penteado.",
+      "review_status": "draft"
+    },
+    {
+      "key": "CharMake:000109",
+      "text_index": 109,
+      "source_text": "Set your hunter's hair color.",
+      "source_offset": 12252,
+      "label_references": [
+        {
+          "label_ordinal": 108,
+          "identifier_hex": "d063416d",
+          "label_unknown_u16": 64,
+          "control_index": 219
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Defina a cor do cabelo do caçador.",
+      "review_status": "draft"
+    },
+    {
+      "key": "CharMake:000110",
+      "text_index": 110,
+      "source_text": "Choose a hair color.",
+      "source_offset": 12312,
+      "label_references": [
+        {
+          "label_ordinal": 109,
+          "identifier_hex": "a76471fb",
+          "label_unknown_u16": 64,
+          "control_index": 221
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Escolha uma cor para o cabelo.",
+      "review_status": "draft"
+    },
+    {
+      "key": "CharMake:000111",
+      "text_index": 111,
+      "source_text": "Set your hunter's voice.",
+      "source_offset": 12356,
+      "label_references": [
+        {
+          "label_ordinal": 110,
+          "identifier_hex": "3e6d2041",
+          "label_unknown_u16": 64,
+          "control_index": 223
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Defina a voz do seu caçador.",
+      "review_status": "draft"
+    },
+    {
+      "key": "CharMake:000112",
+      "text_index": 112,
+      "source_text": "Choose a voice type.\nTouch a button or select a voice\nand press the A Button to preview it.",
+      "source_offset": 12408,
+      "label_references": [
+        {
+          "label_ordinal": 111,
+          "identifier_hex": "496a10d7",
+          "label_unknown_u16": 64,
+          "control_index": 225
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10,
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "Escolha um tipo de voz.\nToque em um botão ou escolha a voz\ne aperte o botão A para ouvi-la.",
+      "review_status": "draft"
+    },
+    {
+      "key": "CharMake:000113",
+      "text_index": 113,
+      "source_text": "Choose a name for your Palico.\n",
+      "source_offset": 12592,
+      "label_references": [
+        {
+          "label_ordinal": 112,
+          "identifier_hex": "f239e3bf",
+          "label_unknown_u16": 64,
+          "control_index": 227
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "Escolha o nome do seu Palico.\n",
+      "review_status": "draft"
+    },
+    {
+      "key": "CharMake:000114",
+      "text_index": 114,
+      "source_text": "(Names must be 10 characters\nor less.)",
+      "source_offset": 12656,
+      "label_references": [
+        {
+          "label_ordinal": 112,
+          "identifier_hex": "f239e3bf",
+          "label_unknown_u16": 64,
+          "control_index": 229
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "(O nome deve ter no máximo\n10 caracteres.)",
+      "review_status": "draft"
+    },
+    {
+      "key": "CharMake:000115",
+      "text_index": 115,
+      "source_text": "Set your Palico's coat.",
+      "source_offset": 12736,
+      "label_references": [
+        {
+          "label_ordinal": 113,
+          "identifier_hex": "eb22d2fe",
+          "label_unknown_u16": 64,
+          "control_index": 232
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Defina a pelagem do seu Palico.",
+      "review_status": "draft"
+    },
+    {
+      "key": "CharMake:000116",
+      "text_index": 116,
+      "source_text": "Choose a coat color.",
+      "source_offset": 12784,
+      "label_references": [
+        {
+          "label_ordinal": 114,
+          "identifier_hex": "9c25e268",
+          "label_unknown_u16": 64,
+          "control_index": 234
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Escolha a cor da pelagem.",
+      "review_status": "draft"
+    },
+    {
+      "key": "CharMake:000117",
+      "text_index": 117,
+      "source_text": "Set your Palico's clothing.",
+      "source_offset": 12828,
+      "label_references": [
+        {
+          "label_ordinal": 115,
+          "identifier_hex": "052cb3d2",
+          "label_unknown_u16": 64,
+          "control_index": 236
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Defina a roupa do seu Palico.",
+      "review_status": "draft"
+    },
+    {
+      "key": "CharMake:000118",
+      "text_index": 118,
+      "source_text": "Set your Palico's eye shape.",
+      "source_offset": 12884,
+      "label_references": [
+        {
+          "label_ordinal": 116,
+          "identifier_hex": "722b8344",
+          "label_unknown_u16": 64,
+          "control_index": 238
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Defina a forma dos olhos do Palico.",
+      "review_status": "draft"
+    },
+    {
+      "key": "CharMake:000119",
+      "text_index": 119,
+      "source_text": "Select an eye shape.",
+      "source_offset": 12944,
+      "label_references": [
+        {
+          "label_ordinal": 117,
+          "identifier_hex": "15503aab",
+          "label_unknown_u16": 64,
+          "control_index": 240
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Escolha uma forma de olhos.",
+      "review_status": "draft"
+    },
+    {
+      "key": "CharMake:000120",
+      "text_index": 120,
+      "source_text": "Set your Palico's ear type.",
+      "source_offset": 12988,
+      "label_references": [
+        {
+          "label_ordinal": 118,
+          "identifier_hex": "ec4f16e7",
+          "label_unknown_u16": 64,
+          "control_index": 242
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Defina o tipo de orelha do Palico.",
+      "review_status": "draft"
+    },
+    {
+      "key": "CharMake:000121",
+      "text_index": 121,
+      "source_text": "Set your Palico's tail type.",
+      "source_offset": 13044,
+      "label_references": [
+        {
+          "label_ordinal": 119,
+          "identifier_hex": "9b482671",
+          "label_unknown_u16": 64,
+          "control_index": 244
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Defina o tipo de cauda do Palico.",
+      "review_status": "draft"
+    },
+    {
+      "key": "CharMake:000122",
+      "text_index": 122,
+      "source_text": "Set your Palico's voice.",
+      "source_offset": 13104,
+      "label_references": [
+        {
+          "label_ordinal": 120,
+          "identifier_hex": "024177cb",
+          "label_unknown_u16": 64,
+          "control_index": 246
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Defina a voz do seu Palico.",
+      "review_status": "draft"
+    },
+    {
+      "key": "CharMake:000123",
+      "text_index": 123,
+      "source_text": "Choose a coat type.",
+      "source_offset": 13156,
+      "label_references": [
+        {
+          "label_ordinal": 121,
+          "identifier_hex": "7546475d",
+          "label_unknown_u16": 64,
+          "control_index": 248
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Escolha um tipo de pelagem.",
+      "review_status": "draft"
+    },
+    {
+      "key": "CharMake:000124",
+      "text_index": 124,
+      "source_text": "Choose an ear type.",
+      "source_offset": 13196,
+      "label_references": [
+        {
+          "label_ordinal": 122,
+          "identifier_hex": "e5f95acc",
+          "label_unknown_u16": 64,
+          "control_index": 250
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Escolha um tipo de orelha.",
+      "review_status": "draft"
+    },
+    {
+      "key": "CharMake:000125",
+      "text_index": 125,
+      "source_text": "Choose a tail type.",
+      "source_offset": 13236,
+      "label_references": [
+        {
+          "label_ordinal": 123,
+          "identifier_hex": "92fe6a5a",
+          "label_unknown_u16": 64,
+          "control_index": 252
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Escolha um tipo de cauda.",
+      "review_status": "draft"
+    },
+    {
+      "key": "CharMake:000126",
+      "text_index": 126,
+      "source_text": "(Touch the Reset button to\nreset to the default color.)",
+      "source_offset": 13276,
+      "label_references": [
+        {
+          "label_ordinal": 124,
+          "identifier_hex": "d85116fa",
+          "label_unknown_u16": 64,
+          "control_index": 255
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "(Toque em Redefinir para\nrestaurar a cor padrão.)",
+      "review_status": "draft"
+    },
+    {
+      "key": "CharMake:000127",
+      "text_index": 127,
+      "source_text": "(Touch the Reset button to undo\nthe most recent changes.)",
+      "source_offset": 13388,
+      "label_references": [
+        {
+          "label_ordinal": 125,
+          "identifier_hex": "95671b94",
+          "label_unknown_u16": 64,
+          "control_index": 259
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "(Toque em Redefinir para reverter\nas últimas alterações.)",
+      "review_status": "draft"
+    },
+    {
+      "key": "CharMake:000128",
+      "text_index": 128,
+      "source_text": "Cancel character creation and return\nto the Main Menu?",
+      "source_offset": 13504,
+      "label_references": [
+        {
+          "label_ordinal": 126,
+          "identifier_hex": "5118d3e1",
+          "label_unknown_u16": 64,
+          "control_index": 262
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "Cancelar a criação do personagem\ne voltar ao menu principal?",
+      "review_status": "draft"
+    },
+    {
+      "key": "CharMake:000129",
+      "text_index": 129,
+      "source_text": "Finalize your hunter and\nproceed to Palico creation?",
+      "source_offset": 13616,
+      "label_references": [
+        {
+          "label_ordinal": 127,
+          "identifier_hex": "261fe377",
+          "label_unknown_u16": 64,
+          "control_index": 264
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "Concluir seu caçador e\niniciar a criação do Palico?",
+      "review_status": "draft"
+    },
+    {
+      "key": "CharMake:000130",
+      "text_index": 130,
+      "source_text": "Enter a name.",
+      "source_offset": 13724,
+      "label_references": [
+        {
+          "label_ordinal": 128,
+          "identifier_hex": "bf16b2cd",
+          "label_unknown_u16": 64,
+          "control_index": 266
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Digite um nome.",
+      "review_status": "draft"
+    },
+    {
+      "key": "CharMake:000131",
+      "text_index": 131,
+      "source_text": "Finalize your Palico?",
+      "source_offset": 13752,
+      "label_references": [
+        {
+          "label_ordinal": 129,
+          "identifier_hex": "c811825b",
+          "label_unknown_u16": 64,
+          "control_index": 268
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Concluir seu Palico?",
+      "review_status": "draft"
+    },
+    {
+      "key": "CharMake:000132",
+      "text_index": 132,
+      "source_text": "Start the game?",
+      "source_offset": 13796,
+      "label_references": [
+        {
+          "label_ordinal": 130,
+          "identifier_hex": "567517f8",
+          "label_unknown_u16": 64,
+          "control_index": 270
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Começar o jogo?",
+      "review_status": "draft"
+    },
+    {
+      "key": "CharMake:000140",
+      "text_index": 140,
+      "source_text": "Type A",
+      "source_offset": 13912,
+      "label_references": [
+        {
+          "label_ordinal": 138,
+          "identifier_hex": "d43f846a",
+          "label_unknown_u16": 64,
+          "control_index": 286
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Tipo A",
+      "review_status": "draft"
+    },
+    {
+      "key": "CharMake:000141",
+      "text_index": 141,
+      "source_text": "Type B",
+      "source_offset": 13928,
+      "label_references": [
+        {
+          "label_ordinal": 139,
+          "identifier_hex": "a338b4fc",
+          "label_unknown_u16": 64,
+          "control_index": 288
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Tipo B",
+      "review_status": "draft"
+    },
+    {
+      "key": "CharMake:000142",
+      "text_index": 142,
+      "source_text": "Touch Panels",
+      "source_offset": 13944,
+      "label_references": [
+        {
+          "label_ordinal": 140,
+          "identifier_hex": "3a31e546",
+          "label_unknown_u16": 64,
+          "control_index": 290
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Painéis de toque",
+      "review_status": "draft"
+    },
+    {
+      "key": "CharMake:000143",
+      "text_index": 143,
+      "source_text": "Camera\nControls",
+      "source_offset": 13972,
+      "label_references": [
+        {
+          "label_ordinal": 141,
+          "identifier_hex": "4d36d5d0",
+          "label_unknown_u16": 64,
+          "control_index": 292
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "Controles\nda câmera",
+      "review_status": "draft"
+    },
+    {
+      "key": "CharMake:000144",
+      "text_index": 144,
+      "source_text": "Item Pouch",
+      "source_offset": 14004,
+      "label_references": [
+        {
+          "label_ordinal": 142,
+          "identifier_hex": "d3524073",
+          "label_unknown_u16": 64,
+          "control_index": 294
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Bolsa de itens",
+      "review_status": "draft"
+    },
+    {
+      "key": "CharMake:000145",
+      "text_index": 145,
+      "source_text": "Signal",
+      "source_offset": 14028,
+      "label_references": [
+        {
+          "label_ordinal": 143,
+          "identifier_hex": "a45570e5",
+          "label_unknown_u16": 64,
+          "control_index": 296
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Sinal",
+      "review_status": "draft"
+    },
+    {
+      "key": "CharMake:000146",
+      "text_index": 146,
+      "source_text": "Combo List",
+      "source_offset": 14044,
+      "label_references": [
+        {
+          "label_ordinal": 144,
+          "identifier_hex": "3d5c215f",
+          "label_unknown_u16": 64,
+          "control_index": 298
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Combinações",
+      "review_status": "draft"
+    },
+    {
+      "key": "CharMake:000147",
+      "text_index": 147,
+      "source_text": "Target Cam",
+      "source_offset": 14068,
+      "label_references": [
+        {
+          "label_ordinal": 145,
+          "identifier_hex": "4a5b11c9",
+          "label_unknown_u16": 64,
+          "control_index": 300
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Câmera de alvo",
+      "review_status": "draft"
+    },
+    {
+      "key": "CharMake:000148",
+      "text_index": 148,
+      "source_text": "Special Attack",
+      "source_offset": 14092,
+      "label_references": [
+        {
+          "label_ordinal": 146,
+          "identifier_hex": "dae40c58",
+          "label_unknown_u16": 64,
+          "control_index": 302
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Ataque especial",
+      "review_status": "draft"
+    },
+    {
+      "key": "CharMake:000149",
+      "text_index": 149,
+      "source_text": "Status",
+      "source_offset": 14124,
+      "label_references": [
+        {
+          "label_ordinal": 147,
+          "identifier_hex": "ade33cce",
+          "label_unknown_u16": 64,
+          "control_index": 304
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Atributos",
+      "review_status": "draft"
+    },
+    {
+      "key": "CharMake:000150",
+      "text_index": 150,
+      "source_text": "Minimap",
+      "source_offset": 14140,
+      "label_references": [
+        {
+          "label_ordinal": 148,
+          "identifier_hex": "cd24b52b",
+          "label_unknown_u16": 64,
+          "control_index": 306
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Minimapa",
+      "review_status": "draft"
+    },
+    {
+      "key": "CharMake:000151",
+      "text_index": 151,
+      "source_text": "Next, choose the initial setting for the\nTouch Panel Display and the HUD.\n\nPress the A Button to begin.",
+      "source_offset": 14156,
+      "label_references": [
+        {
+          "label_ordinal": 149,
+          "identifier_hex": "ba2385bd",
+          "label_unknown_u16": 64,
+          "control_index": 308
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10,
+          10,
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "Agora, escolha os ajustes iniciais\nda tela de toque e da interface.\n\nAperte o botão A para começar.",
+      "review_status": "draft"
+    },
+    {
+      "key": "CharMake:000152",
+      "text_index": 152,
+      "source_text": "Choose this setting if you're\nnew to Monster Hunter.",
+      "source_offset": 14364,
+      "label_references": [
+        {
+          "label_ordinal": 150,
+          "identifier_hex": "232ad407",
+          "label_unknown_u16": 64,
+          "control_index": 310
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "Escolha se for sua primeira\nvez em Monster Hunter.",
+      "review_status": "draft"
+    },
+    {
+      "key": "CharMake:000153",
+      "text_index": 153,
+      "source_text": "Choose this setting if you've\nplayed Monster Hunter before.",
+      "source_offset": 14472,
+      "label_references": [
+        {
+          "label_ordinal": 151,
+          "identifier_hex": "542de491",
+          "label_unknown_u16": 64,
+          "control_index": 312
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "Escolha esta opção se já\njogou Monster Hunter antes.",
+      "review_status": "draft"
+    },
+    {
+      "key": "CharMake:000154",
+      "text_index": 154,
+      "source_text": "(No Data)",
+      "source_offset": 14592,
+      "label_references": [
+        {
+          "label_ordinal": 152,
+          "identifier_hex": "df10be3a",
+          "label_unknown_u16": 64,
+          "control_index": 314
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "(Sem dados)",
+      "review_status": "draft"
+    },
+    {
+      "key": "CharMake:000155",
+      "text_index": 155,
+      "source_text": "Gender",
+      "source_offset": 14612,
+      "label_references": [
+        {
+          "label_ordinal": 153,
+          "identifier_hex": "a8178eac",
+          "label_unknown_u16": 64,
+          "control_index": 316
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Gênero",
+      "review_status": "draft"
+    },
+    {
+      "key": "CharMake:000156",
+      "text_index": 156,
+      "source_text": "Play Time",
+      "source_offset": 14628,
+      "label_references": [
+        {
+          "label_ordinal": 154,
+          "identifier_hex": "311edf16",
+          "label_unknown_u16": 64,
+          "control_index": 318
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Tempo de jogo",
+      "review_status": "draft"
+    },
+    {
+      "key": "CharMake:000157",
+      "text_index": 157,
+      "source_text": "Funds",
+      "source_offset": 14648,
+      "label_references": [
+        {
+          "label_ordinal": 155,
+          "identifier_hex": "4619ef80",
+          "label_unknown_u16": 64,
+          "control_index": 320
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Dinheiro",
+      "review_status": "draft"
+    },
+    {
+      "key": "CharMake:000158",
+      "text_index": 158,
+      "source_text": "HR",
+      "source_offset": 14660,
+      "label_references": [
+        {
+          "label_ordinal": 156,
+          "identifier_hex": "d87d7a23",
+          "label_unknown_u16": 64,
+          "control_index": 322
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "HR",
+      "review_status": "draft"
+    },
+    {
+      "key": "CharMake:000160",
+      "text_index": 160,
+      "source_text": "Select a Slot to save your\ngame data.",
+      "source_offset": 14672,
+      "label_references": [
+        {
+          "label_ordinal": 159,
+          "identifier_hex": "41742b99",
+          "label_unknown_u16": 64,
+          "control_index": 330
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "Escolha um espaço para salvar\nos dados do jogo.",
+      "review_status": "draft"
+    },
+    {
+      "key": "CharMake:000161",
+      "text_index": 161,
+      "source_text": "Game data created.",
+      "source_offset": 14748,
+      "label_references": [
+        {
+          "label_ordinal": 160,
+          "identifier_hex": "d1cb3608",
+          "label_unknown_u16": 64,
+          "control_index": 332
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Dados do jogo criados.",
+      "review_status": "draft"
+    },
+    {
+      "key": "CharMake:000162",
+      "text_index": 162,
+      "source_text": "Welcome to the world\nof Monster Hunter!",
+      "source_offset": 14788,
+      "label_references": [
+        {
+          "label_ordinal": 161,
+          "identifier_hex": "a6cc069e",
+          "label_unknown_u16": 64,
+          "control_index": 334
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "Boas-vindas ao mundo\nde Monster Hunter!",
+      "review_status": "draft"
+    },
+    {
+      "key": "CharMake:000163",
+      "text_index": 163,
+      "source_text": "Select the game data you would\nlike to use.",
+      "source_offset": 14868,
+      "label_references": [
+        {
+          "label_ordinal": 162,
+          "identifier_hex": "c60b8f7b",
+          "label_unknown_u16": 64,
+          "control_index": 336
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "Escolha os dados de jogo\nque deseja usar.",
+      "review_status": "draft"
+    },
+    {
+      "key": "CharMake:000164",
+      "text_index": 164,
+      "source_text": "A character is already saved in\nthis Slot. Overwrite the existing\ncharacter with this new one?",
+      "source_offset": 14956,
+      "label_references": [
+        {
+          "label_ordinal": 163,
+          "identifier_hex": "b10cbfed",
+          "label_unknown_u16": 64,
+          "control_index": 338
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10,
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "Já há um personagem salvo\nneste espaço. Substituí-lo\npelo novo personagem?",
+      "review_status": "draft"
+    },
+    {
+      "key": "CharMake:000165",
+      "text_index": 165,
+      "source_text": "Start Game",
+      "source_offset": 15148,
+      "label_references": [
+        {
+          "label_ordinal": 164,
+          "identifier_hex": "2805ee57",
+          "label_unknown_u16": 64,
+          "control_index": 340
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Iniciar jogo",
+      "review_status": "draft"
+    },
+    {
+      "key": "CharMake:000166",
+      "text_index": 166,
+      "source_text": "Start Over",
+      "source_offset": 15172,
+      "label_references": [
+        {
+          "label_ordinal": 165,
+          "identifier_hex": "5f02dec1",
+          "label_unknown_u16": 64,
+          "control_index": 342
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Recomeçar",
+      "review_status": "draft"
+    },
+    {
+      "key": "CharMake:000167",
+      "text_index": 167,
+      "source_text": "Load this character?",
+      "source_offset": 15196,
+      "label_references": [
+        {
+          "label_ordinal": 166,
+          "identifier_hex": "c1664b62",
+          "label_unknown_u16": 64,
+          "control_index": 344
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Carregar este personagem?",
+      "review_status": "draft"
+    },
+    {
+      "key": "CharMake:000168",
+      "text_index": 168,
+      "source_text": "Create a hunter with these settings.",
+      "source_offset": 15240,
+      "label_references": [
+        {
+          "label_ordinal": 167,
+          "identifier_hex": "c978702c",
+          "label_unknown_u16": 64,
+          "control_index": 346
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Criar caçador com estes ajustes.",
+      "review_status": "draft"
+    },
+    {
+      "key": "CharMake:000169",
+      "text_index": 169,
+      "source_text": "Cancel hunter creation.",
+      "source_offset": 15316,
+      "label_references": [
+        {
+          "label_ordinal": 168,
+          "identifier_hex": "be7f40ba",
+          "label_unknown_u16": 64,
+          "control_index": 348
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Cancelar criação do caçador.",
+      "review_status": "draft"
+    },
+    {
+      "key": "CharMake:000170",
+      "text_index": 170,
+      "source_text": "Create a Palico with these settings.",
+      "source_offset": 15364,
+      "label_references": [
+        {
+          "label_ordinal": 169,
+          "identifier_hex": "d914b07c",
+          "label_unknown_u16": 64,
+          "control_index": 350
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Criar Palico com estes ajustes.",
+      "review_status": "draft"
+    },
+    {
+      "key": "CharMake:000171",
+      "text_index": 171,
+      "source_text": "Cancel Palico creation.",
+      "source_offset": 15440,
+      "label_references": [
+        {
+          "label_ordinal": 170,
+          "identifier_hex": "ae1380ea",
+          "label_unknown_u16": 64,
+          "control_index": 352
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Cancelar criação do Palico.",
+      "review_status": "draft"
+    },
+    {
+      "key": "CharMake:000172",
+      "text_index": 172,
+      "source_text": "Turn off certain beginner-\nfriendly tutorial messages\nthat appear during Quests?",
+      "source_offset": 15488,
+      "label_references": [
+        {
+          "label_ordinal": 171,
+          "identifier_hex": "9fc2002e",
+          "label_unknown_u16": 64,
+          "control_index": 354
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [
+          10,
+          10
+        ],
+        "possible_placeholders": []
+      },
+      "target_text": "Desativar algumas dicas\npara iniciantes exibidas\ndurante as missões?",
+      "review_status": "draft"
+    },
+    {
+      "key": "CharMake:000173",
+      "text_index": 173,
+      "source_text": "White",
+      "source_offset": 15652,
+      "label_references": [
+        {
+          "label_ordinal": 172,
+          "identifier_hex": "6d8f4b17",
+          "label_unknown_u16": 64,
+          "control_index": 356
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Branco",
+      "review_status": "draft"
+    },
+    {
+      "key": "CharMake:000174",
+      "text_index": 174,
+      "source_text": "Black",
+      "source_offset": 15664,
+      "label_references": [
+        {
+          "label_ordinal": 173,
+          "identifier_hex": "1a887b81",
+          "label_unknown_u16": 64,
+          "control_index": 358
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Preto",
+      "review_status": "draft"
+    },
+    {
+      "key": "CharMake:000175",
+      "text_index": 175,
+      "source_text": "Red",
+      "source_offset": 15676,
+      "label_references": [
+        {
+          "label_ordinal": 174,
+          "identifier_hex": "83812a3b",
+          "label_unknown_u16": 64,
+          "control_index": 360
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Vermelho",
+      "review_status": "draft"
+    },
+    {
+      "key": "CharMake:000176",
+      "text_index": 176,
+      "source_text": "Indigo",
+      "source_offset": 15684,
+      "label_references": [
+        {
+          "label_ordinal": 175,
+          "identifier_hex": "f4861aad",
+          "label_unknown_u16": 64,
+          "control_index": 362
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Índigo",
+      "review_status": "draft"
+    },
+    {
+      "key": "CharMake:000177",
+      "text_index": 177,
+      "source_text": "Yellow",
+      "source_offset": 15700,
+      "label_references": [
+        {
+          "label_ordinal": 176,
+          "identifier_hex": "6ae28f0e",
+          "label_unknown_u16": 64,
+          "control_index": 364
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Amarelo",
+      "review_status": "draft"
+    },
+    {
+      "key": "CharMake:000178",
+      "text_index": 178,
+      "source_text": "Green",
+      "source_offset": 15716,
+      "label_references": [
+        {
+          "label_ordinal": 177,
+          "identifier_hex": "1de5bf98",
+          "label_unknown_u16": 64,
+          "control_index": 366
+        }
+      ],
+      "protected_tokens": {
+        "control_codepoints": [],
+        "possible_placeholders": []
+      },
+      "target_text": "Verde",
+      "review_status": "draft"
+    }
+  ],
+  "limitations": [
+    "Draft requiring human linguistic and in-game visual review; no human approval asserted",
+    "Offline rebuild/readback verification does not establish glyph coverage, line fit or runtime acceptance",
+    "Only CharMake substantive fragments; spaces, DUMMY and colon separator remain byte-equivalent in the rebuilt text table",
+    "No installable ARC/ROM patch is produced by this catalog"
+  ]
+}
