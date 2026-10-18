@@ -5,6 +5,7 @@
 #include <cstddef>
 #include <cstdint>
 #include <optional>
+#include <string>
 #include <string_view>
 #include <variant>
 
@@ -14,13 +15,21 @@ struct Unknown {bool operator==(const Unknown&)const=default;};
 struct Absent {bool operator==(const Absent&)const=default;};
 struct Index {std::size_t value;bool operator==(const Index&)const=default;};
 using Link=std::variant<Unknown,Absent,Index>;
+struct ResourceReference {
+    std::string sha256;
+    std::uint32_t buffer_offset{};
+    bool operator==(const ResourceReference&)const=default;
+};
+// Raw ARM snapshots retain their word. Native resources carry identity and
+// loaded-buffer offset instead of fabricating a source or host address.
+using Field28=std::variant<Word,ResourceReference>;
 struct Record {
     Link next=Unknown{}; // Source+8; order remains significant on equal rank.
     std::optional<std::uint8_t> field19,field2f,field54,field61,field78;
     std::optional<std::uint16_t> field30;
     std::array<std::optional<Word>,3> fields34{},fields40{};
     std::optional<Word> field4c_bits,field50_bits;
-    std::optional<Word> field28; // Opaque copied source word; never a host pointer.
+    std::optional<Field28> field28; // Copied without dereferencing.
     bool operator==(const Record&)const=default;
 };
 // Capacity belongs to constructor5bae4c/allocator5b8a1c's real128-slot pool.
@@ -44,7 +53,7 @@ struct Match {
     std::size_t index{};
     std::array<Word,4> vector34{};
     std::array<Word,3> words40{};
-    std::optional<Word> field28;
+    std::optional<Field28> field28;
     Word status{};
     bool operator==(const Match&)const=default;
 };

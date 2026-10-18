@@ -166,6 +166,24 @@ PlayerResult<Frame> Player::update_accumulator(std::optional<std::uint32_t> delt
         return std::get<Frame>(std::move(rendered));
     }catch(const std::bad_alloc&){return capacity();}catch(const std::length_error&){return capacity();}
 }
+PlayerResult<PlayerPreparationOutput> Player::prepare_update(const player_update_prefix::Context& context){
+    try{
+        if(revision_==std::numeric_limits<std::uint64_t>::max())return capacity();
+        auto result=player_update_prefix::apply(state_.controller.player,shared_fields_,context);
+        if(auto* e=std::get_if<player_update_prefix::Error>(&result)){
+            auto failure=error(PlayerErrorCode::update_prefix,"Player update prefix failed at "+
+                std::visit([](const auto& cause){return std::string(cause.field);},e->cause));
+            failure.update_prefix=*e;return failure;
+        }
+        auto updated=std::get<player_update_prefix::Output>(std::move(result));
+        auto candidate=state_;candidate.controller.player=std::move(updated.player);
+        auto rendered=render(candidate,completed_steps_,0,revision_+1);
+        if(auto* e=std::get_if<PlayerError>(&rendered))return *e;
+        PlayerPreparationOutput output{std::get<Frame>(std::move(rendered)),updated.filter,std::move(updated.lookup)};
+        state_=std::move(candidate);shared_fields_=std::move(updated.fields);samples_=0;++revision_;
+        return output;
+    }catch(const std::bad_alloc&){return capacity();}catch(const std::length_error&){return capacity();}
+}
 PlayerResult<PlayerPolicyOutput> Player::apply_policy(const PlayerPolicyInput& input,const PlayerPolicyContext& context){
     namespace pcs=player_controller_step;namespace ppi=player_policy_interpreter;
     try{
