@@ -13,6 +13,13 @@ PlayerError capacity(){return error(PlayerErrorCode::capacity,"Player storage or
 }
 struct Player::Resources {
     const Actor::Data& data;const rq::Model& banks;
+    pa::FrameContext parameters(const PlayerStep& step)const{
+        pa::FrameContext result;result.bone_to_joint=data.bone_map;
+        result.pending={jp::PresentModel{data.parts[0].model.skeleton()->local_matrices},{step.delta_bits,step.templates},step.restoration_scale};
+        result.resolvers={{this,action},{this,track},{this,events}};
+        result.output={result.pending.model_reference,step.parent,step.reference_basis,step.reference_translation};
+        return result;
+    }
     static mi::Resolution track(const void* pointer,const motion_binding::TrackReference& id){
         const auto& context=*static_cast<const Resources*>(pointer);
         for(const auto& resource:context.data.motions)if(resource.identity()==id.resource_identity){
@@ -50,7 +57,7 @@ struct Player::Resources {
     }
 };
 Player::Player(std::shared_ptr<const Actor::Data> data,pa::State state,player_transition::Constants constants,
-    rq::Model banks,pa::Limits limits,player_fields::Fields fields,player_state1::Fields state1):data_(std::move(data)),state_(std::move(state)),constants_(std::move(constants)),shared_fields_(std::move(fields)),state1_fields_(std::move(state1)),banks_(std::move(banks)),limits_(limits){}
+    rq::Model banks,pa::Limits limits,player_fields::Fields fields,player_state1::Fields state1,player_position_bridge::Fields position):data_(std::move(data)),state_(std::move(state)),constants_(std::move(constants)),shared_fields_(std::move(fields)),state1_fields_(std::move(state1)),position_fields_(std::move(position)),banks_(std::move(banks)),limits_(limits){}
 PlayerResult<Player> Player::from_rest(const Actor& actor,const PlayerInitial& initial,
     const player_transition::Constants& constants,const PlayerBanks& selected,pa::Limits limits){
     try{
@@ -71,7 +78,7 @@ PlayerResult<Player> Player::from_rest(const Actor& actor,const PlayerInitial& i
             if(!found)return error(PlayerErrorCode::bank,"Motion source is not owned by this actor recipe");
             banks.banks[i]=found->request_resource();
         }
-        return Player{actor.data_,std::get<pa::State>(std::move(state)),constants,std::move(banks),limits,initial.shared_fields,initial.state1_fields};
+        return Player{actor.data_,std::get<pa::State>(std::move(state)),constants,std::move(banks),limits,initial.shared_fields,initial.state1_fields,initial.position_fields};
     }catch(const std::bad_alloc&){return capacity();}catch(const std::length_error&){return capacity();}
 }
 PlayerResult<pa::State> Player::rest_state(const Actor::Data& data,const PlayerInitial& initial,pa::Limits limits){
@@ -92,7 +99,7 @@ PlayerResult<pa::State> Player::rest_state(const Actor::Data& data,const PlayerI
         state.frame.animation.accumulated_flags=initial.accumulated_flags;
         auto& h=state.hierarchy;const auto& rest=data.rest;
         h.local_rt=rest.local_rt;h.world=rest.world;h.flags4=rest.flags4;h.flags104=rest.flags104;h.flags230=rest.flags230;
-        h.attachment_index=rest.attachment_index;h.attachment_mode=rest.attachment_mode;h.dirty=rest.dirty;h.fieldc4c=rest.fieldc4c;h.order=rest.order;
+        h.attachment_index=rest.attachment_index;h.attachment_mode_high16=std::uint16_t(rest.attachment_mode>>16);h.dirty=rest.dirty;h.fieldc4c=rest.fieldc4c;h.order=rest.order;
         for(const auto& joint:rest.joints){state.frame.animation.joints.push_back(joint.pose);
             h.joints.push_back({joint.metadata,joint.matrix,joint.depth,joint.callback,joint.owner});}
         return state;
@@ -103,7 +110,7 @@ PlayerResult<Player> Player::from_rest(const Player& owner,const PlayerInitial& 
         if(!owner.data_)return error(PlayerErrorCode::initial_state,"Player resource owner has been moved away");
         auto state=rest_state(*owner.data_,initial,owner.limits_);
         if(auto* e=std::get_if<PlayerError>(&state))return *e;
-        return Player{owner.data_,std::get<pa::State>(std::move(state)),owner.constants_,owner.banks_,owner.limits_,initial.shared_fields,initial.state1_fields};
+        return Player{owner.data_,std::get<pa::State>(std::move(state)),owner.constants_,owner.banks_,owner.limits_,initial.shared_fields,initial.state1_fields,initial.position_fields};
     }catch(const std::bad_alloc&){return capacity();}catch(const std::length_error&){return capacity();}
 }
 std::shared_ptr<const Scene> Player::presentation()const noexcept{return data_->scene;}
@@ -169,6 +176,27 @@ PlayerResult<PlayerState1Output> Player::dispatch_state1(const player_state1::Ta
     }catch(const std::bad_alloc&){return capacity();}catch(const std::length_error&){return capacity();}
 }
 PlayerResult<PlayerOutput> Player::step(const PlayerStep& frame){return execute(nullptr,frame.templates,&frame,{});}
+PlayerResult<PlayerPositionOutput> Player::step_position(const PlayerStep& frame,
+    std::optional<player_position_bridge::OrientationCallback> orientation,
+    std::optional<player_position_bridge::OutputCallbacks> publication){
+    namespace pb=player_position_bridge;
+    try{
+        if(revision_==std::numeric_limits<std::uint64_t>::max()||completed_steps_==std::numeric_limits<std::uint64_t>::max())return capacity();
+        const Resources resources{*data_,banks_};const auto parameters=resources.parameters(frame);
+        auto result=pb::apply(state_.frame,state_.hierarchy,state_.controller,shared_fields_,position_fields_,{parameters,orientation,publication},limits_);
+        if(auto* e=std::get_if<pb::Error>(&result))return PlayerError{PlayerErrorCode::position,"Player position failed at "+std::string(e->field),{},{},{},*e};
+        auto updated=std::get<pb::Output>(std::move(result));
+        pa::State candidate{std::move(updated.frame),state_.inactive,std::move(updated.controller),std::move(updated.hierarchy)};
+        const auto& animation=updated.effects.animation;
+        const auto samples=animation?animation->model_samples+animation->joint_samples:0U;
+        const auto completed=completed_steps_+(animation?1U:0U);
+        auto rendered=render(candidate,completed,samples,revision_+1);
+        if(auto* e=std::get_if<PlayerError>(&rendered))return *e;
+        PlayerPositionOutput output{std::get<Frame>(std::move(rendered)),std::move(updated.effects)};
+        state_=std::move(candidate);shared_fields_=std::move(updated.shared);position_fields_=std::move(updated.fields);
+        samples_=samples;completed_steps_=completed;++revision_;return output;
+    }catch(const std::bad_alloc&){return capacity();}catch(const std::length_error&){return capacity();}
+}
 PlayerResult<PlayerOutput> Player::tick(const pa::Command& command,const PlayerStep& frame,const player_selection::AreaContext& area){return execute(&command,frame.templates,&frame,area);}
 PlayerResult<PlayerOutput> Player::execute(const pa::Command* command,const mi::Templates& templates,
     const PlayerStep* frame,const player_selection::AreaContext& area){
@@ -179,10 +207,7 @@ PlayerResult<PlayerOutput> Player::execute(const pa::Command* command,const mi::
         const pa::CommandContext commands{banks_,globals,constants_,{templates,resolver},area};
         pa::Result result;
         if(frame){
-            pa::FrameContext parameters;parameters.bone_to_joint=data_->bone_map;
-            parameters.pending={jp::PresentModel{data_->parts[0].model.skeleton()->local_matrices},{frame->delta_bits,templates},frame->restoration_scale};
-            parameters.resolvers={{&resources,Resources::action},resolver,{&resources,Resources::events}};
-            parameters.output={parameters.pending.model_reference,frame->parent,frame->reference_basis,frame->reference_translation};
+            const auto parameters=resources.parameters(*frame);
             result=command?pa::tick(state_,*command,commands,parameters,limits_):pa::step(state_,parameters,limits_);
         }else result=pa::apply(state_,*command,commands,limits_);
         if(auto* e=std::get_if<pa::Error>(&result))return PlayerError{PlayerErrorCode::driver,"Player animation phase "+std::to_string(unsigned(e->phase)),*e,{}};

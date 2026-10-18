@@ -22,9 +22,13 @@ aquisição espacial sem cache continuam pendentes no runtime.
 O módulo de [interseção vertical original](docs/spatial-triangle.md) passou
 1.464 consultas preservadas, com102 hits idênticos byte a byte. Ele ainda
 precisa ser composto com a busca de objetos e a seleção do resultado.
-A [ponte de posição](docs/player-position-bridge.md) foi executada em150 casos
-originais PBW→modelo→PBW, incluindo animação e publicação das juntas, sob
-estado inicial explícito. Sua implementação nativa e o scheduler permanecem pendentes.
+A [ponte de posição](docs/player-position-bridge.md) agora tem implementação
+nativa e operação transacional no Player, comparadas com 150 chamadas originais
+PBW→modelo→PBW. A [orientação](docs/player-orientation.md) reproduz 69.076 casos
+novos e 144 checkpoints retidos. O [leitor SBC e a consulta de faces](docs/spatial-face-query.md)
+preservam os recursos e a normal original; a consulta passou em 1.444 chamadas ARM.
+O estado inicial continua explícito. Bootstrap, scheduler e a composição da busca
+espacial completa ainda estão pendentes.
 O launcher publicado permanece 0.17.0.
 Veja também o [catálogo v4](docs/localization-v4.md) e o
 [ensaio da consulta espacial sobre a grade real](docs/player-spatial-context-v4.md),

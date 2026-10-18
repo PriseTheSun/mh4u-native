@@ -8,7 +8,7 @@ namespace mh4u::player_position_bridge {
 struct Fields {
     std::optional<std::uint8_t> fieldd2c,fieldd44;
     std::optional<std::uint32_t> fieldd30_bits,fieldd34_bits,fieldd38_bits,fieldd64;
-    std::optional<std::uint16_t> euler_mode; // low16(model38), separate from attachment mode.
+    std::optional<std::uint16_t> euler_mode; // Sole low16(model38) owner; hierarchy owns high16.
     bool operator==(const Fields&)const=default;
 };
 enum class OrientationCallback {b05328};
@@ -39,7 +39,7 @@ struct Error {
     std::optional<model_animation_output::Error> publication;
 };
 using Result=std::variant<Output,Error>;
-// Complete b07c08 -> admitted b06f8c -> b07bb8. Explicit 1..8 active layers
+// Complete b07c08 -> admitted b06f8c -> b07bb8. Explicit bounded active layers
 // (not an inferred Player bootstrap), finite consumed arithmetic and concrete
 // callbacks. d64&8 returns before orientation/frame; d64&2 skips publication.
 // Active b06b38/d00628 routes fail explicitly. Borrowed inputs stay unchanged;

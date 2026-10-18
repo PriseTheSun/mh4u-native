@@ -15,7 +15,11 @@ void check(bool ok,const char* why){++checks;if(!ok)throw std::runtime_error(why
 Word bits(float f){return std::bit_cast<Word>(f);}
 template<class T,class... U>T take(std::variant<U...> result){
     if(auto* value=std::get_if<T>(&result))return std::move(*value);
-    if(auto* error=std::get_if<pb::Error>(&result))throw std::runtime_error("Unexpected error at "+std::string(error->field)+" code "+std::to_string(int(error->code)));
+    if(auto* error=std::get_if<pb::Error>(&result)){
+        std::string detail;
+        if(error->publication)std::visit([&](const auto& e){detail=" publication: "+std::string(e.message);},error->publication->cause);
+        throw std::runtime_error("Unexpected error at "+std::string(error->field)+" code "+std::to_string(int(error->code))+detail);
+    }
     throw std::runtime_error("Unexpected success");
 }
 struct Fixture {
@@ -39,6 +43,8 @@ struct Fixture {
         fields={std::uint8_t(1),std::uint8_t(77),bits(0),bits(0),one,2U,std::uint16_t(4)};
         context.pending.model_reference=jp::Null{};context.pending.initialization.model_delta_time_bits=one;
         context.output.model=jp::Null{};context.output.parent=jp::Null{};
+        context.output.reference_basis=mh4u::motion_transform_math::Basis{one,0,0,0,0,one,0,0,0,0,one,0};
+        context.output.reference_translation=jp::Bits4{0,0,0,one};
     }
     pb::Result run(std::optional<pb::OrientationCallback> orientation=pb::OrientationCallback::b05328,
                    std::optional<pb::OutputCallbacks> publication=pb::OutputCallbacks::standard_95b490_95b940,
@@ -60,7 +66,7 @@ void run(){
     auto early=f;early.fields.fieldd64=8;early.fields.fieldd2c=0;early.fields.euler_mode.reset();early.fields.fieldd30_bits.reset();early.fields.fieldd34_bits.reset();early.fields.fieldd38_bits.reset();early.frame.animation.layers.clear();early.shared.pbw.field10_bits=0x7fc00008;
     const auto skipped=take<pb::Output>(early.run({},{}));
     check(skipped.effects.early_return&&!skipped.effects.animation&&skipped.frame.model==early.frame.model,"Early return ignores frame/orientation");
-    check(skipped.controller==early.controller&&skipped.shared.pbw.field10_bits==0x7fc00008&&skipped.shared.pbw.field1c_bits==0,"Early raw PBW copy");
+    check(skipped.controller.player==early.controller.player&&skipped.controller.motion==early.controller.motion&&skipped.shared.pbw.field10_bits==0x7fc00008&&skipped.shared.pbw.field1c_bits==0,"Early raw PBW copy");
     check(skipped.hierarchy.flags4==0x50&&skipped.fields.fieldd44==77,"Early gate still applies d2c flag only");
     early.shared.pbw.field10_bits.reset();check(take<pb::Error>(early.run()).field=="PBW10","Prefix consumes PBW before gate");
     auto missing=f;missing.fields.fieldd2c.reset();check(take<pb::Error>(missing.run()).field=="d2c","Missing flag");
@@ -101,9 +107,10 @@ void run(){
     const int rounding=std::fegetround();check(std::fesetround(FE_DOWNWARD)==0,"Set test rounding");
     const auto wrong=f.run();check(std::fesetround(rounding)==0,"Restore rounding");
     check(take<pb::Error>(wrong).orientation->arithmetic->code==mh4u::motion_transform_math::ErrorCode::floating_environment,"Unsupported rounding rejected");
-    auto published=f;published.fields.fieldd64=0;const auto finished=take<pb::Output>(published.run());
+    auto published=f;published.fields.fieldd64=0;published.hierarchy.attachment_mode_high16=0x4321;const auto finished=take<pb::Output>(published.run());
     check(finished.frame.model.position==mh4u::motion_transform_math::Bits4{bits(18),bits(-21),bits(94),0},"Model offset applied after PBW update");
     check(finished.shared.pbw.field10_bits==bits(17)&&!finished.effects.publication_skipped,"PBW excludes model presentation offset");
+    check(finished.hierarchy.attachment_mode_high16==0x4321&&finished.fields.euler_mode==4,"Separate model38 halfword owners survive publication");
 }
 }
 int main(){try{run();std::cout<<"{\"status\":\"passed\",\"checks\":"<<checks<<"}\n";return 0;}

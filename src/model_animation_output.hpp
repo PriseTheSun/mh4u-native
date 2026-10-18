@@ -15,7 +15,8 @@ struct JointOutput {
 };
 struct Hierarchy {
     joint_pose::Matrix local_rt,world;
-    std::uint32_t flags4{},flags104{},flags230{},attachment_index{},attachment_mode{};
+    std::uint32_t flags4{},flags104{},flags230{},attachment_index{};
+    std::uint16_t attachment_mode_high16{}; // high half of model+38 only; no Euler storage.
     std::uint8_t dirty{};
     std::uint32_t fieldc4c{};
     std::vector<JointOutput> joints;

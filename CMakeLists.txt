@@ -562,7 +562,32 @@ target_link_libraries(mh4u_player_animation PUBLIC mh4u_player_state1)
 add_library(mh4u_player_position_bridge src/player_position_bridge.cpp)
 target_include_directories(mh4u_player_position_bridge PUBLIC src)
 target_link_libraries(mh4u_player_position_bridge PUBLIC mh4u_player_animation mh4u_player_orientation)
-foreach(placement_target mh4u_model_animation_output mh4u_player_orientation mh4u_player_position_bridge)
+add_executable(mh4u-player-position-bridge-boundary-tests src/player_position_bridge_boundary_tests.cpp)
+target_link_libraries(mh4u-player-position-bridge-boundary-tests PRIVATE mh4u_player_position_bridge)
+add_test(NAME player-position-bridge-boundaries COMMAND mh4u-player-position-bridge-boundary-tests)
+add_executable(mh4u-player-position-bridge-tests src/player_position_bridge_tests.cpp)
+target_include_directories(mh4u-player-position-bridge-tests PRIVATE vendor/picosha2)
+target_link_libraries(mh4u-player-position-bridge-tests PRIVATE mh4u_player_position_bridge mh4u_motion_resource)
+if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/research/private/player-position-bridge-native-v1/oracle-adapter/retained-final/oracle.bin")
+    add_test(NAME player-position-bridge-arm COMMAND mh4u-player-position-bridge-tests
+        "${CMAKE_CURRENT_SOURCE_DIR}/research/private/player-position-bridge-native-v1/oracle-adapter/retained-final/oracle.bin"
+        "093867384d90a85b54b40d085e65a5cd9d02e52f416f48bd883c421e789eeaef"
+        54913 "${CMAKE_CURRENT_SOURCE_DIR}/research/private/lmt-events-v1/sources/entry-54913.lmt"
+        "dbe3492d31191f8dff3dcf891b6e801d167b6928ab782769040960cc643c202a"
+        92608 "${CMAKE_CURRENT_SOURCE_DIR}/research/private/lmt-events-v1/sources/entry-92608.lmt"
+        "c5f8f0c5f86ad43323a3ca7dcf6394a6938363b038fd1bab264e4b2597e0c0d8")
+endif()
+add_executable(mh4u-player-orientation-tests src/player_orientation_tests.cpp)
+target_link_libraries(mh4u-player-orientation-tests PRIVATE mh4u_player_orientation)
+target_include_directories(mh4u-player-orientation-tests PRIVATE vendor/picosha2)
+add_test(NAME player-orientation-boundaries COMMAND mh4u-player-orientation-tests)
+if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/research/private/player-orientation-native-v1/arm-complete/oracle.bin")
+    add_test(NAME player-orientation-arm COMMAND mh4u-player-orientation-tests
+        "${CMAKE_CURRENT_SOURCE_DIR}/research/private/player-orientation-native-v1/arm-complete/oracle.bin"
+        "89bdc81facfb3eded4e01cf546c8b2c373e235c7ad5e556881586e4ec988ede3" 69076)
+endif()
+foreach(placement_target mh4u_model_animation_output mh4u_player_orientation mh4u_player_position_bridge
+        mh4u-player-position-bridge-boundary-tests mh4u-player-position-bridge-tests mh4u-player-orientation-tests)
     if(MSVC)
         target_compile_options(${placement_target} PRIVATE /W4 /fp:strict)
     else()
@@ -571,7 +596,7 @@ foreach(placement_target mh4u_model_animation_output mh4u_player_orientation mh4
 endforeach()
 add_library(mh4u_native_player_actor src/player_actor.cpp)
 target_include_directories(mh4u_native_player_actor PUBLIC src)
-target_link_libraries(mh4u_native_player_actor PUBLIC mh4u_native_actor mh4u_player_animation)
+target_link_libraries(mh4u_native_player_actor PUBLIC mh4u_native_actor mh4u_player_position_bridge)
 add_executable(mh4u-player-actor-tests src/player_actor_tests.cpp)
 target_link_libraries(mh4u-player-actor-tests PRIVATE mh4u_player_preview)
 add_library(mh4u_player_preview src/player_preview.cpp)
@@ -589,6 +614,39 @@ if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/research/private/player-policy-predicate-
         "${CMAKE_CURRENT_SOURCE_DIR}/research/private/player-policy-predicate-v1/arm-complete/oracle.bin"
         "f261dee0c966fb81366ff611ab06d2903fed6f21956d8ad0e20d211e0786387e")
 endif()
+
+add_library(mh4u_collision_resource src/collision_resource.cpp)
+target_include_directories(mh4u_collision_resource PUBLIC src PRIVATE vendor/picosha2)
+add_executable(mh4u-collision-resource-tests src/collision_resource_tests.cpp)
+target_include_directories(mh4u-collision-resource-tests PRIVATE vendor/picosha2)
+target_link_libraries(mh4u-collision-resource-tests PRIVATE mh4u_collision_resource)
+if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/research/private/collision-resource-native-v1/derived-v1/oracle.bin")
+    add_test(NAME collision-resource-source-facts COMMAND mh4u-collision-resource-tests
+        "${CMAKE_CURRENT_SOURCE_DIR}/research/private/collision-resource-native-v1/derived-v1/oracle.bin"
+        "ae4c4df6485a7f16791f70e09f8dfcec9df6988d5da23c5441685102de13663b" "${CMAKE_CURRENT_SOURCE_DIR}")
+endif()
+add_library(mh4u_spatial_face_query src/spatial_face_query.cpp)
+target_include_directories(mh4u_spatial_face_query PUBLIC src)
+target_link_libraries(mh4u_spatial_face_query PUBLIC mh4u_motion_transform_math)
+add_executable(mh4u-spatial-face-query-tests src/spatial_face_query_tests.cpp)
+target_include_directories(mh4u-spatial-face-query-tests PRIVATE vendor/picosha2)
+target_link_libraries(mh4u-spatial-face-query-tests PRIVATE mh4u_spatial_face_query mh4u_collision_resource)
+if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/research/private/spatial-face-query-native-v1/oracle-adapter/derived-v1/sidecar.bin")
+    add_test(NAME spatial-face-query-arm COMMAND mh4u-spatial-face-query-tests
+        "${CMAKE_CURRENT_SOURCE_DIR}/research/private/spatial-face-query-v1/oracle.bin"
+        "ddcf592af5c4ea78f8c9eb9c5df80d7eb77ed4589d22cbaef66c6f15a11cebd7"
+        "${CMAKE_CURRENT_SOURCE_DIR}/research/private/spatial-face-query-native-v1/oracle-adapter/derived-v1/sidecar.bin"
+        "bf24d5c3c9b7141104b1d1daf3fa3db5f7a6aa8292e7fae5f7dd3c18bbcf52d2"
+        "${CMAKE_CURRENT_SOURCE_DIR}/assets/local/collision-probe/v00a01-core2/source.sbc"
+        "3a408a050c5fe82eb6faceff28be897d407a79cb79e1474789c4200505f77c07")
+endif()
+foreach(collision_target mh4u_collision_resource mh4u-collision-resource-tests mh4u_spatial_face_query mh4u-spatial-face-query-tests)
+    if(MSVC)
+        target_compile_options(${collision_target} PRIVATE /W4 /utf-8 /fp:strict)
+    else()
+        target_compile_options(${collision_target} PRIVATE -Wall -Wextra -Wpedantic -ffp-contract=off)
+    endif()
+endforeach()
 add_executable(mh4u-player-animation-tests src/player_animation_tests.cpp)
 target_link_libraries(mh4u-player-animation-tests PRIVATE mh4u_player_animation)
 set(MH4U_PLAYER_CONSTANTS "${CMAKE_CURRENT_SOURCE_DIR}/research/private/player-transition-runtime-v1/generated/player-transition-constants.bin")

@@ -4,8 +4,9 @@ A posição PBW10/14/18 não deve ser copiada para o renderer como um ajuste
 isolado. O código original passa por um estado intermediário em player+d00,
 aplica animação e só então publica novamente a posição do modelo e do PBW.
 O fluxo foi identificado estaticamente e depois executado no código ARM original,
-com recursos reais e estado de diagnóstico explícito. A composição nativa e o
-update completo que a envolve ainda estão pendentes.
+com recursos reais e estado de diagnóstico explícito. A composição nativa agora
+existe em `player_position_bridge`, com integração explícita em `Player::step_position`.
+O update completo que a envolve permanece pendente.
 
 | Função | Escritas observadas |
 | --- | --- |
@@ -27,8 +28,8 @@ b07c08→b06f8c→b07bb8, mas executa outras rotinas entre essas etapas e faz um
 segunda sequência de placement/cópia mais tarde. O código não autoriza
 substituir o update inteiro por um único dispatch seguido de render. O
 modelo40/50 já pertence a `motion_application::Model`; os campos PBW pertencem
-aos donos do controlador. A futura integração deve compor esses donos sem
-criar outra cópia persistente da pose ou da posição PBW.
+aos donos do controlador. A integração conserva esses donos sem criar outra
+cópia persistente da pose ou da posição PBW.
 
 `b26f50`, chamado no fluxo de posicionamento inicial, monta um payload de40
 bytes e chama2465c8. Não é o elo direto de cópia para model40. Essa distinção
@@ -58,15 +59,15 @@ via95b490→95b940. Em51 casos, tanto o PBW quanto a posição do modelo mudaram
 Seis casos retornaram pelo gate `d64&0x8`, e três pularam a publicação final
 por `d64&0x2`. Os150 casos preservaram os campos opacos observados do PBW.
 Uma auditoria posterior conferiu cópia, interpolação, offsets e consumo
-condicional dos campos. Esses resultados são observações do ARM e uma auditoria
-das saídas; ainda não são equivalência de uma implementação C++ da ponte.
+condicional dos campos. Esses resultados são observações do ARM; a comparação
+nativa posterior usa os mesmos bytes preservados, conforme descrito abaixo.
 
 As vtables `e6ed8c` e `e6bca4` selecionam95b490 no slot4c,95b940 no slot50
 e b05328 no slot80. O último retorna zero nesse perfil; b05350 continua pela
 conversão original6d4080 de ângulos para matriz e quaternion. Os oito readbacks
 REA da investigação somam3528bytes, conferidos contra o mesmo ELF.
 
-A futura implementação precisa conservar os donos existentes:
+A implementação conserva os donos existentes:
 
 - `motion_application::Model` guarda posição e rotação do modelo;
 - `motion_command::Fields.fieldsd48[1..6]` guarda d4c/d50/d54/d58/d5c/d60;
@@ -75,6 +76,36 @@ A futura implementação precisa conservar os donos existentes:
   nos16bits altos usado pela saída das juntas.
 
 A direção atualizada pelo ramo `d64&0x1` e a rota ativa de b06b38 continuam
-fora do perfil admitido. Também faltam a implementação nativa da ponte, sua
-integração no Player e a ordem completa de placement/scheduler. A cena do
-laboratório mantém sua política de apresentação explícita.
+fora do perfil admitido. Também faltam a ordem completa de placement/scheduler
+e o bootstrap. A cena do laboratório mantém sua política de apresentação explícita.
+
+## Implementação nativa e integração
+
+`player_position_bridge::apply` compõe orientação, timers, animação, interpolação,
+offset de apresentação e publicação das juntas na ordem original. O bloco
+95b490→95b940 foi extraído para `model_animation_output`; tanto o driver anterior
+quanto a ponte consomem esse mesmo dono. Os 16 bits baixos de model38 pertencem
+somente a `Fields::euler_mode`; `Hierarchy::attachment_mode_high16` retém somente
+os bits altos. A projeção temporária para `joint_output` não guarda outra cópia.
+
+O [comparador independente](player-position-bridge-oracle.md) passou nas 150
+chamadas originais em perfis normal e ASan/UBSan, com 72.317 verificações por
+perfil. Comparou 810.240 bytes de fatos nativos; os 4.200 bytes de scratch são
+projetados pelo PBW e os 1.552.266 bytes opacos/emprestados permanecem preservados.
+Essas categorias não são todas execução nativa. O helper compartilhado também
+passou novamente nos 2.586 casos do frame de animação anterior.
+
+`Player::step_position` usa os recursos imutáveis já pertencentes ao personagem.
+Só publica controller, PBW, timers, modelo e pose depois do skinning bem-sucedido.
+Os testes com o caçador real de sete peças cobrem atualização renderizada,
+retorno antecipado sem avanço do relógio, falha tardia de hierarquia, falha de
+skinning e reseed sem reutilizar campos antigos. O conjunto do Actor passou em
+2.058.107 verificações; a ponte possui mais 41 verificações de limites e consumo.
+O perfil sanitizado não instrumenta a biblioteca SDL e não usa LeakSanitizer.
+
+Campos e callbacks desconhecidos são exigidos apenas quando consumidos. O
+Player mantém duas camadas ativas no perfil atual; o comparador da ponte também
+cobre chamadas originais com uma camada, sem preencher camadas artificialmente.
+Não há troca automática do modo de inspeção nem nova versão do launcher neste marco.
+
+Evidências e snapshots: `research/private/player-position-bridge-native-v1/`.

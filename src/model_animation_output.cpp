@@ -30,7 +30,7 @@ Result apply(const model_animation_frame::State& source,const Hierarchy& hierarc
         projected.scale={model.scale[0],model.scale[1],model.scale[2]};
         projected.flags4=hierarchy.flags4;projected.flags104=hierarchy.flags104;projected.flags230=hierarchy.flags230;
         projected.flags238=animation.calculation_flags;
-        projected.attachment_index=hierarchy.attachment_index;projected.attachment_mode=hierarchy.attachment_mode;
+        projected.attachment_index=hierarchy.attachment_index;projected.attachment_mode=std::uint32_t(hierarchy.attachment_mode_high16)<<16;
         projected.dirty=hierarchy.dirty;projected.fieldc4c=hierarchy.fieldc4c;projected.order=hierarchy.order;
         projected.joints.reserve(hierarchy.joints.size());
         for(std::size_t i=0;i<hierarchy.joints.size();++i){const auto& joint=hierarchy.joints[i];
@@ -43,7 +43,7 @@ Result apply(const model_animation_frame::State& source,const Hierarchy& hierarc
         result.effects={transition.blend_layer_found,output.attachment_cleared,output.selected,transition.blended_joints,output.updated_joints};
         auto& h=result.hierarchy;auto& state=output.state;
         h.local_rt=state.local_rt;h.world=state.world;h.flags4=state.flags4;h.flags104=state.flags104;h.flags230=state.flags230;
-        h.attachment_index=state.attachment_index;h.attachment_mode=state.attachment_mode;
+        h.attachment_index=state.attachment_index;h.attachment_mode_high16=std::uint16_t(state.attachment_mode>>16);
         h.dirty=state.dirty;h.fieldc4c=state.fieldc4c;h.order=std::move(state.order);
         result.joints.reserve(state.joints.size());h.joints.reserve(state.joints.size());
         for(const auto& joint:state.joints){result.joints.push_back(joint.pose);

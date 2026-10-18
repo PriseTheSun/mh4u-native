@@ -270,7 +270,11 @@
       "research/private/player-state1-continuation-v1/manifest.json",
       "research/private/player-spatial-context-v4/manifest.json",
       "research/private/player-position-bridge-v1/manifest.json",
-      "research/private/spatial-triangle-native-v1/manifest.json"
+      "research/private/spatial-triangle-native-v1/manifest.json",
+      "research/private/player-position-bridge-native-v1/manifest.json",
+      "research/private/player-orientation-native-v1/manifest.json",
+      "research/private/collision-resource-native-v1/manifest.json",
+      "research/private/spatial-face-query-native-v1/oracle-adapter/manifest.json"
     ],
     "analysis_elf_checks": 23,
     "index_cli_tests": 7,
@@ -524,7 +528,7 @@
     "playable coop, synchronized actions and Internet transport",
     "Windows runtime validation"
   ],
-  "next": "Compose the source-bound SBC resource, original grid traversal and hit selection for native uncached spatial acquisition; recover gameplay masks and live object/resource population. Verify the PBW-to-model animation bridge, then implement its native composition with the existing owners. Scheduler/bootstrap, destination handlers, combat, quests, saves, full PT-BR, physical controller validation, Windows execution and playable Internet coop remain required.",
+  "next": "Compose source-bound SBC grid traversal, original filters and hit selection for native uncached spatial acquisition. Recover full placement/scheduler/bootstrap; combat, quests, saves, complete PT-BR, physical controller validation, Windows execution and Internet coop remain required.",
   "roadmap": "docs/roadmap.md",
   "resource_index": {
     "archives": 10592,
@@ -614,7 +618,7 @@
     "complete_character": false,
     "documentation": "docs/player-assembly.md"
   },
-  "updated_at": "2026-10-18T05:10:56.331940-03:00",
+  "updated_at": "2026-10-18T05:53:51.380534-03:00",
   "player_appearance": {
     "parts": 7,
     "joints": 19,
@@ -1102,9 +1106,9 @@
   },
   "next_frontier": {
     "native_graphics": "Native geometry/palette/CPU skinning integrated. Original material pipeline, projection/camera, visibility policy and PICA precision remain separate unverified frontiers.",
-    "animation": "PBW-to-model-to-PBW bridge completed150 original calls with real MOD/LMT and explicit initialization, including9573b8 and output callbacks. Implement native Euler orientation and wrapper composition with existing field/pose owners; direction-refresh/b06b38 paths, full placement, bootstrap and scheduler remain open.",
+    "animation": "Native PBW/model bridge and explicit Player::step_position now share frame/output owners and transactional render commit. Original150calls retained, diagnostics remain explicit; active b06b38, direction refresh, full placement, scheduler and startup remain open.",
     "product": "Playable combat, quests, saves, full PT-BR and Internet cooperative play remain required for the original objective. Laboratory is not the completed port.",
-    "spatial": "Original manager/grid query completed223 times over real SBC;122hits/101misses in explicit masks/context. Native cc94f0 leaf validated separately. Port source-normal17fec8, GRCO traversal and hit selection with canonical SBC owner; retain unproven gameplay masks, transforms, scene population and Player uncached route."
+    "spatial": "Immutable SBC core/known GRCO resource owner and source-normal17fec8 leaf validated. Compose original grid traversal/filtering/hit selection for uncached acquisition; gameplay masks, resource population and transforms remain explicit unknowns."
   },
   "native_actor": {
     "documentation": "docs/native-actor-rendering.md",
@@ -1170,7 +1174,7 @@
     "original_bootstrap_scheduler_proven": false,
     "windows_execution": false
   },
-  "development_extension": "native-spatial-triangle-and-original-grid-position-bridge",
+  "development_extension": "native-player-position-bridge-orientation-and-source-normal-collision",
   "player_state1": {
     "documentation": "docs/player-state1-native.md",
     "native": "src/player_state1.cpp",
@@ -1303,14 +1307,86 @@
     "moving_cases": 51,
     "early_return_cases": 6,
     "publication_skipped_cases": 3,
-    "native_integration": false,
+    "native_integration": true,
     "order": "b07c08 PBW ->d00; b06f8c orientation and d00 ->model40, animation9573b8, copy/weightback and offset,95b490/95b940; b07bb8 d00 ->PBW",
     "remaining": [
-      "native Euler orientation and wrapper composition",
-      "direction refresh d64&0x1",
+      "active direction refresh d00628",
       "active b06b38 path",
-      "placement/scheduler order and startup"
+      "complete placement/scheduler and startup"
     ],
-    "scope": "Original isolated ABI calls, real body001 and2LMT resources, diagnostic globals/banks/state. No complete enclosing update or native equivalence claimed."
+    "scope": "Source-bound C++ bridge compared with retained original ABI calls, body001 and2LMT; explicit transactional Player/renderer operation. No complete enclosing update or gameplay bootstrap.",
+    "native": "src/player_position_bridge.cpp",
+    "native_evidence": "research/private/player-position-bridge-native-v1/",
+    "player_api": "Player::step_position",
+    "normal_and_strict": true,
+    "native_projected_bytes": 810240,
+    "scratch_projection_bytes": 4200,
+    "opaque_borrowed_bytes": 1552266,
+    "actor_checks": 2058107,
+    "boundary_checks": 41,
+    "model_output_owner": "src/model_animation_output.cpp",
+    "native_comparator_checks": 72317,
+    "negative_processes": 38,
+    "comparator_manifest": "research/private/player-position-bridge-native-v1/oracle-adapter/manifest.json",
+    "integration_validation": {
+      "macos_ctest_passed": 108,
+      "macos_ctest_seconds": 46.71,
+      "macos_build_seconds": 59.726650458,
+      "windows_cross_build_seconds": 13.682659458,
+      "windows_execution": false,
+      "actor_strict_passed": true,
+      "final_changed_comparator_rebuilt_and_retested": true,
+      "initial_link_warning": "Duplicate policy_table link removed; final link clean.",
+      "cpu_time_and_process_family_peak_memory": "not measured for root integration"
+    }
+  },
+  "player_orientation": {
+    "native": "src/player_orientation.cpp",
+    "documentation": "docs/player-orientation.md",
+    "evidence": "research/private/player-orientation-native-v1/manifest.json",
+    "new_original_cases": 69076,
+    "retained_bridge_cases": 144,
+    "euler_modes": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "normal_and_strict": true,
+    "checks_per_profile": 1038333,
+    "general_trigonometric_runtime": false
+  },
+  "collision_resource": {
+    "native": "src/collision_resource.cpp",
+    "documentation": "docs/spatial-face-query.md",
+    "evidence": "research/private/collision-resource-native-v1/manifest.json",
+    "resources": 7,
+    "groups": 19,
+    "pairs": 5711,
+    "faces": 5834,
+    "grid_cells": 15232,
+    "grid_indices": 57629,
+    "checks_per_profile": 1504663,
+    "normal_and_strict": true,
+    "all_resources_original_execution": false
+  },
+  "spatial_face_query": {
+    "native": "src/spatial_face_query.cpp",
+    "documentation": "docs/spatial-face-query.md",
+    "original_evidence": "research/private/spatial-face-query-v1/manifest.json",
+    "native_evidence": "research/private/spatial-face-query-native-v1/oracle-adapter/manifest.json",
+    "original_calls": 1444,
+    "source_cases": 1290,
+    "synthetic_cases": 154,
+    "hits": 910,
+    "misses": 534,
+    "output_words": 18772,
+    "checks_per_profile": 50396,
+    "boundary_checks": 93,
+    "negative_processes": 58,
+    "normal_and_strict": true,
+    "grid_traversal_integrated": false
   }
 }

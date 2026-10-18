@@ -2,6 +2,7 @@
 #include "native_actor.hpp"
 #include "player_animation.hpp"
 #include "player_policy_interpreter.hpp"
+#include "player_position_bridge.hpp"
 #include <array>
 #include <optional>
 #include <string>
@@ -21,6 +22,7 @@ struct PlayerInitial {
     std::uint32_t calculation_flags{},accumulated_flags{};
     player_fields::Fields shared_fields;
     player_state1::Fields state1_fields;
+    player_position_bridge::Fields position_fields;
 };
 // Borrowed per-call facts. No parent views, area views or caller buffers persist.
 struct PlayerStep {
@@ -46,12 +48,13 @@ struct PlayerPolicyContext {
     std::optional<std::uint32_t> global_c8c;
     std::optional<std::array<std::uint16_t,2>> direction_bounds;
 };
-enum class PlayerErrorCode {initial_state,bank,driver,render,capacity,policy};
+enum class PlayerErrorCode {initial_state,bank,driver,render,capacity,policy,position};
 struct PlayerError {
     PlayerErrorCode code;std::string message;
     std::optional<player_animation::Error> driver;
     std::optional<Error> render;
     std::optional<player_policy_interpreter::Error> policy{};
+    std::optional<player_position_bridge::Error> position{};
 };
 template<class T>using PlayerResult=std::variant<T,PlayerError>;
 struct PlayerOutput {
@@ -67,6 +70,7 @@ struct PlayerPolicyOutput {
     std::optional<player_selection::TransitionEffects> transition;
 };
 struct PlayerState1Output {Frame frame;player_state1::Effects effects;};
+struct PlayerPositionOutput {Frame frame;player_position_bridge::Effects effects;};
 struct PlayerState1Context {
     player_reference::Reference reference=player_reference::Unknown{};
     player_selection::AreaContext area{};
@@ -87,6 +91,7 @@ public:
     const player_animation::State& state()const noexcept{return state_;}
     const player_fields::Fields& shared_fields()const noexcept{return shared_fields_;}
     const player_state1::Fields& state1_fields()const noexcept{return state1_fields_;}
+    const player_position_bridge::Fields& position_fields()const noexcept{return position_fields_;}
     const motion_request::Model& banks()const noexcept{return banks_;}
     std::uint64_t completed_steps()const noexcept{return completed_steps_;}
     PlayerResult<Frame> capture()const;
@@ -100,6 +105,12 @@ public:
     PlayerResult<PlayerOutput> apply(const player_animation::Command&,
         const motion_initialization::Templates&,const player_selection::AreaContext& = {});
     PlayerResult<PlayerOutput> step(const PlayerStep&);
+    // Original placement wrapper around the same frame/output owners. Callback
+    // identities and additional fields must be explicit; no diagnostic defaults.
+    // PBW/controller/model/pose changes commit together only after skinning.
+    PlayerResult<PlayerPositionOutput> step_position(const PlayerStep&,
+        std::optional<player_position_bridge::OrientationCallback> = {},
+        std::optional<player_position_bridge::OutputCallbacks> = {});
     PlayerResult<PlayerOutput> tick(const player_animation::Command&,const PlayerStep&,
         const player_selection::AreaContext& = {});
 private:
@@ -107,7 +118,7 @@ private:
     static PlayerResult<player_animation::State> rest_state(const Actor::Data&,const PlayerInitial&,player_animation::Limits);
     Player(std::shared_ptr<const Actor::Data>,player_animation::State,
         player_transition::Constants,motion_request::Model,player_animation::Limits,
-        player_fields::Fields,player_state1::Fields);
+        player_fields::Fields,player_state1::Fields,player_position_bridge::Fields);
     PlayerResult<PlayerOutput> execute(const player_animation::Command*,
         const motion_initialization::Templates&,const PlayerStep*,const player_selection::AreaContext&);
     PlayerResult<Frame> render(const player_animation::State&,std::uint64_t,std::size_t,std::uint64_t)const;
@@ -116,6 +127,7 @@ private:
     player_transition::Constants constants_;
     player_fields::Fields shared_fields_; // Sole owner of shared extras, including raw PBW position/cost.
     player_state1::Fields state1_fields_; // Sole live owner of pw+50; no inferred countdown.
+    player_position_bridge::Fields position_fields_; // Extra placement facts, no duplicated PBW/model.
     motion_request::Model banks_; // Views borrow immutable Data resources.
     player_animation::Limits limits_;
     std::uint64_t completed_steps_{},revision_=1;

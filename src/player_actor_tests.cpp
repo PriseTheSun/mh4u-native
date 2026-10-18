@@ -33,6 +33,43 @@ na::PlayerInitial inspection_seed(std::size_t count){
 na::PlayerStep inspection_step(){na::PlayerStep step;step.delta_bits=one;step.templates={jp::Bits3{},jp::Bits3{},identity,jp::Bits4{}};step.restoration_scale=ones;step.parent=jp::Null{};step.reference_basis=mh4u::motion_transform_math::Basis{one,0,0,0,0,one,0,0,0,0,one,0};step.reference_translation=identity;return step;}
 na::PlayerBanks bank_table(){na::PlayerBanks banks{};banks[0]=na::MotionSource{"c5f8f0c5f86ad43323a3ca7dcf6394a6938363b038fd1bab264e4b2597e0c0d8"};return banks;}
 void invariant(const na::Player& player,const na::PlayerInitial& initial){const auto& s=player.state();check(s.frame.animation.layers.size()==2&&s.frame.animation.joints.size()==19&&s.frame.animation.snapshots.size()==19&&s.hierarchy.joints.size()==19,"Canonical real rig extents");for(unsigned i=0;i<6;++i){const auto& a=s.inactive[i];const auto& b=initial.layers[i+2];check(std::bit_cast<std::uint32_t>(a.animation.layer.frame)==std::bit_cast<std::uint32_t>(b.animation.layer.frame)&&a.rotation_98==b.rotation_98&&a.animation.tracks==b.animation.tracks,"Inactive state changed");}}
+void position_integration(const na::Actor& actor,const pt::Constants& constants){
+ namespace pb=mh4u::player_position_bridge;
+ const auto orientation=pb::OrientationCallback::b05328;const auto publication=pb::OutputCallbacks::standard_95b490_95b940;
+ auto seed=inspection_seed(actor.joint_count());const auto banks=bank_table();const auto step=inspection_step();
+ auto unknown=get(na::Player::from_rest(actor,seed,constants,banks));
+ const auto missing=unknown.step_position(step,orientation,publication);
+ check(std::holds_alternative<na::PlayerError>(missing)&&std::get<na::PlayerError>(missing).position->field=="PBW10","Actor invented a position seed");
+ check(unknown.completed_steps()==0&&unknown.position_fields()==seed.position_fields,"Missing bridge fields mutated actor");
+ seed.position_fields={std::uint8_t(1),std::uint8_t(77),0U,0U,one,0U,std::uint16_t(4)};
+ seed.shared_fields.pbw.field10_bits=std::bit_cast<std::uint32_t>(17.F);seed.shared_fields.pbw.field14_bits=std::bit_cast<std::uint32_t>(-23.F);seed.shared_fields.pbw.field18_bits=std::bit_cast<std::uint32_t>(91.F);seed.shared_fields.pbw.field1c_bits=0x7fc00001U;
+ seed.controller.player.pbw.field20=0xabcd0000;seed.controller.player.pbw.field24=0x12340000;seed.controller.player.pbw.field28=0xffff0000;
+ seed.controller.player.fieldsd10={std::bit_cast<std::uint32_t>(1.F),std::bit_cast<std::uint32_t>(2.F),std::bit_cast<std::uint32_t>(3.F)};
+ seed.state1_fields.field50_bits=73;
+ auto early_seed=seed;early_seed.position_fields.fieldd64=8;
+ auto early=get(na::Player::from_rest(actor,early_seed,constants,banks));const auto before=get(early.capture());
+ auto early_output=get(early.step_position(step));
+ check(early_output.effects.early_return&&!early_output.effects.animation&&early.completed_steps()==0,"Early placement performed a frame step");
+ check(early.shared_fields().pbw.field1c_bits==0&&early.state().controller.player==early_seed.controller.player&&early.position_fields().fieldd44==77,"Early placement lost raw field semantics");equal(before,early_output.frame);
+ auto player=get(na::Player::from_rest(actor,seed,constants,banks));
+ const pa::Command command=ps::CommonArguments{1,4,0,0,1,0};get(player.apply(command,step.templates));
+ const auto unplaced=get(player.capture());const auto placed=get(player.step_position(step,orientation,publication));++frames;
+ check(placed.effects.animation&&!placed.effects.publication_skipped&&player.completed_steps()==1,"Placement did not use complete frame/output path");
+ check(placed.frame.scene.global_transforms!=unplaced.scene.global_transforms,"Placement failed to reach rendered matrices");
+ const auto& raw=player.shared_fields().pbw;const std::array position{*raw.field10_bits,*raw.field14_bits,*raw.field18_bits};
+ for(unsigned k=0;k<3;++k){const float expected=std::bit_cast<float>(position[k])+std::bit_cast<float>(player.state().controller.player.fieldsd10[k]);check(player.state().frame.model.position[k]==std::bit_cast<std::uint32_t>(expected),"Rendered model did not include presentation offset");}
+ check(raw.field1c_bits==0&&player.position_fields().fieldd44==0&&player.state1_fields().field50_bits==73,"Placement lost shared or distinct owner fields");invariant(player,seed);
+ auto twin=player;auto invalid=step;invalid.parent=jp::Unknown{};
+ const auto failed=player.step_position(invalid,orientation,publication);
+ check(std::holds_alternative<na::PlayerError>(failed)&&std::get<na::PlayerError>(failed).position->publication->phase==mh4u::model_animation_output::Phase::hierarchy,"Placement late failure lost typed owner");
+ check(player.shared_fields()==twin.shared_fields()&&player.position_fields()==twin.position_fields()&&player.completed_steps()==twin.completed_steps(),"Late placement failure committed fields");equal(get(player.capture()),get(twin.capture()));
+ equal(get(player.step_position(step,orientation,publication)).frame,get(twin.step_position(step,orientation,publication)).frame);++frames;
+ auto flat_seed=seed;flat_seed.model.scale={0,0,0,0};auto flat=get(na::Player::from_rest(actor,flat_seed,constants,banks));const auto flat_before=get(flat.capture());
+ const auto flat_result=flat.step_position(step,orientation,publication);
+ check(std::holds_alternative<na::PlayerError>(flat_result)&&std::get<na::PlayerError>(flat_result).code==na::PlayerErrorCode::render,"Placement render failure was not propagated");
+ check(flat.completed_steps()==0&&flat.position_fields()==flat_seed.position_fields&&flat.shared_fields()==flat_seed.shared_fields&&flat.state().controller.player==flat_seed.controller.player,"Skinning failure committed position/controller");equal(flat_before,get(flat.capture()));
+ auto reset=get(na::Player::from_rest(player,inspection_seed(actor.joint_count())));check(!reset.position_fields().euler_mode&&!reset.shared_fields().pbw.field10_bits,"Reseed reused old placement facts");
+}
 void run(const char* recipe,const pt::Constants& constants){
  auto actor=get(na::Actor::load(recipe));check(actor.part_count()==7&&actor.joint_count()==19,"Expected real seven-piece hunter");const auto seed=inspection_seed(actor.joint_count());const auto banks=bank_table();const auto step=inspection_step();
  auto player=get(na::Player::from_rest(actor,seed,constants,banks));check(player.presentation()==actor.presentation(),"Presentation was copied into another owner");check(player.source_files().data()==actor.source_files().data(),"Source inventory was reparsed/copied");
@@ -74,6 +111,7 @@ void run(const char* recipe,const pt::Constants& constants){
  const auto shared_presentation=preview.presentation();const auto reset=get(preview.reset());check(preview.presentation()==shared_presentation&&preview.player().completed_steps()==0&&!reset.command&&!reset.animation,"Preview reset replaced source ownership or performed hidden work");equal(reset.frame,rest);
  get(preview.request(1));equal(get(preview.step()).frame,preview_first.frame);++frames;
  check(std::holds_alternative<na::PlayerError>(na::PlayerPreview::from_actor(movable,constants)),"Preview dereferenced moved Actor");
+ position_integration(actor,constants);
  equal(get(actor.evaluate(-1,0,false)),rest);check(before.scene.global_transforms.size()==19,"Original capture lost hierarchy");
 }
 }
