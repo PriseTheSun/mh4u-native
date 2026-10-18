@@ -13,7 +13,7 @@ Error numeric(Phase phase,const arithmetic::Error& cause) noexcept {
 }
 Result apply(const player_controller_step::State& source,
     std::optional<Word> delta_bits,const Bindings& bindings) noexcept {
-    static_assert(std::is_nothrow_copy_constructible_v<player_controller_step::State>);
+    static_assert(std::is_nothrow_move_constructible_v<player_controller_step::State>);
     Effects effects;
     const auto record=[&](Call call){effects.calls[effects.call_count++]=call;};
     const auto& player=source.player;

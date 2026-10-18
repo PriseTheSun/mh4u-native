@@ -25,7 +25,7 @@ pcs::State seed(){
  s.player.pbw.field24=0xaaaa0000;s.player.pw.fieldb0=0xbbbb0001;
  s.player.global.field20=0x1839;s.player.global.field22=0xabcd;s.player.global.field5a=0x93;
  s.player.pw.policy.latches.fill(0xa5);s.player.pw.policy.timer144_bits=0x7fa12345;
- s.player.selection_pbw.field6fa=0x71;s.player.selection_pw.field9a8=0x7fc12345;
+ s.player.selection_pbw.field6fa=0x71;s.player.selection_pw.field9a8=0x45;
  s.motion.fieldsd48.fill(0xf0e1d2c3);s.motion.fieldd68=0xff812345;s.motion.fieldsd70.fill(0x01234567);
  return s;
 }
