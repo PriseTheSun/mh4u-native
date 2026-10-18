@@ -22,8 +22,8 @@
     "checksums": "tools/dependencies.lock.json"
   },
   "runtime": {
-    "macos_arm64": "Published laboratory0.17.0 remains open. Development engine exposes native world lookup and an atomic Player update prefix;120/120 CTests passed. IPS/IPL source reader added. Complete bootstrap/scheduler and record activation remain unfinished.",
-    "windows_x64": "Development engine cross-compiled for Windows x64 without warnings, including world lookup, preparation prefix and IPS/IPL parser. Windows execution remains unverified; published laboratory0.17.0 retained.",
+    "macos_arm64": "Published laboratory0.17.0 remains open. Development engine constructs fresh item-pop records with original weighted selection and shared RNG; 122/122 CTests passed. Activation, complete bootstrap and scheduler remain unfinished.",
+    "windows_x64": "Development engine cross-compiled for Windows x64 without warnings, including full fresh item-pop builder and shared RNG/remap. Windows execution remains unverified; published laboratory0.17.0 retained.",
     "scene": "real em062 actor: 12 joints, 1516 vertices, 1564 triangles, 28 source LMT actions; static OBJ samples retained",
     "texture_selector": "PNG replacement packs keyed by original encoded SHA256 work through common presentation materials, including native recipes. No HD pack included; original selector verification retained.",
     "controller_configuration": "movement/camera axes, deadzone and remapping implemented with backup; physical controller not available",
@@ -288,7 +288,8 @@
       "research/private/player-input-filter-v1/manifest.json",
       "research/private/player-update-accumulator-v1/manifest.json",
       "research/private/player-world-lookup-v1/manifest.json",
-      "research/private/item-pop-resources-v1/manifest.json"
+      "research/private/item-pop-resources-v1/manifest.json",
+      "research/private/item-pop-builder-v2/manifest.json"
     ],
     "analysis_elf_checks": 23,
     "index_cli_tests": 7,
@@ -542,7 +543,7 @@
     "playable coop, synchronized actions and Internet transport",
     "Windows runtime validation"
   ],
-  "next": "Complete fresh-record5ba7b4 including5b928c category/RNG selection with source-driven comparisons on real IPS/IPL. Reuse/extract existing69d568 remap owner; recover record activation/scheduling and b1407c afterb14104. Full gameplay, combat/quests/saves, completePT-BR, physical controls, Windows execution and Internet coop remain required.",
+  "next": "Execute original fresh builder→manager5ba580→record5aa4cc→world lookup with explicit clock gates/delta, then implement that complete bounded activation path. Preserve real resource counts and do not assume scene/SBC binding, scheduler or post-loader auxiliaries. Full gameplay, combat/quests/saves, complete PT-BR, physical controls, Windows execution and Internet coop remain required.",
   "roadmap": "docs/roadmap.md",
   "resource_index": {
     "archives": 10592,
@@ -632,7 +633,7 @@
     "complete_character": false,
     "documentation": "docs/player-assembly.md"
   },
-  "updated_at": "2026-10-18T10:55:38.766385+00:00",
+  "updated_at": "2026-10-18T11:18:52.075206+00:00",
   "player_appearance": {
     "parts": 7,
     "joints": 19,
@@ -1649,7 +1650,48 @@
     "windows_executed": false,
     "normal_and_strict": true,
     "activated_world_list": false,
-    "full_builder_executed": false,
-    "complete_scheduler": false
+    "full_builder_executed": true,
+    "complete_scheduler": false,
+    "builder_manifest": "research/private/item-pop-builder-v2/manifest.json"
+  },
+  "item_pop_builder": {
+    "documentation": "docs/item-pop-builder.md",
+    "manifest": "research/private/item-pop-builder-v2/manifest.json",
+    "api": "item_pop_builder::build_fresh",
+    "source": "Complete5ba7b4 including5b928c; fresh/unattached128slot profile",
+    "original_builder_executed": true,
+    "original_stream_loaders_executed": false,
+    "readiness_executed": false,
+    "result": {
+      "status": "passed",
+      "cases": 33,
+      "allocated": 874,
+      "linked": 734,
+      "rng_calls": 744,
+      "source_provenance": 874,
+      "source_stores": 249394,
+      "source_store_bytes": 700110,
+      "native_owned_final_bytes": 532686,
+      "projected_arena_bytes": 811008,
+      "resource_immutable_bytes": 27636,
+      "typed_errors": 8,
+      "lazy_controls": 2,
+      "checks": 2672486
+    },
+    "shared_primitives": {
+      "original_rng_seeds": 65536,
+      "original_remap_cases": 2048,
+      "original_guard_negatives": 8,
+      "native_checks_per_profile": 94082,
+      "profiles": [
+        "normal",
+        "ASan/UBSan/float-cast-overflow nonrecovering"
+      ],
+      "negative_native_processes": 16,
+      "stable_transitive_inputs": 62
+    },
+    "windows_crossbuild": true,
+    "windows_executed": false,
+    "macos_ctests": 122
   }
 }

@@ -122,7 +122,14 @@ struct Builder {
             fail(ErrorCode::resource_limit,"Builder output exceeds representation policy");
         out.global=context.global;out.manager.head=wl::Absent{};
         out.manager.field4a20=0;out.manager.field4a24=context.id_counter;
-        for(auto& r:out.manager.records)reset(r);
+        for(auto& r:out.manager.records){
+            // Native fresh construction establishes the class and absent
+            // auxiliaries, matching5ab458. They are not stores of5ba7b4/reset.
+            r.update_binding=wl::RecordUpdateBinding::item_pop_5aa4cc;
+            r.auxiliary10=wl::AuxiliaryPresence::absent;
+            r.auxiliary14=wl::AuxiliaryPresence::absent;
+            reset(r);
+        }
         if(!set)return std::move(out);
         if(!list)return std::move(out);
         if(set->kind()!=ip::Kind::set)fail(ErrorCode::wrong_kind,"Expected Set resource");

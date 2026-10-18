@@ -1,5 +1,7 @@
 #include "item_pop_builder.hpp"
+#include "test_support/item_pop_manager_fixture.hpp"
 #include "picosha2.h"
+#include <algorithm>
 #include <filesystem>
 #include <fstream>
 #include <iostream>
@@ -11,59 +13,25 @@ namespace ib=mh4u::item_pop_builder;
 namespace ip=mh4u::item_pop_resources;
 namespace wl=mh4u::player_world_lookup;
 namespace ps=mh4u::player_selection;
-using U=std::uint32_t;using Bytes=std::vector<std::uint8_t>;
-std::size_t checks{},stores{},store_bytes{},allocated{},linked{},rng{},typed{},lazy{},provenance{};
-void need(bool ok,const char* what){++checks;if(!ok)throw std::runtime_error(what);}
-struct Reader{
- std::span<const std::uint8_t> b;std::size_t at{};
- auto take(std::size_t n){need(n<=b.size()-at,"fixture truncated");auto v=b.subspan(at,n);at+=n;return v;}
- U word(){auto v=take(4);return U(v[0])|(U(v[1])<<8)|(U(v[2])<<16)|(U(v[3])<<24);}
- std::string text(){const auto n=word();need(n<=512,"text extent");auto v=take(n);return {v.begin(),v.end()};}
- std::string hash(){const auto v=take(32);return picosha2::bytes_to_hex_string(v.begin(),v.end());}
- void end(){need(at==b.size(),"fixture trailing bytes");}
-};
-constexpr U M=0x2000000,G=0x2600000,C=0x2500000,LB=0x2400000;
-const std::vector<std::pair<U,U>> fields=[](){std::vector<std::pair<U,U>> v{{4,1},{8,4},{12,4},{0x19,1},{0x1a,1},{0x1c,4},{0x20,4},{0x24,4},{0x28,4},{0x2c,2},{0x2e,1},{0x2f,1},{0x30,2},{0x32,2}};for(U o=0x34;o<0x54;o+=4)v.emplace_back(o,4);for(U o=0x54;o<0x58;++o)v.emplace_back(o,1);v.emplace_back(0x58,4);v.emplace_back(0x5c,4);for(U o=0x60;o<0x65;++o)v.emplace_back(o,1);for(U o=0x68;o<0x78;o+=4)v.emplace_back(o,4);v.emplace_back(0x78,1);v.emplace_back(0x79,1);for(U o=0x7c;o<0x94;o+=4)v.emplace_back(o,4);return v;}();
-U read(std::span<const std::uint8_t> b,std::size_t o,U n=4){need(o<=b.size()&&n<=b.size()-o,"snapshot read bounds");U v=0;for(U i=0;i<n;++i)v|=U(b[o+i])<<(8*i);return v;}
-void put(Bytes& b,std::size_t o,std::uint64_t v,U n=4){need(o<=b.size()&&n<=b.size()-o,"projection bounds");for(U i=0;i<n;++i)b[o+i]=std::uint8_t(v>>(8*i));}
-wl::Link decode_link(U pointer){if(pointer==0)return wl::Absent{};need(pointer>=M+0x1c&&pointer<M+0x1c+128*0x94&&(pointer-M-0x1c)%0x94==0,"record link identity");return wl::Index{(pointer-M-0x1c)/0x94};}
-U encode_link(const wl::Link& l){if(std::holds_alternative<wl::Absent>(l))return 0;need(std::holds_alternative<wl::Index>(l),"unexpected unknown link");const auto i=std::get<wl::Index>(l).value;need(i<128,"native link bounds");return M+0x1c+U(i)*0x94;}
-wl::Manager decode_manager(std::span<const std::uint8_t> b,const ip::Resource& list){wl::Manager m{};m.head=decode_link(read(b,0x4a1c));m.field4a20=read(b,0x4a20);m.field4a24=read(b,0x4a24);
- for(U i=0;i<128;++i){auto s=b.subspan(0x1c+i*0x94,0x94);auto& r=m.records[i];r.next=decode_link(read(s,8));r.previous=decode_link(read(s,12));
- #define D8(x) r.field##x=std::uint8_t(read(s,0x##x,1));
- D8(4) D8(19) D8(1a) D8(2e) D8(2f) D8(54) D8(55) D8(56) D8(57) D8(60) D8(61) D8(62) D8(63) D8(64) D8(78) D8(79)
- #undef D8
- r.field2c=std::uint16_t(read(s,0x2c,2));r.field30=std::uint16_t(read(s,0x30,2));r.field32=std::uint16_t(read(s,0x32,2));
- r.field1c_bits=read(s,0x1c);r.field20_bits=read(s,0x20);r.field24=read(s,0x24);r.field4c_bits=read(s,0x4c);r.field50_bits=read(s,0x50);r.field58_bits=read(s,0x58);r.field5c_bits=read(s,0x5c);r.field74=read(s,0x74);r.field88=read(s,0x88);
- for(U k=0;k<3;++k){r.fields34[k]=read(s,0x34+4*k);r.fields40[k]=read(s,0x40+4*k);r.fields68[k]=read(s,0x68+4*k);r.fields7c[k]=read(s,0x7c+4*k);}for(U k=0;k<2;++k)r.fields8c[k]=read(s,0x8c+4*k);
- const U p=read(s,0x28);if(p==0)r.field28=wl::Field28{U(0)};else{need(p>=LB&&p-LB<list.allocation_size(),"IPL pointer provenance");r.field28=wl::Field28{wl::ResourceReference{std::string(list.sha256()),p-LB}};}}
- return m;}
-Bytes encode_manager(const wl::Manager& m,std::span<const std::uint8_t> before,const ip::Resource& list){Bytes b(before.begin(),before.end());auto atom=[&](std::size_t o,const auto& v,U n=4){need(v.has_value(),"native output unknown");put(b,o,*v,n);};put(b,0x4a1c,encode_link(m.head));atom(0x4a20,m.field4a20);atom(0x4a24,m.field4a24);
- for(U i=0;i<128;++i){const auto o=0x1c+i*0x94;const auto& r=m.records[i];put(b,o+8,encode_link(r.next));put(b,o+12,encode_link(r.previous));
- #define E8(x) atom(o+0x##x,r.field##x,1);
- E8(4) E8(19) E8(1a) E8(2e) E8(2f) E8(54) E8(55) E8(56) E8(57) E8(60) E8(61) E8(62) E8(63) E8(64) E8(78) E8(79)
- #undef E8
- atom(o+0x2c,r.field2c,2);atom(o+0x30,r.field30,2);atom(o+0x32,r.field32,2);atom(o+0x1c,r.field1c_bits);atom(o+0x20,r.field20_bits);atom(o+0x24,r.field24);atom(o+0x4c,r.field4c_bits);atom(o+0x50,r.field50_bits);atom(o+0x58,r.field58_bits);atom(o+0x5c,r.field5c_bits);atom(o+0x74,r.field74);atom(o+0x88,r.field88);
- for(U k=0;k<3;++k){atom(o+0x34+4*k,r.fields34[k]);atom(o+0x40+4*k,r.fields40[k]);atom(o+0x68+4*k,r.fields68[k]);atom(o+0x7c+4*k,r.fields7c[k]);}for(U k=0;k<2;++k)atom(o+0x8c+4*k,r.fields8c[k]);need(r.field28.has_value(),"field28 missing");if(const auto* p=std::get_if<U>(&*r.field28))put(b,o+0x28,*p);else{const auto& p=std::get<wl::ResourceReference>(*r.field28);need(p.sha256==list.sha256()&&p.buffer_offset<list.allocation_size(),"native IPL reference identity");put(b,o+0x28,LB+p.buffer_offset);}}
- return b;}
-struct Resources{std::filesystem::path root;std::map<std::string,ip::Resource> cache;const ip::Resource& get(const std::string& path,const std::string& sha,U size){const std::filesystem::path p(path);need(!p.is_absolute(),"absolute source path");for(const auto& s:p)need(s!="..","escaping source path");const auto full=root/p;need(std::filesystem::file_size(full)==size,"source length");const auto key=path+sha;auto it=cache.find(key);if(it==cache.end()){auto result=ip::Resource::load(full,sha);need(std::holds_alternative<ip::Resource>(result),"source Resource load rejected");it=cache.emplace(key,std::get<ip::Resource>(std::move(result))).first;}return it->second;}};
-std::optional<U> optional(Reader& q){const U present=q.word(),v=q.word();need(present<=1,"optional tag");need(present||v==0,"absent payload");return present?std::optional<U>{v}:std::nullopt;}
+using namespace mh4u::test_support::item_pop_manager;
+std::size_t stores{},store_bytes{},allocated{},linked{},rng{},typed{},lazy{},provenance{};
 std::optional<ib::Location> location(Reader& q){const U present=q.word(),source=q.word(),buffer=q.word();need(present<=1,"location tag");need(present||(source==0&&buffer==0),"absent location payload");return present?std::optional<ib::Location>{{source,buffer}}:std::nullopt;}
 bool same_source(const ib::SlotSource& a,const ib::SlotSource& b){return a.group_iteration==b.group_iteration&&a.group_index==b.group_index&&a.record_index==b.record_index&&a.remapped_group==b.remapped_group&&a.position_index==b.position_index&&a.choice_index==b.choice_index&&a.primary==b.primary&&a.position==b.position&&a.choice==b.choice&&a.set_sha256==b.set_sha256;}
 void unchanged(const ib::Context& c,const ib::Context& saved,std::span<const ps::AreaMappingRecord> mapping,std::span<const ps::AreaMappingRecord> copy){need(c.id_counter==saved.id_counter&&c.position_template==saved.position_template&&c.auxiliary_template==saved.auxiliary_template&&c.global==saved.global&&c.area.mode_c8c==saved.area.mode_c8c,"context mutated");need(mapping.size()==copy.size(),"mapping size");for(std::size_t i=0;i<mapping.size();++i)need(mapping[i].mapped==copy[i].mapped&&mapping[i].gate==copy[i].gate,"borrowed mapping mutated");}
-void boundaries(const ip::Resource& set,const ip::Resource& list,ib::Context c){
+void boundaries(const ip::Resource& set,const ip::Resource& list,ib::Context c,Resources& resources){
  const auto saved=c;const Bytes setbytes(reinterpret_cast<const std::uint8_t*>(set.bytes().data()),reinterpret_cast<const std::uint8_t*>(set.bytes().data())+set.bytes().size());const Bytes listbytes(reinterpret_cast<const std::uint8_t*>(list.bytes().data()),reinterpret_cast<const std::uint8_t*>(list.bytes().data())+list.bytes().size());
  auto reject=[&](const ip::Resource* s,const ip::Resource* l,const ib::Context& x,ib::ErrorCode code,ib::Limits limits=ib::Limits{}){const auto prior=x;const auto result=ib::build_fresh(s,l,x,limits);need(std::holds_alternative<ib::Error>(result),"negative builder accepted");const auto& e=std::get<ib::Error>(result);need(e.code==code,"negative builder cause");if(code==ib::ErrorCode::selection_failure)need(e.selection.has_value(),"selection cause lost");need(x.global==prior.global&&x.id_counter==prior.id_counter&&x.area.mode_c8c==prior.area.mode_c8c,"error published state");++typed;};
  reject(&list,&set,c,ib::ErrorCode::wrong_kind);reject(&set,&set,c,ib::ErrorCode::wrong_kind);
- {auto l=ib::Limits{};l.records=0;reject(&set,&list,c,ib::ErrorCode::resource_limit,l);l=ib::Limits{};l.representation_bytes=1;reject(nullptr,nullptr,c,ib::ErrorCode::resource_limit,l);}
+ {auto l=ib::Limits{};l.records=0;reject(&set,&list,c,ib::ErrorCode::resource_limit,l);l.records=set.group_count()+1;reject(&set,&list,c,ib::ErrorCode::resource_limit,l);l=ib::Limits{};l.representation_bytes=1;reject(nullptr,nullptr,c,ib::ErrorCode::resource_limit,l);}
  {auto x=c;x.area.mode_c8c.reset();reject(&set,&list,x,ib::ErrorCode::selection_failure);}
  {auto x=c;x.area.mode_c8c=13;x.area.mapping={};reject(&set,&list,x,ib::ErrorCode::selection_failure);}
+ {const auto& special=resources.get("research/private/item-pop-builder-v2/oracle/native-controls/unsupported-ordinal.ips","39e7b5da156b75ccda5b483db08e2333e8e5fdddba439f734623da547bd80f09",150);auto x=c;std::array<ps::AreaMappingRecord,2> map{};map[1].mapped=0;x.area.mode_c8c=13;x.area.mapping=map;const auto prior=map;reject(&special,&list,x,ib::ErrorCode::unsupported_descriptor);need(map[1].mapped==prior[1].mapped&&map[1].gate==prior[1].gate,"negative mutated mapping");}
  for(const auto pair:{std::pair<const ip::Resource*,const ip::Resource*>{&list,nullptr},{nullptr,&set}}){auto x=c;x.area.mode_c8c.reset();const auto result=ib::build_fresh(pair.first,pair.second,x);need(std::holds_alternative<ib::Built>(result),"null resource consumed kind or mapping");const auto& out=std::get<ib::Built>(result);need(out.allocated==0&&out.rng_calls==0&&out.global==x.global&&out.manager.field4a24==x.id_counter&&out.manager.field4a20==0&&std::holds_alternative<wl::Absent>(out.manager.head),"null reset output");for(const auto& r:out.manager.records)need(r.field4==0&&r.field19==0&&r.field2c==65535,"null reset record");++lazy;}
  need(c.global==saved.global&&c.id_counter==saved.id_counter,"boundary changed context");need(std::equal(setbytes.begin(),setbytes.end(),reinterpret_cast<const std::uint8_t*>(set.bytes().data())),"Set source mutated");need(std::equal(listbytes.begin(),listbytes.end(),reinterpret_cast<const std::uint8_t*>(list.bytes().data())),"List source mutated");
 }
 int main(int argc,char** argv){try{
  need(argc==4,"usage: item-pop-builder-tests fixture sha256 root");const auto size=std::filesystem::file_size(argv[1]);need(size<=32U*1024U*1024U,"fixture capacity");std::ifstream file(argv[1],std::ios::binary);Bytes raw{std::istreambuf_iterator<char>(file),{}};need(raw.size()==size,"fixture length");need(picosha2::hash256_hex_string(raw)==argv[2],"fixture SHA");Reader r{raw};const auto magic=r.take(8);need(std::string(magic.begin(),magic.end())=="MHIPBU02","schema");need(r.word()==33,"case count");need(r.hash()=="d4191ea404df1e9ade8fb401983e3497699dae5aa994937f7859c43f84403435","ELF identity");need(r.hash()=="c49da7302b577d9934d246bf290b2fb7128e49ebc9de2e3cd441994e4e565efb","original execution identity");need(r.word()==fields.size(),"field count");for(auto [off,n]:fields){need(r.word()==off&&r.word()==n,"field contract");}
- Resources resources{argv[3],{}};ib::Context boundary_context{};const ip::Resource* boundary_set=nullptr;const ip::Resource* boundary_list=nullptr;
+ Resources resources{argv[3],{},{}};ib::Context boundary_context{};const ip::Resource* boundary_set=nullptr;const ip::Resource* boundary_list=nullptr;
  for(U index=0;index<33;++index){const auto count=r.word();need(count<=1024U*1024U,"row extent");Reader q{r.take(count)};need(q.word()==index,"case order");const auto name=q.text();std::array<const ip::Resource*,2> source{};
  for(auto& s:source){const auto path=q.text(),sha=q.hash();s=&resources.get(path,sha,q.word());}
  const U present_set=q.word(),present_list=q.word();need(present_set<=1&&present_list<=1,"resource presence");ib::Context context{};for(auto& v:context.position_template)v=q.word();for(auto& v:context.auxiliary_template)v=q.word();const auto ranges=q.word();need(ranges<=8192,"initialization count");std::vector<std::pair<U,U>> initialized;for(U i=0;i<ranges;++i){const U a=q.word(),b=q.word();need(a<b,"initialized extent");initialized.emplace_back(a,b);}auto known=[&](U address,U n){return std::any_of(initialized.begin(),initialized.end(),[&](auto p){return address>=p.first&&std::uint64_t(address)+n<=p.second;});};
@@ -77,6 +45,6 @@ int main(int argc,char** argv){try{
  for(U i=0;i<128;++i){need(out.sources[i].has_value()==expected_sources[i].has_value(),"slot provenance presence");if(expected_sources[i]){need(same_source(*out.sources[i],*expected_sources[i]),"slot provenance differs from original addresses");++provenance;}need(out.manager.records[i].field19==0,"builder fabricated readiness");}
  const auto projected=encode_manager(out.manager,mb,*source[1]);need(std::equal(projected.begin(),projected.end(),ma.begin()),"projected manager differs from ARM");auto expected_global=context.global;expected_global.field22=std::uint16_t(read(ga,0x22,2));need(out.global==expected_global,"global changed outside source seed");Bytes global_projected(gb.begin(),gb.end());put(global_projected,0x22,out.global.field22,2);need(std::equal(global_projected.begin(),global_projected.end(),ga.begin()),"global projection differs from ARM");unchanged(context,context_before,mapping,mapping_before);need(std::equal(mbs.begin(),mbs.end(),mb.begin())&&std::equal(gbs.begin(),gbs.end(),gb.begin())&&std::equal(cbs.begin(),cbs.end(),cb.begin()),"fixture/borrowed snapshots mutated");
  allocated+=out.allocated;linked+=*out.manager.field4a20;rng+=out.rng_calls;if(index==0){boundary_context=context;boundary_context.area.mapping={};boundary_set=source[0];boundary_list=source[1];}
- }r.end();need(boundary_set&&boundary_list,"boundary sources");boundaries(*boundary_set,*boundary_list,boundary_context);
- U owned=12+2;for(auto [offset,n]:fields){(void)offset;owned+=128*n;}std::cout<<"{\"status\":\"passed\",\"cases\":33,\"allocated\":"<<allocated<<",\"linked\":"<<linked<<",\"rng_calls\":"<<rng<<",\"source_provenance\":"<<provenance<<",\"source_stores\":"<<stores<<",\"source_store_bytes\":"<<store_bytes<<",\"native_owned_final_bytes\":"<<33*owned<<",\"projected_arena_bytes\":"<<33*(0x5000+0x1000)<<",\"typed_errors\":"<<typed<<",\"lazy_controls\":"<<lazy<<",\"checks\":"<<checks<<"}\n";return 0;
+ }r.end();need(boundary_set&&boundary_list,"boundary sources");boundaries(*boundary_set,*boundary_list,boundary_context,resources);const auto resource_bytes=resources.unchanged();
+ U owned=12+2;for(auto [offset,n]:fields){(void)offset;owned+=128*n;}std::cout<<"{\"status\":\"passed\",\"cases\":33,\"allocated\":"<<allocated<<",\"linked\":"<<linked<<",\"rng_calls\":"<<rng<<",\"source_provenance\":"<<provenance<<",\"source_stores\":"<<stores<<",\"source_store_bytes\":"<<store_bytes<<",\"native_owned_final_bytes\":"<<33*owned<<",\"projected_arena_bytes\":"<<33*(0x5000+0x1000)<<",\"resource_immutable_bytes\":"<<resource_bytes<<",\"typed_errors\":"<<typed<<",\"lazy_controls\":"<<lazy<<",\"checks\":"<<checks<<"}\n";return 0;
  }catch(const std::exception& e){std::cerr<<e.what()<<'\n';return 1;}}

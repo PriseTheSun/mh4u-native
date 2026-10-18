@@ -30,7 +30,9 @@ compõem agora essas etapas e publicam PW5a8 em uma transação do Player.
 A consulta percorre a coleção original e resolve sobreposições pela prioridade
 do executável. A [construção dos registros](docs/item-pop-builder.md) agora inclui
 a seleção ponderada original, referências IPL e o estado aleatório compartilhado.
-A ativação dos registros ainda está pendente.
+A [atualização dos registros](docs/item-pop-update.md) acrescenta atraso, ativação,
+intensidade e desativação no mesmo estado da consulta. Renovação e remoção
+ainda exigem rotinas adicionais.
 Scheduler e bootstrap continuam pendentes no runtime.
 O módulo de [interseção vertical original](docs/spatial-triangle.md) passou
 1.464 consultas preservadas, com102 hits idênticos byte a byte. É uma rota
@@ -47,7 +49,7 @@ original. A aquisição do Player acrescenta filtros, preparação do raio e cac
 com 88 chamadas originais completas e testes de integração persistente.
 O estado inicial continua explícito; bootstrap e scheduler permanecem pendentes.
 O launcher publicado permanece 0.17.0. A validação atual do
-[prefixo de atualização](docs/player-world-lookup.md) passou em 120/120 CTests
+[construção dos registros](docs/item-pop-builder.md) passou em 122/122 CTests
 no Mac e a compilação Windows x64 concluiu sem avisos; execução no Windows
 continua sem validação.
 Veja também o [catálogo v4](docs/localization-v4.md) e o

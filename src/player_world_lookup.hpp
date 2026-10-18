@@ -23,7 +23,13 @@ struct ResourceReference {
 // Raw ARM snapshots retain their word. Native resources carry identity and
 // loaded-buffer offset instead of fabricating a source or host address.
 using Field28=std::variant<Word,ResourceReference>;
+enum class RecordUpdateBinding {item_pop_5aa4cc};
+enum class AuxiliaryPresence {absent,present};
 struct Record {
+    // Explicit construction/snapshot facts. A lookup-only projection does not
+    // imply a virtual target or the absence of attached auxiliary objects.
+    std::optional<RecordUpdateBinding> update_binding;
+    std::optional<AuxiliaryPresence> auxiliary10,auxiliary14;
     Link next=Unknown{}; // Source+8; order remains significant on equal rank.
     Link previous=Unknown{}; // Source+c; owned by the same native list.
     std::optional<std::uint8_t> field19,field2f,field54,field61,field78;

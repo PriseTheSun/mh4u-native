@@ -41,12 +41,36 @@ e modo 0 explícitos, produz 43 registros ligados: 23 primários e 20 secundári
 Os 40 avanços do RNG terminam na semente 32921. A execução ARM é uma ferramenta
 de pesquisa; não faz parte do executável nativo entregue.
 
-A auditoria encontrou a chamada indireta do gerenciador para a rotina que
-atualiza a prontidão. Seu caminho mínimo foi delimitado em
-`research/private/item-pop-builder-v2/readiness-frontier.md`, mas ainda não
-foi implementado nem executado nesta etapa. A ligação à cena escolhida,
-atualização dos objetos, sequência completa de carregamento, scheduler e
-bootstrap continuam pendentes. O laboratório 0.17.0 permanece aberto;
+A [atualização dos registros](item-pop-update.md) acrescenta agora a ativação
+por essa chamada indireta, com relógio explícito e fatos do construtor de cada
+registro. O marco original desta construção, congelado em v2, não executava
+essa etapa; sua nota de prontidão permanece como evidência histórica.
+A ligação à cena escolhida, a sequência completa de carregamento, scheduler
+e bootstrap continuam pendentes. O laboratório 0.17.0 permanece aberto;
 esta biblioteca ainda não fornece combate, missões ou coop jogável.
 
 Evidências e resultados estão em `research/private/item-pop-builder-v2/`.
+
+
+A comparação final passou em **33 execuções completas do construtor original**,
+com 874 alocações, 734 registros ligados e 744 avanços de RNG. Os perfis normal
+e sanitizado passaram em 2.672.486 verificações cada, incluindo a projeção de
+532.686 bytes de campos nativos, preservação dos bytes opacos e proveniência
+das 874 alocações. Esses totais são do corpus de diagnóstico, não de uma partida.
+Foram oito erros tipados, duas verificações de retorno por recurso ausente e
+78 negativos de processo. Os recursos conservaram seus bytes e fatos parseados.
+
+O helper compartilhado foi comparado a todas as 65.536 sementes possíveis;
+o remapeamento, a 2.048 casos originais. Os seis testes de helpers e consumidores passaram em
+94.082 verificações por perfil e 16 negativos de processo. Os sanitizadores
+usaram ASan, UBSan e float-cast-overflow, sem recuperação; vazamentos e
+bibliotecas do sistema não fazem parte dessa cobertura. A auditoria independente
+corrigiu a ordem de validação quando List está ausente e não deixou achados
+materiais abertos.
+
+<!-- project validation -->
+A suíte pública passou em **122/122 CTests no Mac**. O build
+incremental com testes levou 97.46 s; a compilação Windows x64,
+37.60 s. Ambos concluíram sem avisos. O binário Windows não
+foi executado. Esses tempos usam cache e não medem desempenho do jogo.
+O manifesto consolidado é `research/private/item-pop-builder-v2/manifest.json`.

@@ -1257,6 +1257,15 @@ endforeach()
 add_library(mh4u_item_pop_builder src/item_pop_builder.cpp)
 target_include_directories(mh4u_item_pop_builder PUBLIC src)
 target_link_libraries(mh4u_item_pop_builder PUBLIC mh4u_item_pop_resources mh4u_player_selection)
+add_executable(mh4u-item-pop-builder-tests src/item_pop_builder_tests.cpp)
+target_include_directories(mh4u-item-pop-builder-tests PRIVATE vendor/picosha2)
+target_link_libraries(mh4u-item-pop-builder-tests PRIVATE mh4u_item_pop_builder)
+if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/research/private/item-pop-builder-v2/oracle/derived-first/oracle.bin")
+    add_test(NAME item-pop-builder-arm-oracle COMMAND mh4u-item-pop-builder-tests
+        "${CMAKE_CURRENT_SOURCE_DIR}/research/private/item-pop-builder-v2/oracle/derived-first/oracle.bin"
+        "1c77d1f9892ab9dfd3b97449398b8252e58282846c5499288decb2c13239cdb9"
+        "${CMAKE_CURRENT_SOURCE_DIR}")
+endif()
 add_executable(mh4u-source-primitives-tests src/source_rng_tests.cpp)
 target_include_directories(mh4u-source-primitives-tests PRIVATE vendor/picosha2)
 target_link_libraries(mh4u-source-primitives-tests PRIVATE mh4u_player_selection)
@@ -1265,10 +1274,51 @@ if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/research/private/item-pop-builder-v2/shar
         "${CMAKE_CURRENT_SOURCE_DIR}/research/private/item-pop-builder-v2/shared-primitives/arm-first/oracle.bin"
         "1644c045636b2aeab55d456ed7c67263654aec2d540d0de4167fac813f849ab5")
 endif()
-foreach(builder_target mh4u_item_pop_builder mh4u_source_rng mh4u-source-primitives-tests)
+foreach(builder_target mh4u_item_pop_builder mh4u-item-pop-builder-tests mh4u_source_rng mh4u-source-primitives-tests)
     if(MSVC)
         target_compile_options(${builder_target} PRIVATE /W4 /utf-8)
     else()
         target_compile_options(${builder_target} PRIVATE -Wall -Wextra -Wpedantic)
+    endif()
+endforeach()
+
+add_library(mh4u_binary32_arithmetic src/binary32_arithmetic.cpp)
+target_include_directories(mh4u_binary32_arithmetic PUBLIC src)
+add_library(mh4u_item_pop_update src/item_pop_update.cpp)
+target_include_directories(mh4u_item_pop_update PUBLIC src)
+target_link_libraries(mh4u_item_pop_update PUBLIC mh4u_binary32_arithmetic mh4u_player_world_lookup)
+add_executable(mh4u-binary32-arithmetic-tests src/binary32_arithmetic_tests.cpp)
+target_include_directories(mh4u-binary32-arithmetic-tests PRIVATE vendor/picosha2)
+target_link_libraries(mh4u-binary32-arithmetic-tests PRIVATE mh4u_binary32_arithmetic)
+add_executable(mh4u-item-pop-update-tests src/item_pop_update_tests.cpp)
+target_include_directories(mh4u-item-pop-update-tests PRIVATE vendor/picosha2)
+target_link_libraries(mh4u-item-pop-update-tests PRIVATE mh4u_item_pop_builder mh4u_item_pop_update)
+add_executable(mh4u-item-pop-update-actor-tests src/item_pop_update_actor_tests.cpp)
+target_include_directories(mh4u-item-pop-update-actor-tests PRIVATE vendor/picosha2)
+target_link_libraries(mh4u-item-pop-update-actor-tests PRIVATE mh4u_native_player_actor mh4u_item_pop_builder mh4u_item_pop_update)
+set(MH4U_ITEM_POP_UPDATE_FIXTURE "${CMAKE_CURRENT_SOURCE_DIR}/research/private/item-pop-update-v1/oracle/derived-final/oracle.bin")
+set(MH4U_ITEM_POP_UPDATE_FIXTURE_SHA "d30d7e97b10e889238850f07b876d35562168fc75bc3cb9d8f620836d1fff5d5")
+if(EXISTS "${MH4U_ITEM_POP_UPDATE_FIXTURE}")
+    add_test(NAME item-pop-update-arm-oracle COMMAND mh4u-item-pop-update-tests
+        "${MH4U_ITEM_POP_UPDATE_FIXTURE}" "${MH4U_ITEM_POP_UPDATE_FIXTURE_SHA}"
+        "${CMAKE_CURRENT_SOURCE_DIR}")
+endif()
+if(EXISTS "${MH4U_ITEM_POP_UPDATE_FIXTURE}" AND EXISTS "${MH4U_PLAYER_CONSTANTS}" AND EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/research/private/player-state1-continuation-native-v1/actor-fixture/hunter-seven-co2.mhnative")
+    add_test(NAME item-pop-update-player-integration COMMAND mh4u-item-pop-update-actor-tests
+        "${CMAKE_CURRENT_SOURCE_DIR}/research/private/player-state1-continuation-native-v1/actor-fixture/hunter-seven-co2.mhnative"
+        "${MH4U_PLAYER_CONSTANTS}" "${MH4U_PLAYER_CONSTANTS_SHA}"
+        "${MH4U_ITEM_POP_UPDATE_FIXTURE}" "${MH4U_ITEM_POP_UPDATE_FIXTURE_SHA}"
+        "${CMAKE_CURRENT_SOURCE_DIR}")
+endif()
+if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/research/private/binary32-arithmetic-v1/arm-first/oracle.bin")
+    add_test(NAME binary32-arithmetic-arm-oracle COMMAND mh4u-binary32-arithmetic-tests
+        "${CMAKE_CURRENT_SOURCE_DIR}/research/private/binary32-arithmetic-v1/arm-first/oracle.bin"
+        "1e121b4ccc930c2a8c2eb32a39ee7152d0bcfa3bc57c897d0f8af7ee0c08816b")
+endif()
+foreach(update_target mh4u_binary32_arithmetic mh4u_item_pop_update mh4u-binary32-arithmetic-tests mh4u-item-pop-update-tests mh4u-item-pop-update-actor-tests)
+    if(MSVC)
+        target_compile_options(${update_target} PRIVATE /W4 /utf-8 /fp:strict)
+    else()
+        target_compile_options(${update_target} PRIVATE -Wall -Wextra -Wpedantic -ffp-contract=off)
     endif()
 endforeach()
