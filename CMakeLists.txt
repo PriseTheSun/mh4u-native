@@ -71,6 +71,8 @@ foreach(state1_owner mh4u_player_state1_dynamics mh4u_player_object_query mh4u_p
         target_compile_options(${state1_owner} PRIVATE -Wall -Wextra -Wpedantic -ffp-contract=off)
     endif()
 endforeach()
+
+
 if(MSVC)
     target_compile_options(mh4u_player_state1 PRIVATE /W4 /utf-8 /fp:strict)
 else()
@@ -530,8 +532,10 @@ if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/research/private/player-reference-v1/extr
         "${CMAKE_CURRENT_SOURCE_DIR}/research/private/player-reference-v1/extreme-oracle.bin")
 endif()
 add_library(mh4u_player_transition src/player_transition.cpp)
+add_library(mh4u_source_rng src/source_rng.cpp)
+target_include_directories(mh4u_source_rng PUBLIC src)
 target_include_directories(mh4u_player_transition PUBLIC src PRIVATE vendor/picosha2)
-target_link_libraries(mh4u_player_transition PUBLIC mh4u_player_input)
+target_link_libraries(mh4u_player_transition PUBLIC mh4u_player_input mh4u_source_rng)
 add_library(mh4u_player_selection src/player_selection.cpp)
 target_include_directories(mh4u_player_selection PUBLIC src)
 target_link_libraries(mh4u_player_selection PUBLIC mh4u_player_transition)
@@ -1206,3 +1210,65 @@ if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/research/private/player-state1-continuati
         "${CMAKE_CURRENT_SOURCE_DIR}/research/private/player-state1-continuation-native-v1/actor-fixture/hunter-seven-co2.mhnative"
         "${MH4U_PLAYER_CONSTANTS}" "${MH4U_PLAYER_CONSTANTS_SHA}")
 endif()
+
+add_executable(mh4u-player-world-lookup-tests src/player_world_lookup_tests.cpp)
+target_include_directories(mh4u-player-world-lookup-tests PRIVATE vendor/picosha2)
+target_link_libraries(mh4u-player-world-lookup-tests PRIVATE mh4u_player_world_lookup mh4u_player_policy_table)
+if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/research/private/player-world-lookup-v1/derived-first/oracle.bin")
+    add_test(NAME player-world-lookup-arm COMMAND mh4u-player-world-lookup-tests
+        "${CMAKE_CURRENT_SOURCE_DIR}/research/private/player-world-lookup-v1/derived-first/oracle.bin"
+        "54ab91648a311d27c96bf310e0dcd18885c602512d100608cbf561e9dd59e08c")
+endif()
+add_executable(mh4u-player-update-prefix-tests src/player_update_prefix_tests.cpp)
+target_include_directories(mh4u-player-update-prefix-tests PRIVATE vendor/picosha2)
+target_link_libraries(mh4u-player-update-prefix-tests PRIVATE mh4u_player_update_prefix)
+if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/research/private/player-world-lookup-v1/update-prefix-oracle/derived-first/oracle.bin")
+    add_test(NAME player-update-prefix-arm COMMAND mh4u-player-update-prefix-tests
+        "${CMAKE_CURRENT_SOURCE_DIR}/research/private/player-world-lookup-v1/update-prefix-oracle/derived-first/oracle.bin"
+        "32acf17318c0fedd11a7c30edd7ab539bd1de1412cdde7e0fd18bc70e56428dc")
+endif()
+foreach(world_target mh4u-player-world-lookup-tests mh4u-player-update-prefix-tests mh4u-player-update-preparation-actor-tests)
+    if(MSVC)
+        target_compile_options(${world_target} PRIVATE /W4 /utf-8 /fp:strict)
+    else()
+        target_compile_options(${world_target} PRIVATE -Wall -Wextra -Wpedantic -ffp-contract=off)
+    endif()
+endforeach()
+
+add_library(mh4u_item_pop_resources src/item_pop_resources.cpp)
+target_include_directories(mh4u_item_pop_resources PUBLIC src PRIVATE vendor/picosha2)
+add_executable(mh4u-item-pop-resources-tests src/item_pop_resources_tests.cpp)
+target_include_directories(mh4u-item-pop-resources-tests PRIVATE vendor/picosha2)
+target_link_libraries(mh4u-item-pop-resources-tests PRIVATE mh4u_item_pop_resources)
+if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/research/private/item-pop-resources-v1/derived-first/oracle.bin")
+    add_test(NAME item-pop-resources-source COMMAND mh4u-item-pop-resources-tests
+        "${CMAKE_CURRENT_SOURCE_DIR}/research/private/item-pop-resources-v1/derived-first/oracle.bin"
+        "984c8f5f4ecd5df614c296e991084ec930113c202c8abca8966ffdda9912851b"
+        "${CMAKE_CURRENT_SOURCE_DIR}")
+endif()
+foreach(item_pop_target mh4u_item_pop_resources mh4u-item-pop-resources-tests)
+    if(MSVC)
+        target_compile_options(${item_pop_target} PRIVATE /W4 /utf-8)
+    else()
+        target_compile_options(${item_pop_target} PRIVATE -Wall -Wextra -Wpedantic)
+    endif()
+endforeach()
+
+add_library(mh4u_item_pop_builder src/item_pop_builder.cpp)
+target_include_directories(mh4u_item_pop_builder PUBLIC src)
+target_link_libraries(mh4u_item_pop_builder PUBLIC mh4u_item_pop_resources mh4u_player_selection)
+add_executable(mh4u-source-primitives-tests src/source_rng_tests.cpp)
+target_include_directories(mh4u-source-primitives-tests PRIVATE vendor/picosha2)
+target_link_libraries(mh4u-source-primitives-tests PRIVATE mh4u_player_selection)
+if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/research/private/item-pop-builder-v2/shared-primitives/arm-first/oracle.bin")
+    add_test(NAME source-primitives-arm-oracle COMMAND mh4u-source-primitives-tests
+        "${CMAKE_CURRENT_SOURCE_DIR}/research/private/item-pop-builder-v2/shared-primitives/arm-first/oracle.bin"
+        "1644c045636b2aeab55d456ed7c67263654aec2d540d0de4167fac813f849ab5")
+endif()
+foreach(builder_target mh4u_item_pop_builder mh4u_source_rng mh4u-source-primitives-tests)
+    if(MSVC)
+        target_compile_options(${builder_target} PRIVATE /W4 /utf-8)
+    else()
+        target_compile_options(${builder_target} PRIVATE -Wall -Wextra -Wpedantic)
+    endif()
+endforeach()

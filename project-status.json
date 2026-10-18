@@ -22,8 +22,8 @@
     "checksums": "tools/dependencies.lock.json"
   },
   "runtime": {
-    "macos_arm64": "Published laboratory0.17.0 remains open. Development engine now exposes explicit local input filtering, accumulator update and begin-update with partial-byte ownership;117/117 CTests passed in46.71s. Full bootstrap/scheduler remain unfinished.",
-    "windows_x64": "Current development engine cross-compiled for Windows x64 without compiler warnings, including explicit Player input preparation. Windows execution remains unverified; published laboratory0.17.0 retained.",
+    "macos_arm64": "Published laboratory0.17.0 remains open. Development engine exposes native world lookup and an atomic Player update prefix;120/120 CTests passed. IPS/IPL source reader added. Complete bootstrap/scheduler and record activation remain unfinished.",
+    "windows_x64": "Development engine cross-compiled for Windows x64 without warnings, including world lookup, preparation prefix and IPS/IPL parser. Windows execution remains unverified; published laboratory0.17.0 retained.",
     "scene": "real em062 actor: 12 joints, 1516 vertices, 1564 triangles, 28 source LMT actions; static OBJ samples retained",
     "texture_selector": "PNG replacement packs keyed by original encoded SHA256 work through common presentation materials, including native recipes. No HD pack included; original selector verification retained.",
     "controller_configuration": "movement/camera axes, deadzone and remapping implemented with backup; physical controller not available",
@@ -286,7 +286,9 @@
       "research/private/player-update-begin-v1/actor-integration/native-strict/validation.json",
       "research/private/player-update-begin-v1/native-final/validation.json",
       "research/private/player-input-filter-v1/manifest.json",
-      "research/private/player-update-accumulator-v1/manifest.json"
+      "research/private/player-update-accumulator-v1/manifest.json",
+      "research/private/player-world-lookup-v1/manifest.json",
+      "research/private/item-pop-resources-v1/manifest.json"
     ],
     "analysis_elf_checks": 23,
     "index_cli_tests": 7,
@@ -540,7 +542,7 @@
     "playable coop, synchronized actions and Internet transport",
     "Windows runtime validation"
   ],
-  "next": "Recover the5b8f14→5ba61c lookup that produces PW5a8 before policy, then remaining b1407c virtual/helper gates and dispatch order. Complete world/bootstrap/scheduler, combat, quests, saves, fullPT-BR, physical controls, Windows execution and Internet coop remain required.",
+  "next": "Complete fresh-record5ba7b4 including5b928c category/RNG selection with source-driven comparisons on real IPS/IPL. Reuse/extract existing69d568 remap owner; recover record activation/scheduling and b1407c afterb14104. Full gameplay, combat/quests/saves, completePT-BR, physical controls, Windows execution and Internet coop remain required.",
   "roadmap": "docs/roadmap.md",
   "resource_index": {
     "archives": 10592,
@@ -630,7 +632,7 @@
     "complete_character": false,
     "documentation": "docs/player-assembly.md"
   },
-  "updated_at": "2026-10-18T06:58:44.960515-03:00",
+  "updated_at": "2026-10-18T10:55:38.766385+00:00",
   "player_appearance": {
     "parts": 7,
     "joints": 19,
@@ -1594,5 +1596,60 @@
     "published_launcher_replaced": false,
     "complete_gameplay": false,
     "internet_coop": false
+  },
+  "player_world_lookup": {
+    "documentation": "docs/player-world-lookup.md",
+    "manifest": "research/private/player-world-lookup-v1/manifest.json",
+    "api": "Player::prepare_update(context)",
+    "source": "5b8f14→5ba61c complete; b1407c prefix stops before b14104",
+    "lookup": {
+      "status": "passed",
+      "cases": 326,
+      "hits": 189,
+      "visits": 834,
+      "source_stores": 1700,
+      "produced_bytes": 6800,
+      "projected_arena_bytes": 1335296,
+      "typed_errors": 26,
+      "lazy_controls": 2,
+      "checks": 90315
+    },
+    "prefix": {
+      "status": "passed",
+      "cases": 54,
+      "checkpoints": 216,
+      "hits": 30,
+      "visits": 60,
+      "filtered": 46,
+      "source_stores": 2854,
+      "source_store_bytes": 8788,
+      "primary_checkpoint_bytes": 19464192,
+      "typed_errors": 12,
+      "lazy_controls": 1,
+      "checks": 64570
+    },
+    "actor_checks_per_profile": 136445,
+    "parser_manifest": "research/private/item-pop-resources-v1/manifest.json",
+    "parser": {
+      "resources": 2,
+      "loaded_source_bytes": 4336,
+      "primary_records": 26,
+      "position_sets": 20,
+      "positions": 58,
+      "choice_sets": 20,
+      "choices": 40,
+      "list_members": 32,
+      "checks_per_profile": 8030,
+      "boundaries": 35,
+      "negative_processes": 16
+    },
+    "macos_ctests": 120,
+    "macos_ctest_seconds": 43.09,
+    "windows_crossbuild": true,
+    "windows_executed": false,
+    "normal_and_strict": true,
+    "activated_world_list": false,
+    "full_builder_executed": false,
+    "complete_scheduler": false
   }
 }

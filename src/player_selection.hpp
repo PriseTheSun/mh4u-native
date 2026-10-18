@@ -74,6 +74,11 @@ std::string_view error_name(ErrorCode) noexcept;
 // d048c4: scans all20 source halfwords in order, returning on first equality.
 // An unknown halfword before that equality is an error, not a missing ID.
 [[nodiscard]] Result<bool> contains_id(const PbwFields&,std::uint16_t);
+// Complete69d568 for byte source IDs used by the original callers. This
+// consumes mode+c8c before any conditional map byte; categories are never read.
+// IDs>=6 in mode13 still require the mapped byte before returning9. No view
+// or mapping state is retained, and unknown consumed facts stay typed errors.
+[[nodiscard]] Result<std::uint32_t> remap_area(std::optional<std::uint8_t> source_id,const AreaContext&);
 class PendingAnimation;
 using BeginResult=std::variant<Completed,PendingAnimation,Error>;
 class PendingAnimation {

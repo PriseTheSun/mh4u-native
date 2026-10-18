@@ -1,5 +1,6 @@
 #include "player_transition.hpp"
 #include "player_input.hpp"
+#include "source_rng.hpp"
 #include "picosha2.h"
 #include <algorithm>
 #include <bit>
@@ -57,7 +58,9 @@ Result<Constants> Constants::decode(std::span<const std::uint8_t> bytes,const Ex
     const auto elf=picosha2::bytes_to_hex_string(bytes.begin()+8,bytes.begin()+40);
     if(elf!=source_sha || elf!=expected.source_elf_sha256)
         return Error{ErrorCode::constants_identity,"Constants do not belong to this code profile"};
-    Constants value;value.multiplier_=word(bytes,40);value.scale_bits_=word(bytes,44);
+    if(word(bytes,40)!=source_rng::source_multiplier)
+        return Error{ErrorCode::unsupported_constants,"RNG multiplier differs from shipped2b555c literal"};
+    Constants value;value.scale_bits_=word(bytes,44);
     value.power_bits_=word(bytes,48);value.angle_offset_=word(bytes,52);
     // Bound the numeric behavior of independently pinned constants before use.
     if(value.scale_bits_!=0x3f8ccccdU || value.power_bits_!=0x3f866666U || value.angle_offset_!=0x1555U)
@@ -86,10 +89,7 @@ Result<Output> apply(const State& input,const Request& request,const Constants& 
     s.pw.field4c=0;
     // Execute original global update before copying its result to pw+bc.
     const auto old_bc=s.pw.fieldbc;
-    const auto product=std::uint32_t{s.global.field22?s.global.field22:std::uint16_t{1}}*176U;
-    const auto wide=std::uint64_t{constants.multiplier_}+std::uint64_t{product}*constants.multiplier_;
-    const auto quotient=static_cast<std::uint32_t>(wide>>32)>>13;
-    s.global.field22=static_cast<std::uint16_t>(product+quotient*173U);
+    s.global.field22=source_rng::advance_seed(s.global.field22);
     s.pw.fieldbc=(flags&0x20U)?static_cast<std::uint16_t>((s.global.field22&0xff00U)|(old_bc&255U)):s.global.field22;
     s.pw.field48c=0;s.pbw.field39c=0x3f800000U;s.pw.fieldc4=0x3f800000U;
     s.pw.policy=player_policy_table::install(player_policy_table::Absent{},0);

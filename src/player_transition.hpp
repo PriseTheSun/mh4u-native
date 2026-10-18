@@ -87,7 +87,7 @@ public:
 private:
     Constants()=default;
     std::array<std::uint8_t,32> type_bytes_{};
-    std::uint32_t multiplier_{},scale_bits_{},power_bits_{},angle_offset_{};
+    std::uint32_t scale_bits_{},power_bits_{},angle_offset_{};
     friend Result<Output> apply(const State&,const Request&,const Constants&);
 };
 // Pure transactional numeric profile of b1c050 with real-helper semantics.

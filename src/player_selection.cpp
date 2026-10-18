@@ -14,20 +14,9 @@ bool float_environment(){
         std::fegetround()==FE_TONEAREST;
 }
 Result<std::uint32_t> area_selector(const State& state,const AreaContext& area){
-    if(!state.pbw.field9||!area.mode_c8c)
-        return error(ErrorCode::unknown_selection_context,"Area selection consumes pbw+9 and the external mode+c8c");
-    std::uint32_t mapped=*state.pbw.field9;
-    if((*area.mode_c8c&255U)==13U&&mapped!=0){
-        if(mapped>=area.mapping.size()||!area.mapping[mapped].mapped)
-            return error(ErrorCode::unknown_selection_context,"Area remapping consumes the source-ID mapped byte");
-        const auto& record=area.mapping[mapped];
-        if(mapped==1)mapped=*record.mapped;
-        else if(mapped>=6)mapped=9; // The mapped byte above is still consumed.
-        else{
-            if(!record.gate)return error(ErrorCode::unknown_selection_context,"Area remapping consumes the source-ID gate byte");
-            mapped=*record.gate==1?9:*record.mapped;
-        }
-    }
+    const auto remapped=remap_area(state.pbw.field9,area);
+    if(const auto* failed=std::get_if<Error>(&remapped))return *failed;
+    const auto mapped=std::get<std::uint32_t>(remapped);
     std::uint32_t category=0;
     if(mapped<21){
         if(mapped>=area.categories.size()||!area.categories[mapped])
@@ -48,6 +37,23 @@ std::uint32_t converted_bits(std::int32_t value){
     const volatile float converted=static_cast<float>(value);
     return std::bit_cast<std::uint32_t>(static_cast<float>(converted));
 }
+}
+Result<std::uint32_t> remap_area(std::optional<std::uint8_t> source_id,const AreaContext& area){
+    if(!source_id||!area.mode_c8c)
+        return error(ErrorCode::unknown_selection_context,"Area remapping consumes the source ID and external mode+c8c");
+    std::uint32_t mapped=*source_id;
+    if((*area.mode_c8c&255U)==13U&&mapped!=0){
+        if(mapped>=area.mapping.size()||!area.mapping[mapped].mapped)
+            return error(ErrorCode::unknown_selection_context,"Area remapping consumes the source-ID mapped byte");
+        const auto& record=area.mapping[mapped];
+        if(mapped==1)mapped=*record.mapped;
+        else if(mapped>=6)mapped=9; // The mapped byte above is still consumed.
+        else{
+            if(!record.gate)return error(ErrorCode::unknown_selection_context,"Area remapping consumes the source-ID gate byte");
+            mapped=*record.gate==1?9:*record.mapped;
+        }
+    }
+    return mapped;
 }
 Result<bool> contains_id(const PbwFields& source,std::uint16_t sought){
     for(const auto& field:source.fields2fc){

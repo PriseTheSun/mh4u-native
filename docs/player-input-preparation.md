@@ -43,6 +43,11 @@ renderização bem-sucedida. A sequência de três chamadas não é uma transaç
 já retornaram sucesso. Nenhuma das três avança o relógio nem o contador de
 passos, e não há chamada automática por frame.
 
+Uma operação adicional, [Player::prepare_update](player-world-lookup.md),
+agora compõe o prefixo original até a publicação de PW5a8, incluindo a busca
+na coleção do mundo. Essa API faz uma única transação; as três chamadas
+individuais acima conservam seus contratos separados.
+
 O estado de pad e dos objetos externos ainda precisa ser fornecido pelo
 chamador. O bootstrap, a aquisição dos dispositivos, o chamador `b1407c`
 completo e o scheduler permanecem em reconstrução. Esta etapa não transforma
@@ -85,6 +90,7 @@ família de processos e custo de tokens não foram medidos. Esses tempos não
 medem o desempenho do jogo.
 
 O manifesto consolidado é
-`research/private/player-input-filter-v1/manifest.json`. O próximo produtor
-antes da política é a consulta `5b8f14 → 5ba61c`, responsável por fornecer
-PW5a8; sua ligação ao mundo ainda precisa ser reconstruída.
+`research/private/player-input-filter-v1/manifest.json`. Ele conserva a
+validação histórica desta etapa. A consulta `5b8f14 → 5ba61c`, responsável
+por fornecer PW5a8, e sua integração posterior estão documentadas na
+[etapa seguinte](player-world-lookup.md).

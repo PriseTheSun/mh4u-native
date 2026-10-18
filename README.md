@@ -25,6 +25,12 @@ limpa as flags da rotina original e invalida esse cache por uma operação
 explícita. A [preparação de entrada](docs/player-input-preparation.md) acrescenta
 agora o filtro local completo e o acumulador anterior a essa etapa. Preserva
 limpezas parciais por byte e fornece operações explícitas no mesmo Player.
+O [prefixo de atualização e a busca de áreas](docs/player-world-lookup.md)
+compõem agora essas etapas e publicam PW5a8 em uma transação do Player.
+A consulta percorre a coleção original e resolve sobreposições pela prioridade
+do executável. A [construção dos registros](docs/item-pop-builder.md) agora inclui
+a seleção ponderada original, referências IPL e o estado aleatório compartilhado.
+A ativação dos registros ainda está pendente.
 Scheduler e bootstrap continuam pendentes no runtime.
 O módulo de [interseção vertical original](docs/spatial-triangle.md) passou
 1.464 consultas preservadas, com102 hits idênticos byte a byte. É uma rota
@@ -41,7 +47,7 @@ original. A aquisição do Player acrescenta filtros, preparação do raio e cac
 com 88 chamadas originais completas e testes de integração persistente.
 O estado inicial continua explícito; bootstrap e scheduler permanecem pendentes.
 O launcher publicado permanece 0.17.0. A validação atual do
-[preparação de entrada](docs/player-input-preparation.md) passou em 117/117 CTests
+[prefixo de atualização](docs/player-world-lookup.md) passou em 120/120 CTests
 no Mac e a compilação Windows x64 concluiu sem avisos; execução no Windows
 continua sem validação.
 Veja também o [catálogo v4](docs/localization-v4.md) e o

@@ -25,10 +25,18 @@ struct ResourceReference {
 using Field28=std::variant<Word,ResourceReference>;
 struct Record {
     Link next=Unknown{}; // Source+8; order remains significant on equal rank.
+    Link previous=Unknown{}; // Source+c; owned by the same native list.
     std::optional<std::uint8_t> field19,field2f,field54,field61,field78;
+    std::optional<std::uint8_t> field4,field1a,field2e,field55,field56,field57,
+        field60,field62,field63,field64,field79;
     std::optional<std::uint16_t> field30;
+    std::optional<std::uint16_t> field2c,field32;
     std::array<std::optional<Word>,3> fields34{},fields40{};
+    std::array<std::optional<Word>,3> fields68{},fields7c{};
+    std::array<std::optional<Word>,2> fields8c{};
     std::optional<Word> field4c_bits,field50_bits;
+    std::optional<Word> field1c_bits,field20_bits,field24,field58_bits,field5c_bits,
+        field74,field88;
     std::optional<Field28> field28; // Copied without dereferencing.
     bool operator==(const Record&)const=default;
 };
@@ -38,6 +46,7 @@ struct Manager {
     static constexpr std::size_t capacity=128;
     std::array<Record,capacity> records{};
     Link head=Unknown{}; // Source manager+4a1c. Unknown is not an empty list.
+    std::optional<Word> field4a20,field4a24; // Linked count and allocator counter.
     bool operator==(const Manager&)const=default;
 };
 struct Context {

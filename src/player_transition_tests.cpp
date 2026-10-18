@@ -18,7 +18,7 @@ std::vector<std::uint8_t> synthetic_constants(){
     std::vector<std::uint8_t> b{'M','H','4','U','P','T','0','1'};
     const std::string sha="d4191ea404df1e9ade8fb401983e3497699dae5aa994937f7859c43f84403435";
     for(std::size_t i=0;i<sha.size();i+=2)b.push_back(static_cast<std::uint8_t>(std::stoul(sha.substr(i,2),nullptr,16)));
-    for(auto n:{17U,0x3f8ccccdU,0x3f866666U,0x1555U})for(unsigned i=0;i<4;++i)b.push_back(static_cast<std::uint8_t>(n>>(8*i)));
+    for(auto n:{0x2015aea7U,0x3f8ccccdU,0x3f866666U,0x1555U})for(unsigned i=0;i<4;++i)b.push_back(static_cast<std::uint8_t>(n>>(8*i)));
     for(unsigned i=0;i<32;++i)b.push_back(static_cast<std::uint8_t>(i*7));return b;
 }
 pt::ExpectedConstants pin(const std::vector<std::uint8_t>& b){return {picosha2::hash256_hex_string(b.begin(),b.end()),"d4191ea404df1e9ade8fb401983e3497699dae5aa994937f7859c43f84403435"};}
@@ -51,6 +51,7 @@ void synthetic(){
     auto changed=bytes;changed[56]^=1;error(pt::Constants::decode(changed,expected),pt::ErrorCode::constants_identity);
     changed=bytes;changed[0]='X';error(pt::Constants::decode(changed,pin(changed)),pt::ErrorCode::unsupported_constants);
     changed=bytes;changed[8]^=1;error(pt::Constants::decode(changed,pin(changed)),pt::ErrorCode::constants_identity);
+    changed=bytes;changed[40]^=1;error(pt::Constants::decode(changed,pin(changed)),pt::ErrorCode::unsupported_constants);
     changed=bytes;changed[44]^=1;error(pt::Constants::decode(changed,pin(changed)),pt::ErrorCode::unsupported_constants);
     auto bad_pin=expected;bad_pin.package_sha256="";error(pt::Constants::decode(bytes,bad_pin),pt::ErrorCode::invalid_expected);
     for(std::size_t cut=0;cut<bytes.size();++cut)error(pt::Constants::decode(std::span(bytes).first(cut),expected),pt::ErrorCode::unsupported_constants);

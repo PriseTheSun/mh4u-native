@@ -63,8 +63,8 @@ Output evaluate(const Context& context,const Request& request) {
             const auto mask=read(context.area_mask14,"area_mask14");
             if(shift>=32 || (mask&(Word{1}<<shift))==0)return false;
             if(read(record.field78,"record78",i)==1)return false;
-            const auto area=read(request.area,"area");
-            if(area!=read(record.field2f,"record2f",i))return false;
+            const auto record_area=read(record.field2f,"record2f",i);
+            if(record_area!=read(request.area,"area"))return false;
             const auto center_y=value(read(record.fields34[1],"record38",i));
             const auto height=value(read(record.field50_bits,"record50",i));
             const auto point_y=value(read(request.point[1],"pointY"));
@@ -109,6 +109,8 @@ Result query(const Context& context,const Request& request) {
 }
 PlayerResult apply(const player_controller_step::PlayerFields& player,
     const player_fields::Fields& fields,const Context& context) {
+    // Caller loads PBW9 before entering the wrapper, even for an empty list.
+    if(!player.selection_pbw.field9)return Error{ErrorCode::unknown_field,"PBW9"};
     Request request{player.selection_pbw.field9,
         {fields.pbw.field10_bits,fields.pbw.field14_bits,fields.pbw.field18_bits},true};
     auto result=query(context,request);

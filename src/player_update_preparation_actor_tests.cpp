@@ -149,6 +149,57 @@ void run(const char* recipe,const pt::Constants& constants){
  check(std::fesetround(FE_DOWNWARD)==0,"Set late render failure");auto failed=late.filter_input({});check(std::fesetround(restore.mode)==0,"Restore late render environment");
  const auto late_error=value<na::PlayerError>(std::move(failed));check(late_error.code==na::PlayerErrorCode::render,"Filter failure did not reach render");unchanged(late,late_before);
  const auto retried=value<na::PlayerInputFilterOutput>(late.filter_input({}));expected_input(late,late_before,zeros);metadata(retried.frame,initial);frame_equal(retried.frame,initial);
+ // The recovered caller prefix is a separate, atomic operation. Its successful
+ // state agrees with the explicit stages above, plus its own PW5a8 publication.
+ namespace wl=mh4u::player_world_lookup;namespace up=mh4u::player_update_prefix;
+ wl::Manager world;world.head=wl::Index{0};auto& record=world.records[0];record.next=wl::Absent{};
+ record.field19=1;record.field30=1;record.field61=0;record.field78=0;record.field2f=3;
+ record.fields34={bits(1),bits(20),bits(-3)};record.field50_bits=bits(4);record.field4c_bits=bits(2);
+ record.fields40={0x7fc12345,0x80000000,0xffffffff};record.field54=17;
+ const wl::ResourceReference reference{std::string(64,'a'),44};record.field28=reference;
+ up::Context preparation{{},one,{&world,1}};
+ auto combined=make(seed());value<na::PlayerOutput>(combined.step(step_parameters()));
+ const auto combined_before=save(combined);const auto world_before=world;
+ auto prepared=value<na::PlayerPreparationOutput>(combined.prepare_update(preparation));
+ auto final_fields=expected_fields;final_fields.pw.field5a8=17;
+ check(state_equal(combined.state(),expected_state)&&combined.shared_fields()==final_fields&&combined.state1_fields()==before.state1&&combined.position_fields()==before.position&&combined.completed_steps()==1,"Atomic prefix differs from source stages");
+ check(prepared.filter==pf::Effects{true,true,false,false,false}&&prepared.lookup.returned==17&&prepared.lookup.match&&prepared.lookup.match->index==0&&prepared.lookup.visited==1,"Atomic prefix lost returned effects");
+ check(prepared.lookup.match->field28==wl::Field28{reference}&&prepared.lookup.match->vector34==std::array<U,4>{bits(1),bits(20),bits(-3),0}&&prepared.lookup.match->words40==std::array<U,3>{0x7fc12345,0x80000000,0xffffffff},"Copyout altered opaque identity/raw words");
+ check(world==world_before,"Player mutated borrowed world");metadata(prepared.frame,baseline);frame_equal(prepared.frame,baseline);
+ // A miss explicitly resets the canonical owner, without publishing stack
+ // copyouts or mutating resources. Skipped record fields stay unknown.
+ world.records[0].field19=0;world.records[0].field28.reset();
+ const auto missed=value<na::PlayerPreparationOutput>(combined.prepare_update(preparation));
+ check(missed.lookup.returned==0xffff&&!missed.lookup.match&&combined.shared_fields().pw.field5a8==0,"Caller miss did not clear stale PW5a8");
+ check(combined.shared_fields().pbw.field54_bits==one,"Repeated prefix did not use committed accumulator");
+ metadata(missed.frame,baseline);frame_equal(missed.frame,baseline);
+ // Exercise errors after each earlier candidate stage has run. No candidate
+ // store, including filter clears and begin's cache reset, can escape failure.
+ for(unsigned stage=0;stage<4;++stage){
+  world=world_before;auto x=seed();auto c=preparation;
+  if(stage==0)x.shared_fields.pw.field13c_bits.reset();
+  if(stage==1)c.delta_bits.reset();
+  if(stage==2)x.shared_fields.pw.field1f8.reset();
+  if(stage==3)world.records[0].field28.reset();
+  auto subject=make(x);const auto saved=save(subject);
+  const auto error=value<na::PlayerError>(subject.prepare_update(c));
+  check(error.code==na::PlayerErrorCode::update_prefix&&error.update_prefix&&unsigned(error.update_prefix->phase)==stage,"Prefix phase/cause lost");
+  unchanged(subject,saved);metadata(value<na::Frame>(subject.capture()),initial);
+  if(stage==3){
+   check(std::get<wl::Error>(error.update_prefix->cause).field=="record28","Late copyout failure cause lost");
+   world=world_before;const auto retry=value<na::PlayerPreparationOutput>(subject.prepare_update(c));
+   check(retry.lookup.returned==17&&subject.shared_fields().pw.field5a8==17&&subject.shared_fields().pw.field6a8==0,"Late prefix retry failed");
+   metadata(retry.frame,initial);frame_equal(retry.frame,initial);
+  }
+ }
+ // The outer local gate skips even unknown filter inputs; subsequent helpers
+ // still run and preserve the partially known unfiltered input bytes.
+ world.head=wl::Absent{};auto remote=make(nonlocal_seed);const auto remote_before=save(remote);
+ const auto remote_output=value<na::PlayerPreparationOutput>(remote.prepare_update(preparation));
+ check(!remote_output.filter&&remote_output.lookup.returned==0xffff,"Outer gate did not skip filter");
+ check(block::project(remote.state().controller.player,remote.shared_fields())==block::project(remote_before.state.controller.player,remote_before.shared)&&remote.shared_fields().pbw.field54_bits==0&&remote.shared_fields().pw.field6a8==0&&remote.shared_fields().pw.field5a8==0,"Nonlocal prefix skipped required later stages or changed input");
+ metadata(remote_output.frame,initial);frame_equal(remote_output.frame,initial);
+ check(combined_before.shared.pw.field6a8==255,"Atomic test did not start with a live cache");
 }
 }
 int main(int argc,char** argv){try{
