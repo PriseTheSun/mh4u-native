@@ -11,16 +11,29 @@
 
 namespace mh4u::player_reference {
 namespace {
-// Volatile boundaries retain binary32 rounding and prevent VMLA becoming FMA.
-float add(float a,float b) noexcept { volatile float r=a+b;return r; }
 float sub(float a,float b) noexcept { volatile float r=a-b;return r; }
-float mul(float a,float b) noexcept { volatile float r=a*b;return r; }
-float div(float a,float b) noexcept { volatile float r=a/b;return r; }
-float lookup(float ratio) noexcept {
-    const float scaled=mul(ratio,32.0f);
-    const auto index=static_cast<std::uint32_t>(scaled); // Finite ratio in [0,1].
+using Word=std::uint32_t;
+bool nan(Word v){return (v&0x7fffffffU)>0x7f800000U;}
+bool lt(Word a,Word b){
+    if(nan(a)||nan(b))return true; // ARM LT includes unordered (N!=V).
+    if((a&0x7fffffffU)==0&&(b&0x7fffffffU)==0)return false;
+    if((a^b)&0x80000000U)return (a>>31)!=0;
+    return a>>31?a>b:a<b;
+}
+struct Failure {Error error;};
+Word arithmetic(binary32_arithmetic::Result r){
+    if(auto* e=std::get_if<binary32_arithmetic::Error>(&r))
+        throw Failure{Error{ErrorCode::unsupported_floating_environment,e->reason,*e}};
+    return std::get<Word>(r);
+}
+Word lookup(Word ratio){
+    namespace fp=binary32_arithmetic;
+    const Word scaled=arithmetic(fp::mul(ratio,0x42000000));
+    const Word index=arithmetic(fp::to_unsigned_word_rtz(scaled))&0xffffU;
+    if(index>=detail::table.size())throw Failure{Error{ErrorCode::angular_table_extent,"5687b8 table index"}};
     const auto& row=detail::table[index];
-    return add(std::bit_cast<float>(row[0]),mul(sub(scaled,static_cast<float>(index)),std::bit_cast<float>(row[1])));
+    const Word residual=arithmetic(fp::sub(scaled,arithmetic(fp::from_unsigned_word(index))));
+    return arithmetic(fp::add(row[0],arithmetic(fp::mul(residual,row[1]))));
 }
 }
 StateResult resolve_state(std::uint32_t flags,std::optional<std::uint8_t> stored_mode,
@@ -55,17 +68,37 @@ Result heading(const State& s) noexcept {
     const float x=sub(p.second_x,p.first_x);
     float z=sub(p.second_z,p.first_z);
     if(!std::isfinite(x)||!std::isfinite(z))return Error{ErrorCode::nonfinite_difference,"Reference coordinate differences must remain finite"};
-    if(x==0&&z==0)return std::uint32_t{0};
-    float angle;
-    if(z>=0) {
-        if(x>=0)angle=z>=x?lookup(div(x,z)):sub(64,lookup(div(z,x)));
-        else angle=z<-x?add(192,lookup(div(z,-x))):sub(256,lookup(div(-x,z)));
-    } else {
-        z=-z;
-        if(x>=0)angle=z>=x?sub(128,lookup(div(x,z))):add(64,lookup(div(z,x)));
-        else angle=z<-x?sub(192,lookup(div(z,-x))):add(128,lookup(div(-x,z)));
-    }
-    return static_cast<std::uint32_t>(mul(angle,256))&0xffffU;
+    return angular_core(std::bit_cast<Word>(x),std::bit_cast<Word>(z));
+}
+Result angular_core(Word x,Word z) noexcept {
+    namespace fp=binary32_arithmetic;
+    if((x&0x7fffffffU)==0&&(z&0x7fffffffU)==0)return Word{0};
+    try {
+        Word numerator,denominator,offset;bool subtract;
+        const Word minus_x=x^0x80000000U;
+        if(!lt(z,0)){
+            if(!lt(x,0)){
+                if(!lt(z,x)){numerator=x;denominator=z;offset=0;subtract=false;}
+                else {numerator=z;denominator=x;offset=0x42800000;subtract=true;}
+            }else{
+                if(lt(z,minus_x)){numerator=z;denominator=minus_x;offset=0x43400000;subtract=false;}
+                else {numerator=minus_x;denominator=z;offset=0x43800000;subtract=true;}
+            }
+        }else{
+            z^=0x80000000U;
+            if(!lt(x,0)){
+                if(!lt(z,x)){numerator=x;denominator=z;offset=0x43000000;subtract=true;}
+                else {numerator=z;denominator=x;offset=0x42800000;subtract=false;}
+            }else{
+                if(lt(z,minus_x)){numerator=z;denominator=minus_x;offset=0x43400000;subtract=true;}
+                else {numerator=minus_x;denominator=z;offset=0x43000000;subtract=false;}
+            }
+        }
+        const Word value=lookup(arithmetic(fp::div(numerator,denominator)));
+        const Word angle=arithmetic(subtract?fp::sub(offset,value):fp::add(value,offset));
+        return arithmetic(fp::to_unsigned_word_rtz(arithmetic(fp::mul(angle,0x43800000))))&0xffffU;
+    }catch(const Failure& e){return e.error;}
+
 }
 Result orient(const State& state,std::uint16_t angle0) noexcept {
     const auto result=heading(state);

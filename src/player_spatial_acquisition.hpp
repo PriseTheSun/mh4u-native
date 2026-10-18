@@ -11,6 +11,7 @@ struct Context {
     const spatial_query::Scene* scene=nullptr;
     std::optional<Word> area_enable_mask; // *fcf45c +18, not the query area ID.
     spatial_query::Limits query_limits{};
+    std::span<const spatial_query::GridUpdate> previous_grid_updates{};
 };
 struct Request {Word override_height{},offset_bits{};};
 struct Effects {
@@ -27,6 +28,13 @@ struct Error {
         player_state1_dynamics::Error,spatial_query::Error> cause;
 };
 using Result=std::variant<Output,Error>;
+// Single interpretations of b4620c and b43194/its inline equivalent. These
+// helpers do not run a query; missing consumed facts remain tagged errors.
+using WordResult=std::variant<Word,Error>;
+[[nodiscard]] WordResult attribute_mask(const player_controller_step::PlayerFields&,
+    const player_fields::Fields&);
+[[nodiscard]] WordResult wrapper_flags(const player_controller_step::PlayerFields&,
+    const Context&);
 // Complete b40b88, composing 2ba230's zero-extra-mask profile and 2bb178.
 // Cache and grid updates are returned together, with no external mutation.
 // A caller must commit grid updates only after its entire transaction succeeds.

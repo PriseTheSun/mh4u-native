@@ -15,6 +15,17 @@ struct Input{pcs::PlayerFields p;pf::Fields f;};
 // One test-only offset declaration for every shared optional field. Consumers
 // decode source observations and project native outputs through the same map.
 template<class Fields,class Visitor>inline void shared_fields(Fields& f,Visitor visit){
+ visit(f.pbw.field34,1,0x34,1);visit(f.pbw.field808,1,0x808,4);
+ visit(f.pw.field97c,2,0x97c,2);visit(f.pw.field97e,2,0x97e,2);
+ visit(f.pbw.field01,1,0x01,1);visit(f.pbw.field468_bits,1,0x468,4);
+ for(U i=0;i<6;++i)visit(f.pbw.fields470[i],1,0x470+i,1);
+ visit(f.pbw.field47c,1,0x47c,4);visit(f.pbw.field480,1,0x480,4);
+ for(U i=0;i<3;++i){visit(f.pbw.fields488_bits[i],1,0x488+4*i,4);visit(f.pw.fields18_bits[i],2,0x18+4*i,4);visit(f.pw.fields28_bits[i],2,0x28+4*i,4);}
+ visit(f.pbw.field494_bits,1,0x494,4);visit(f.pbw.field498,1,0x498,4);visit(f.pbw.field49c,1,0x49c,4);visit(f.pw.field9e9,2,0x9e9,1);
+ visit(f.pw.fieldb4,2,0xb4,2);visit(f.pw.field50c,2,0x50c,1);visit(f.pw.field50e,2,0x50e,2);
+ visit(f.pw.fielde0_bits,2,0xe0,4);visit(f.pw.fielde4,2,0xe4,2);visit(f.pw.fielde6,2,0xe6,2);
+ visit(f.pw.field90_bits,2,0x90,4);visit(f.pw.field94_bits,2,0x94,4);visit(f.pw.field98_bits,2,0x98,4);
+ visit(f.pw.fielda0_bits,2,0xa0,4);visit(f.pw.fielda4_bits,2,0xa4,4);visit(f.pw.fielda8_bits,2,0xa8,4);visit(f.pw.fieldb8_bits,2,0xb8,4);
  visit(f.pw.field1fc,2,0x1fc,4);visit(f.pw.field200,2,0x200,4);visit(f.pw.field586,2,0x586,2);
  visit(f.pw.field9e8,2,0x9e8,1);
  visit(f.pbw.field368_bits,1,0x368,4);

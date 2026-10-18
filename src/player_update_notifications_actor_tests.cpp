@@ -2,7 +2,7 @@
 // contexts. Original numerical/caller comparison is a separate ARM oracle.
 #include "player_actor.hpp"
 #include "test_support/player_update_actor_checks.hpp"
-#include "test_support/player_update_status_actor_fixture.hpp"
+#include "test_support/player_update_notifications_actor_fixture.hpp"
 #include "test_support/player_update_dispatch_actor_fixture.hpp"
 #include "test_support/player_actor_allocation_probe.hpp"
 #include "picosha2.h"
@@ -48,18 +48,8 @@ const composed::Error& composed_error(const na::PlayerError& e){
  check(e.driver&&e.driver->phase==pa::Phase::update_notifications,"Lost notification driver cause");
  return std::get<composed::Error>(e.driver->cause);
 }
-nq::State queue_seed(){
- nq::State q;q.counter=0;
- for(auto& record:q.pool){record.fill(std::uint8_t{0x95});record[0]=0;record[2].reset();}
- for(auto& slot:q.slots)slot=nq::Absent{};
- return q;
-}
-void notification_inputs(na::PlayerInitial& seed){
- status_inputs(seed);seed.shared_fields.pbw.field34c=100;
- seed.shared_fields.pw.field1fc=seed.shared_fields.pw.field200=0;
- seed.shared_fields.pw.field586=0x4d5;seed.shared_fields.pw.field2c8_bits=one;
- seed.controller.player.pw.fieldec|=0x08000000U;
-}
+using mh4u::test_notifications_actor_fixture::queue_seed;
+using mh4u::test_notifications_actor_fixture::notification_inputs;
 void inserted(const notify::Effects& effects,std::uint8_t first){
  check(effects.count==2&&effects.attempts[0].id==50&&effects.attempts[1].id==55,"Source notification order changed");
  for(std::uint8_t i=0;i<2;++i)check(effects.attempts[i].permitted&&effects.attempts[i].inserted==nq::PoolIndex{std::uint8_t(first+i)},"Notification insertion/permission lost");

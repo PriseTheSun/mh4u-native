@@ -22,8 +22,8 @@
     "checksums": "tools/dependencies.lock.json"
   },
   "runtime": {
-    "macos_arm64": "Published laboratory0.17 remains open. Development Player::prepare_and_update_notifications composes b1407c through b41804 return, before b145f0, in one Player/Collection/Scene/world-queue transaction. 151/151 CTests passed. Full bootstrap/scheduler unfinished.",
-    "windows_x64": "Development engine cross-compiled for Windows x64 without warnings, including persistent Player notifications and its comparators. Windows runtime unverified; published laboratory0.17 retained.",
+    "macos_arm64": "Published laboratory0.17 remains open. Development Player::prepare_and_update_model composes b1407c through b07c08/b06f8c/b07bb8, before b14724, using contact-adjusted position and one source delta. Caller/foreign Player and external candidates publish after reached renders. 172/172 CTests passed. Full bootstrap/scheduler unfinished.",
+    "windows_x64": "Development engine and all tests cross-compiled without warnings, including the composed model checkpoint. Windows execution remains unverified; published laboratory0.17 retained.",
     "scene": "real em062 actor: 12 joints, 1516 vertices, 1564 triangles, 28 source LMT actions; static OBJ samples retained",
     "texture_selector": "PNG replacement packs keyed by original encoded SHA256 work through common presentation materials, including native recipes. No HD pack included; original selector verification retained.",
     "controller_configuration": "movement/camera axes, deadzone and remapping implemented with backup; physical controller not available",
@@ -324,14 +324,64 @@
       "research/private/player-update-notifications-v1/public-windows/validation.json",
       "research/private/player-update-notifications-v1/queue-native/independent-review/review.json",
       "research/private/player-update-notifications-v1/facade-independent-review/review.json",
-      "research/private/player-update-notifications-v1/oracle-independent-review/review.json"
+      "research/private/player-update-notifications-v1/oracle-independent-review/review.json",
+      "research/private/player-update-direction-v1/manifest.json",
+      "research/private/player-update-direction-v1/coverage.json",
+      "research/private/player-update-direction-v1/direction-native/native-final/validation.json",
+      "research/private/player-update-direction-v1/player-integration/native-final/validation.json",
+      "research/private/player-update-direction-v1/oracle/native-final/validation.json",
+      "research/private/player-update-direction-v1/oracle/original-audit/validation.json",
+      "research/private/player-update-direction-v1/public-macos/validation.json",
+      "research/private/player-update-direction-v1/public-windows/validation.json",
+      "research/private/player-update-direction-v1/direction-native/independent-review/review.json",
+      "research/private/player-update-direction-v1/facade-independent-review/review.json",
+      "research/private/player-update-direction-v1/oracle-independent-review/review.json",
+      "research/private/player-update-direction-v1/research/research-manifest.json",
+      "research/private/player-update-position-v1/manifest.json",
+      "research/private/player-update-position-v1/coverage.json",
+      "research/private/player-update-position-v1/material-native/native-immutable/validation.json",
+      "research/private/player-update-position-v1/material-native/review-localization/review.json",
+      "research/private/player-update-position-v1/player-integration/native-final/validation.json",
+      "research/private/player-update-position-v1/composition-independent-review/review.json",
+      "research/private/player-update-position-v1/oracle/native-final/validation.json",
+      "research/private/player-update-position-v1/oracle/original-audit/validation.json",
+      "research/private/player-update-position-v1/oracle-independent-review/review.json",
+      "research/private/player-update-position-v1/public-macos/validation.json",
+      "research/private/player-update-position-v1/public-windows/validation.json",
+      "research/private/player-update-position-v1/research/research-manifest.json",
+      "research/private/player-update-manager-v1/manifest.json",
+      "research/private/player-update-manager-v1/coverage.json",
+      "research/private/player-update-manager-v1/manager-native/manifest.json",
+      "research/private/player-update-manager-v1/manager-native/native-ordered-final/validation.json",
+      "research/private/player-update-manager-v1/player-integration/native-ordered/validation.json",
+      "research/private/player-update-manager-v1/composition-independent-review/review.json",
+      "research/private/player-update-manager-v1/oracle-manifest.json",
+      "research/private/player-update-manager-v1/oracle/native-final/validation.json",
+      "research/private/player-update-manager-v1/oracle-independent-review/review.json",
+      "research/private/player-update-manager-v1/public-macos/validation.json",
+      "research/private/player-update-manager-v1/public-windows/validation.json",
+      "research/private/player-update-manager-v1/research/research-manifest.json",
+      "research/private/player-update-contact-v1/manifest.json",
+      "research/private/player-update-model-v1/source-audit/source-ownership.json",
+      "research/private/player-update-model-v1/composition-native/manifest.json",
+      "research/private/player-update-model-v1/player-integration/manifest.json",
+      "research/private/player-update-model-v1/resource-integration/native-final/validation.json",
+      "research/private/player-update-model-v1/independent-review/manifest.json",
+      "research/private/player-update-model-v1/resource-independent-review/manifest.json",
+      "research/private/player-update-model-v1/oracle-manifest.json",
+      "research/private/player-update-model-v1/oracle-independent-review/original-manifest.json",
+      "research/private/player-update-model-v1/oracle-independent-review/manifest.json",
+      "research/private/player-update-model-v1/next-source/manifest.json",
+      "research/private/player-update-model-v1/laboratory-readback.json",
+      "research/private/player-update-model-v1/public-macos/validation.json",
+      "research/private/player-update-model-v1/public-windows/validation.json"
     ],
     "analysis_elf_checks": 23,
     "index_cli_tests": 7,
     "skeletal_import_tests": 11,
     "khronos_actor_errors": 0,
     "khronos_actor_warnings": 0,
-    "cpp_ctest_suites_passed": 151,
+    "cpp_ctest_suites_passed": 172,
     "native_skin_bind_max_error_source_units": 1.52588e-05,
     "native_animation_sample_max_motion_source_units": 1049.41,
     "macos_actor_playback_frames": 240,
@@ -393,7 +443,7 @@
     "motion_events_assertions": 305145,
     "motion_events_sanitizers": "ASan+UBSan final standalone passed",
     "motion_events_python_tests": 14,
-    "cpp_ctest_seconds": 68.45,
+    "cpp_ctest_seconds": 89.55,
     "event_prefix_present_arm_rows_compared": 855,
     "event_prefix_mismatches": 0,
     "player_input_arm_executions": 131980,
@@ -513,7 +563,77 @@
     "motion_clock_arm_cases": 1520,
     "motion_clock_checks_per_variant": 742552,
     "motion_application_arm_cases": 832,
-    "motion_application_checks_per_variant": 29450
+    "motion_application_checks_per_variant": 29450,
+    "player_update_model": {
+      "checkpoint": "before b14724",
+      "continuous_original": {
+        "cases": 9,
+        "complete_returns": 8,
+        "earlier_event_prefixes": 1,
+        "diagnostic_initial_model": true
+      },
+      "differential": {
+        "complete_native_matches": 7,
+        "typed_numeric_rejections": 1,
+        "earlier_prefixes_matched": 1,
+        "successful_frame_effects": 6,
+        "successful_publication_effects": 5,
+        "canonical_checks": 1118034,
+        "motion_checks": 82237,
+        "frame_checks": 56761
+      },
+      "known_numeric_difference": {
+        "case": "shared-half-delta",
+        "original": "Overflow in nlerp intermediate; ARM returns signed zero components.",
+        "native": "Typed numeric_overflow at publication transition, joint 0 rotation component 2; not a complete equivalence match.",
+        "source_inputs_preserved": true
+      },
+      "persistent_actor": {
+        "model_parts": 7,
+        "bones": 19,
+        "checks_per_profile": 8821895,
+        "allocation_failure_points": 291,
+        "reached_render_failure_points": 190,
+        "profiles": [
+          "normal",
+          "ASan/UBSan/float-cast-overflow"
+        ]
+      },
+      "resource_integration": {
+        "checks_per_profile": 23,
+        "initializers": 2,
+        "model_samples": 4,
+        "joint_samples": 20,
+        "output_joints": 19
+      },
+      "composition_boundary_checks_per_profile": 49,
+      "legacy_bridge_regression_cases": 150,
+      "public_validation": {
+        "macos_ctest_suites_passed": 172,
+        "macos_ctest_suites_total": 172,
+        "macos_warnings": 0,
+        "windows_cross_compilation": "passed",
+        "windows_warnings": 0,
+        "windows_executed": false,
+        "source_count": 378,
+        "sources_stable": true,
+        "macos_warm_build_wall_seconds": 143.376418167,
+        "windows_warm_build_wall_seconds": 62.461469957999995
+      },
+      "differential_validation": {
+        "profiles": [
+          "normal",
+          "ASan/UBSan/float-cast-overflow"
+        ],
+        "translation_units_per_profile": 68,
+        "positive_processes": 4,
+        "negative_processes_exact_exit_1": 62,
+        "source_snapshot_pairs": 534,
+        "wall_seconds": 307.855537541,
+        "cpu_user_seconds": 353.610641,
+        "cpu_system_seconds": 24.873013
+      }
+    }
   },
   "rea_analysis": {
     "input": "derived segmented ELF32 ARM; original bytes preserved",
@@ -578,7 +698,7 @@
     "playable coop, synchronized actions and Internet transport",
     "Windows runtime validation"
   ],
-  "next": "Integrate source-verified direction refresh and close type13 resource/material side effects before extending the same Player transaction. Keep previous-mask producers, queue initialization/consumer, earlier unsupported states, b22164 event emission, bootstrap and scheduler explicit. Combat, quests, saves, full PT-BR, physical controller validation, Windows execution and Internet coop remain required.",
+  "next": "Recover af7378 using retained caller evidence and compose through before b148f0, preserving existing field/event/resource owners. Complete bootstrap/scheduler, unsupported actions and material lifetime remain open. Combat, quests, saves, full PT-BR, physical controller, Windows execution and playable Internet coop remain required.",
   "roadmap": "docs/roadmap.md",
   "resource_index": {
     "archives": 10592,
@@ -603,8 +723,9 @@
     "decoder_profile": "mh4u-lmt67-arm-sampler-v2"
   },
   "user_preferences": {
-    "keep_launcher_visible_during_tests": true,
-    "necessary_installs_authorized": true
+    "necessary_installs_authorized": true,
+    "keep_native_game_visible_during_tests": true,
+    "native_game_preview": "Published village + native Player preview open during testing; full gameplay unfinished."
   },
   "collision_probe": {
     "indexed_resources": 626,
@@ -668,7 +789,7 @@
     "complete_character": false,
     "documentation": "docs/player-assembly.md"
   },
-  "updated_at": "2026-10-18T16:31:42.219742+00:00",
+  "updated_at": "2026-10-18T19:58:17.575584+00:00",
   "player_appearance": {
     "parts": 7,
     "joints": 19,
@@ -1159,7 +1280,7 @@
     "animation": "Native PBW/model bridge and explicit Player::step_position now share frame/output owners and transactional render commit. Original150calls retained, diagnostics remain explicit; active b06b38, direction refresh, full placement, scheduler and startup remain open.",
     "product": "Playable combat, quests, saves, full PT-BR and Internet cooperative play remain required for the original objective. Laboratory is not the completed port.",
     "spatial": "Explicit Player update, world lookup, weighted IPL construction and object lifecycle share native state and transactional publication. Runtime world bootstrap, multiple groups, transformed objects and alternate collections remain open.",
-    "player_update": "Player::prepare_and_update_notifications composes b1407c through b41804 return, BEFORE b145f0. The queue is owned by the world and supplied explicitly; Player, Collection, Scene grid and queue commit together after rendering. Isolated queue cases and163continuous original checkpoints match native code. b6d2a4 direction refresh has3828original calls but no native integration; type13 resource/material closure, previous masks, queue startup/consumer, later position timers and scheduler/startup remain open."
+    "player_update": "Player::prepare_and_update_model reaches before b14724. Source af7378 lookup and caller equipment/event continuation are the next boundary; bootstrap, scheduler and unsupported preceding routes remain incomplete."
   },
   "native_actor": {
     "documentation": "docs/native-actor-rendering.md",
@@ -1225,7 +1346,7 @@
     "original_bootstrap_scheduler_proven": false,
     "windows_execution": false
   },
-  "development_extension": "native-player-persistent-notifications-integrated; canonical-Player-before-b145f0",
+  "development_extension": "native-player-contact-model-integrated; canonical-Player-before-b14724; one-model-step-and-atomic-render-publication",
   "player_state1": {
     "documentation": "docs/player-state1-native.md",
     "native": "src/player_state1.cpp",
@@ -2358,5 +2479,1187 @@
       "Windows compile-only; full gameplay, saves, full PT-BR, physical controller and Internet coop remain unfinished.",
       "Consolidation reads retained evidence only; no new original/native execution."
     ]
+  },
+  "player_update_direction": {
+    "documentation": "docs/player-update-direction.md",
+    "manifest": "research/private/player-update-direction-v1/manifest.json",
+    "canonical_player_api": "Player::prepare_and_update_direction; b1407c→before b14610 after b6d2a4 returns",
+    "single_transaction": "Preparation, dispatch, adjustment, status, notifications and direction share one candidate; publish Player/Collection/Scene grid/world queue only after rendering succeeds.",
+    "direction_state": "Canonical PWb0/PBW24; exact binary32 operation order, raw wrapping and branch-dependent16/32bit stores.",
+    "type13": "Exact early returns only. Shared PW9e8 optional; no fabricated material resource side effects.",
+    "original": {
+      "validation": {
+        "path": "research/private/player-update-direction-v1/oracle/original-audit/validation.json",
+        "bytes": 404838,
+        "sha256": "d044d8e8c71394e2781951d834b4a37046817ca6db57b131c93705efa3b4f85e"
+      },
+      "entries": 190,
+      "complete_checkpoints": 188,
+      "event_prefixes": 2,
+      "guard_controls": 10,
+      "wall_seconds": null,
+      "cpu_seconds": null,
+      "max_rss_bytes": null,
+      "audit_wall_seconds": 75.558416667
+    },
+    "native": {
+      "validation": {
+        "path": "research/private/player-update-direction-v1/oracle/native-final/validation.json",
+        "bytes": 518100,
+        "sha256": "0a517e1c3b0f913a925702650274e670a0efef51925ac1561808e73103c450c4"
+      },
+      "profiles": [
+        "normal",
+        "nonrecovering ASan/UBSan/float-cast-overflow"
+      ],
+      "positive_processes": 4,
+      "negative_processes": 94,
+      "stable_input_pairs": 289,
+      "instrumented_project_units": 49,
+      "observed_per_profile": {
+        "direction": {
+          "status": "passed",
+          "cases": 190,
+          "complete": 188,
+          "prefixes": 2,
+          "material_equal": 5,
+          "material_cached": 3,
+          "snaps": 162,
+          "direction_calls": 411,
+          "direction_stores": 1396,
+          "direction_store_bytes": 5584,
+          "direction_trace": 17689,
+          "native_controls": 14,
+          "checks": 4969354,
+          "motion_projection_checks": 986926
+        },
+        "notifications": {
+          "status": "passed",
+          "cases": 165,
+          "complete": 163,
+          "prefixes": 2,
+          "candidate_cases": 14,
+          "status_scans": 13,
+          "status_timers": 9,
+          "status_clears": 2,
+          "status_calls": 1205,
+          "status_stores": 3872,
+          "status_store_bytes": 15607,
+          "status_written_arena_bytes": 2807,
+          "status_arena_bytes": 62091264,
+          "checkpoint_bytes": 62853120,
+          "borrowed_provider_bytes": 4673536,
+          "immutability_bytes": 62853120,
+          "event_written_lanes": 184,
+          "notification_calls": 850,
+          "attempts": 171,
+          "permitted": 171,
+          "insertions": 164,
+          "cleanups": 6,
+          "effective_cleanups": 4,
+          "queue_compared_bytes": 397068,
+          "queue_written_bytes": 18024,
+          "queue_stores": 5449,
+          "opaque_queue_bytes": 1304,
+          "local_byte_observations": 326,
+          "checks": 4298367,
+          "motion_projection_checks": 857076
+        }
+      },
+      "wall_seconds": 544.412023375
+    },
+    "direction_leaf": {
+      "validation": {
+        "path": "research/private/player-update-direction-v1/direction-native/native-final/validation.json",
+        "bytes": 28358,
+        "sha256": "88acdd2e92ea1e6f46fe4fc117bd5e386973628a1a96b97753b706a8fc916594"
+      },
+      "checks_per_profile": [
+        {
+          "status": "passed",
+          "checks": 289,
+          "cases": 0,
+          "calls": 0,
+          "snaps": 0
+        },
+        {
+          "status": "passed",
+          "checks": 161075,
+          "cases": 3828,
+          "calls": 16055,
+          "snaps": 306
+        }
+      ],
+      "reused_original_cases": 3828,
+      "stable_input_pairs": 71,
+      "instrumented_project_units": 8,
+      "negative_processes": 40,
+      "wall_seconds": 8.12170775
+    },
+    "persistent_validation": {
+      "validation": {
+        "path": "research/private/player-update-direction-v1/player-integration/native-final/validation.json",
+        "bytes": 42918,
+        "sha256": "9ae33172e5da9ae2e4767f45dadbf7feab2a8f43978ca1cdda876c4ac7b92f32"
+      },
+      "checks_per_profile": [
+        {
+          "status": "passed",
+          "checks": 1758596,
+          "allocation_failures": 53,
+          "first_render_failure": 53
+        },
+        {
+          "status": "passed",
+          "checks": 1728460,
+          "allocation_failures": 53,
+          "first_render_failure": 53
+        },
+        {
+          "status": "passed",
+          "checks": 1728284,
+          "allocation_failures": 53,
+          "first_render_failure": 53
+        },
+        {
+          "status": "passed",
+          "checks": 1682334,
+          "allocation_failures": 53,
+          "first_render_failure": 53
+        },
+        {
+          "status": "passed",
+          "checks": 1712659,
+          "allocation_failures": 53,
+          "first_render_failure": 53
+        }
+      ],
+      "stable_input_pairs": 418,
+      "instrumented_project_units": 81,
+      "positive_processes": 10,
+      "negative_processes": 16,
+      "wall_seconds": 57.477646667
+    },
+    "public": {
+      "macos": {
+        "validation": {
+          "path": "research/private/player-update-direction-v1/public-macos/validation.json",
+          "bytes": 1707,
+          "sha256": "b7784bd9ceb5314dcc124ff769cb158b8daa65b50c43b6b73bc3fa069fd16d13"
+        },
+        "inputs": {
+          "path": "research/private/player-update-direction-v1/public-macos/inputs-after.json",
+          "bytes": 35065,
+          "sha256": "d11d1bdd77b574e3a0cbc2b67eb04954895e9954b65ec6744fb20804a0b810f1"
+        },
+        "current_verified_inputs": 341,
+        "wall_seconds": 201.776286083,
+        "child_user_seconds": 251.597934,
+        "child_system_seconds": 22.343254,
+        "compiler_warnings": 0
+      },
+      "windows": {
+        "validation": {
+          "path": "research/private/player-update-direction-v1/public-windows/validation.json",
+          "bytes": 1651,
+          "sha256": "c03f5c5aff885cdd5bc6ba3d7f0ed84e219e7e0ef8dbc7bbce22f1bcca7a6935"
+        },
+        "inputs": {
+          "path": "research/private/player-update-direction-v1/public-windows/inputs-after.json",
+          "bytes": 35065,
+          "sha256": "d11d1bdd77b574e3a0cbc2b67eb04954895e9954b65ec6744fb20804a0b810f1"
+        },
+        "current_verified_inputs": 341,
+        "wall_seconds": 128.62868783300001,
+        "child_user_seconds": 219.191381,
+        "child_system_seconds": 22.119394,
+        "compiler_warnings": 0
+      }
+    },
+    "public_macos_ctests": 155,
+    "compiler_warnings": 0,
+    "windows_crosscompiled": true,
+    "windows_executed": false,
+    "next_source_contract": "research/private/player-update-direction-v1/research/original-contract.md",
+    "next_research": {
+      "manifest": {
+        "path": "research/private/player-update-direction-v1/research/research-manifest.json",
+        "bytes": 35264,
+        "sha256": "dce2c9996e5800af60dd4a42bcdac8fbe2fdc397b7b2959a0637edb3f81256eb"
+      },
+      "material_original_calls": 100,
+      "guard_controls": 8,
+      "instructions": 82857,
+      "type13_resource_closure_complete": false,
+      "material_native_integration": false
+    },
+    "type13_resource_closure_complete": false,
+    "published_package_updated": false,
+    "native_game": {
+      "pid": 52267,
+      "birth": "Sun Oct 18 13:44:35 2026",
+      "command": "build/packages/20261018-035207/macOS/MH4U - Laboratorio.app/Contents/MacOS/mh4u-resource-lab --world build/packages/20261018-035207/macOS/MH4U - Laboratorio.app/Contents/Resources/assets/village-native-actor-v2.world.tsv --player-preview build/packages/20261018-035207/macOS/MH4U - Laboratorio.app/Contents/Resources/assets/player-preview/constants.bin --hide-primitive 3",
+      "observed": "Sun Oct 18 13:44:35 2026     build/packages/20261018-035207/macOS/MH4U - Laboratorio.app/Contents/MacOS/mh4u-resource-lab --world build/packages/20261018-035207/macOS/MH4U - Laboratorio.app/Contents/Resources/assets/village-native-actor-v2.world.tsv --player-preview build/packages/20261018-035207/macOS/MH4U - Laboratorio.app/Contents/Resources/assets/player-preview/constants.bin --hide-primitive 3",
+      "version": "0.17.0",
+      "package_updated": false,
+      "scope": "Published native Player inspection in the world; new direction checkpoint is not the full game loop."
+    },
+    "complete_gameplay": false,
+    "internet_coop": false,
+    "independent_reviews": [
+      {
+        "path": "research/private/player-update-direction-v1/facade-independent-review/review.json",
+        "bytes": 14144,
+        "sha256": "c12d2813a32e341e13bfce211c147a95667754553f1485085c0ce3e1e505dd5b"
+      },
+      {
+        "path": "research/private/player-update-direction-v1/composition-independent-review/review.json",
+        "bytes": 8025,
+        "sha256": "f20eb7fb81b058ec33f654ef6ff5dd52f9adddb42acaac2623525e9598221655"
+      },
+      {
+        "path": "research/private/player-update-direction-v1/direction-native/independent-review/review.json",
+        "bytes": 4661,
+        "sha256": "f8b7ce2bd586c1f54189fb3ba4e90b1c3bbb0f54d1612c79d8e13bc2f050999e"
+      },
+      {
+        "path": "research/private/player-update-direction-v1/oracle-independent-review/review.json",
+        "bytes": 110402,
+        "sha256": "90cc928d2327a015709b29260b9106eb27ab01b608f789b5c107970e88955da4"
+      }
+    ],
+    "limits": [
+      "Explicit admitted caller prefix ending before b14610, not complete b1407c, bootstrap or scheduler.",
+      "Type13 resource changes remain typed unsupported errors. Only exact equal-ordinal and already-selected-bank early returns are composed.",
+      "Queue initialization/consumer and previous-mask producers remain unknown. No inferred startup state.",
+      "Original190 execution completed before a guard-label tooling assertion; ten guards were retained separately. Final memory sweep was not reached. Audit is not a rerun.",
+      "ARM caller elapsed/CPU/peak memory are unmeasured; audit duration is reported separately. Native CPU/process-family peak memory and agent token costs unmeasured.",
+      "Public builds were warm and concurrent. No before/after performance claim.",
+      "Native actor strict profile covers81C++ units; cgltf, SDL, compiler runtime and system libraries remain uninstrumented. Leak checking unavailable on this host.",
+      "Windows cross-compilation does not establish Windows execution. Full gameplay, combat, quests, saves, full PT-BR, physical controller and Internet coop remain unfinished.",
+      "Published native game preview remains open; this new checkpoint has not been connected to a complete playable game loop.",
+      "Consolidation reads retained evidence; no new original or native execution."
+    ]
+  },
+  "player_update_position": {
+    "documentation": "docs/player-update-position.md",
+    "manifest": "research/private/player-update-position-v1/manifest.json",
+    "canonical_player_api": "Player::prepare_and_update_position; b1407c→before b146c4",
+    "single_transaction": "Preparation, dispatch, adjustment, status, notifications, direction and position/timer share one candidate; Player/Collection/Scene grid/world queue publish after render succeeds.",
+    "position_state": "Current PBW, previous PBW and model transform remain separate. Timer uses canonical fields and one caller delta; exact operation order and raw-word restoration.",
+    "type13": "Exact early returns only in Player; separate material owner has explicit limits.",
+    "original": {
+      "validation": {
+        "path": "research/private/player-update-position-v1/oracle/original-audit/validation.json",
+        "bytes": 245951,
+        "sha256": "9d332af498ec107ce5552b7029c11b973d341398942fc2ddf80988a3729041b3"
+      },
+      "entries": 212,
+      "complete_checkpoints": 210,
+      "event_prefixes": 2,
+      "guard_controls": 8,
+      "wall_seconds": 89.559225042,
+      "cpu_seconds": 94.77294,
+      "max_rss_bytes": 396886016,
+      "measurement_scope": "Three original executions; peak is largest individual process, not concurrent family sum.",
+      "audit_wall_seconds": 89.468337625
+    },
+    "native": {
+      "validation": {
+        "path": "research/private/player-update-position-v1/oracle/native-final/validation.json",
+        "bytes": 717737,
+        "sha256": "d9aac5b14cec5569ce72325d5da65cd4ca8869b724091af6cd0a23cc68728bf0"
+      },
+      "profiles": [
+        "normal",
+        "nonrecovering ASan/UBSan/float-cast-overflow"
+      ],
+      "positive_processes": 4,
+      "negative_processes": 90,
+      "stable_input_pairs": 307,
+      "instrumented_project_units": 50,
+      "observed_per_profile": {
+        "position": {
+          "status": "passed",
+          "cases": 212,
+          "complete": 210,
+          "prefixes": 2,
+          "timer_calls": 18,
+          "integrations": 12,
+          "restorations": 6,
+          "position_skipped": 192,
+          "candidate_positions": 2,
+          "position_trace": 1716,
+          "position_stores": 81,
+          "position_store_bytes": 324,
+          "native_controls": 7,
+          "checks": 5555103,
+          "motion_projection_checks": 1101209
+        },
+        "direction": {
+          "status": "passed",
+          "cases": 190,
+          "complete": 188,
+          "prefixes": 2,
+          "material_equal": 5,
+          "material_cached": 3,
+          "snaps": 162,
+          "direction_calls": 411,
+          "direction_stores": 1396,
+          "direction_store_bytes": 5584,
+          "direction_trace": 17689,
+          "native_controls": 14,
+          "checks": 4974646,
+          "motion_projection_checks": 986926
+        }
+      },
+      "wall_seconds": 666.386425625
+    },
+    "persistent_validation": {
+      "validation": {
+        "path": "research/private/player-update-position-v1/player-integration/native-final/validation.json",
+        "bytes": 35944,
+        "sha256": "12530c109ca2307b5b93f520e244885e39e4910e87707eaf7a2d34d55434c8e8"
+      },
+      "checks_per_profile": [
+        {
+          "status": "passed",
+          "checks": 1713194,
+          "allocation_failures": 53,
+          "first_render_failure": 53
+        },
+        {
+          "status": "passed",
+          "checks": 1758596,
+          "allocation_failures": 53,
+          "first_render_failure": 53
+        },
+        {
+          "status": "passed",
+          "checks": 1728460,
+          "allocation_failures": 53,
+          "first_render_failure": 53
+        }
+      ],
+      "stable_input_pairs": 416,
+      "instrumented_project_units": 80,
+      "positive_processes": 6,
+      "negative_processes": 16,
+      "wall_seconds": 49.763772667
+    },
+    "material_native": {
+      "validation": {
+        "path": "research/private/player-update-position-v1/material-native/native-immutable/validation.json",
+        "bytes": 38804,
+        "sha256": "e0bbda8db0fe31504f0423b2753389b0af17dd72bb27241b8327bf5caf54f189"
+      },
+      "checks_per_profile": [
+        {
+          "checks": 1089,
+          "cases": 0,
+          "compared_bytes": 0,
+          "copies": 0,
+          "refreshes": 0
+        },
+        {
+          "checks": 2039881,
+          "cases": 100,
+          "compared_bytes": 1836800,
+          "copies": 52,
+          "refreshes": 52
+        }
+      ],
+      "reused_original_cases": 100,
+      "stable_input_pairs": 63,
+      "instrumented_project_units": 3,
+      "positive_processes": 4,
+      "negative_processes": 38,
+      "wall_seconds": 9.851578875000001,
+      "child_cpu_seconds": 9.019662,
+      "child_maxrss_host_units": 404226048,
+      "measurement_scope": [
+        "No ARM rerun;100 original observations reused.",
+        "All3 project translation units instrumented. Host standard library and platform runtime are external/uninstrumented.",
+        "macOS leak sanitizer disabled because unsupported; address/undefined/float-cast-overflow halt on error.",
+        "Only this material target; no public/global build, GUI or target mutation.",
+        "Process-family peak memory and token usage not measured."
+      ],
+      "player_integration": false
+    },
+    "public": {
+      "macos": {
+        "validation": {
+          "path": "research/private/player-update-position-v1/public-macos/validation.json",
+          "bytes": 1703,
+          "sha256": "035eb04668661dc61b46696c100435c9e67073a9fc9202c43805ae5b38aa98c8"
+        },
+        "inputs": {
+          "path": "research/private/player-update-position-v1/public-macos/inputs-after.json",
+          "bytes": 35918,
+          "sha256": "d22f9076b16ece127a64020a0096459c74585fd65e4fcde4f7704d85f417ccde"
+        },
+        "current_verified_inputs": 349,
+        "wall_seconds": 153.389127417,
+        "child_user_seconds": 171.186736,
+        "child_system_seconds": 17.195838,
+        "compiler_warnings": 0
+      },
+      "windows": {
+        "validation": {
+          "path": "research/private/player-update-position-v1/public-windows/validation.json",
+          "bytes": 1646,
+          "sha256": "df952867d908ac068ab799d7da11e5bb5e894cde72c5d4f3eb910bc6c7a0d9d5"
+        },
+        "inputs": {
+          "path": "research/private/player-update-position-v1/public-windows/inputs-after.json",
+          "bytes": 35918,
+          "sha256": "d22f9076b16ece127a64020a0096459c74585fd65e4fcde4f7704d85f417ccde"
+        },
+        "current_verified_inputs": 349,
+        "wall_seconds": 78.48981429199999,
+        "child_user_seconds": 131.350722,
+        "child_system_seconds": 14.355542,
+        "compiler_warnings": 0
+      }
+    },
+    "public_macos_ctests": 159,
+    "compiler_warnings": 0,
+    "windows_crosscompiled": true,
+    "windows_executed": false,
+    "next_source_contract": "research/private/player-update-position-v1/research/original-contract.md",
+    "next_research": {
+      "manifest": {
+        "path": "research/private/player-update-position-v1/research/research-manifest.json",
+        "bytes": 34081,
+        "sha256": "5ab0c4ac944d3bbb481c3480787276f78e422f04cf7daa905497878d22fa19fd"
+      },
+      "original_calls": 408,
+      "guard_controls": 13,
+      "instructions": 193201,
+      "wall_seconds": 4.400280875,
+      "cpu_seconds": 4.520815,
+      "peak_rss_host_units": 1244020736,
+      "native_integration": false
+    },
+    "type13_resource_closure_complete": false,
+    "published_package_updated": false,
+    "native_game": {
+      "pid": 52267,
+      "birth": "Sun Oct 18 13:44:35 2026",
+      "command": "build/packages/20261018-035207/macOS/MH4U - Laboratorio.app/Contents/MacOS/mh4u-resource-lab --world build/packages/20261018-035207/macOS/MH4U - Laboratorio.app/Contents/Resources/assets/village-native-actor-v2.world.tsv --player-preview build/packages/20261018-035207/macOS/MH4U - Laboratorio.app/Contents/Resources/assets/player-preview/constants.bin --hide-primitive 3",
+      "observed": "Sun Oct 18 13:44:35 2026     build/packages/20261018-035207/macOS/MH4U - Laboratorio.app/Contents/MacOS/mh4u-resource-lab --world build/packages/20261018-035207/macOS/MH4U - Laboratorio.app/Contents/Resources/assets/village-native-actor-v2.world.tsv --player-preview build/packages/20261018-035207/macOS/MH4U - Laboratorio.app/Contents/Resources/assets/player-preview/constants.bin --hide-primitive 3",
+      "version": "0.17.0",
+      "package_updated": false,
+      "scope": "Published native Player inspection in the world; new position checkpoint is not the full game loop."
+    },
+    "complete_gameplay": false,
+    "internet_coop": false,
+    "independent_reviews": [
+      {
+        "path": "research/private/player-update-position-v1/composition-independent-review/review.json",
+        "bytes": 4421,
+        "sha256": "f3ad5873c1d3775e979bb44b9071439c7dd7526ea4fbf10a8357615fc35a44db"
+      },
+      {
+        "path": "research/private/player-update-position-v1/material-native/review-localization/review.json",
+        "bytes": 5362,
+        "sha256": "c5333df3529d919b5f6e8ba14325f4b48729b716ccb4cc7760c7a5360ad16ec8"
+      },
+      {
+        "path": "research/private/player-update-position-v1/oracle-independent-review/review.json",
+        "bytes": 5451,
+        "sha256": "44a905806f73c50b0f8bf84e85b0fc0c5a285e31dadbebba6fd0260d87a8e93b"
+      }
+    ],
+    "limits": [
+      "Explicit admitted caller prefix ending before b146c4, not complete b1407c, bootstrap or scheduler.",
+      "Current, previous and model positions remain separate. The later model transform bridge is not implicitly executed.",
+      "Type13 resource changes remain typed unsupported in the composed Player. Independent material ownership admits concrete MaterialStd/rMaterial and disjoint pools; clone/destruction/retirement/cross-pool or partial buffer overlap remain unsupported.",
+      "Queue initialization/consumer and previous-mask producers remain unknown. No inferred startup state.",
+      "Test shared-field producer now includes all37PBW/101PW declared fields; prior raw arenas and fixtures unchanged. Old190 diagnostic timer values are known poison, not fabricated zeros.",
+      "Original corpus has210 complete checkpoint observations and two stopped event prefixes. New original runs used guarded offline verification; delivered native runtime contains no3DS runtime.",
+      "Public builds were warm and concurrent. No before/after performance claim. Native process-family peak memory and agent token costs unmeasured.",
+      "Native actor strict profile covers80C++ units; cgltf, SDL, compiler runtime and system libraries remain uninstrumented. Leak checking unavailable on this host.",
+      "Windows cross-compilation does not establish Windows execution. Full gameplay, combat, quests, saves, full PT-BR, physical controller and Internet coop remain unfinished.",
+      "Published native game preview remains open; this checkpoint has not been connected to a complete playable game loop.",
+      "Consolidation reads retained evidence; no new original or native execution."
+    ]
+  },
+  "player_update_manager": {
+    "documentation": "docs/player-update-manager.md",
+    "manifest": "research/private/player-update-manager-v1/manifest.json",
+    "canonical_player_api": "Player::prepare_and_update_manager; b1407c→before b146d8",
+    "transaction": "Preparation through manager share one preceding candidate. Caller, foreign Player when reached, manager, collection, scene grid and queue publish after both reached renders.",
+    "identity": "Player244 belongs to layer0.selector. Manager e18 is explicit Unknown/Absent/Caller/borrowed foreign; only foreign PWdc/e0 are patched. Caller Global is shared; partial aliases rejected only when consumed.",
+    "original": {
+      "validation": {
+        "path": "research/private/player-update-manager-v1/oracle/arm-first/validation.json",
+        "bytes": 721499,
+        "sha256": "937aa19bdfaa6dc0c8470150f79959dde4ec5694c52b18b8fc6e177ef6cdeef7"
+      },
+      "audit": {
+        "path": "research/private/player-update-manager-v1/oracle/original-audit/validation.json",
+        "bytes": 200410,
+        "sha256": "e28c2604d67dc16be00f2c0930de2a8bba900e347e6037077d8031280340f6d0"
+      },
+      "derivation": {
+        "path": "research/private/player-update-manager-v1/oracle/derived-complete/validation.json",
+        "bytes": 85450,
+        "sha256": "811ac8576cefb3c9334481a29f0aae29144c3f1c7aa80e6be4f54dd8fddf3a8a"
+      },
+      "guard_validation": {
+        "path": "research/private/player-update-manager-v1/oracle/arm-guards-final/validation.json",
+        "bytes": 43084,
+        "sha256": "438aed28147e61fb5e2f66cf7e9f03d5b4daab3644add086c15b0abde1550410"
+      },
+      "entries": 239,
+      "complete_checkpoints": 237,
+      "event_prefixes": 2,
+      "guard_controls": 8,
+      "main_wall_seconds": 105.423206083,
+      "main_cpu_seconds": 112.849728,
+      "main_peak_rss_bytes": 420249600,
+      "guard_wall_seconds": 3.781606125,
+      "derivation_wall_seconds": 181.383789167,
+      "measurement_scope": "Main original execution and guards measured separately; peak is individual process. Exploratory probes retained separately, not included in these times."
+    },
+    "native": {
+      "validation": {
+        "path": "research/private/player-update-manager-v1/oracle/native-final/validation.json",
+        "bytes": 834904,
+        "sha256": "734e2533d233ad0b843559143e793c11ecfc6ddf94480a08c9b03e7f04b5cfaa"
+      },
+      "profiles": [
+        "normal",
+        "nonrecovering ASan/UBSan/float-cast-overflow"
+      ],
+      "positive_processes": 4,
+      "negative_processes": 80,
+      "stable_input_pairs": 404,
+      "instrumented_project_units": 52,
+      "observed_per_profile": {
+        "manager": {
+          "status": "passed",
+          "cases": 239,
+          "complete": 237,
+          "prefixes": 2,
+          "manager_calls": 1213,
+          "manager_slots": 192,
+          "manager_accepted": 8,
+          "self_vertical": 6,
+          "foreign_vertical": 3,
+          "manager_stores": 6116,
+          "manager_nonstack_store_bytes": 1232,
+          "manager_all_store_bytes": 23512,
+          "manager_trace": 28876,
+          "native_controls": 8,
+          "checks": 6433748,
+          "motion_projection_checks": 1241447
+        },
+        "position": {
+          "status": "passed",
+          "cases": 212,
+          "complete": 210,
+          "prefixes": 2,
+          "timer_calls": 18,
+          "integrations": 12,
+          "restorations": 6,
+          "position_skipped": 192,
+          "candidate_positions": 2,
+          "position_trace": 1716,
+          "position_stores": 81,
+          "position_store_bytes": 324,
+          "native_controls": 7,
+          "checks": 5559955,
+          "motion_projection_checks": 1101209
+        }
+      },
+      "wall_seconds": 564.8344540420001
+    },
+    "isolated": {
+      "manifest": {
+        "path": "research/private/player-update-manager-v1/manager-native/manifest.json",
+        "bytes": 160591,
+        "sha256": "7563bda6852db6c9a8cd3dad73a74a505d3a12654eac5343cceef49781965526"
+      },
+      "validation": {
+        "path": "research/private/player-update-manager-v1/manager-native/native-ordered-final/validation.json",
+        "bytes": 45665,
+        "sha256": "79ba4275473a23e26e38ed6e40fdb45d10c1ac67d5473258cb7342bdfeb0d14a"
+      },
+      "coverage": {
+        "original_calls": 408,
+        "original_named_helper_calls": 9811,
+        "compared_before_baseline_and_projected_bytes_per_profile": 18648864,
+        "boundary_checks_per_profile": 1402,
+        "checks_with_original_per_profile": 33421,
+        "current_positive_runs": 4,
+        "current_negative_processes": 36,
+        "strict_manager_translation_units": 9,
+        "recompiled_units_per_profile": 2,
+        "inherited_reference_direction_positive_runs": 10,
+        "original_initial_closure_translation_units": 12
+      },
+      "regression_authority": {
+        "authority": {
+          "path": "research/private/player-update-manager-v1/manager-native/native-final/validation.json",
+          "bytes": 42490,
+          "sha256": "0b40647a879c586f50a220d7416f0301f3d2d9c4304d65f1e2f679ff120a4ceb"
+        },
+        "profiles": [
+          "normal",
+          "strict"
+        ],
+        "targets": [
+          "reference boundaries",
+          "4536reference +12819sector",
+          "4096reference extremes",
+          "direction boundaries",
+          "3828direction original"
+        ],
+        "positive_runs": 10
+      },
+      "stable_input_pairs": 103,
+      "checks_per_profile": [
+        {
+          "checks": 1402,
+          "cases": 0,
+          "compared_bytes": 0,
+          "calls": 0
+        },
+        {
+          "checks": 33421,
+          "cases": 408,
+          "compared_bytes": 18648864,
+          "calls": 9811
+        }
+      ],
+      "wall_seconds": 31.030630249999998,
+      "children_cpu_seconds": 27.68052,
+      "peak_child_rss_host_units": 383647744,
+      "limits": [
+        "No new ARM/REA, target mutation, public build, launcher interaction, scheduler/bootstrap or complete update integration.",
+        "Expected values are copied exclusively from retained original bytes/calls; native projection preserves opaque original-before bytes without claiming to produce them.",
+        "Foreign output is only the identity-bound PWdc/e0 patch; publication/lifetime of caller, peer and external manager belongs to the composed owner.",
+        "Unknown/absent/bindings are explicit; Player244 aliases canonical layer0.selector. No duplicate global or reference owner is introduced.",
+        "Raw angular/sqrt IEEE controls are analytic; retained408 calls do not establish exhaustive nonfinite VFP coverage or exception-flag equivalence.",
+        "Horizontal reference finite-input error contracts are preserved; out-of-range angular table indices fail explicitly.",
+        "Normal and strict are native macOS host results; platform/standard-library code is uninstrumented and leak detection disabled. Windows execution is not claimed.",
+        "Historical validations retain their own snapshots; current manager authority is native-ordered-final. No native regressions were rerun merely for packaging.",
+        "Token costs and process-family peak memory were not measured; reported CPU and maximum single-child RSS are limited native-validation measurements."
+      ]
+    },
+    "persistent_validation": {
+      "validation": {
+        "path": "research/private/player-update-manager-v1/player-integration/native-ordered/validation.json",
+        "bytes": 32999,
+        "sha256": "d3cd2954af0424afe33d7b8f7f18fa04f552921c8514b4a67adbad94c69bd005"
+      },
+      "checks_per_profile": [
+        {
+          "status": "passed",
+          "checks": 14915623,
+          "allocation_failures": 243,
+          "first_render_failure": 54,
+          "render_failures": 190,
+          "palette_failures": 28,
+          "allocation_extent": 243
+        },
+        {
+          "status": "passed",
+          "checks": 1713194,
+          "allocation_failures": 53,
+          "first_render_failure": 53
+        }
+      ],
+      "stable_input_pairs": 421,
+      "instrumented_project_units": 81,
+      "positive_processes": 4,
+      "negative_processes": 16,
+      "wall_seconds": 49.989307834
+    },
+    "public": {
+      "macos": {
+        "validation": {
+          "path": "research/private/player-update-manager-v1/public-macos/validation.json",
+          "bytes": 1704,
+          "sha256": "1785810f8d62f7792a9b6ae9327c6541293bc013ce09b98ad22c8787fcb66862"
+        },
+        "inputs": {
+          "path": "research/private/player-update-manager-v1/public-macos/inputs-after.json",
+          "bytes": 36904,
+          "sha256": "e69f13d551373a57854b54bfbcfa8e1fc1d0df968608a19e46ac564588ee7bcc"
+        },
+        "current_verified_inputs": 358,
+        "wall_seconds": 228.10390891600002,
+        "child_user_seconds": 287.699168,
+        "child_system_seconds": 22.301587,
+        "compiler_warnings": 0
+      },
+      "windows": {
+        "validation": {
+          "path": "research/private/player-update-manager-v1/public-windows/validation.json",
+          "bytes": 1636,
+          "sha256": "90c0e4a8d85dd51bd33a2e4c328ec5e5683f615f3299c4ec63da7e7f5a765250"
+        },
+        "inputs": {
+          "path": "research/private/player-update-manager-v1/public-windows/inputs-after.json",
+          "bytes": 36904,
+          "sha256": "e69f13d551373a57854b54bfbcfa8e1fc1d0df968608a19e46ac564588ee7bcc"
+        },
+        "current_verified_inputs": 358,
+        "wall_seconds": 136.3356195,
+        "child_user_seconds": 235.462254,
+        "child_system_seconds": 22.034884,
+        "compiler_warnings": 0
+      }
+    },
+    "public_macos_ctests": 163,
+    "windows_crosscompiled": true,
+    "windows_executed": false,
+    "next_source_contract": "research/private/player-update-manager-v1/research/original-contract.md",
+    "next_research": {
+      "manifest": {
+        "path": "research/private/player-update-manager-v1/research/research-manifest.json",
+        "bytes": 48509,
+        "sha256": "bd32c1fc8e182289d0fba9521cd69ef298693a4838c8a277322ed86eec533992"
+      },
+      "original_calls": 262,
+      "guard_controls": 12,
+      "original_wall_seconds": 27.907885541000002,
+      "original_cpu_seconds": 30.908265999999998,
+      "maximum_individual_rss_bytes": 626606080,
+      "native_integration": false
+    },
+    "published_package_updated": false,
+    "native_game": {
+      "pid": 52267,
+      "birth": "Sun Oct 18 13:44:35 2026",
+      "command": "build/packages/20261018-035207/macOS/MH4U - Laboratorio.app/Contents/MacOS/mh4u-resource-lab --world build/packages/20261018-035207/macOS/MH4U - Laboratorio.app/Contents/Resources/assets/village-native-actor-v2.world.tsv --player-preview build/packages/20261018-035207/macOS/MH4U - Laboratorio.app/Contents/Resources/assets/player-preview/constants.bin --hide-primitive 3",
+      "observed": "Sun Oct 18 13:44:35 2026     build/packages/20261018-035207/macOS/MH4U - Laboratorio.app/Contents/MacOS/mh4u-resource-lab --world build/packages/20261018-035207/macOS/MH4U - Laboratorio.app/Contents/Resources/assets/village-native-actor-v2.world.tsv --player-preview build/packages/20261018-035207/macOS/MH4U - Laboratorio.app/Contents/Resources/assets/player-preview/constants.bin --hide-primitive 3",
+      "version": "0.17.0",
+      "package_updated": false,
+      "scope": "Published native Player inspection in the world; new manager checkpoint is not the full game loop."
+    },
+    "complete_gameplay": false,
+    "internet_coop": false,
+    "independent_reviews": [
+      {
+        "path": "research/private/player-update-manager-v1/composition-independent-review/review.json",
+        "bytes": 7835,
+        "sha256": "6094f6e67e04c286c3212471e2d19ee28685b4375d364cdd2193801830a6366c"
+      },
+      {
+        "path": "research/private/player-update-manager-v1/manager-native/independent-review/review.json",
+        "bytes": 10993,
+        "sha256": "84a2fe0ca4a998e0081699b3d4d064d9ae29433d88d965ed6924306dac4820e1"
+      },
+      {
+        "path": "research/private/player-update-manager-v1/oracle-independent-review/review.json",
+        "bytes": 11311,
+        "sha256": "1422cd740cf11bbbf465dcd0ea995ee242fe8a5b9bbc6752be58eaa0e08ae35a"
+      }
+    ],
+    "limits": [
+      "Admitted caller prefix ending before b146d8, not complete b1407c, bootstrap or scheduler. Modes1/2 are in isolated408 but not the current continuous dispatcher profile.",
+      "Player244 belongs to the preceding animation layer selector. Manager/collection/reference/Global owners are reused; no independent copies accepted to override that candidate.",
+      "Foreign identity is borrowed only during the operation. Source changes only foreign PWdc/e0; both reached renders are prepared before caller/foreign/manager/collection/scene-grid/queue publication.",
+      "Current, previous and model positions remain separate. The later model transform bridge is not implicitly executed.",
+      "Original239 includes237 complete checkpoint observations and2 stopped event prefixes. Baseline212 adds diagnostic manager112b=1 with other new gates unknown; this is not recovered bootstrap. Exact historical prefix bytes/traces are verified under declared observational projection.",
+      "Native standalone408 reuses retained originals; no new original execution in that comparator. Shared horizontal reference finite-input errors preserved. Raw sqrt/angular edge controls are analytic, not exhaustive VFP nonfinite or exception-flag proof.",
+      "The first actor strict attempt was rejected after manager.cpp changed read order; its immutable inputs and successful individual runs remain history, not final validation. The full successor passed with421 stable pairs.",
+      "Public builds were warm and concurrent with private validation. No before/after performance claim; process-family peak memory and agent token costs unmeasured. CPU/RSS estimates in child reports retain their own measurement scope.",
+      "Actor strict profile covers81 project units; cgltf, SDL, compiler runtime and system libraries remain uninstrumented. Leak checking unavailable on macOS.",
+      "Original manager stores include stack; nonstack output-byte counts are reported separately. Native check counts are bookkeeping, never the source of semantic expected values.",
+      "Windows cross-compilation does not establish Windows execution. Full gameplay, combat, quests, saves, full PT-BR, physical controller and Internet coop remain unfinished.",
+      "Published native laboratory0.17 remains open; this checkpoint is not connected to a complete playable game loop.",
+      "Consolidation only reads retained evidence; no new original/native execution."
+    ]
+  },
+  "player_update_contact": {
+    "documentation": "docs/player-update-contact.md",
+    "manifest": "research/private/player-update-contact-v1/manifest.json",
+    "canonical_player_api": "Player::prepare_and_update_contact; b1407c→before b14700",
+    "transaction": "Caller, position fields, reached foreign Player, manager, collection, cumulative grid plan and queue publish after both reached renders. Earlier query observations remain separate from the final plan.",
+    "identity": "Playerd2c uses existing player_position_bridge::Fields; reference/global/delta/manager/resource owners are reused. Opaque PBW498/49c remain Unknown despite possible prior physical stack writes.",
+    "coverage": {
+      "schema": "mh4u-contact-delivery-coverage-v1",
+      "status": "passed",
+      "created_utc": "2026-10-18T19:20:52.424439+00:00",
+      "objective_complete": false,
+      "canonical_player_stop_before": "b14700",
+      "macos_ctests": 168,
+      "windows_executed": false,
+      "components": {
+        "spatial": {
+          "manifest": {
+            "path": "research/private/player-update-contact-v1/spatial-native-allocation-fix/manifest.json",
+            "bytes": 31069,
+            "sha256": "0c84bbb935b1196ffe746b7d680d529051f79186e70115e62b75e45d49bee8ff"
+          },
+          "verified_pins": 126
+        },
+        "contact": {
+          "manifest": {
+            "path": "research/private/player-update-contact-v1/contact-native/allocation-successor/manifest.json",
+            "bytes": 66998,
+            "sha256": "015b9be9120102390fb643769de010d140dbbf98deed064347fd24f20501c451"
+          },
+          "verified_pins": 277
+        },
+        "persistent_player": {
+          "manifest": {
+            "path": "research/private/player-update-contact-v1/player-integration/native-allocation-fix/manifest.json",
+            "bytes": 123937,
+            "sha256": "06fb007b41ce09df1b753af881529c0235c39e72c16ff5cb22985329da57f5f0"
+          },
+          "verified_pins": 453
+        },
+        "continuous_original": {
+          "manifest": {
+            "path": "research/private/player-update-contact-v1/oracle-manifest.json",
+            "bytes": 704895,
+            "sha256": "e5833864108dc7da47fab4f6a2b976db9a73408d5c90c6df7050c8ab25a49984"
+          },
+          "verified_pins": 2696
+        }
+      },
+      "reviews": {
+        "allocation_successors": {
+          "report": {
+            "path": "research/private/player-update-contact-v1/allocation-independent-review/review.json",
+            "bytes": 11158,
+            "sha256": "2d473bc9e15d1963487ea806d195df6d655619a92fa26614a314bc041d49784a"
+          },
+          "verified_pins": 19
+        },
+        "persistent_player": {
+          "report": {
+            "path": "research/private/player-update-contact-v1/composition-independent-review/review.json",
+            "bytes": 9354,
+            "sha256": "c265b07d6025edc99a98ddf70d6642c66b55eab08935f70b87e63a885e9936b2"
+          },
+          "verified_pins": 20
+        },
+        "continuous_original": {
+          "report": {
+            "path": "research/private/player-update-contact-v1/oracle-independent-review/review.json",
+            "bytes": 37425,
+            "sha256": "19c42983c247d7b2aa3d9f928de04f0e7b9f7f70d970800437d2d5671488d218"
+          },
+          "verified_pins": 133
+        }
+      },
+      "public_builds": {
+        "macos": {
+          "validation": {
+            "path": "research/private/player-update-contact-v1/public-macos-complete/validation.json",
+            "bytes": 1733,
+            "sha256": "808b5fe6469dfa270aebc4761c5cca254143a74772f5c6473afda9f24bec7def"
+          },
+          "inputs": 370,
+          "wall_seconds": 98.336589375,
+          "child_user_seconds": 56.827324,
+          "child_system_seconds": 11.500105,
+          "compiler_warnings": 0,
+          "test_summary": [
+            "100% tests passed out of 168",
+            "Total Test time (real) =  88.07 sec"
+          ]
+        },
+        "windows": {
+          "validation": {
+            "path": "research/private/player-update-contact-v1/public-windows-complete/validation.json",
+            "bytes": 1670,
+            "sha256": "81a654015f2d8afb720825ebe47470876749ff10289f5a2ef4a5f8cee38db205"
+          },
+          "inputs": 370,
+          "wall_seconds": 11.468513791,
+          "child_user_seconds": 10.60036,
+          "child_system_seconds": 7.111288,
+          "compiler_warnings": 0,
+          "test_summary": []
+        }
+      },
+      "continuous_original": {
+        "report": {
+          "path": "research/private/player-update-contact-v1/oracle/arm-first/validation.json",
+          "bytes": 513322,
+          "sha256": "f28adab6b0f2db29fa19692d0ea5994eca2acb771959a6a83c8c8994ef651be8"
+        },
+        "cases": 28,
+        "completed": 26,
+        "prefixes": 2,
+        "guards": 8,
+        "queries": 22,
+        "attributes": 10,
+        "raw_opaque_transfers": 16,
+        "wall_seconds": 44.047742916,
+        "cpu_seconds": 44.634576,
+        "native_component_coverage": {
+          "contact": {
+            "status": "passed",
+            "cases": 28,
+            "complete": 26,
+            "prefixes": 2,
+            "queries": 22,
+            "hits": 12,
+            "contact_writes": 8,
+            "helper_calls": 256,
+            "contact_stores_all": 20182,
+            "contact_all_store_bytes": 78423,
+            "nonstack_store_bytes": 1198,
+            "scene_store_bytes": 270,
+            "opaque_words": 16,
+            "native_controls": 6,
+            "checks": 1856687,
+            "motion_projection_checks": 145378
+          },
+          "manager": {
+            "status": "passed",
+            "cases": 239,
+            "complete": 237,
+            "prefixes": 2,
+            "manager_calls": 1213,
+            "manager_slots": 192,
+            "manager_accepted": 8,
+            "self_vertical": 6,
+            "foreign_vertical": 3,
+            "manager_stores": 6116,
+            "manager_nonstack_store_bytes": 1232,
+            "manager_all_store_bytes": 23512,
+            "manager_trace": 28876,
+            "native_controls": 8,
+            "checks": 6457070,
+            "motion_projection_checks": 1241447
+          }
+        },
+        "observer_scope": "Original raw arenas/stores remain authoritative. Grid observer metadata is corrected from retained checkpoints by the derived fixture; the revised producer is not claimed as executed."
+      },
+      "isolated_contact": {
+        "original_cases": 262,
+        "named_calls": 936,
+        "height_queries": 55,
+        "hits": 29,
+        "contact_publications": 7,
+        "grid_updates": 50,
+        "face_calls": 87,
+        "original_opaque_contact_copies": 14,
+        "boundary_only_checks": 32,
+        "checks_with_originals_and_native_query_controls": 166783,
+        "regression_acquisition_cases": 88,
+        "regression_checks": 217145,
+        "profiles": [
+          "normal",
+          "ASan/UBSan/float-cast-overflow"
+        ],
+        "strict_translation_units": 17,
+        "positive_runs": 6,
+        "negative_runs": 44,
+        "stable_input_pairs": 81
+      },
+      "spatial": {
+        "contact": {
+          "status": "passed",
+          "original_calls": 29,
+          "checks": 93129
+        },
+        "legacy": {
+          "status": "passed",
+          "cases": 312,
+          "primary": 223,
+          "extension": 46,
+          "lifecycle": 43,
+          "direct": 276,
+          "wrappers": 36,
+          "hits": 176,
+          "misses": 136,
+          "candidates": 2562,
+          "face_calls": 468,
+          "math_words": 2249,
+          "identity_fields": 865,
+          "wrapper_scalar_fields": 72,
+          "retained_carrier_known_bytes": 23239,
+          "retained_carrier_unknown_bytes": 19801,
+          "typed_rejections": 20,
+          "lazy_controls": 4,
+          "grid_update_count": 191,
+          "grid_compared_words": 16617,
+          "checks": 237463
+        }
+      },
+      "persistent_player": [
+        {
+          "status": "passed",
+          "checks": 7745713,
+          "allocation_failures": 255,
+          "first_render_failure": 66,
+          "render_failures": 190,
+          "palette_failures": 28,
+          "allocation_extent": 255
+        },
+        {
+          "status": "passed",
+          "checks": 14915623,
+          "allocation_failures": 243,
+          "first_render_failure": 54,
+          "render_failures": 190,
+          "palette_failures": 28,
+          "allocation_extent": 243
+        }
+      ],
+      "allocation_regression": {
+        "report": {
+          "path": "research/private/player-update-contact-v1/allocation-regression/validation.json",
+          "bytes": 3707,
+          "sha256": "4cbe3c222a4081d99f16bc8002233c8996f1f89db5bd355d93b13eb51b55eb3f"
+        },
+        "corrected_owner": "spatial_query::plan_updates",
+        "reason": "Environmental allocation failures have no structural plan issue; existing facades preserve capacity. Explicit plan limits remain typed.",
+        "retained_first_public_macos": {
+          "path": "research/private/player-update-contact-v1/public-macos/validation.json",
+          "bytes": 2309,
+          "sha256": "490032438ec550061c1d4349040fd6b90cd915fcfd7a44ca0fca6a35f0d8bcc3"
+        },
+        "retained_first_public_windows": {
+          "path": "research/private/player-update-contact-v1/public-windows/validation.json",
+          "bytes": 1822,
+          "sha256": "4dcde94fa84919c757bdbcc6bb537b752ba33eebf692ad51d5a3ee4e60d3509d"
+        },
+        "passed_actor_regressions": 8,
+        "private_actor_refresh": {
+          "path": "research/private/player-update-contact-v1/player-integration/native-allocation-fix/validation.json",
+          "bytes": 34329,
+          "sha256": "d27a945a7b8fb84987351dc55e2276186ff6a9e729c68ca8e8975c3f9488abb1"
+        }
+      },
+      "native_game": {
+        "pid": 52267,
+        "birth": "Sun Oct 18 13:44:35 2026",
+        "observed": "Sun Oct 18 13:44:35 2026     build/packages/20261018-035207/macOS/MH4U - Laboratorio.app/Contents/MacOS/mh4u-resource-lab --world build/packages/20261018-035207/macOS/MH4U - Laboratorio.app/Contents/Resources/assets/village-native-actor-v2.world.tsv --player-preview build/packages/20261018-035207/macOS/MH4U - Laboratorio.app/Contents/Resources/assets/player-preview/constants.bin --hide-primitive 3",
+        "package_version": "0.17.0",
+        "package_updated": false,
+        "scope": "Native laboratory visible with seven-piece/19-bone hunter; new caller checkpoint remains development code, not the complete game loop."
+      },
+      "next_source": {
+        "path": "research/private/player-update-contact-v1/next-source/contract.json",
+        "bytes": 1130,
+        "sha256": "6a9b58d687aa4950ac15c1ecb701e4ef95ff911f00b0101c3f90b3ad06e27b52"
+      },
+      "limits": [
+        "Development caller checkpoint through before b14700, not the complete Player frame, bootstrap or scheduler. Published native laboratory remains0.17.",
+        "Original ARM runs are local diagnostic evidence only; the delivered native implementation does not execute a 3DS runtime.",
+        "Two original prefix cases stop at existing unsupported paths; they do not establish complete gameplay.",
+        "The radius remote path is verified in the isolated corpus, not the admitted continuous dispatch path.",
+        "Only the recovered direct-SBC profile is supported; unsupported transforms, objects and groups fail explicitly.",
+        "Reference points are independent snapshots. Null reference requires the explicit source template.",
+        "Attribute stack tail28/2c lacks a mapped semantic producer even when prior physical writes exist. PBW498/49c remain Unknown on contact; raw replay retains all bytes.",
+        "First-query carrier cleanup limits independent comparison of every carrier word in the continuous corpus. Consumed fields, ordered pair IDs, face-call counts, attributes and cumulative grid stamps are checked. A temporary stack carrier does not identify a source face; detailed geometry also has separate spatial evidence.",
+        "ASan/UBSan cover project code in retained private closures; platform libraries are uninstrumented and macOS LeakSanitizer is disabled.",
+        "Public builds are warm incremental measurements. Component memory reports are maximum child RSS, not simultaneous process-family peaks. Whole-task token cost and process-family memory are unmeasured.",
+        "Windows cross-compilation passed; Windows execution, physical controller, full PT-BR, combat, quests, saves and Internet coop remain required."
+      ]
+    },
+    "native_game": {
+      "pid": 52267,
+      "birth": "Sun Oct 18 13:44:35 2026",
+      "observed": "Sun Oct 18 13:44:35 2026     build/packages/20261018-035207/macOS/MH4U - Laboratorio.app/Contents/MacOS/mh4u-resource-lab --world build/packages/20261018-035207/macOS/MH4U - Laboratorio.app/Contents/Resources/assets/village-native-actor-v2.world.tsv --player-preview build/packages/20261018-035207/macOS/MH4U - Laboratorio.app/Contents/Resources/assets/player-preview/constants.bin --hide-primitive 3",
+      "package_version": "0.17.0",
+      "package_updated": false,
+      "scope": "Native laboratory visible with seven-piece/19-bone hunter; new caller checkpoint remains development code, not the complete game loop."
+    },
+    "next_source_contract": "research/private/player-update-contact-v1/next-source/contract.json",
+    "published_package_updated": false,
+    "windows_executed": false,
+    "complete_gameplay": false,
+    "internet_coop": false
+  },
+  "player_update_model": {
+    "documentation": "docs/player-update-model.md",
+    "manifest": "research/private/player-update-model-v1/manifest.json",
+    "canonical_player_api": "Player::prepare_and_update_model; b1407c to before b14724",
+    "ownership": "FrameResources excludes delta and templates; one original Player14 delta and preceding sampling templates. Same contact candidate feeds bridge;2 active layers and6 inactive slots retain separate roles.",
+    "transaction": "Caller,model/pose,position,foreign Player,manager,Collection,cumulative Scene grid and queue publish after all reached renders. No extra step or scheduler inferred.",
+    "coverage": {
+      "checkpoint": "before b14724",
+      "continuous_original": {
+        "cases": 9,
+        "complete_returns": 8,
+        "earlier_event_prefixes": 1,
+        "diagnostic_initial_model": true
+      },
+      "differential": {
+        "complete_native_matches": 7,
+        "typed_numeric_rejections": 1,
+        "earlier_prefixes_matched": 1,
+        "successful_frame_effects": 6,
+        "successful_publication_effects": 5,
+        "canonical_checks": 1118034,
+        "motion_checks": 82237,
+        "frame_checks": 56761
+      },
+      "known_numeric_difference": {
+        "case": "shared-half-delta",
+        "original": "Overflow in nlerp intermediate; ARM returns signed zero components.",
+        "native": "Typed numeric_overflow at publication transition, joint 0 rotation component 2; not a complete equivalence match.",
+        "source_inputs_preserved": true
+      },
+      "persistent_actor": {
+        "model_parts": 7,
+        "bones": 19,
+        "checks_per_profile": 8821895,
+        "allocation_failure_points": 291,
+        "reached_render_failure_points": 190,
+        "profiles": [
+          "normal",
+          "ASan/UBSan/float-cast-overflow"
+        ]
+      },
+      "resource_integration": {
+        "checks_per_profile": 23,
+        "initializers": 2,
+        "model_samples": 4,
+        "joint_samples": 20,
+        "output_joints": 19
+      },
+      "composition_boundary_checks_per_profile": 49,
+      "legacy_bridge_regression_cases": 150,
+      "public_validation": {
+        "macos_ctest_suites_passed": 172,
+        "macos_ctest_suites_total": 172,
+        "macos_warnings": 0,
+        "windows_cross_compilation": "passed",
+        "windows_warnings": 0,
+        "windows_executed": false,
+        "source_count": 378,
+        "sources_stable": true,
+        "macos_warm_build_wall_seconds": 143.376418167,
+        "windows_warm_build_wall_seconds": 62.461469957999995
+      },
+      "differential_validation": {
+        "profiles": [
+          "normal",
+          "ASan/UBSan/float-cast-overflow"
+        ],
+        "translation_units_per_profile": 68,
+        "positive_processes": 4,
+        "negative_processes_exact_exit_1": 62,
+        "source_snapshot_pairs": 534,
+        "wall_seconds": 307.855537541,
+        "cpu_user_seconds": 353.610641,
+        "cpu_system_seconds": 24.873013
+      }
+    },
+    "limits": [
+      "Bounded development checkpoint; full original Player bootstrap, scheduler and subsequent caller instructions are unfinished. Published native laboratory0.17 remains unchanged.",
+      "Original execution uses explicit diagnostic fields and model/resource preparation. It does not establish original startup from a save or all valid gameplay states.",
+      "Eight original complete returns are preserved, but only seven complete native results match. shared-half-delta remains an explicit finite-arithmetic domain rejection; no data were reseeded to erase it.",
+      "Reached b06b38, d00628 and other unsupported earlier routes still fail explicitly. Material type13 clone/lifetime integration remains incomplete.",
+      "Allocation-failure coverage is bounded to one measured persistent-actor trace; external platform, SDL, cgltf and standard libraries are not instrumented. macOS leak sanitizer unavailable.",
+      "Windows x64 binaries compiled only; no Windows runtime execution. Internet coop, full combat/quests/saves, full PT-BR and physical joystick validation remain required.",
+      "No new REA provider execution in this milestone; retained source evidence checked against the original ELF. Original ARM diagnostics are research tooling only and are not in the shipped engine.",
+      "Warm public build measurements recorded; agent token cost and process-family peak memory unmeasured. No before/after performance claim."
+    ],
+    "next_source": "research/private/player-update-model-v1/next-source/contract.json"
   }
 }

@@ -15,6 +15,11 @@ struct PlayerView {
     const player_transition::PbwFields* pbw{};
     std::span<const BonusRecord> bonus236;
 };
+struct IndexedRow {
+    // af7378 reads singleton+672*ID+230+4*selector. These are the two
+    // selectors consumed by the caller after the model phase, not scan data.
+    std::optional<std::uint32_t> selector1,selector7;
+};
 struct PlayerRegistry {
     std::optional<std::int32_t> count; // fb83e8+aa8; slots begin at a98.
     // Reaching index4 consumes the count word itself in the source layout.
@@ -22,6 +27,9 @@ struct PlayerRegistry {
     // valid when a prior slot returns. This is not a source capacity claim.
     std::span<const PlayerLink> slots;
     std::span<const PlayerView> players;
+    // Same singleton as count/slots, distinct indexed view with explicit
+    // extent. af7378 never reads count or traverses the Player links.
+    std::span<const IndexedRow> indexed_rows{};
 };
 using Registry=std::variant<Unknown,Absent,const PlayerRegistry*>;
 struct BonusTable {std::span<const BonusRecord> records;};

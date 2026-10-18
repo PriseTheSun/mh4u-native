@@ -53,10 +53,13 @@ struct GlobalFields {
     std::optional<std::uint8_t> field5a{};
     std::array<std::optional<std::uint8_t>,3> fieldsd38{};
     std::array<std::optional<std::int16_t>,3> fieldsd3c{};
+    std::optional<std::uint8_t> field7a{}; // 2b1dcc parameter22; same global for foreign Player.
     bool operator==(const GlobalFields&) const=default;
 };
 // Source d04924; shares canonical global/pbw fields with all consumers.
 bool local_control(const GlobalFields&,const PbwFields&) noexcept;
+// Complete d0473c; selectors0/2 and the remaining full-width values.
+bool type_group(const PbwFields&,std::uint32_t selector) noexcept;
 // Full b43dcc; the second argument stays full-width. State2/action21
 // accepts only argument0; admission and direction use this single predicate.
 bool state_action_gate(const PbwFields&,std::uint32_t argument) noexcept;

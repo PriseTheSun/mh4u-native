@@ -91,7 +91,7 @@ BeginResult begin_common(const State& input,const CommonArguments& args,const Ar
             if(*state.pw.field7fc==1)return error(ErrorCode::unsupported_selection_context,"State0 pw+7fc==1 requires the specialized selection path");
         }
         if(!state.pbw.field6f9)return error(ErrorCode::unknown_selection_context,"State0 consumes pbw+6f9 through b07e80");
-        if(*state.pbw.field6f9==1)return error(ErrorCode::unsupported_selection_context,"State0 pbw+6f9==1 requires the specialized selection path");
+        if(flag6f9(*state.pbw.field6f9))return error(ErrorCode::unsupported_selection_context,"State0 pbw+6f9==1 requires the specialized selection path");
         continuation=PendingAnimation::Continuation::state0_zero;
         if(!state.pw.field9a8){
             if(state.pw.field594){selector=0x246;continuation=PendingAnimation::Continuation::state0_ten;}

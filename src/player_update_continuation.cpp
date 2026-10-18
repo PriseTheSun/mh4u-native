@@ -42,6 +42,7 @@ Result apply(const player_controller_step::State& state,std::span<const motion_p
         if(*shared.pw.field296<=*shared.pw.field294)returns.second=SecondReturn::local_ordered_values;
         else {
             if(!player.selection_pbw.field6f9)return Error{Phase::second_helper,ErrorCode::unknown_field,"PBW6f9",{}};
+            // b42158..64 directly tests the byte against0, unlike b07e80.
             if(*player.selection_pbw.field6f9!=0)
                 return Error{Phase::second_helper,ErrorCode::unsupported_second_helper,"b42108 active body",{}};
             returns.second=SecondReturn::local_zero_flag;

@@ -17,6 +17,8 @@ using Result=std::variant<Word,Error>;
 [[nodiscard]] Result sub(Word left,Word right);
 [[nodiscard]] Result mul(Word left,Word right);
 [[nodiscard]] Result div(Word left,Word right);
+// VSQRT FPSCR0: preserves signed zero and quiets NaNs; negative nonzero -> DN.
+[[nodiscard]] Result sqrt(Word);
 // VCVT with FPSCR0: signed/unsigned words to binary32, and binary32 to
 // saturated integer words with round-toward-zero. Signed results retain their
 // two's-complement encoding; NaN converts to zero. No FP flags are exposed.

@@ -188,7 +188,7 @@ public:
             if((r.field06()&0x4000U)||(state==5&&action==0)){if(magnitude())orient();}
             if(state==0&&action==0x12)x.pbw.field93f1=1;
             if(flags&0x20U)t.pw.fieldbc=0;
-            if((flags&0x80U)&&read(out.state.pbw.field6f9,"pbw+6f9")==1)flags&=~0x80U;
+            if((flags&0x80U)&&player_selection::flag6f9(read(out.state.pbw.field6f9,"pbw+6f9")))flags&=~0x80U;
             if(error)return *error;
             if(policy.field148!=0)continue;
             const pt::Request request{state,action,flags};

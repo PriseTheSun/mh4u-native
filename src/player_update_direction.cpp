@@ -6,8 +6,8 @@ namespace {
 std::uint8_t ordinal(std::uint32_t mask) noexcept {
     if((mask&0x01000000U)==0)return 0xff;
     switch((mask>>22)&3U){
-    case 1:return 0;
-    case 2:return 1;
+    case 1:return 1;
+    case 2:return 0;
     case 3:return 2;
     default:return 0xff;
     }

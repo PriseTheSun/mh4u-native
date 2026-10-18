@@ -26,6 +26,12 @@ float multiply(float left,float right) {
     volatile float result=left*right; return result;
 }
 }
+bool type_group(const PbwFields& pbw,std::uint32_t selector) noexcept {
+    const auto type=pbw.field31;
+    if(selector==0)return type==4||type==5||type==6||type==15;
+    if(selector==2)return type==10;
+    return type==4||type==5||type==6||type==10||type==15;
+}
 bool local_control(const GlobalFields& global,const PbwFields& pbw) noexcept {
     if(global.field2b==2)return pbw.field30!=3 && pbw.field33==0;
     const auto signed_index=global.field2f<128?int(global.field2f):int(global.field2f)-256;

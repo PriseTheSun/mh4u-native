@@ -12,6 +12,7 @@ struct Parameters {
     std::optional<std::uint32_t> global_c8c;
     player_reference::Reference reference=player_reference::Unknown{};
     std::optional<std::array<std::uint16_t,2>> direction_bounds;
+    std::optional<std::uint32_t> global_c90{}; // Same external global as c8c; b07b90/b3c244.
 };
 struct Context {const Parameters& parameters;const player_transition::Constants& constants;};
 struct PolicyEffects {

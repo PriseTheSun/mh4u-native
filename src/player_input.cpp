@@ -1,4 +1,5 @@
 #include "player_input.hpp"
+#include "player_selection_predicates.hpp"
 
 namespace mh4u::player_input {
 namespace {
@@ -66,7 +67,7 @@ Result<std::uint32_t> gated_magnitude_class(const Channels& channels,std::uint32
     const auto type=*gate.type;
     if(type==4||type==5||type==6||type==15) {
         if(!gate.field6f9)return Error{ErrorCode::unknown_gate,"pbw+6f9 is unknown"};
-        if(*gate.field6f9==1) {
+        if(player_selection::flag6f9(*gate.field6f9)) {
             if(!gate.field50d)return Error{ErrorCode::unknown_gate,"pw+50d is unknown"};
             if(*gate.field50d==1)return std::uint32_t{0};
         }

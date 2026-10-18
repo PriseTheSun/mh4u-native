@@ -1,5 +1,6 @@
 #pragma once
 #include "player_transition.hpp"
+#include "player_selection_predicates.hpp"
 #include <cstdint>
 #include <array>
 #include <span>

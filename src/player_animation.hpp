@@ -1,8 +1,10 @@
 #pragma once
 #include "player_controller_step.hpp"
 #include "player_state1.hpp"
-#include "player_update_direction.hpp"
-#include "model_animation_output.hpp"
+#include "player_update_contact.hpp"
+#include "player_animation_types.hpp"
+#include "player_position_bridge.hpp"
+#include "player_update_events.hpp"
 #include <array>
 #include <optional>
 #include <variant>
@@ -30,19 +32,8 @@ struct State1Context {
     motion_command::Sampling sampling;
     player_state1::ContinuationContext continuation{};
 };
-struct FrameContext {
-    std::span<const std::uint8_t> bone_to_joint;
-    motion_pending::Parameters pending; // Sole step delta; no internal timer/rate.
-    model_animation_frame::Resolvers resolvers;
-    joint_output::Parameters output;
-};
-struct Limits {
-    std::size_t joints=256,snapshots=256,bindings=2048,order=256;
-    motion_command::Limits command;
-    model_animation_frame::Limits frame;
-    motion_transition::Limits transition;
-    joint_output::Limits output;
-};
+
+
 struct CommandEffects {
     std::optional<player_selection::AnimationRequest> selection_request;
     std::array<motion_command::ObservedRequest,2> requests;
@@ -50,13 +41,7 @@ struct CommandEffects {
     std::optional<player_selection::TransitionEffects> transition;
     std::size_t queries{},samples{};
 };
-struct FrameEffects {
-    bool pending_found{},restored_joints{},blend_layer_found{},attachment_cleared{};
-    std::optional<joint_update::Leaf> joint_leaf;
-    std::optional<joint_output::SelectedCallback> output_callback;
-    std::size_t initializer_calls{},prepared_layers{},model_samples{},joint_samples{},
-        loop_iterations{},event_queries{},blended_joints{},output_joints{};
-};
+
 struct Output {State state;std::optional<CommandEffects> command;std::optional<FrameEffects> frame;};
 struct State1Output {State state;player_state1::Fields fields;player_state1::Effects effects;player_fields::Fields shared_fields;};
 struct UpdateDispatchEffects {
@@ -85,13 +70,35 @@ struct UpdateDirectionOutput {
     player_update_direction::MaterialEffects material;
     player_direction_refresh::Effects effects;
 };
+struct UpdatePositionOutput {UpdateDirectionOutput directed;player_position_timer::Effects effects;};
+struct UpdateManagerOutput {
+    UpdatePositionOutput positioned;
+    std::optional<player_manager_update::ManagerState> manager;
+    std::optional<player_manager_update::ForeignPatch> foreign;
+    player_manager_update::Effects effects;
+};
+struct UpdateContactOutput {
+    UpdateManagerOutput managed;
+    player_position_bridge::Fields position;
+    player_contact_update::Effects effects;
+    std::vector<spatial_query::GridUpdate> grid_updates;
+};
+struct UpdateModelContext {
+    const player_update_contact::Context& preceding;
+    const FrameResources& frame;
+    std::optional<player_position_bridge::OrientationCallback> orientation;
+    std::optional<player_position_bridge::OutputCallbacks> publication;
+};
+struct UpdateModelOutput {UpdateContactOutput contacted;player_position_bridge::Effects effects;};
+struct UpdateEventsContext {const UpdateModelContext& preceding;};
+struct UpdateEventsOutput {UpdateModelOutput modeled;player_update_events::Effects effects;};
 enum class DomainCode {active_layers,joint_extent,resource_limit};
 struct DomainError {DomainCode code;std::string_view message;};
-enum class Phase {domain,controller,animation,transition,hierarchy,state1,update_dispatch,update_adjustment,update_status,update_notifications,update_direction};
+enum class Phase {domain,controller,animation,transition,hierarchy,state1,update_dispatch,update_adjustment,update_status,update_notifications,update_direction,update_position,update_manager,update_contact,update_model,update_events};
 struct Error {
     Phase phase;
     std::variant<DomainError,player_controller_step::Error,model_animation_frame::Error,
-                 motion_transition::Error,joint_output::Error,player_state1::Error,player_update_dispatch::Error,player_update_post_dispatch::Error,player_update_status::Error,player_update_notifications::Error,player_update_direction::Error> cause;
+                 motion_transition::Error,joint_output::Error,player_state1::Error,player_update_dispatch::Error,player_update_post_dispatch::Error,player_update_status::Error,player_update_notifications::Error,player_update_direction::Error,player_update_position::Error,player_update_manager::Error,player_update_contact::Error,player_position_bridge::Error,player_update_events::Error> cause;
 };
 using Result=std::variant<Output,Error>;
 using UpdateDispatchResult=std::variant<UpdateDispatchOutput,Error>;
@@ -99,6 +106,11 @@ using UpdateAdjustmentResult=std::variant<UpdateAdjustmentOutput,Error>;
 using UpdateStatusResult=std::variant<UpdateStatusOutput,Error>;
 using UpdateNotificationsResult=std::variant<UpdateNotificationsOutput,Error>;
 using UpdateDirectionResult=std::variant<UpdateDirectionOutput,Error>;
+using UpdatePositionResult=std::variant<UpdatePositionOutput,Error>;
+using UpdateManagerResult=std::variant<UpdateManagerOutput,Error>;
+using UpdateContactResult=std::variant<UpdateContactOutput,Error>;
+using UpdateModelResult=std::variant<UpdateModelOutput,Error>;
+using UpdateEventsResult=std::variant<UpdateEventsOutput,Error>;
 using State1Result=std::variant<State1Output,Error>;
 // Explicit 2-active/8-storage profile, initialized by the caller. The driver
 // does not infer bootstrap, a physical control mapping, a selector or a bank.
@@ -136,6 +148,43 @@ using State1Result=std::variant<State1Output,Error>;
 [[nodiscard]] UpdateDirectionResult update_direction(const State&,const player_state1::Fields&,
     const player_fields::Fields&,const player_object_query::Manager&,
     const player_update_direction::Context&,const notification_queue::State&,Limits={});
+// Through the position/timer phase, BEFORE b146c4. Canonical shared PBW
+// position is retained separately from the later model-position bridge.
+[[nodiscard]] UpdatePositionResult update_position(const State&,const player_state1::Fields&,
+    const player_fields::Fields&,const player_object_query::Manager&,
+    const player_update_direction::Context&,const notification_queue::State&,Limits={});
+
+// Through b11f3c and b24c44, BEFORE b146d8. External manager/Player patches
+// are unpublished; persistent owners decide the joint render/commit boundary.
+[[nodiscard]] UpdateManagerResult update_manager(const State&,const player_state1::Fields&,
+    const player_fields::Fields&,const player_object_query::Manager&,
+    const player_update_manager::Context&,const notification_queue::State&,Limits={});
+
+// Through contact/integration and b3c244, BEFORE b14700. All position, grid,
+// manager and foreign Player writes remain part of one unpublished candidate.
+[[nodiscard]] UpdateContactResult update_contact(const State&,const player_state1::Fields&,
+    const player_fields::Fields&,const player_position_bridge::Fields&,
+    const player_object_query::Manager&,const player_update_contact::Context&,
+    const notification_queue::State&,Limits={});
+
+// Extend contact exactly once through b07c08 -> b06f8c -> b07bb8, BEFORE
+// b14724. Frame/controller/shared/placement/hierarchy have the same candidate
+// owners; the six inactive slots and all preceding external patches survive.
+// Delta comes only from preceding admission.prefix.delta_bits; initialization
+// templates come only from dispatch.resources.sampling. The bridge retains
+// its concrete-callback, finite-arithmetic and active-route limitations.
+[[nodiscard]] UpdateModelResult update_model(const State&,const player_state1::Fields&,
+    const player_fields::Fields&,const player_position_bridge::Fields&,
+    const player_object_query::Manager&,const UpdateModelContext&,
+    const notification_queue::State&,Limits={});
+
+// Extend the same model candidate through BEFORE b148f0. The registry and
+// work budget come from preceding statistics; the prefix uses the frame's
+// existing event resolver. No alternative resources or helper-result inputs.
+[[nodiscard]] UpdateEventsResult update_events(const State&,const player_state1::Fields&,
+    const player_fields::Fields&,const player_position_bridge::Fields&,
+    const player_object_query::Manager&,const UpdateEventsContext&,
+    const notification_queue::State&,Limits={});
 
 [[nodiscard]] Result step(const State&,const FrameContext&,Limits={});
 [[nodiscard]] Result tick(const State&,const Command&,const CommandContext&,const FrameContext&,Limits={});

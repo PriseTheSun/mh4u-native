@@ -30,10 +30,11 @@ float number(Word word,std::string_view field){
     (void)mul(word,0x3f800000U,field);return std::bit_cast<float>(word);
 }
 Error capacity(){return{ErrorCode::resource_limit,"position bridge copy/work policy",{},{},{},{}};}
-}
-Result apply(const mf::State& source,const mo::Hierarchy& source_hierarchy,
+template<class BindFrame>
+Result apply_bound(const mf::State& source,const mo::Hierarchy& source_hierarchy,
     const player_controller_step::State& source_controller,const player_fields::Fields& source_shared,
-    const Fields& source_fields,const Context& context,player_animation::Limits limits){
+    const Fields& source_fields,std::optional<OrientationCallback> orientation,
+    std::optional<OutputCallbacks> publication,BindFrame bind_frame,player_animation::Limits limits){
     try{
         const auto& a=source.animation;
         if(a.layers.size()>limits.frame.layers||a.joints.size()>limits.joints||a.snapshots.size()>limits.snapshots||source_hierarchy.joints.size()>limits.joints)return capacity();
@@ -54,7 +55,7 @@ Result apply(const mf::State& source,const mo::Hierarchy& source_hierarchy,
         const auto gates=known(f.fieldd64,"d64");
         if(gates&8U){out.effects.early_return=true;publish_pbw();return out;}
         if(animation.layers.empty())fail(ErrorCode::layer_extent,"layer0 source fields");
-        if(known(context.orientation,"virtual80")!=OrientationCallback::b05328)fail(ErrorCode::unsupported_callback,"virtual80");
+        if(known(orientation,"virtual80")!=OrientationCallback::b05328)fail(ErrorCode::unsupported_callback,"virtual80");
         auto& pbw=controller.player.pbw;
         pbw.field20&=0xffffU;pbw.field24&=0xffffU;pbw.field28&=0xffffU;
         auto oriented=player_orientation::calculate({std::uint16_t(pbw.field20),std::uint16_t(pbw.field24),std::uint16_t(pbw.field28)},f.euler_mode);
@@ -66,7 +67,8 @@ Result apply(const mf::State& source,const mo::Hierarchy& source_hierarchy,
         const auto& first=animation.layers[0].animation.layer;
         aux[1]=bits(first.previous_frame);aux[2]=bits(first.frame);
         const auto prior_frame=bits(first.frame),remaining=bits(first.remaining_interpolation);
-        const auto delta=context.frame.pending.initialization.model_delta_time_bits;
+        const auto& frame_context=bind_frame();
+        const auto delta=frame_context.pending.initialization.model_delta_time_bits;
         bool interpolation_active=false,overrun=false;Word overrun_step=0;
         const auto set_hold=[&](bool hold){for(auto& layer:animation.layers){auto& attributes=layer.animation.layer.attributes;
             attributes=hold?attributes|0x10U:attributes&~0x10U;}};
@@ -95,7 +97,7 @@ Result apply(const mf::State& source,const mo::Hierarchy& source_hierarchy,
         }else attributes&=~1U;
         std::vector<joint_update::Metadata> metadata;metadata.reserve(out.hierarchy.joints.size());
         for(const auto& joint:out.hierarchy.joints)metadata.push_back(joint.metadata);
-        auto advanced=mf::step(out.frame,context.frame.bone_to_joint,{context.frame.pending,metadata},context.frame.resolvers,limits.frame);
+        auto advanced=mf::step(out.frame,frame_context.bone_to_joint,{frame_context.pending,metadata},frame_context.resolvers,limits.frame);
         if(auto* error=std::get_if<mf::Error>(&advanced))return Error{ErrorCode::animation,"9573b8",{},{},*error,{}};
         auto frame=std::get<mf::Output>(std::move(advanced));
         out.effects.animation=player_animation::FrameEffects{frame.pending_found,frame.restored_joints,false,false,frame.joint_leaf,{},
@@ -122,9 +124,9 @@ Result apply(const mf::State& source,const mo::Hierarchy& source_hierarchy,
         else{
             for(unsigned i=0;i<3;++i)out.frame.model.position[i]=add(position[i],controller.player.fieldsd10[i],"publication offset");
             out.frame.model.position[3]=0;
-            if(known(context.publication,"virtual4c/50")!=OutputCallbacks::standard_95b490_95b940)
+            if(known(publication,"virtual4c/50")!=OutputCallbacks::standard_95b490_95b940)
                 fail(ErrorCode::unsupported_callback,"virtual4c/50");
-            auto published=mo::apply(out.frame,out.hierarchy,context.frame.output,
+            auto published=mo::apply(out.frame,out.hierarchy,frame_context.output,
                 {limits.frame.layers,limits.joints,limits.snapshots,limits.order,limits.transition,limits.output});
             if(auto* error=std::get_if<mo::Error>(&published))return Error{ErrorCode::publication,"95b490/95b940",{},{},{},*error};
             auto output=std::get<mo::Output>(std::move(published));
@@ -137,4 +139,24 @@ Result apply(const mf::State& source,const mo::Hierarchy& source_hierarchy,
     }catch(const Failure& failure){return failure.error;}
     catch(const std::bad_alloc&){return capacity();}catch(const std::length_error&){return capacity();}
 }
+} // namespace
+Result apply(const mf::State& source,const mo::Hierarchy& hierarchy,
+    const player_controller_step::State& controller,const player_fields::Fields& shared,
+    const Fields& fields,const Context& context,player_animation::Limits limits){
+    return apply_bound(source,hierarchy,controller,shared,fields,context.orientation,context.publication,
+        [&]() -> const player_animation::FrameContext& {return context.frame;},limits);
+}
+Result apply(const mf::State& source,const mo::Hierarchy& hierarchy,
+    const player_controller_step::State& controller,const player_fields::Fields& shared,
+    const Fields& fields,const SourceContext& context,player_animation::Limits limits){
+    return apply_bound(source,hierarchy,controller,shared,fields,context.orientation,context.publication,[&]{
+        const auto delta=known(context.delta_bits,"Player14");
+        const auto& resources=context.frame;
+        return player_animation::FrameContext{resources.bone_to_joint,
+            {resources.model_reference,{delta,context.templates},resources.restoration_scale},
+            resources.resolvers,{resources.model_reference,resources.parent,
+                resources.reference_basis,resources.reference_translation}};
+    },limits);
+}
+
 }

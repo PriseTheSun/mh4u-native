@@ -51,6 +51,16 @@ struct PbwFields {
     std::array<std::optional<std::uint32_t>,5> fields388_bits{}; // 388..398.
     std::optional<std::uint8_t> field93e9;
     std::optional<std::uint32_t> field368_bits; // b22164; distinct from PBW358.
+    // b3150c direct-SBC publication. field478 above is the same output+8.
+    std::optional<std::uint8_t> field01;
+    std::optional<std::uint32_t> field468_bits;
+    std::array<std::optional<std::uint8_t>,6> fields470{};
+    std::optional<std::uint32_t> field47c,field480;
+    std::array<std::optional<std::uint32_t>,3> fields488_bits{};
+    std::optional<std::uint32_t> field494_bits,field498,field49c;
+    // b14724..b14854; full source word808 is updated in two ordered stores.
+    std::optional<std::uint8_t> field34;
+    std::optional<std::uint32_t> field808;
     bool operator==(const PbwFields&)const=default;
 };
 struct PwFields {
@@ -96,8 +106,17 @@ struct PwFields {
     // Their producers are separate; begin_update/status never copy or seed them.
     std::optional<std::uint32_t> field1fc,field200;
     std::optional<std::uint16_t> field586;
+    // b11f3c/b24c44: distinct from transition.PWdc/50d.
+    std::optional<std::uint16_t> fieldb4{},field50e{},fielde4{},fielde6{};
+    std::optional<std::uint8_t> field50c{};
+    std::optional<std::uint32_t> fielde0_bits{};
     // b29f7c material bank selector. Its resource tables have separate owners.
     std::optional<std::uint8_t> field9e8;
+    // b6ab74: velocity and acceleration retain raw component bits.
+    std::array<std::optional<std::uint32_t>,3> fields18_bits{},fields28_bits{};
+    std::optional<std::uint8_t> field9e9;
+    // b14898/b148a4 and the current layer0 event-prefix publication.
+    std::optional<std::uint16_t> field97c,field97e;
     bool operator==(const PwFields&)const=default;
 };
 struct Fields {PbwFields pbw;PwFields pw;bool operator==(const Fields&)const=default;};

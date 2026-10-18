@@ -7,6 +7,9 @@ O executável entregue não usará runtime de 3DS. A compatibilidade com console
 
 **Marco atual: laboratório nativo 0.17.0, com política de ações nativa e catálogo PT-BR ampliado.**
 
+A [conferência dos requisitos](docs/project-completion-audit.md) separa o que
+já está implementado do que ainda falta para concluir o porte completo.
+
 O catálogo atual contém 925 traduções em 1.082 fragmentos de dez documentos,
 com 157 fallbacks preservados. O [intérprete de política](docs/player-policy-interpreter.md)
 compõe tabela, predicados, tempo e transição, comparados em 341 execuções ARM
@@ -62,9 +65,41 @@ O scanner consulta a coleção candidata e as falhas tardias preservam o Player,
 a coleção e a grade. A [integração das notificações](docs/player-update-notifications.md)
 estende esse fluxo até antes de `b145f0`, com uma fila compartilhada pelo mundo.
 Player, coleção, grade e fila são publicados juntos após renderizar; uma falha
-preserva o estado anterior dos quatro. O sistema de eventos, as chamadas
-seguintes e a integração do trecho de posição ainda precisam ser concluídos.
-Scheduler e bootstrap continuam pendentes no runtime.
+preserva o estado anterior dos quatro. A [direção no Player](docs/player-update-direction.md)
+continua até antes de `b14610`, com os valores já produzidos pelas etapas
+anteriores e a mesma publicação conjunta. A comparação cobre 188 execuções
+contínuas completas até esse ponto, além de dois prefixos de eventos.
+A [posição e o temporizador no Player](docs/player-update-position.md) estendem
+a mesma transação até antes de `b146c4`, com 210 checkpoints contínuos completos
+e dois prefixos de eventos. Posição atual, anterior e do modelo permanecem
+separadas. O módulo independente de materiais coincide com 100 chamadas originais;
+a integração das trocas do tipo 13 ainda depende de clonagem e ciclo de vida.
+A [continuação do gerenciador](docs/player-update-manager.md) chega até antes de
+`b146d8`, com 237 checkpoints contínuos completos e dois prefixos de eventos.
+Quando alcança outro Player, prepara ambos os quadros e publica os estados
+juntos; 243 falhas de alocação foram verificadas com nova tentativa sobre os
+mesmos donos. O seletor usa a camada de animação já atualizada.
+A [integração de movimento e contato](docs/player-update-contact.md) prolonga o
+candidato até antes de `b14700`, com atributos do piso e o indicador de posição
+no mesmo estado persistente. Consultas sucessivas compartilham contadores e
+marcas da grade; uma falha tardia preserva todos os estados envolvidos.
+Esta etapa passou nas 168 suítes do macOS e na compilação de todos os alvos
+Windows x64, sem avisos; a execução no Windows continua pendente.
+A [atualização do modelo após o contato](docs/player-update-model.md) estende
+esse candidato até antes de `b14724`, com um único delta e sem repetir o avanço
+da animação. O comparador confirma sete saídas completas do original e um
+prefixo anterior; um oitavo caso completo no ARM recebe rejeição numérica
+explícita no motor nativo e permanece como diferença conhecida.
+Os testes persistentes também exercitam uma animação real,
+as sete partes do caçador e falhas de alocação com rollback. A validação atual
+passou nas 172 suítes macOS e na compilação Windows x64; a execução Windows
+ainda não foi verificada. O laboratório publicado permanece na versão 0.17.
+A [continuação de atributos e eventos](docs/player-update-events.md) agora
+chega até antes de `b148f0`, usando a mesma Registry e o prefixo do LMT real.
+A operação persistente mantém a publicação conjunta após renderizar, inclusive
+sob falhas tardias; também corrige um teste de flag do gerenciador para coincidir
+com o original. O restante do despacho de eventos, scheduler e bootstrap
+continuam pendentes.
 O módulo de [interseção vertical original](docs/spatial-triangle.md) passou
 1.464 consultas preservadas, com102 hits idênticos byte a byte. É uma rota
 distinta da função de face17fec8 usada na consulta espacial descrita abaixo.
@@ -79,10 +114,7 @@ de contadores e marcas. A referência inclui 312 consultas completas do código
 original. A aquisição do Player acrescenta filtros, preparação do raio e cache,
 com 88 chamadas originais completas e testes de integração persistente.
 O estado inicial continua explícito; bootstrap e scheduler permanecem pendentes.
-O launcher publicado permanece 0.17.0. A validação atual da
-[integração das notificações](docs/player-update-notifications.md) passou em 151/151 CTests
-no Mac e a compilação Windows x64 concluiu sem avisos; execução no Windows
-continua sem validação.
+O launcher publicado permanece 0.17.0.
 Veja também o [catálogo v4](docs/localization-v4.md) e o
 [ensaio da consulta espacial sobre a grade real](docs/player-spatial-context-v4.md),
 com223 retornos completos,122 hits e101 misses no código original.

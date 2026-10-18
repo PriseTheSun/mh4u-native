@@ -17,7 +17,7 @@ struct Motion {
 };
 Raw snapshot(const Raw&base,const cp::Arenas&stage){auto out=base;for(U i=0;i<3;++i)out[i]=stage[i];return out;}
 std::array<U,5> dispatch_values(const pcs::State&s,const pf::Fields&f){check(f.pw.field01.has_value(),"observed PW01 known");return{s.player.pbw.field371,s.player.pbw.field372,s.player.pbw.fields5[0],s.player.selection_pbw.field376,*f.pw.field01};}
-Raw project(const Case&c,const ad::Output&o,const action::Fields&fields,const tbl::Table&t35,const tbl::Table&t31,const ma::Context&tracks,const ma::Bindings&events,std::span<const TableBinding>bindings={}){auto out=encode(c,o,t35,tracks,events,&t31,bindings);if(fields.field50_bits)put(out[2],0x50,*fields.field50_bits);return out;}
+Raw project(const Case&c,const ad::Output&o,const action::Fields&fields,const tbl::Table&t35,const tbl::Table&t31,const ma::Context&tracks,const ma::Bindings&events,std::span<const TableBinding>bindings={},std::span<const ProjectionSpan>masks={}){auto out=encode(c,o,t35,tracks,events,&t31,bindings,masks);if(fields.field50_bits)put(out[2],0x50,*fields.field50_bits);return out;}
 std::vector<U> scoped_calls(const Case&c,U pc,const Call&scope){std::vector<U>out;for(U i=0;i<c.calls.size();++i){const auto&v=c.calls[i];if(v.pc==pc&&v.start>=scope.start&&v.end<=scope.end)out.push_back(i);}return out;}
 Case preparation_case(const Case&c){auto out=c;const auto*first=call(c,0xb66a20);check(first,"original first dispatch");std::erase_if(out.calls,[&](const auto&v){return v.start>=first->start;});out.trace.resize(first->start-1);return out;}
 }

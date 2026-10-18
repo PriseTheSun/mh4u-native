@@ -21,7 +21,7 @@ Result apply(const player_controller_step::State& source,
     if(!player.selection_pbw.field6f9)
         return missing(Phase::byte6f9,ErrorCode::unknown_field,"PBW6f9");
     record(Call::byte6f9);
-    const bool flag=*player.selection_pbw.field6f9==1;
+    const bool flag=player_selection::flag6f9(*player.selection_pbw.field6f9);
     const auto state=pbw.field371;
     const auto action=pbw.field372;
     effects.rate=4004;

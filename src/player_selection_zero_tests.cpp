@@ -41,7 +41,7 @@ void boundaries(){
  state.pw.field594=1;state.pbw.field358.reset();check(value<ps::PendingAnimation>(ps::begin_common(state,args)).request().selector==0x246,"Unconsumed field358 required");
  state.pw.field9a8=1;state.pw.field7fc.reset();check(value<ps::PendingAnimation>(ps::begin_common(state,args)).request().selector==24,"Unconsumed field7fc required");
  state.pbw.field6f9=1;check(value<ps::Error>(ps::begin_common(state,args)).code==ps::ErrorCode::unsupported_selection_context,"Special type path invented");
- state.pbw.field6f9=255;check(value<ps::PendingAnimation>(ps::begin_common(state,args)).request().selector==24,"Equality-to-one became bool check");
+ for(auto raw:{2,255}){state.pbw.field6f9=std::uint8_t(raw);check(value<ps::PendingAnimation>(ps::begin_common(state,args)).request().selector==24,"Equality-to-one became bool check");}
  state.pw.field9a8=0;state.pw.field7fc=1;check(value<ps::Error>(ps::begin_common(state,args)).code==ps::ErrorCode::unsupported_selection_context,"Special byte7fc path invented");
  state.pbw.field6f9.reset();state.pw.field7fc.reset();state.pbw.field358.reset();
  check(std::holds_alternative<ps::PendingAnimation>(ps::begin_common(state,{1,0,0,0,0,0})),"Old state1 API now needs context");

@@ -77,7 +77,7 @@ struct Context {
             if(const auto* e=std::get_if<mr::Error>(&result))return clock::ResolutionError{static_cast<std::uint32_t>(e->code),e->message};
             const auto& groups=std::get<std::optional<std::array<mr::EventGroupView,4>>>(result);
             if(!groups||id.group>=4)return clock::ResolutionError{94,"Invalid present event group"};
-            return clock::EventGroup{id,(*groups)[id.group].records};
+            return clock::EventGroup{id,(*groups)[id.group].records,(*groups)[id.group].prefix};
         }
         return clock::ResolutionError{95,"Foreign fixture event identity"};
     }

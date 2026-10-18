@@ -22,6 +22,10 @@ struct Snapshots {
 struct EventGroup {
     motion_request::Binding identity;
     std::span<const motion_events::Record> records; // Borrowed from the canonical resource owner.
+    // Copied from the same Resource::event_groups result, whose prefix is a
+    // value. Omission is unknown; the clock only consumes records, while a
+    // later prefix consumer requires this fact from the same bound resource.
+    std::optional<std::array<std::uint16_t,32>> prefix{};
 };
 struct ResolutionError {std::uint32_t code{};std::string message;};
 using EventResolution=std::variant<EventGroup,ResolutionError>;

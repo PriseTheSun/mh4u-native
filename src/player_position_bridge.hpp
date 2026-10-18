@@ -1,20 +1,27 @@
 #pragma once
-#include "player_animation.hpp"
+#include "player_animation_types.hpp"
+#include "player_controller_step.hpp"
+#include "player_fields.hpp"
 #include "player_orientation.hpp"
+#include "player_position_fields.hpp"
 
 namespace mh4u::player_position_bridge {
 // Additional persistent facts only. PBW, d10..18, d4c..60 and model TRS retain
 // their existing owners; d00/d20 copies are scratch during this operation.
-struct Fields {
-    std::optional<std::uint8_t> fieldd2c,fieldd44;
-    std::optional<std::uint32_t> fieldd30_bits,fieldd34_bits,fieldd38_bits,fieldd64;
-    std::optional<std::uint16_t> euler_mode; // Sole low16(model38) owner; hierarchy owns high16.
-    bool operator==(const Fields&)const=default;
-};
 enum class OrientationCallback {b05328};
 enum class OutputCallbacks {standard_95b490_95b940};
 struct Context {
     const player_animation::FrameContext& frame;
+    std::optional<OrientationCallback> orientation;
+    std::optional<OutputCallbacks> publication;
+};
+// A caller with an optional source delta binds the existing FrameContext only
+// when the bridge reaches that operand. d64&8 consumes neither frame resources
+// nor delta/templates. The legacy Context and this form share one body.
+struct SourceContext {
+    const player_animation::FrameResources& frame;
+    std::optional<std::uint32_t> delta_bits;
+    const motion_initialization::Templates& templates;
     std::optional<OrientationCallback> orientation;
     std::optional<OutputCallbacks> publication;
 };
@@ -47,4 +54,7 @@ using Result=std::variant<Output,Error>;
 [[nodiscard]] Result apply(const model_animation_frame::State&,
     const model_animation_output::Hierarchy&,const player_controller_step::State&,
     const player_fields::Fields&,const Fields&,const Context&,player_animation::Limits={});
+[[nodiscard]] Result apply(const model_animation_frame::State&,
+    const model_animation_output::Hierarchy&,const player_controller_step::State&,
+    const player_fields::Fields&,const Fields&,const SourceContext&,player_animation::Limits={});
 }

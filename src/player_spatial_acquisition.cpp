@@ -26,7 +26,7 @@ float finite(Word word,std::string_view field){
     if((word&0x7f800000U)==0x7f800000U)fail(ErrorCode::nonfinite_operand,field);
     return std::bit_cast<float>(word);
 }
-Word attribute_mask(const player_controller_step::PlayerFields& p,const player_fields::Fields& f){
+Word attribute_mask_value(const player_controller_step::PlayerFields& p,const player_fields::Fields& f){
     // b4620c -> d05694(player,0,0). The other d05694 parameters are
     // literal zero here, so PWf8 and alternative helper routes are not read.
     Word mask=2;
@@ -44,7 +44,7 @@ Word attribute_mask(const player_controller_step::PlayerFields& p,const player_f
     if(p.selection_pbw.field370==2)mask|=0x400000U;
     return mask;
 }
-Word wrapper_flags(const player_controller_step::PlayerFields& p,const Context& c){
+Word wrapper_flags_value(const player_controller_step::PlayerFields& p,const Context& c){
     // ARM register LSL uses the low byte; byte9 already has that width.
     const auto area=known(p.selection_pbw.field9,"pbw+9");
     const auto enabled=known(c.area_enable_mask,"area manager+18");
@@ -54,6 +54,12 @@ Word wrapper_flags(const player_controller_step::PlayerFields& p,const Context& 
     if(player_transition::local_control(p.global,p.pbw))flags|=0x40000U;
     return flags;
 }
+}
+WordResult attribute_mask(const player_controller_step::PlayerFields& p,const player_fields::Fields& f){
+    try{return attribute_mask_value(p,f);}catch(const Failure& e){return e.error;}
+}
+WordResult wrapper_flags(const player_controller_step::PlayerFields& p,const Context& c){
+    try{return wrapper_flags_value(p,c);}catch(const Failure& e){return e.error;}
 }
 Result apply(const player_controller_step::PlayerFields& p,const player_fields::Fields& fields,
     const Request& request,const Context& context){
@@ -78,10 +84,10 @@ Result apply(const player_controller_step::PlayerFields& p,const player_fields::
                 add(offset[1],known(b.field6ec_bits,"pbw+6ec"),"offset previous Y"),
                 add(offset[2],known(b.field6f0_bits,"pbw+6f0"),"offset previous Z")};
             const auto area=known(p.selection_pbw.field9,"pbw+9");
-            const auto attributes=attribute_mask(p,fields);
-            const auto flags=wrapper_flags(p,context);
+            const auto attributes=attribute_mask_value(p,fields);
+            const auto flags=wrapper_flags_value(p,context);
             if(!context.scene)fail(ErrorCode::unknown_field,"spatial scene");
-            auto result=sq::height(*context.scene,{current,true,previous[1],area,flags,attributes,false},context.query_limits);
+            auto result=sq::height(*context.scene,{current,true,previous[1],area,flags,attributes,false},context.query_limits,context.previous_grid_updates);
             if(const auto* e=std::get_if<sq::Error>(&result))throw Failure{{ErrorCode::query,"2ba230/2bb178",*e}};
             out.effects.current_point=current;out.effects.previous_point=previous;
             out.effects.attribute_mask=attributes;out.effects.wrapper_flags=flags;

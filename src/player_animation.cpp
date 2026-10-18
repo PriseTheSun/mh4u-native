@@ -63,6 +63,16 @@ UpdateStatusOutput consume_status(const State& source,player_update_status::Outp
 UpdateNotificationsOutput consume_notifications(const State& source,player_update_notifications::Output applied){
     return {consume_status(source,std::move(applied.status)),std::move(applied.queue),std::move(applied.effects)};
 }
+UpdateDirectionOutput consume_direction(const State& source,player_update_direction::Output applied){
+    return {consume_notifications(source,std::move(applied.notified)),std::move(applied.material),std::move(applied.effects)};
+}
+UpdatePositionOutput consume_position(const State& source,player_update_position::Output applied){
+    return {consume_direction(source,std::move(applied.directed)),std::move(applied.effects)};
+}
+UpdateManagerOutput consume_manager(const State& source,player_update_manager::Output applied){
+    return {consume_position(source,std::move(applied.positioned)),std::move(applied.manager),
+        std::move(applied.foreign),std::move(applied.effects)};
+}
 // Each caller checkpoint shares this one bounded projection and allocation
 // boundary. The operation receives temporary storage and publishes nothing.
 template<class Result,class Operation>Result prepare_update(const State& source,const Limits& limits,Operation operation){
@@ -155,8 +165,89 @@ UpdateDirectionResult update_direction(const State& source,const player_state1::
             fields,objects,context,queue,limits.command);
         if(auto* error=std::get_if<player_update_direction::Error>(&result))return Error{Phase::update_direction,*error};
         auto applied=std::get<player_update_direction::Output>(std::move(result));
-        return UpdateDirectionOutput{consume_notifications(source,std::move(applied.notified)),std::move(applied.material),std::move(applied.effects)};
+        return consume_direction(source,std::move(applied));
     });
+}
+UpdatePositionResult update_position(const State& source,const player_state1::Fields& action_fields,
+    const player_fields::Fields& fields,const player_object_query::Manager& objects,
+    const player_update_direction::Context& context,const notification_queue::State& queue,Limits limits){
+    return prepare_update<UpdatePositionResult>(source,limits,[&](std::span<const motion_pending::Layer> storage)->UpdatePositionResult{
+        auto result=player_update_position::apply(source.controller,action_fields,storage,2,
+            fields,objects,context,queue,limits.command);
+        if(auto* error=std::get_if<player_update_position::Error>(&result))return Error{Phase::update_position,*error};
+        auto applied=std::get<player_update_position::Output>(std::move(result));
+        return consume_position(source,std::move(applied));
+    });
+}
+UpdateManagerResult update_manager(const State& source,const player_state1::Fields& action_fields,
+    const player_fields::Fields& fields,const player_object_query::Manager& objects,
+    const player_update_manager::Context& context,const notification_queue::State& queue,Limits limits){
+    return prepare_update<UpdateManagerResult>(source,limits,[&](std::span<const motion_pending::Layer> storage)->UpdateManagerResult{
+        auto result=player_update_manager::apply(source.controller,action_fields,storage,2,
+            fields,objects,context,queue,limits.command);
+        if(auto* error=std::get_if<player_update_manager::Error>(&result))return Error{Phase::update_manager,*error};
+        auto applied=std::get<player_update_manager::Output>(std::move(result));
+        return consume_manager(source,std::move(applied));
+    });
+}
+UpdateContactResult update_contact(const State& source,const player_state1::Fields& action_fields,
+    const player_fields::Fields& fields,const player_position_bridge::Fields& position,
+    const player_object_query::Manager& objects,const player_update_contact::Context& context,
+    const notification_queue::State& queue,Limits limits){
+    return prepare_update<UpdateContactResult>(source,limits,[&](std::span<const motion_pending::Layer> storage)->UpdateContactResult{
+        auto result=player_update_contact::apply(source.controller,action_fields,storage,2,
+            fields,position,objects,context,queue,limits.command);
+        if(auto* error=std::get_if<player_update_contact::Error>(&result))return Error{Phase::update_contact,*error};
+        auto applied=std::get<player_update_contact::Output>(std::move(result));
+        return UpdateContactOutput{consume_manager(source,std::move(applied.managed)),
+            std::move(applied.position),std::move(applied.effects),std::move(applied.grid_updates)};
+    });
+}
+UpdateModelResult update_model(const State& source,const player_state1::Fields& action_fields,
+    const player_fields::Fields& fields,const player_position_bridge::Fields& position,
+    const player_object_query::Manager& objects,const UpdateModelContext& context,
+    const notification_queue::State& queue,Limits limits){
+    try{
+        auto previous=update_contact(source,action_fields,fields,position,objects,context.preceding,queue,limits);
+        if(auto* error=std::get_if<Error>(&previous))return *error;
+        auto contacted=std::get<UpdateContactOutput>(std::move(previous));
+        auto& candidate=contacted.managed.positioned.directed.notified.status.adjusted.dispatched;
+        const auto& dispatch=context.preceding.preceding.preceding.preceding.dispatch;
+        const player_position_bridge::SourceContext bridge{context.frame,
+            dispatch.preparation.admission.prefix.delta_bits,dispatch.resources.sampling.templates,
+            context.orientation,context.publication};
+        auto result=player_position_bridge::apply(candidate.state.frame,candidate.state.hierarchy,
+            candidate.state.controller,candidate.shared_fields,contacted.position,bridge,limits);
+        if(auto* error=std::get_if<player_position_bridge::Error>(&result))return Error{Phase::update_model,*error};
+        auto applied=std::get<player_position_bridge::Output>(std::move(result));
+        candidate.state.frame=std::move(applied.frame);
+        candidate.state.hierarchy=std::move(applied.hierarchy);
+        candidate.state.controller=std::move(applied.controller);
+        candidate.shared_fields=std::move(applied.shared);
+        contacted.position=std::move(applied.fields);
+        return UpdateModelOutput{std::move(contacted),std::move(applied.effects)};
+    }catch(const std::bad_alloc&){return capacity();}catch(const std::length_error&){return capacity();}
+}
+UpdateEventsResult update_events(const State& source,const player_state1::Fields& action_fields,
+    const player_fields::Fields& fields,const player_position_bridge::Fields& position,
+    const player_object_query::Manager& objects,const UpdateEventsContext& context,
+    const notification_queue::State& queue,Limits limits){
+    try{
+        auto previous=update_model(source,action_fields,fields,position,objects,context.preceding,queue,limits);
+        if(auto* error=std::get_if<Error>(&previous))return *error;
+        auto modeled=std::get<UpdateModelOutput>(std::move(previous));
+        auto& candidate=modeled.contacted.managed.positioned.directed.notified.status.adjusted.dispatched;
+        const auto& statistics=context.preceding.preceding.preceding.preceding.preceding.dispatch.preparation.statistics;
+        const player_update_events::Context events{statistics.players,
+            context.preceding.frame.resolvers.events,statistics.registry_work_limit};
+        auto result=player_update_events::apply(candidate.state.controller.player,
+            candidate.shared_fields,modeled.contacted.position,candidate.state.frame.animation.layers,events);
+        if(auto* error=std::get_if<player_update_events::Error>(&result))return Error{Phase::update_events,*error};
+        auto applied=std::get<player_update_events::Output>(std::move(result));
+        candidate.state.controller.player=std::move(applied.player);
+        candidate.shared_fields=std::move(applied.fields);
+        return UpdateEventsOutput{std::move(modeled),std::move(applied.effects)};
+    }catch(const std::bad_alloc&){return capacity();}catch(const std::length_error&){return capacity();}
 }
 Result step(const State& source,const FrameContext& context,Limits limits){
     try{

@@ -5,6 +5,7 @@
 #include <array>
 #include <cstdint>
 #include <optional>
+#include <span>
 #include <string_view>
 #include <variant>
 #include <vector>
@@ -97,20 +98,31 @@ struct Evaluation {
 };
 struct Limits {
     std::size_t nodes=1U<<20,candidates=1U<<20,faces=1U<<21,runtime_words=1U<<20;
+    // Separate host budget: zero-pair grids still occupy update slots.
+    std::size_t runtime_slots=1U<<20;
 }; // Native work/output policy, not a source-game maximum.
 enum class ErrorCode {unknown_operand,invalid_identity,unsupported_route,resource,
     grid,face,arithmetic,resource_limit};
+enum class GridPlanCode {invalid_slot,source_binding,resource_limit,duplicate_slot};
+struct GridPlanError {GridPlanCode code;std::optional<Word> slot;};
 struct Error {
     ErrorCode code;std::string_view field;
     std::variant<std::monostate,collision_resource::Error,spatial_grid::Error,
         spatial_face_query::Error,motion_transform_math::Error> cause;
+    std::optional<GridPlanError> plan{};
 };
 template<class T>using Result=std::variant<T,Error>;
+// Validates each set against the Scene binding, rejects duplicate slots within
+// either set, and returns a sorted owned plan. Later replaces earlier for the
+// same slot. Unknown counter/depth/marks are preserved until a query consumes
+// them. No Scene mutation; caller commits only after its whole transaction.
+[[nodiscard]] Result<std::vector<GridUpdate>> plan_updates(const Scene&,
+    std::span<const GridUpdate> earlier,std::span<const GridUpdate> later={},Limits={});
 // 1774e8/180c5c, type15, direct untransformed one-group SBC/GRCO instances.
 // Traversal, candidates and equal-distance replacement preserve source order.
 // Unsupported/Unknown paths publish no partial result or external mutation.
 [[nodiscard]] Result<Evaluation> query(const Scene&,const Filter&,
-    const spatial_face_query::Vertical&,Limits={});
+    const spatial_face_query::Vertical&,Limits={},std::span<const GridUpdate> previous={});
 struct HeightRequest {
     std::optional<Bits3> position;
     std::optional<bool> previous_present;
@@ -118,9 +130,27 @@ struct HeightRequest {
     std::optional<Word> area,flags,attribute_mask;
     std::optional<bool> attribute_output_present;
 };
-struct HeightResult {Word height_bits{};std::uint8_t status{};Evaluation query;};
-// 2bb178 constructs its own filter and downward ray. Non-null attribute output
-// is an unrecovered 2b9474 path. Source-derived flag/previous branches remain
-// distinct from the narrower retained runtime corpus.
-[[nodiscard]] Result<HeightResult> height(const Scene&,const HeightRequest&,Limits={});
+// 2b9474 direct SBC branch. Values come from parsed source records, not the
+// normalized/intersection plane. Keeps geometry alive independently of Scene.
+struct DirectAttribute {
+    collision_resource::Resource resource;
+    Identity identity;
+    std::array<std::uint8_t,6> bytes0_5;
+    std::array<Word,3> words2_4_0;
+    Bits3 normal_bits;
+    Word word24;
+    // Original does not write these output lanes. No prior output is supplied
+    // to height(), so their values remain Unknown, including after a hit.
+    std::optional<Word> opaque28,opaque2c;
+};
+struct HeightResult {
+    Word height_bits{};std::uint8_t status{};Evaluation query;
+    std::optional<DirectAttribute> attribute{};
+};
+// 2bb178 constructs its own filter and downward ray. Requested attributes are
+// produced only on a hit; dynamic/alternate/transformed routes remain outside
+// the admitted Scene profile. Both query entrypoints retain previous updates
+// even when this call does not touch their slots, and read them before Scene.
+[[nodiscard]] Result<HeightResult> height(const Scene&,const HeightRequest&,Limits={},
+    std::span<const GridUpdate> previous={});
 } // namespace mh4u::spatial_query

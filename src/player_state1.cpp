@@ -86,7 +86,7 @@ class Continuation {
             if(magnitude()==0){
                 if(error)return false;
                 if(!p.selection_pbw.field6f9){fail(ErrorCode::unknown_field,"pbw+6f9");return false;}
-                const auto action=*p.selection_pbw.field6f9!=1&&p.selection_pw.field594!=0?26U:3U;
+                const auto action=!ps::flag6f9(*p.selection_pbw.field6f9)&&p.selection_pw.field594!=0?26U:3U;
                 transition({1,action,0});return !error;
             }
         }

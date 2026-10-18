@@ -1,4 +1,5 @@
 #pragma once
+#include "binary32_arithmetic.hpp"
 #include <cstdint>
 #include <optional>
 #include <string_view>
@@ -7,7 +8,10 @@
 namespace mh4u::player_reference {
 // Original object fields +40/+48 and +60/+68. Physical/camera identity and
 // the producer of these coordinates remain outside this numeric consumer.
-struct Points { float first_x,first_z,second_x,second_z; };
+struct Points {
+    float first_x,first_z,second_x,second_z;
+    std::optional<std::uint32_t> first_y_bits{},second_y_bits{};
+};
 struct Unknown {bool operator==(const Unknown&)const=default;};
 struct Absent {bool operator==(const Absent&)const=default;};
 // External manager+1c fact. Unknown is never an implicitly null object.
@@ -18,8 +22,8 @@ struct State {
     std::optional<std::uint32_t> stored_heading; // pw+14c; full word, NOT truncated here
     std::optional<Points> points; // nullopt means manager+1c was explicitly null
 };
-enum class ErrorCode { nonfinite_input,nonfinite_difference,unsupported_floating_environment,unknown_field };
-struct Error { ErrorCode code;std::string_view message; };
+enum class ErrorCode { nonfinite_input,nonfinite_difference,unsupported_floating_environment,unknown_field,angular_table_extent };
+struct Error { ErrorCode code;std::string_view message; std::optional<binary32_arithmetic::Error> arithmetic{}; };
 using Result=std::variant<std::uint32_t,Error>;
 using StateResult=std::variant<State,Error>;
 // Temporary, lazy projection of borrowed caller facts. Stored mode/heading
@@ -33,6 +37,9 @@ using StateResult=std::variant<State,Error>;
 // separately rounded binary32 operations and round-to-nearest arithmetic.
 // No runtime, callbacks, memory mutation or continuous atan2 substitution.
 Result heading(const State&) noexcept;
+// Original568b54/5687b8 shared raw vector core. No implicit coordinate subtraction.
+// The horizontal wrapper retains its earlier finite-coordinate input contract.
+[[nodiscard]] Result angular_core(std::uint32_t x_bits,std::uint32_t z_bits) noexcept;
 // Complete numeric b3ca88: heading then low16(heading-0x4000+angle0).
 // Returns the new full pw+b0 word without modifying the caller's state.
 [[nodiscard]] Result orient(const State&,std::uint16_t angle0) noexcept;

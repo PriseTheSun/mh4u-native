@@ -16,6 +16,11 @@
 #include <variant>
 
 namespace mh4u::native_actor {
+class Player;
+// Exclusive per-call identity binding for manager+e18; no native Player pointer
+// is retained. Unknown/null source links remain distinct from a present Player.
+using PlayerManagerLink=std::variant<player_manager_update::Unknown,player_manager_update::Absent,Player*>;
+struct PlayerManagerContext {player_manager_update::ManagerState& manager;PlayerManagerLink player;};
 // Stable source selection, resolved once against Actor's immutable LMT owner.
 // A digest is not a display label or truncated resource token.
 struct MotionSource {std::string sha256;};
@@ -40,6 +45,16 @@ struct PlayerStep {
     std::optional<motion_transform_math::Basis> reference_basis;
     std::optional<joint_pose::Bits4> reference_translation;
 };
+// Frame resources for the composed update. Its delta and initialization
+// templates are owned exclusively by PlayerUpdateDispatchContext.
+struct PlayerModelContext {
+    std::optional<joint_pose::Bits3> restoration_scale;
+    joint_output::ParentReference parent=joint_pose::Unknown{};
+    std::optional<motion_transform_math::Basis> reference_basis;
+    std::optional<joint_pose::Bits4> reference_translation;
+    std::optional<player_position_bridge::OrientationCallback> orientation;
+    std::optional<player_position_bridge::OutputCallbacks> publication;
+};
 // Optional patches: omission preserves the live field, while an explicit zero
 // is a known zero. These source channels/words imply no physical device mapping.
 struct PlayerPolicyInput {
@@ -55,7 +70,7 @@ struct PlayerPolicyContext {
     std::optional<std::uint32_t> global_c8c;
     std::optional<std::array<std::uint16_t,2>> direction_bounds;
 };
-enum class PlayerErrorCode {initial_state,bank,driver,render,capacity,policy,position,update_begin,input_filter,update_accumulator,update_prefix,item_pop_update,update_admission,update_continuation,grid_publication};
+enum class PlayerErrorCode {initial_state,bank,driver,render,capacity,policy,position,update_begin,input_filter,update_accumulator,update_prefix,item_pop_update,update_admission,update_continuation,grid_publication,manager_identity};
 enum class GridPublicationCode {missing_scene,query_profile,invalid_slot,duplicate_slot,source_binding,resource_limit};
 struct GridPublicationError {GridPublicationCode code;std::optional<std::uint32_t> slot;};
 struct PlayerError {
@@ -142,6 +157,33 @@ struct PlayerUpdateDirectionOutput {
     player_update_direction::MaterialEffects material;
     player_direction_refresh::Effects effects;
 };
+struct PlayerUpdatePositionOutput {
+    Frame frame;
+    player_animation::UpdateDispatchEffects dispatch;
+    player_update_post_dispatch::Effects adjustment;
+    player_status_update::Effects status;
+    player_status_notifications::Effects notifications;
+    player_update_direction::MaterialEffects material;
+    player_direction_refresh::Effects direction;
+    player_position_timer::Effects effects;
+};
+struct PlayerUpdateManagerOutput {
+    PlayerUpdatePositionOutput positioned;
+    player_manager_update::Effects effects;
+    std::optional<Frame> foreign_frame;
+};
+struct PlayerUpdateContactOutput {
+    PlayerUpdateManagerOutput managed;
+    player_contact_update::Effects effects;
+};
+struct PlayerUpdateModelOutput {
+    PlayerUpdateContactOutput contacted;
+    player_position_bridge::Effects effects;
+};
+struct PlayerUpdateEventsOutput {
+    PlayerUpdateModelOutput modeled;
+    player_update_events::Effects effects;
+};
 struct PlayerState1Context {
     player_reference::Reference reference=player_reference::Unknown{};
     player_selection::AreaContext area{};
@@ -220,6 +262,41 @@ public:
     PlayerResult<PlayerUpdateDirectionOutput> prepare_and_update_direction(player_object_query::Collection&,
         notification_queue::State&,const PlayerUpdateDispatchContext&,
         const player_direction_refresh::Bindings&,std::optional<player_update_post_dispatch::Virtual10c>);
+    // Through position/timer, BEFORE b146c4. Rendering and all four mutable
+    // owners share the same publication boundary as the preceding checkpoints.
+    PlayerResult<PlayerUpdatePositionOutput> prepare_and_update_position(player_object_query::Collection&,
+        notification_queue::State&,const PlayerUpdateDispatchContext&,
+        const player_direction_refresh::Bindings&,std::optional<player_update_post_dispatch::Virtual10c>);
+    // Through b11f3c/b24c44, BEFORE b146d8. A reached foreign Player patch
+    // prepares that Player's render too; every owner publishes only after both
+    // renders succeed. A self binding uses the same preceding candidate.
+    PlayerResult<PlayerUpdateManagerOutput> prepare_and_update_manager(player_object_query::Collection&,
+        notification_queue::State&,const PlayerUpdateDispatchContext&,
+        const player_direction_refresh::Bindings&,std::optional<player_update_post_dispatch::Virtual10c>,
+        const PlayerManagerContext&);
+    // Through b3150c/b3c244, BEFORE b14700. Position and sequential grid
+    // candidates publish with the caller, foreign Player, manager and queue.
+    // The null-reference template is consumed only on its source branch.
+    PlayerResult<PlayerUpdateContactOutput> prepare_and_update_contact(player_object_query::Collection&,
+        notification_queue::State&,const PlayerUpdateDispatchContext&,
+        const player_direction_refresh::Bindings&,std::optional<player_update_post_dispatch::Virtual10c>,
+        const PlayerManagerContext&,std::optional<spatial_query::Bits3> null_reference_template = {});
+    // Through b07c08/b06f8c/b07bb8, BEFORE b14724. The contact-adjusted
+    // candidate advances the model once with admission's delta and the same
+    // templates. All reached owners publish after caller and foreign renders.
+    PlayerResult<PlayerUpdateModelOutput> prepare_and_update_model(player_object_query::Collection&,
+        notification_queue::State&,const PlayerUpdateDispatchContext&,
+        const player_direction_refresh::Bindings&,std::optional<player_update_post_dispatch::Virtual10c>,
+        const PlayerManagerContext&,const PlayerModelContext&,
+        std::optional<spatial_query::Bits3> null_reference_template = {});
+    // Through the attribute queries and current event-prefix scan, BEFORE
+    // b148f0. Uses the same statistics registry and model resource resolver;
+    // caller and foreign renders still precede publication of every owner.
+    PlayerResult<PlayerUpdateEventsOutput> prepare_and_update_events(player_object_query::Collection&,
+        notification_queue::State&,const PlayerUpdateDispatchContext&,
+        const player_direction_refresh::Bindings&,std::optional<player_update_post_dispatch::Virtual10c>,
+        const PlayerManagerContext&,const PlayerModelContext&,
+        std::optional<spatial_query::Bits3> null_reference_template = {});
     // Explicit lifecycle update using this Player's sole canonical global/RNG.
     // Manager remains caller-owned. Both owners commit only after rendering,
     // with nonthrowing publication; failure preserves both. No implicit tick,
@@ -250,7 +327,9 @@ private:
     // rendering and publication implementation. No generic callback is exposed.
     template<class Output>PlayerResult<Output> prepare_dispatch(player_object_query::Collection&,
         const PlayerUpdateDispatchContext&,std::optional<player_update_post_dispatch::Virtual10c>,
-        notification_queue::State* = nullptr,const player_direction_refresh::Bindings* = nullptr);
+        notification_queue::State* = nullptr,const player_direction_refresh::Bindings* = nullptr,
+        const PlayerManagerContext* = nullptr,std::optional<spatial_query::Bits3> = {},
+        const PlayerModelContext* = nullptr);
     static PlayerResult<player_animation::State> rest_state(const Actor::Data&,const PlayerInitial&,player_animation::Limits);
     Player(std::shared_ptr<const Actor::Data>,player_animation::State,
         player_transition::Constants,motion_request::Model,player_animation::Limits,

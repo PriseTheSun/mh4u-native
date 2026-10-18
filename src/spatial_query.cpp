@@ -1,4 +1,5 @@
 #include "spatial_query.hpp"
+#include <algorithm>
 #include <bit>
 #include <cmath>
 #include <new>
@@ -13,6 +14,20 @@ namespace {
 namespace math=motion_transform_math;
 struct Failure {Error error;};
 [[noreturn]] void fail(ErrorCode code,std::string_view field){throw Failure{{code,field,{}}};}
+[[noreturn]] void plan_fail(GridPlanCode code,std::string_view field,std::optional<Word> slot={}){
+    const auto outer=code==GridPlanCode::resource_limit?ErrorCode::resource_limit:ErrorCode::invalid_identity;
+    throw Failure{{outer,field,{},GridPlanError{code,slot}}};
+}
+void validate_update(const Scene& scene,const GridUpdate& update){
+    if(update.slot>=scene.grid_states.size())
+        plan_fail(GridPlanCode::invalid_slot,"grid plan slot",update.slot);
+    const auto& base=scene.grid_states[update.slot];const auto& state=update.state;
+    if(base.group>=base.resource.groups().size()||
+       base.pair_marks.size()!=base.resource.groups()[base.group].pairs.count||
+       base.resource.sha256()!=state.resource.sha256()||base.group!=state.group||
+       base.pair_marks.size()!=state.pair_marks.size())
+        plan_fail(GridPlanCode::source_binding,"grid plan source binding",update.slot);
+}
 template<class T>const T& known(const std::optional<T>& v,std::string_view field){
     if(!v)fail(ErrorCode::unknown_operand,field);return *v;
 }
@@ -94,8 +109,9 @@ void visit(const Scene& scene,const Filter& filter,const spatial_face_query::Ver
     auto grid=take(spatial_grid::Prepared::prepare(resource,0),ErrorCode::grid,"group grid setup");
     const auto state_slot=known(instance.grid_state,"grid runtime identity");
     if(state_slot>=scene.grid_states.size())fail(ErrorCode::invalid_identity,"grid runtime identity");
-    GridState* state=nullptr;
-    for(auto& update:out.grid_updates)if(update.slot==state_slot){state=&update.state;break;}
+    auto update=std::lower_bound(out.grid_updates.begin(),out.grid_updates.end(),state_slot,
+        [](const GridUpdate& entry,Word slot_value){return entry.slot<slot_value;});
+    GridState* state=update!=out.grid_updates.end()&&update->slot==state_slot?&update->state:nullptr;
     // Validate every instance-to-runtime binding, including repeated nodes that
     // reuse an update already created earlier in this query.
     const auto& source=state?*state:scene.grid_states[state_slot];
@@ -105,8 +121,10 @@ void visit(const Scene& scene,const Filter& filter,const spatial_face_query::Ver
     if(!state){
         if(source.pair_marks.size()>limits.runtime_words-runtime_words)
             fail(ErrorCode::resource_limit,"grid runtime words");
+        if(out.grid_updates.size()>=limits.runtime_slots)
+            plan_fail(GridPlanCode::resource_limit,"grid runtime slots",state_slot);
         runtime_words+=source.pair_marks.size();
-        out.grid_updates.push_back({state_slot,source});state=&out.grid_updates.back().state;
+        update=out.grid_updates.insert(update,{state_slot,source});state=&update->state;
     }
     if(known(state->depth,"grid nesting depth")!=0)
         fail(ErrorCode::unsupported_route,"nested grid query");
@@ -162,13 +180,71 @@ Word classify(const Scene& scene,const Hit& hit){
         number(scene.normal_thresholds[2],"normal threshold34")<=y;
     if(first)return 1;if(second)return 2;return third?4:8;
 }
+DirectAttribute attributes(const Hit& hit){
+    const auto pair=take(hit.resource.resolve_pair(hit.identity.group,hit.identity.pair),
+        ErrorCode::resource,"height attribute pair");
+    if(hit.identity.attribute!=pair.pair->attribute_id||
+       hit.identity.face!=pair.first.id-pair.group->faces.first)
+        fail(ErrorCode::invalid_identity,"height attribute identity");
+    const auto& words=pair.attribute->words;const auto packed=words[1];
+    return {hit.resource,hit.identity,
+        {static_cast<std::uint8_t>(packed&0xffU),static_cast<std::uint8_t>((packed>>8U)&7U),
+         static_cast<std::uint8_t>((packed>>11U)&1U),static_cast<std::uint8_t>((packed>>16U)&15U),
+         static_cast<std::uint8_t>((packed>>20U)&15U),static_cast<std::uint8_t>(packed>>24U)},
+        {words[2],words[4],words[0]},pair.first.face->normal_bits,0,std::nullopt,std::nullopt};
+}
+}
+
+Result<std::vector<GridUpdate>> plan_updates(const Scene& scene,
+    std::span<const GridUpdate> earlier,std::span<const GridUpdate> later,Limits limits){
+    try{
+        // Both pointer indexes and the final owned records are bounded before
+        // allocation. Pair storage is copied only after checking the whole plan.
+        auto index=[&](std::span<const GridUpdate> input){
+            if(input.size()>limits.runtime_slots)
+                plan_fail(GridPlanCode::resource_limit,"grid plan slots");
+            std::vector<const GridUpdate*> result;result.reserve(input.size());
+            for(const auto& update:input){validate_update(scene,update);result.push_back(&update);}
+            std::sort(result.begin(),result.end(),[](const auto* a,const auto* b){return a->slot<b->slot;});
+            for(std::size_t i=1;i<result.size();++i)if(result[i-1]->slot==result[i]->slot)
+                plan_fail(GridPlanCode::duplicate_slot,"grid plan duplicate slot",result[i]->slot);
+            return result;
+        };
+        const auto a=index(earlier),b=index(later);
+        std::size_t count=0,words=0;
+        auto walk=[&](auto consume){
+            std::size_t i=0,j=0;
+            while(i<a.size()||j<b.size()){
+                const GridUpdate* next=nullptr;
+                if(j==b.size()||(i<a.size()&&a[i]->slot<b[j]->slot))next=a[i++];
+                else{next=b[j++];if(i<a.size()&&a[i]->slot==next->slot)++i;}
+                consume(*next);
+            }
+        };
+        walk([&](const GridUpdate& update){
+            if(count>=limits.runtime_slots)
+                plan_fail(GridPlanCode::resource_limit,"grid plan slots",update.slot);
+            if(update.state.pair_marks.size()>limits.runtime_words-words)
+                plan_fail(GridPlanCode::resource_limit,"grid plan words",update.slot);
+            ++count;words+=update.state.pair_marks.size();
+        });
+        std::vector<GridUpdate> out;out.reserve(count);
+        walk([&](const GridUpdate& update){out.push_back(update);});return out;
+    }catch(const Failure& failure){return failure.error;}
+    // Allocation failure is not a structural plan issue or an explicit limit.
+    catch(const std::bad_alloc&){return Error{ErrorCode::resource_limit,"grid plan allocation",{}};}
+    catch(const std::length_error&){return Error{ErrorCode::resource_limit,"grid plan allocation",{}};}
 }
 
 Result<Evaluation> query(const Scene& scene,const Filter& filter,
-                         const spatial_face_query::Vertical& ray,Limits limits){
+                         const spatial_face_query::Vertical& ray,Limits limits,std::span<const GridUpdate> previous){
     try{
         (void)take(math::multiply(0,0),ErrorCode::arithmetic,"query floating environment");
         Evaluation out;std::size_t node_count=0,runtime_words=0;
+        auto plan=plan_updates(scene,previous,{},limits);
+        if(const auto* error=std::get_if<Error>(&plan))return *error;
+        out.grid_updates=std::get<std::vector<GridUpdate>>(std::move(plan));
+        for(const auto& update:out.grid_updates)runtime_words+=update.state.pair_marks.size();
         const auto flags=known(filter.flags,"filter flags");
         if((flags&4U)!=0){
             const auto areas=known(filter.area_mask,"filter area mask");
@@ -213,7 +289,8 @@ Result<Evaluation> query(const Scene& scene,const Filter& filter,
     catch(const std::length_error&){return Error{ErrorCode::resource_limit,"query allocation",{}};}
 }
 
-Result<HeightResult> height(const Scene& scene,const HeightRequest& request,Limits limits){
+Result<HeightResult> height(const Scene& scene,const HeightRequest& request,Limits limits,
+    std::span<const GridUpdate> previous){
     try{
         const auto& position=known(request.position,"height position");
         const auto flags=known(request.flags,"height flags");
@@ -232,14 +309,15 @@ Result<HeightResult> height(const Scene& scene,const HeightRequest& request,Limi
         filter.face_callback_present=false;filter.post_callback_present=false;
         // 198418 does not initialize excluded_tag; preserve Unknown. It is only
         // consumed by the direct object gate when that object's tag is nonzero.
-        auto result=query(scene,filter,{origin,0xbf800000U},limits);
+        auto result=query(scene,filter,{origin,0xbf800000U},limits,previous);
         if(const auto* error=std::get_if<Error>(&result))return *error;
         auto evaluation=std::get<Evaluation>(std::move(result));
+        std::optional<DirectAttribute> attribute;
         if(evaluation.hit&&known(request.attribute_output_present,"height attribute output presence"))
-            fail(ErrorCode::unsupported_route,"height attribute output");
+            attribute=attributes(*evaluation.hit);
         const auto height=evaluation.hit?evaluation.hit->replacement.position[1]:position[1];
         const auto status=static_cast<std::uint8_t>(evaluation.classification&0xffU);
-        return HeightResult{height,status,std::move(evaluation)};
+        return HeightResult{height,status,std::move(evaluation),std::move(attribute)};
     }catch(const Failure& failure){return failure.error;}
 }
 } // namespace mh4u::spatial_query

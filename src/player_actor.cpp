@@ -53,7 +53,7 @@ struct Player::Resources {
             if(auto* e=std::get_if<lmt::Error>(&result))return motion_clock::ResolutionError{std::uint32_t(e->code),e->message};
             const auto& groups=std::get<std::optional<std::array<lmt::EventGroupView,4>>>(result);
             if(!groups||id.bank>=16||id.group>=4)return motion_clock::ResolutionError{0,"Player event binding outside source descriptor"};
-            return motion_clock::EventGroup{id,(*groups)[id.group].records};
+            return motion_clock::EventGroup{id,(*groups)[id.group].records,(*groups)[id.group].prefix};
         }
         return motion_clock::ResolutionError{0,"Player event refers to an unowned immutable resource"};
     }
@@ -302,12 +302,52 @@ PlayerResult<PlayerUpdateDirectionOutput> Player::prepare_and_update_direction(p
     const player_direction_refresh::Bindings& direction,std::optional<player_update_post_dispatch::Virtual10c> binding){
     return prepare_dispatch<PlayerUpdateDirectionOutput>(objects,context,binding,&queue,&direction);
 }
+PlayerResult<PlayerUpdatePositionOutput> Player::prepare_and_update_position(player_object_query::Collection& objects,
+    notification_queue::State& queue,const PlayerUpdateDispatchContext& context,
+    const player_direction_refresh::Bindings& direction,std::optional<player_update_post_dispatch::Virtual10c> binding){
+    return prepare_dispatch<PlayerUpdatePositionOutput>(objects,context,binding,&queue,&direction);
+}
+PlayerResult<PlayerUpdateManagerOutput> Player::prepare_and_update_manager(player_object_query::Collection& objects,
+    notification_queue::State& queue,const PlayerUpdateDispatchContext& context,
+    const player_direction_refresh::Bindings& direction,std::optional<player_update_post_dispatch::Virtual10c> binding,
+    const PlayerManagerContext& manager){
+    return prepare_dispatch<PlayerUpdateManagerOutput>(objects,context,binding,&queue,&direction,&manager);
+}
+PlayerResult<PlayerUpdateContactOutput> Player::prepare_and_update_contact(player_object_query::Collection& objects,
+    notification_queue::State& queue,const PlayerUpdateDispatchContext& context,
+    const player_direction_refresh::Bindings& direction,std::optional<player_update_post_dispatch::Virtual10c> binding,
+    const PlayerManagerContext& manager,std::optional<spatial_query::Bits3> null_reference_template){
+    return prepare_dispatch<PlayerUpdateContactOutput>(objects,context,binding,&queue,&direction,&manager,null_reference_template);
+}
+PlayerResult<PlayerUpdateModelOutput> Player::prepare_and_update_model(player_object_query::Collection& objects,
+    notification_queue::State& queue,const PlayerUpdateDispatchContext& context,
+    const player_direction_refresh::Bindings& direction,std::optional<player_update_post_dispatch::Virtual10c> binding,
+    const PlayerManagerContext& manager,const PlayerModelContext& model,
+    std::optional<spatial_query::Bits3> null_reference_template){
+    return prepare_dispatch<PlayerUpdateModelOutput>(objects,context,binding,&queue,&direction,&manager,null_reference_template,&model);
+}
+PlayerResult<PlayerUpdateEventsOutput> Player::prepare_and_update_events(player_object_query::Collection& objects,
+    notification_queue::State& queue,const PlayerUpdateDispatchContext& context,
+    const player_direction_refresh::Bindings& direction,std::optional<player_update_post_dispatch::Virtual10c> binding,
+    const PlayerManagerContext& manager,const PlayerModelContext& model,
+    std::optional<spatial_query::Bits3> null_reference_template){
+    return prepare_dispatch<PlayerUpdateEventsOutput>(objects,context,binding,&queue,&direction,&manager,null_reference_template,&model);
+}
 template<class Output>PlayerResult<Output> Player::prepare_dispatch(player_object_query::Collection& objects,
     const PlayerUpdateDispatchContext& context,std::optional<player_update_post_dispatch::Virtual10c> binding,
-    notification_queue::State* queue,const player_direction_refresh::Bindings* direction_bindings){
+    notification_queue::State* queue,const player_direction_refresh::Bindings* direction_bindings,
+    const PlayerManagerContext* manager_context,std::optional<spatial_query::Bits3> null_reference_template,
+    const PlayerModelContext* model_context){
+    constexpr bool with_events=std::is_same_v<Output,PlayerUpdateEventsOutput>;
+    constexpr bool with_model=with_events||std::is_same_v<Output,PlayerUpdateModelOutput>;
+    constexpr bool with_contact=with_model||std::is_same_v<Output,PlayerUpdateContactOutput>;
+    constexpr bool with_manager=with_contact||std::is_same_v<Output,PlayerUpdateManagerOutput>;
+    constexpr bool with_queue=with_manager||std::is_same_v<Output,PlayerUpdateNotificationsOutput>||
+        std::is_same_v<Output,PlayerUpdateDirectionOutput>||std::is_same_v<Output,PlayerUpdatePositionOutput>;
     static_assert(std::is_same_v<Output,PlayerUpdateDispatchOutput>||std::is_same_v<Output,PlayerUpdateAdjustmentOutput>||
         std::is_same_v<Output,PlayerUpdateStatusOutput>||std::is_same_v<Output,PlayerUpdateNotificationsOutput>||
-        std::is_same_v<Output,PlayerUpdateDirectionOutput>);
+        std::is_same_v<Output,PlayerUpdateDirectionOutput>||std::is_same_v<Output,PlayerUpdatePositionOutput>||
+        with_manager);
     namespace sq=spatial_query;
     static_assert(std::is_nothrow_move_assignable_v<player_object_query::Collection>);
     static_assert(std::is_nothrow_move_assignable_v<sq::GridState>);
@@ -315,6 +355,8 @@ template<class Output>PlayerResult<Output> Player::prepare_dispatch(player_objec
     static_assert(std::is_nothrow_move_assignable_v<player_fields::Fields>);
     static_assert(std::is_nothrow_move_assignable_v<player_state1::Fields>);
     static_assert(std::is_nothrow_move_assignable_v<notification_queue::State>);
+    static_assert(std::is_nothrow_move_assignable_v<player_manager_update::ManagerState>);
+    static_assert(std::is_nothrow_move_assignable_v<player_position_bridge::Fields>);
     static_assert(std::is_nothrow_move_constructible_v<PlayerResult<Output>>);
     const auto grid_error=[](GridPublicationCode code,std::optional<std::uint32_t> slot={}){
         auto out=error(PlayerErrorCode::grid_publication,"Player grid publication plan is outside its explicit profile");
@@ -332,11 +374,57 @@ template<class Output>PlayerResult<Output> Player::prepare_dispatch(player_objec
         player_status_notifications::Effects notifications{};
         player_update_direction::MaterialEffects material{};
         player_direction_refresh::Effects direction{};
+        player_position_timer::Effects position{};
         std::optional<notification_queue::State> queue_candidate;
+        player_manager_update::Effects manager_effects{};
+        std::optional<player_manager_update::ManagerState> manager_candidate;
+        std::optional<player_manager_update::ForeignPatch> foreign_patch;
+        player_contact_update::Effects contact_effects{};
+        player_position_bridge::Effects model_effects{};
+        player_update_events::Effects event_effects{};
+        std::optional<player_position_bridge::Fields> position_candidate;
+        std::vector<sq::GridUpdate> grid_plan;
+        Player* foreign_owner=nullptr;
+
         // Select one typed checkpoint. Each completed phase is unwrapped once
         // below, sharing resource bindings and the publication boundary.
         auto result=[&](){
-            if constexpr(std::is_same_v<Output,PlayerUpdateDirectionOutput>){
+            if constexpr(with_manager){
+                const player_update_post_dispatch::Context preceding{dispatch_context,binding};
+                const player_update_direction::Context directed{preceding,*direction_bindings};
+                player_manager_update::PlayerLink selected=std::visit([&](auto link)->player_manager_update::PlayerLink{
+                    using T=decltype(link);
+                    if constexpr(std::is_same_v<T,Player*>){
+                        if(link==this)return player_manager_update::Caller{};
+                        foreign_owner=link;
+                        return player_manager_update::ForeignPlayer{link?&link->state_.controller.player:nullptr,
+                            link?&link->shared_fields_:nullptr};
+                    }else return link;
+                },manager_context->player);
+                const player_manager_update::Manager manager=player_manager_update::ManagerView{&manager_context->manager,selected};
+                if constexpr(with_contact){
+                    const player_update_manager::Context managed{directed,manager};
+                    const player_update_contact::Context contacted{managed,null_reference_template};
+                    if constexpr(with_model){
+                        const pa::FrameResources frame{data_->bone_map,
+                            jp::PresentModel{data_->parts[0].model.skeleton()->local_matrices},
+                            model_context->restoration_scale,{{&resources,Resources::action},
+                                {&resources,Resources::track},{&resources,Resources::events}},
+                            model_context->parent,model_context->reference_basis,model_context->reference_translation};
+                        const pa::UpdateModelContext modeled{contacted,frame,model_context->orientation,model_context->publication};
+                        if constexpr(with_events)return pa::update_events(state_,state1_fields_,shared_fields_,position_fields_,&objects,
+                            {modeled},*queue,limits_);
+                        else return pa::update_model(state_,state1_fields_,shared_fields_,position_fields_,&objects,
+                            modeled,*queue,limits_);
+                    }else return pa::update_contact(state_,state1_fields_,shared_fields_,position_fields_,&objects,
+                        contacted,*queue,limits_);
+                }else return pa::update_manager(state_,state1_fields_,shared_fields_,&objects,
+                        {directed,manager},*queue,limits_);
+            }else if constexpr(std::is_same_v<Output,PlayerUpdatePositionOutput>){
+                const player_update_post_dispatch::Context preceding{dispatch_context,binding};
+                return pa::update_position(state_,state1_fields_,shared_fields_,&objects,
+                    {preceding,*direction_bindings},*queue,limits_);
+            }else if constexpr(std::is_same_v<Output,PlayerUpdateDirectionOutput>){
                 const player_update_post_dispatch::Context preceding{dispatch_context,binding};
                 return pa::update_direction(state_,state1_fields_,shared_fields_,&objects,
                     {preceding,*direction_bindings},*queue,limits_);
@@ -351,7 +439,19 @@ template<class Output>PlayerResult<Output> Player::prepare_dispatch(player_objec
         if(auto* e=std::get_if<pa::Error>(&result))return PlayerError{PlayerErrorCode::driver,
             "Player update dispatch phase "+std::to_string(unsigned(e->phase)),*e,{}};
         const auto unwrap=[&]<class Candidate>(auto&& self,Candidate candidate)->pa::UpdateDispatchOutput{
-            if constexpr(std::is_same_v<Candidate,pa::UpdateDirectionOutput>){
+            if constexpr(std::is_same_v<Candidate,pa::UpdateEventsOutput>){
+                event_effects=std::move(candidate.effects);return self(self,std::move(candidate.modeled));
+            }else if constexpr(std::is_same_v<Candidate,pa::UpdateModelOutput>){
+                model_effects=std::move(candidate.effects);return self(self,std::move(candidate.contacted));
+            }else if constexpr(std::is_same_v<Candidate,pa::UpdateContactOutput>){
+                contact_effects=std::move(candidate.effects);position_candidate=std::move(candidate.position);
+                grid_plan=std::move(candidate.grid_updates);return self(self,std::move(candidate.managed));
+            }else if constexpr(std::is_same_v<Candidate,pa::UpdateManagerOutput>){
+                manager_candidate=std::move(candidate.manager);foreign_patch=std::move(candidate.foreign);
+                manager_effects=std::move(candidate.effects);return self(self,std::move(candidate.positioned));
+            }else if constexpr(std::is_same_v<Candidate,pa::UpdatePositionOutput>){
+                position=std::move(candidate.effects);return self(self,std::move(candidate.directed));
+            }else if constexpr(std::is_same_v<Candidate,pa::UpdateDirectionOutput>){
                 material=std::move(candidate.material);direction=std::move(candidate.effects);
                 return self(self,std::move(candidate.notified));
             }else if constexpr(std::is_same_v<Candidate,pa::UpdateNotificationsOutput>){
@@ -380,28 +480,71 @@ template<class Output>PlayerResult<Output> Player::prepare_dispatch(player_objec
         }
         // Build only the changed slots. Effects keep their own complete result;
         // no entire Scene copy, re-query or publication occurs before render.
-        std::vector<sq::GridUpdate> grid_plan;
-        if(height&&!height->query.grid_updates.empty()){
+        if constexpr(!with_contact){
+          if(height&&!height->query.grid_updates.empty()){
             if(!context.spatial_scene)return grid_error(GridPublicationCode::missing_scene);
             const auto& updates=height->query.grid_updates;
-            std::size_t words=0;
-            for(const auto& update:updates){
-                if(update.slot>=context.spatial_scene->grid_states.size())return grid_error(GridPublicationCode::invalid_slot,update.slot);
-                const auto& current=context.spatial_scene->grid_states[update.slot];
-                if(current.resource.sha256()!=update.state.resource.sha256()||current.group!=update.state.group||
-                    current.pair_marks.size()!=update.state.pair_marks.size())return grid_error(GridPublicationCode::source_binding,update.slot);
-                if(update.state.pair_marks.size()>context.query_limits.runtime_words-words)return grid_error(GridPublicationCode::resource_limit,update.slot);
-                words+=update.state.pair_marks.size();
+            auto plan=sq::plan_updates(*context.spatial_scene,updates,{},context.query_limits);
+            if(const auto* failure=std::get_if<sq::Error>(&plan)){
+                if(!failure->plan)return capacity();
+                const auto& issue=*failure->plan;
+                switch(issue.code){
+                    case sq::GridPlanCode::invalid_slot:return grid_error(GridPublicationCode::invalid_slot,issue.slot);
+                    case sq::GridPlanCode::source_binding:return grid_error(GridPublicationCode::source_binding,issue.slot);
+                    case sq::GridPlanCode::resource_limit:return grid_error(GridPublicationCode::resource_limit,issue.slot);
+                    case sq::GridPlanCode::duplicate_slot:return grid_error(GridPublicationCode::duplicate_slot,issue.slot);
+                }
             }
-            grid_plan=updates;
-            std::sort(grid_plan.begin(),grid_plan.end(),[](const auto& a,const auto& b){return a.slot<b.slot;});
-            for(std::size_t i=1;i<grid_plan.size();++i)if(grid_plan[i-1].slot==grid_plan[i].slot)
-                return grid_error(GridPublicationCode::duplicate_slot,grid_plan[i].slot);
+            grid_plan=std::get<std::vector<sq::GridUpdate>>(std::move(plan));
+          }
         }
-        auto rendered=render(updated.state,completed_steps_,samples,revision_+1);
+        std::optional<pa::State> foreign_state;
+        std::optional<player_fields::Fields> foreign_fields;
+        if(foreign_patch){
+            if(!foreign_owner||foreign_owner==this||
+                foreign_patch->identity.player!=&foreign_owner->state_.controller.player||
+                foreign_patch->identity.fields!=&foreign_owner->shared_fields_)
+                return error(PlayerErrorCode::manager_identity,"Manager patch does not match the exclusively borrowed foreign Player");
+            if(foreign_owner->revision_==std::numeric_limits<std::uint64_t>::max())return capacity();
+            foreign_state=foreign_owner->state_;foreign_fields=foreign_owner->shared_fields_;
+            foreign_state->controller.player.pw.fielddc=foreign_patch->fielddc;
+            foreign_fields->pw.fielde0_bits=foreign_patch->fielde0_bits;
+        }
+        auto completed=completed_steps_;
+        if constexpr(with_model){
+            if(model_effects.animation){
+                if(completed==std::numeric_limits<std::uint64_t>::max())return capacity();
+                ++completed;
+                for(const auto count:{model_effects.animation->model_samples,model_effects.animation->joint_samples}){
+                    if(count>std::numeric_limits<std::size_t>::max()-samples)return capacity();
+                    samples+=count;
+                }
+            }
+        }
+        auto rendered=render(updated.state,completed,samples,revision_+1);
         if(auto* e=std::get_if<PlayerError>(&rendered))return *e;
+        std::optional<Frame> foreign_frame;
+        if(foreign_patch){
+            auto prepared=foreign_owner->render(*foreign_state,foreign_owner->completed_steps_,foreign_owner->samples_,foreign_owner->revision_+1);
+            if(auto* e=std::get_if<PlayerError>(&prepared))return *e;
+            foreign_frame=std::get<Frame>(std::move(prepared));
+        }
         PlayerResult<Output> output=[&]()->Output{
-            if constexpr(std::is_same_v<Output,PlayerUpdateDirectionOutput>)
+            if constexpr(with_manager){
+                PlayerUpdateManagerOutput managed{{std::get<Frame>(std::move(rendered)),std::move(updated.effects),std::move(adjustment),std::move(status),std::move(notifications),std::move(material),std::move(direction),std::move(position)},std::move(manager_effects),std::move(foreign_frame)};
+                if constexpr(with_contact){
+                    PlayerUpdateContactOutput contacted{std::move(managed),std::move(contact_effects)};
+                    if constexpr(with_model){
+                        PlayerUpdateModelOutput modeled{std::move(contacted),std::move(model_effects)};
+                        if constexpr(with_events)return {std::move(modeled),std::move(event_effects)};
+                        else return modeled;
+                    }
+                    else return contacted;
+                }else return managed;
+            }
+            else if constexpr(std::is_same_v<Output,PlayerUpdatePositionOutput>)
+                return {std::get<Frame>(std::move(rendered)),std::move(updated.effects),std::move(adjustment),std::move(status),std::move(notifications),std::move(material),std::move(direction),std::move(position)};
+            else if constexpr(std::is_same_v<Output,PlayerUpdateDirectionOutput>)
                 return {std::get<Frame>(std::move(rendered)),std::move(updated.effects),std::move(adjustment),std::move(status),std::move(notifications),std::move(material),std::move(direction)};
             else if constexpr(std::is_same_v<Output,PlayerUpdateNotificationsOutput>)
                 return {std::get<Frame>(std::move(rendered)),std::move(updated.effects),std::move(adjustment),std::move(status),std::move(notifications)};
@@ -413,12 +556,21 @@ template<class Output>PlayerResult<Output> Player::prepare_dispatch(player_objec
         }();
         // No allocation, validation or throwing move remains after the first
         // publication. Every reached mutable owner belongs to this operation.
-        if constexpr(std::is_same_v<Output,PlayerUpdateNotificationsOutput>||std::is_same_v<Output,PlayerUpdateDirectionOutput>)
+        if constexpr(with_queue)
             *queue=std::move(*queue_candidate);
+        if constexpr(with_manager){
+            if(manager_candidate)manager_context->manager=std::move(*manager_candidate);
+            if(foreign_patch){
+                foreign_owner->state_=std::move(*foreign_state);
+                foreign_owner->shared_fields_=std::move(*foreign_fields);
+                ++foreign_owner->revision_;
+            }
+        }
+        if constexpr(with_contact)position_fields_=std::move(*position_candidate);
         for(auto& update:grid_plan)context.spatial_scene->grid_states[update.slot]=std::move(update.state);
         if(updated.collection)objects=std::move(*updated.collection);
         state_=std::move(updated.state);shared_fields_=std::move(updated.shared_fields);
-        state1_fields_=std::move(updated.action_fields);samples_=samples;++revision_;
+        state1_fields_=std::move(updated.action_fields);samples_=samples;completed_steps_=completed;++revision_;
         return output;
     }catch(const std::bad_alloc&){return capacity();}catch(const std::length_error&){return capacity();}
 }

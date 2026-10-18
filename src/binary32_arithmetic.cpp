@@ -1,6 +1,7 @@
 #include "binary32_arithmetic.hpp"
 #include <bit>
 #include <cfenv>
+#include <cmath>
 #include <limits>
 #include <optional>
 
@@ -70,6 +71,15 @@ Result div(Word left,Word right){
     if(infinity(left)||zero(right))return result_sign|exponent;
     if(infinity(right)||zero(left))return result_sign;
     const volatile float result=std::bit_cast<float>(left)/std::bit_cast<float>(right);
+    return std::bit_cast<Word>(float(result));
+}
+Result sqrt(Word value){
+    if(auto error=environment())return *error;
+    if(nan(value))return value|quiet;
+    if(zero(value))return value;
+    if(value&sign)return default_nan;
+    if(infinity(value))return value;
+    const volatile float result=std::sqrt(std::bit_cast<float>(value));
     return std::bit_cast<Word>(float(result));
 }
 Result from_signed_word(Word value){
