@@ -23,6 +23,7 @@ float output(float x){if(!std::isfinite(x))fail(ErrorCode::numeric_overflow,"Non
 float add(float a,float b){input(a);input(b);volatile float r=a+b;return output(r);}
 float sub(float a,float b){input(a);input(b);volatile float r=a-b;return output(r);}
 float mul(float a,float b){input(a);input(b);volatile float r=a*b;return output(r);}
+float div(float a,float b){input(a);input(b);volatile float r=a/b;return output(r);}
 float squared_norm(const std::array<float,4>& q){
     float norm=mul(q[0],q[0]);for(unsigned i=1;i<4;++i)norm=add(norm,mul(q[i],q[i]));return norm;
 }
@@ -36,6 +37,7 @@ template<class T,class F>Result<T> guarded(F fn){try{environment();return fn();}
 }
 Result<std::uint32_t> multiply(std::uint32_t a,std::uint32_t b){return guarded<std::uint32_t>([&]{return bits(mul(value(a),value(b)));});}
 Result<std::uint32_t> add(std::uint32_t a,std::uint32_t b){return guarded<std::uint32_t>([&]{return bits(add(value(a),value(b)));});}
+Result<std::uint32_t> divide(std::uint32_t a,std::uint32_t b){return guarded<std::uint32_t>([&]{return bits(div(value(a),value(b)));});}
 Result<Bits3> lerp(const Bits3& a,const Bits3& b,std::uint32_t weight){return guarded<Bits3>([&]{
     const float w=value(weight),one=sub(1,w);Bits3 out;
     for(unsigned i=0;i<3;++i)out[i]=bits(add(mul(value(a[i]),one),mul(value(b[i]),w)));

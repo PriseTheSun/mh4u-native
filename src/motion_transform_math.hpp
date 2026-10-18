@@ -19,6 +19,8 @@ template<class T>using Result=std::variant<T,Error>;
 // separately, without FMA. No clamping or normalization of the inputs.
 [[nodiscard]] Result<std::uint32_t> multiply(std::uint32_t,std::uint32_t);
 [[nodiscard]] Result<std::uint32_t> add(std::uint32_t,std::uint32_t);
+// One rounded DIV; zero denominators/nonfinite results fail explicitly.
+[[nodiscard]] Result<std::uint32_t> divide(std::uint32_t,std::uint32_t);
 [[nodiscard]] Result<Bits3> lerp(const Bits3& current,const Bits3& incoming,std::uint32_t weight);
 [[nodiscard]] Result<Bits3> add_scaled(const Bits3& current,const Bits3& incoming,std::uint32_t weight);
 [[nodiscard]] Result<Bits4> nlerp(const Bits4& current,const Bits4& incoming,std::uint32_t weight);

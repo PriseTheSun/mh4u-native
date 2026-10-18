@@ -5,6 +5,7 @@
 #include <fstream>
 #include <iostream>
 #include <stdexcept>
+#include <string_view>
 namespace {
 namespace na=mh4u::native_actor;namespace pa=mh4u::player_animation;namespace mp=mh4u::motion_pending;
 namespace pcs=mh4u::player_controller_step;namespace ps=mh4u::player_selection;namespace pt=mh4u::player_transition;
@@ -41,7 +42,7 @@ na::PolicyPreviewSeed policy_seed(const tbl::Table& table){
  p.pbw.field30=1;p.pbw.field33=1;p.pbw.field371=3;p.pbw.field372=1234;
  p.global.field2b=1;p.global.field2f=1;p.selection_pbw.field6f9=0;p.selection_pw.field9a8=1;
  p.pw.policy=tbl::install(table,0);p.pw.fieldf0=0x11000005;p.pw.fieldf4=0x12345678;p.pw.field261=3;
- x.pbw.flags3d8.fill(0);x.pbw.field3a8=x.pbw.field3ac=x.pbw.field3b8=x.pbw.field3bc=0;
+ x.pbw.words3d8.fill(mh4u::player_input_storage::split(0));x.pbw.field3a8=x.pbw.field3ac=x.pbw.field3b8=x.pbw.field3bc=0;
  x.pbw.field14_bits=x.pbw.field478=0;x.pbw.field6fb=x.pbw.field6fc=x.pbw.field93ee=0;
  x.pw.field14c=x.pw.field154=x.pw.field15c_bits=x.pw.field6a4_bits=0;
  x.pw.field150=x.pw.field158=x.pw.field159=x.pw.field15a=0;x.pw.field6a8=1;
@@ -62,7 +63,8 @@ na::PlayerBanks banks(){na::PlayerBanks b{};b[0]=na::MotionSource{"c5f8f0c5f86ad
 na::PlayerStep frame_parameters(){na::PlayerStep p;p.delta_bits=one;
  p.templates={jp::Bits3{},jp::Bits3{},identity,jp::Bits4{}};p.restoration_scale=jp::Bits3{one,one,one};p.parent=jp::Null{};
  p.reference_basis=mh4u::motion_transform_math::Basis{one,0,0,0,0,one,0,0,0,0,one,0};p.reference_translation=identity;return p;}
-void run(const char* recipe,const pt::Constants& constants,const tbl::Table& table35,const tbl::Table& table31){
+void run(const char* recipe,const pt::Constants& constants,const tbl::Table& table35,const tbl::Table& table31,
+    const mh4u::collision_resource::Resource& collision){
  namespace st=mh4u::player_state1;namespace rq=mh4u::motion_request;
  auto actor=value<na::Actor>(na::Actor::load(recipe));check(actor.part_count()==7&&actor.joint_count()==19,"Expected real seven-piece hunter");
  const auto seed=policy_seed(table35);const st::Tables tables{table35,table31};const auto params=frame_parameters();
@@ -261,6 +263,165 @@ void run(const char* recipe,const pt::Constants& constants,const tbl::Table& tab
   frame_equal(value<na::Frame>(player.capture()),rest);
   if(failure_kind==0){const auto retry=value<na::PlayerState1Output>(player.dispatch_state1(tables,params.templates,id2_context));check(retry.effects.cost_updates==1&&player.shared_fields().pbw.field354_bits==bits(199.5f),"Failed ID2 call changed subsequent cost");}
  }
+ // Explicit source-bound world fixture, not a bootstrap or inferred scene.
+ // The complete ARM b40 corpus separately observes this real SBC contact.
+ namespace sq=mh4u::spatial_query;
+ const auto spatial_scene=[&]{
+  sq::Scene scene;
+  for(auto& family:scene.direct)family=std::vector<sq::Node>{};
+  for(auto& family:scene.other_empty)for(auto& empty:family)empty=true;
+  for(auto& family:scene.extra_c8_empty)for(auto& empty:family)empty=true;
+  scene.extra_c8_enabled=scene.extra_c9_enabled=scene.extra_c9_empty=true;
+  scene.extra_tail_count=scene.status_selector_a=scene.status_selector_b=0;
+  scene.classification_masks={0,0,0};scene.normal_thresholds={bits(-2),bits(-2),bits(-2)};
+  check(collision.groups().size()==1,"Expected complete one-group collision resource");
+  const auto& group=collision.groups()[0];
+  sq::Instance object;object.enabled_5=1;object.bypass_pair_box_33=0;
+  object.object_mask=1;object.area_mask=8;object.exclusion_tag=0;
+  object.resource_present=object.grid_present=true;object.tree_present=false;object.resource=collision;
+  object.status_count=1;object.grid_state=0;object.status={1,0,0,false,false};
+  scene.instances.push_back(object);
+  scene.grid_states.push_back({collision,0,0,0,std::vector<std::optional<std::uint32_t>>(group.pairs.count,0)});
+  scene.direct[3]=std::vector<sq::Node>{{0,group.bbox_min[0],group.bbox_max[2]}};
+  return scene;
+ };
+ const auto spatial_initial=[&](float y){
+  auto init=id2_initial();auto& p=init.controller.player;auto& f=init.shared_fields;
+  p.selection_pbw.field9=3;f.pw.field14c=0x4000; // orient() produces heading0.
+  f.pw.field6a8=0;f.pw.field6a4_bits=0x7fc12345;f.pw.field5a8=0;
+  f.pbw.field10_bits=f.pbw.field6e8_bits=bits(-6662.23779296875f);
+  f.pbw.field14_bits=f.pbw.field6ec_bits=bits(y);
+  f.pbw.field18_bits=f.pbw.field6f0_bits=bits(-1482.9044189453125f);
+  return init;
+ };
+ for(const bool transition:{false,true}){
+  auto scene=spatial_scene();const auto marks=scene.grid_states[0].pair_marks;
+  auto init=spatial_initial(transition?3021.5546875f:2971.5546875f);
+  auto player=make(init,banks());auto ctx=id2_context;ctx.delta_time_bits=0;ctx.spatial={&scene,0,{}};
+  const auto out=value<na::PlayerState1Output>(player.dispatch_state1(tables,params.templates,ctx));
+  check(out.effects.spatial&&out.effects.spatial->height&&out.effects.spatial->cache_written&&!out.effects.spatial->cache_used,"Uncached Player path did not acquire/cache");
+  const auto& acquired=*out.effects.spatial->height;
+  check(acquired.status==1&&acquired.height_bits==0x453698e0U&&acquired.query.hit,"Original real-SBC height/status mismatch");
+  check(player.shared_fields().pw.field6a8==1&&player.shared_fields().pw.field6a4_bits==acquired.height_bits,"Canonical cache did not commit");
+  check(acquired.query.grid_updates.size()==1&&acquired.query.grid_updates[0].state.counter==1,"Returned grid update missing");
+  check(scene.grid_states[0].counter==0&&scene.grid_states[0].pair_marks==marks,"Borrowed world mutated before caller commit");
+  check(bool(out.effects.transition)==transition&&player.completed_steps()==0,"Spatial result lost transition/no-transition distinction");
+  frame_equal(out.frame,rest);
+  // World ownership stays outside Player. Apply returned updates only after
+  // the complete Player transaction (including rendering) has succeeded.
+  for(const auto& update:acquired.query.grid_updates)scene.grid_states.at(update.slot)=update.state;
+  check(scene.grid_states[0].counter==1,"Caller grid commit failed");
+  if(!transition){
+   ctx.spatial={};const auto next=value<na::PlayerState1Output>(player.dispatch_state1(tables,params.templates,ctx));
+   check(next.effects.spatial&&next.effects.spatial->cache_used&&!next.effects.spatial->cache_written&&!next.effects.spatial->height,"Persistent cache queried an unknown world");
+   check(player.shared_fields().pw.field6a8==1&&scene.grid_states[0].counter==1&&!next.effects.transition,"Cached retry changed cache count/world/transition");
+  }
+ }
+ // The native transition owner rejects optional dispatch only after the
+ // successful uncached query. Cost, position, cache and world all roll back.
+ auto rollback_scene=spatial_scene();const auto rollback_marks=rollback_scene.grid_states[0].pair_marks;
+ auto rollback_seed=spatial_initial(3021.5546875f);rollback_seed.controller.player.global.field5d=1;
+ rollback_seed.shared_fields.pbw.field18_bits=bits(-1485.4044189453125f);
+ auto rollback=make(rollback_seed,banks());const auto rollback_state=rollback.state();const auto rollback_fields=rollback.shared_fields();
+ auto rollback_context=id2_context;rollback_context.spatial={&rollback_scene,0,{}};
+ const auto rejected=rollback.dispatch_state1(tables,params.templates,rollback_context);
+ const auto& reject=value<na::PlayerError>(rejected);
+ check(reject.driver&&reject.driver->phase==pa::Phase::state1,"Expected late state1 failure");
+ const auto& state_error=std::get<st::Error>(reject.driver->cause);
+ check(state_error.code==st::ErrorCode::transition&&std::get<ps::Error>(state_error.cause).transition_code==pt::ErrorCode::optional_dispatch_body,"Failure did not occur after spatial acquisition");
+ check(state_equal(rollback.state(),rollback_state)&&rollback.shared_fields()==rollback_fields&&rollback.state1_fields()==rollback_seed.state1_fields&&rollback.completed_steps()==0,"Late transition published spatial/cost/position candidate");
+ check(rollback_scene.grid_states[0].counter==0&&rollback_scene.grid_states[0].pair_marks==rollback_marks,"Late transition changed caller world");
+ // Complete b3b3a0 is an explicit stage. This seed follows its source-owned
+ // fields, not the still-unrecovered caller gates or complete update scheduler.
+ const auto begin_seed=[&]{
+  auto init=spatial_initial(2971.5546875f);auto& p=init.controller.player;auto& f=init.shared_fields;
+  p.selection_pbw.field6fa=0xa5;p.pw.fielde8=0x8000000cU;p.pw.field6c0=0x6d;
+  f.pbw.field6e8_bits=0x7fc12345;f.pbw.field6ec_bits=0xff800000;f.pbw.field6f0_bits=0x7f800000;
+  f.pbw.field6f4_bits=0x80000000;f.pbw.field37a=0xee;f.pbw.field6c0=0x7e;
+  f.pbw.field93f1=0x91;f.pbw.field6fc=0x92;f.pbw.field6fb=0x93;
+  f.pw.field0b=0x81;f.pw.field589=0x82;f.pw.field6a9=0x83;f.pw.field01=0x84;
+  f.pw.field1f8=0x20001000U;f.pw.field6a8=255;
+  return init;
+ };
+ const auto no_clock=[&](const na::Frame& a,const na::Frame& b){
+  check(a.tick==b.tick&&bits(a.source_frame)==bits(b.source_frame)&&a.event_masks==b.event_masks&&a.ended==b.ended,"Explicit begin advanced clock metadata");
+ };
+ auto lifecycle_scene=spatial_scene();auto lifecycle=make(begin_seed(),banks());
+ const auto lifecycle_before=lifecycle.state();const auto lifecycle_fields=lifecycle.shared_fields();
+ const auto lifecycle_state1=lifecycle.state1_fields();const auto lifecycle_position=lifecycle.position_fields();
+ auto expected_state=lifecycle_before;expected_state.controller.player.selection_pbw.field6fa=0;
+ expected_state.controller.player.pw.fielde8&=~4U;
+ auto expected_fields=lifecycle_fields;
+ expected_fields.pbw.field6e8_bits=lifecycle_fields.pbw.field10_bits;
+ expected_fields.pbw.field6ec_bits=lifecycle_fields.pbw.field14_bits;
+ expected_fields.pbw.field6f0_bits=lifecycle_fields.pbw.field18_bits;
+ expected_fields.pbw.field6f4_bits=0;expected_fields.pbw.field37a=3;
+ expected_fields.pbw.field93f1=0;expected_fields.pbw.field6fc=0;expected_fields.pbw.field6c0=0;
+ expected_fields.pw.field0b=0;expected_fields.pw.field589=0;expected_fields.pw.field6a9=0;expected_fields.pw.field01=0;
+ expected_fields.pw.field1f8=0x20000000U;expected_fields.pw.field6a8=0;
+ const auto begun=value<na::Frame>(lifecycle.begin_update());
+ check(state_equal(lifecycle.state(),expected_state)&&lifecycle.shared_fields()==expected_fields,"Begin did not publish exact complete leaf fields");
+ check(lifecycle.shared_fields().pw.field6a4_bits==0x7fc12345U&&lifecycle.state().controller.player.pw.field6c0==0x6d&&lifecycle.shared_fields().pbw.field6fb==0x93,"Begin consumed cached height, aliased PW/PBW6c0 or cleared adjacent byte");
+ check(lifecycle.state1_fields()==lifecycle_state1&&lifecycle.position_fields()==lifecycle_position&&lifecycle.completed_steps()==0,"Begin changed unrelated owner or ticked");
+ no_clock(begun,rest);frame_equal(begun,rest);
+ auto lifecycle_context=id2_context;lifecycle_context.delta_time_bits=0;lifecycle_context.spatial={&lifecycle_scene,0,{}};
+ const auto first=value<na::PlayerState1Output>(lifecycle.dispatch_state1(tables,params.templates,lifecycle_context));
+ check(first.effects.spatial&&first.effects.spatial->height&&first.effects.spatial->cache_written&&!first.effects.spatial->cache_used,"First handler did not fill invalidated cache");
+ const auto& first_query=*first.effects.spatial->height;
+ check(first_query.status==1&&first_query.height_bits==0x453698e0U&&first_query.query.hit&&!first.effects.transition,"Begin/query lost original false-return contact");
+ check(lifecycle.shared_fields().pw.field6a8==1&&lifecycle.shared_fields().pw.field6a4_bits==0x453698e0U,"First handler lost canonical cache store");
+ check(first_query.query.grid_updates.size()==1&&first_query.query.grid_updates[0].slot==0&&first_query.query.grid_updates[0].state.counter==1&&lifecycle_scene.grid_states[0].counter==0,"First handler published borrowed grid before caller commit");
+ lifecycle_scene.grid_states[0]=first_query.query.grid_updates[0].state;
+ lifecycle_context.spatial={};
+ const auto second=value<na::PlayerState1Output>(lifecycle.dispatch_state1(tables,params.templates,lifecycle_context));
+ check(second.effects.spatial&&second.effects.spatial->cache_used&&!second.effects.spatial->cache_written&&!second.effects.spatial->height&&!second.effects.transition,"Second handler reset or re-queried the shared cache");
+ check(lifecycle.shared_fields().pw.field6a8==1&&lifecycle.shared_fields().pw.field6a4_bits==0x453698e0U&&lifecycle_scene.grid_states[0].counter==1,"Second handler changed cache lifetime or world counter");
+ check(lifecycle.shared_fields().pbw.field6e8_bits==expected_fields.pbw.field6e8_bits&&lifecycle.shared_fields().pbw.field6ec_bits==expected_fields.pbw.field6ec_bits&&lifecycle.shared_fields().pbw.field6f0_bits==expected_fields.pbw.field6f0_bits&&lifecycle.completed_steps()==0,"Handlers republished previous position or ticked");
+ no_clock(first.frame,begun);no_clock(second.frame,begun);
+ const auto next_begin=value<na::Frame>(lifecycle.begin_update());
+ check(lifecycle.shared_fields().pw.field6a8==0&&lifecycle.shared_fields().pw.field6a4_bits==0x453698e0U&&lifecycle_scene.grid_states[0].counter==1,"Next explicit begin did not invalidate only the cache flag");
+ check(lifecycle.completed_steps()==0,"Next begin advanced animation");no_clock(next_begin,begun);
+ const auto invalidated_state=lifecycle.state();const auto invalidated_fields=lifecycle.shared_fields();
+ const auto invalidated_marks=lifecycle_scene.grid_states[0].pair_marks;
+ lifecycle_context.spatial={nullptr,0,{}};
+ const auto no_world=value<na::PlayerError>(lifecycle.dispatch_state1(tables,params.templates,lifecycle_context));
+ check(no_world.driver&&no_world.driver->phase==pa::Phase::state1,"Invalidated query lost error phase");
+ const auto& no_world_state1=std::get<st::Error>(no_world.driver->cause);
+ check(no_world_state1.code==st::ErrorCode::spatial_acquisition&&std::get<mh4u::player_spatial_acquisition::Error>(no_world_state1.cause).field=="spatial scene","Invalidated cache concealed missing scene");
+ check(state_equal(lifecycle.state(),invalidated_state)&&lifecycle.shared_fields()==invalidated_fields&&lifecycle.state1_fields()==lifecycle_state1&&lifecycle.position_fields()==lifecycle_position&&lifecycle.completed_steps()==0,"Missing query context published a partial handler");
+ check(lifecycle_scene.grid_states[0].counter==1&&lifecycle_scene.grid_states[0].pair_marks==invalidated_marks,"Failed invalidated query changed world stamps");
+ lifecycle_context.spatial={&lifecycle_scene,0,{}};
+ const auto retried=value<na::PlayerState1Output>(lifecycle.dispatch_state1(tables,params.templates,lifecycle_context));
+ check(retried.effects.spatial&&retried.effects.spatial->cache_written&&!retried.effects.spatial->cache_used&&retried.effects.spatial->height,"Next update reused stale cache instead of acquiring");
+ const auto& retry_query=*retried.effects.spatial->height;
+ check(retry_query.height_bits==0x453698e0U&&retry_query.query.grid_updates.size()==1&&retry_query.query.grid_updates[0].state.counter==2&&lifecycle_scene.grid_states[0].counter==1,"Next update did not return exactly the next caller-owned grid generation");
+ check(lifecycle.shared_fields().pw.field6a8==1&&lifecycle.completed_steps()==0,"Next update cache count or clock changed");
+ no_clock(retried.frame,begun);
+ // Unknown consumed fields fail atomically. Later missing fields exercise
+ // rejection after earlier source reads, while unrelated poisoned data survives.
+ const std::array<std::string_view,5> missing_begin_fields{"PBW10","PBW14","PBW18","PBW9","PW1f8"};
+ for(unsigned which=0;which<missing_begin_fields.size();++which){
+  auto missing=begin_seed();
+  switch(which){case 0:missing.shared_fields.pbw.field10_bits.reset();break;case 1:missing.shared_fields.pbw.field14_bits.reset();break;case 2:missing.shared_fields.pbw.field18_bits.reset();break;case 3:missing.controller.player.selection_pbw.field9.reset();break;default:missing.shared_fields.pw.field1f8.reset();break;}
+  auto subject=make(missing,banks());const auto saved=subject.state();const auto before_fields=subject.shared_fields();
+  const auto failed=value<na::PlayerError>(subject.begin_update());
+  check(failed.code==na::PlayerErrorCode::update_begin&&failed.update_begin&&failed.update_begin->code==mh4u::player_update_begin::ErrorCode::unknown_field&&failed.update_begin->field==missing_begin_fields[which],"Begin lost unknown source reason");
+  check(state_equal(subject.state(),saved)&&subject.shared_fields()==before_fields&&subject.state1_fields()==missing.state1_fields&&subject.position_fields()==missing.position_fields&&subject.completed_steps()==0,"Unknown begin input published a prefix");
+  no_clock(value<na::Frame>(subject.capture()),rest);
+ }
+ // The integer/raw-copy leaf itself accepts this environment. Rendering is
+ // deliberately rejected afterward, before any persistent owner is committed.
+ auto begin_render=make(begin_seed(),banks());const auto begin_render_state=begin_render.state();const auto begin_render_fields=begin_render.shared_fields();
+ struct RestoreRounding {int saved=std::fegetround();~RestoreRounding(){std::fesetround(saved);}} restore_begin_rounding;
+ check(std::fesetround(FE_DOWNWARD)==0,"Set begin render rejection environment");
+ const auto begin_render_result=begin_render.begin_update();const auto restore_begin=std::fesetround(restore_begin_rounding.saved);
+ check(restore_begin==0,"Restore begin render environment");
+ check(std::holds_alternative<na::PlayerError>(begin_render_result)&&std::get<na::PlayerError>(begin_render_result).code==na::PlayerErrorCode::render,"Expected render failure after valid begin leaf");
+ check(state_equal(begin_render.state(),begin_render_state)&&begin_render.shared_fields()==begin_render_fields&&begin_render.state1_fields()==lifecycle_state1&&begin_render.position_fields()==lifecycle_position&&begin_render.completed_steps()==0,"Late begin render failure published candidate");
+ no_clock(value<na::Frame>(begin_render.capture()),rest);
+ const auto begin_render_retry=value<na::Frame>(begin_render.begin_update());
+ check(begin_render.shared_fields()==expected_fields&&state_equal(begin_render.state(),expected_state)&&begin_render.completed_steps()==0,"Begin render failure poisoned valid retry");
+ no_clock(begin_render_retry,rest);
  // Driver bounds are checked before joining split layer storage. Neither a
  // short active prefix nor a cumulative binding policy can publish anything.
  auto low=pristine.state();const auto low_before=low;auto limits=pa::Limits{};limits.command.storage_layers=7;
@@ -282,10 +443,12 @@ void run(const char* recipe,const pt::Constants& constants,const tbl::Table& tab
 }
 int main(int argc,char** argv){try{
  if(argc==3&&std::string(argv[1])=="--source-files"){auto actor=value<na::Actor>(na::Actor::load(argv[2]));for(const auto& p:actor.source_files())std::cout<<p.generic_string()<<'\n';return 0;}
- check(argc==8,"Expected recipe constants constant-SHA table35 table35-SHA table31 table31-SHA");
+ check(argc==10,"Expected recipe constants constant-SHA table35 table35-SHA table31 table31-SHA SBC SBC-SHA");
  const auto read=[](const char* path,std::size_t size){std::ifstream f(path,std::ios::binary|std::ios::ate);check(bool(f)&&f.tellg()==static_cast<std::streamoff>(size),"Input extent");std::vector<std::uint8_t> out(size);f.seekg(0);check(bool(f.read(reinterpret_cast<char*>(out.data()),static_cast<std::streamsize>(out.size())))&&f.peek()==std::char_traits<char>::eof(),"Input read");return out;};
  const auto constants=value<pt::Constants>(pt::Constants::decode(read(argv[2],88),{argv[3],"d4191ea404df1e9ade8fb401983e3497699dae5aa994937f7859c43f84403435"}));
  const auto table35=value<tbl::Table>(tbl::Table::decode(read(argv[4],792),argv[5]));
- const auto table31=value<tbl::Table>(tbl::Table::decode(read(argv[6],704),argv[7]));run(argv[1],constants,table35,table31);
+ const auto table31=value<tbl::Table>(tbl::Table::decode(read(argv[6],704),argv[7]));
+ const auto collision=value<mh4u::collision_resource::Resource>(mh4u::collision_resource::Resource::load(argv[8],argv[9]));
+ run(argv[1],constants,table35,table31,collision);
  std::cout<<"{\"status\":\"passed\",\"checks\":"<<checks<<"}\n";return 0;
  }catch(const std::exception& e){std::cerr<<e.what()<<'\n';return 1;}}

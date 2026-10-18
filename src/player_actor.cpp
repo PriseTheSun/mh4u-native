@@ -124,6 +124,48 @@ PlayerResult<Frame> Player::render(const pa::State& state,std::uint64_t complete
     return std::get<Frame>(std::move(result));
 }
 PlayerResult<Frame> Player::capture()const{return render(state_,completed_steps_,samples_,revision_);}
+PlayerResult<Frame> Player::begin_update(){
+    try{
+        if(revision_==std::numeric_limits<std::uint64_t>::max())return capacity();
+        auto result=player_update_begin::apply(state_.controller.player,shared_fields_);
+        if(auto* e=std::get_if<player_update_begin::Error>(&result))return PlayerError{
+            PlayerErrorCode::update_begin,"Player update begin requires "+std::string(e->field),{},{},{},{},*e};
+        auto updated=std::get<player_update_begin::Output>(std::move(result));
+        auto candidate=state_;candidate.controller.player=std::move(updated.player);
+        auto rendered=render(candidate,completed_steps_,0,revision_+1);
+        if(auto* e=std::get_if<PlayerError>(&rendered))return *e;
+        state_=std::move(candidate);shared_fields_=std::move(updated.fields);samples_=0;++revision_;
+        return std::get<Frame>(std::move(rendered));
+    }catch(const std::bad_alloc&){return capacity();}catch(const std::length_error&){return capacity();}
+}
+PlayerResult<PlayerInputFilterOutput> Player::filter_input(const player_input_filter::Context& context){
+    try{
+        if(revision_==std::numeric_limits<std::uint64_t>::max())return capacity();
+        auto result=player_input_filter::apply(state_.controller.player,shared_fields_,context);
+        if(auto* e=std::get_if<player_input_filter::Error>(&result))return PlayerError{
+            PlayerErrorCode::input_filter,"Player input filter failed at "+std::string(e->field),{},{},{},{},{},*e};
+        auto updated=std::get<player_input_filter::Output>(std::move(result));
+        auto candidate=state_;candidate.controller.player=std::move(updated.player);
+        auto rendered=render(candidate,completed_steps_,0,revision_+1);
+        if(auto* e=std::get_if<PlayerError>(&rendered))return *e;
+        PlayerInputFilterOutput output{std::get<Frame>(std::move(rendered)),updated.effects};
+        state_=std::move(candidate);shared_fields_=std::move(updated.fields);samples_=0;++revision_;
+        return output;
+    }catch(const std::bad_alloc&){return capacity();}catch(const std::length_error&){return capacity();}
+}
+PlayerResult<Frame> Player::update_accumulator(std::optional<std::uint32_t> delta_bits){
+    try{
+        if(revision_==std::numeric_limits<std::uint64_t>::max())return capacity();
+        auto result=player_update_accumulator::apply(shared_fields_,delta_bits);
+        if(auto* e=std::get_if<player_update_accumulator::Error>(&result))return PlayerError{
+            PlayerErrorCode::update_accumulator,"Player accumulator failed at "+std::string(e->field),{},{},{},{},{},{},*e};
+        auto updated=std::get<player_update_accumulator::Output>(std::move(result));
+        auto rendered=render(state_,completed_steps_,0,revision_+1);
+        if(auto* e=std::get_if<PlayerError>(&rendered))return *e;
+        shared_fields_=std::move(updated.fields);samples_=0;++revision_;
+        return std::get<Frame>(std::move(rendered));
+    }catch(const std::bad_alloc&){return capacity();}catch(const std::length_error&){return capacity();}
+}
 PlayerResult<PlayerPolicyOutput> Player::apply_policy(const PlayerPolicyInput& input,const PlayerPolicyContext& context){
     namespace pcs=player_controller_step;namespace ppi=player_policy_interpreter;
     try{
@@ -136,7 +178,8 @@ PlayerResult<PlayerPolicyOutput> Player::apply_policy(const PlayerPolicyInput& i
         auto selection=std::get<player_selection::State>(std::move(projected));auto fields=shared_fields_;
         if(input.channels){selection.transition.pbw.angles=input.channels->angles;selection.transition.pbw.magnitudes=input.channels->magnitudes;}
         if(input.field3d4)selection.transition.pbw.field3d4=*input.field3d4;
-        for(std::size_t i=0;i<19;++i)if(input.flags3d8[i])fields.pbw.flags3d8[i]=input.flags3d8[i];
+        for(std::size_t i=0;i<19;++i)if(input.flags3d8[i])
+            fields.pbw.words3d8[i]=player_input_storage::split(input.flags3d8[i]);
         std::optional<std::uint16_t>* masks[]{&fields.pbw.field3a8,&fields.pbw.field3ac,&fields.pbw.field3b8,&fields.pbw.field3bc};
         for(std::size_t i=0;i<4;++i)if(input.masks[i])*masks[i]=input.masks[i];
         const ppi::Context facts{state_.frame.animation.layers[0].animation.layer,state_.controller.motion,
@@ -163,7 +206,7 @@ PlayerResult<PlayerState1Output> Player::dispatch_state1(const player_state1::Ta
         const Resources resources{*data_,banks_};const mi::Resolver resolver{&resources,Resources::track};
         const motion_command::Globals unknown{};const auto& globals=data_->command_globals?*data_->command_globals:unknown;
         const player_state1::ContinuationContext continuation{&constants_,&shared_fields_,
-            context.reference,context.area,context.delta_time_bits,context.context_ad50,context.manager};
+            context.reference,context.area,context.delta_time_bits,context.context_ad50,context.manager,context.spatial};
         auto result=pa::dispatch_state1(state_,state1_fields_,{tables,banks_,globals,{templates,resolver},continuation},limits_);
         if(auto* e=std::get_if<pa::Error>(&result))return PlayerError{PlayerErrorCode::driver,
             "Player state1 dispatch phase "+std::to_string(unsigned(e->phase)),*e,{}};

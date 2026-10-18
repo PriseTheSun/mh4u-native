@@ -44,10 +44,22 @@ target_link_libraries(mh4u_player_state1_dynamics PUBLIC mh4u_player_selection)
 add_library(mh4u_player_object_query src/player_object_query.cpp)
 target_include_directories(mh4u_player_object_query PUBLIC src)
 target_link_libraries(mh4u_player_object_query PUBLIC mh4u_player_controller_step mh4u_player_reference)
+add_library(mh4u_player_spatial_acquisition src/player_spatial_acquisition.cpp)
+target_include_directories(mh4u_player_spatial_acquisition PUBLIC src)
+target_link_libraries(mh4u_player_spatial_acquisition PUBLIC mh4u_player_controller_step mh4u_player_state1_dynamics mh4u_spatial_query)
+add_library(mh4u_player_update_begin src/player_update_begin.cpp)
+target_include_directories(mh4u_player_update_begin PUBLIC src)
+target_link_libraries(mh4u_player_update_begin PUBLIC mh4u_player_controller_step)
+add_library(mh4u_player_update_accumulator src/player_update_accumulator.cpp)
+target_include_directories(mh4u_player_update_accumulator PUBLIC src)
+target_link_libraries(mh4u_player_update_accumulator PUBLIC mh4u_motion_transform_math)
+add_library(mh4u_player_input_filter src/player_input_filter.cpp src/player_input_block.cpp)
+target_include_directories(mh4u_player_input_filter PUBLIC src)
+target_link_libraries(mh4u_player_input_filter PUBLIC mh4u_player_controller_step)
 add_library(mh4u_player_state1 src/player_state1.cpp)
 target_include_directories(mh4u_player_state1 PUBLIC src)
-target_link_libraries(mh4u_player_state1 PUBLIC mh4u_player_controller_step mh4u_player_state1_dynamics mh4u_player_object_query)
-foreach(state1_owner mh4u_player_state1_dynamics mh4u_player_object_query)
+target_link_libraries(mh4u_player_state1 PUBLIC mh4u_player_controller_step mh4u_player_state1_dynamics mh4u_player_object_query mh4u_player_spatial_acquisition)
+foreach(state1_owner mh4u_player_state1_dynamics mh4u_player_object_query mh4u_player_spatial_acquisition mh4u_player_update_begin mh4u_player_update_accumulator mh4u_player_input_filter)
     if(MSVC)
         target_compile_options(${state1_owner} PRIVATE /W4 /utf-8 /fp:strict)
     else()
@@ -596,7 +608,7 @@ foreach(placement_target mh4u_model_animation_output mh4u_player_orientation mh4
 endforeach()
 add_library(mh4u_native_player_actor src/player_actor.cpp)
 target_include_directories(mh4u_native_player_actor PUBLIC src)
-target_link_libraries(mh4u_native_player_actor PUBLIC mh4u_native_actor mh4u_player_position_bridge)
+target_link_libraries(mh4u_native_player_actor PUBLIC mh4u_native_actor mh4u_player_position_bridge mh4u_player_update_begin mh4u_player_update_accumulator mh4u_player_input_filter)
 add_executable(mh4u-player-actor-tests src/player_actor_tests.cpp)
 target_link_libraries(mh4u-player-actor-tests PRIVATE mh4u_player_preview)
 add_library(mh4u_player_preview src/player_preview.cpp)
@@ -640,7 +652,39 @@ if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/research/private/spatial-face-query-nativ
         "${CMAKE_CURRENT_SOURCE_DIR}/assets/local/collision-probe/v00a01-core2/source.sbc"
         "3a408a050c5fe82eb6faceff28be897d407a79cb79e1474789c4200505f77c07")
 endif()
-foreach(collision_target mh4u_collision_resource mh4u-collision-resource-tests mh4u_spatial_face_query mh4u-spatial-face-query-tests)
+add_library(mh4u_spatial_grid src/spatial_grid.cpp)
+target_include_directories(mh4u_spatial_grid PUBLIC src)
+target_link_libraries(mh4u_spatial_grid PUBLIC mh4u_collision_resource mh4u_motion_transform_math)
+add_executable(mh4u-spatial-grid-tests src/spatial_grid_tests.cpp)
+target_include_directories(mh4u-spatial-grid-tests PRIVATE vendor/picosha2)
+target_link_libraries(mh4u-spatial-grid-tests PRIVATE mh4u_spatial_grid)
+if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/research/private/spatial-grid-native-v1/derived-final/oracle.bin")
+    add_test(NAME spatial-grid-arm COMMAND mh4u-spatial-grid-tests
+        "${CMAKE_CURRENT_SOURCE_DIR}/assets/local/collision-probe/v00a01-core2/source.sbc"
+        "3a408a050c5fe82eb6faceff28be897d407a79cb79e1474789c4200505f77c07"
+        "${CMAKE_CURRENT_SOURCE_DIR}/research/private/spatial-grid-native-v1/derived-final/oracle.bin"
+        "fd54e0764a060998b3bc28e6fb833d4418fc0e0b9a0ab68afa09d01bdb5ccd4a")
+endif()
+add_library(mh4u_spatial_query src/spatial_query.cpp)
+target_include_directories(mh4u_spatial_query PUBLIC src)
+target_link_libraries(mh4u_spatial_query PUBLIC mh4u_spatial_grid mh4u_spatial_face_query)
+add_executable(mh4u-spatial-query-tests src/spatial_query_tests.cpp)
+target_include_directories(mh4u-spatial-query-tests PRIVATE vendor/picosha2)
+target_link_libraries(mh4u-spatial-query-tests PRIVATE mh4u_spatial_query)
+if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/research/private/spatial-query-native-v1/oracle-adapter/lifecycle-bounded/oracle.bin")
+    add_test(NAME spatial-query-arm COMMAND mh4u-spatial-query-tests
+        "${CMAKE_CURRENT_SOURCE_DIR}/research/private/spatial-query-native-v1/oracle-adapter/retained-final/oracle.bin"
+        "f0403786aa2beef1e73fc53c3f97759b1608393551c3f810d818ab1c7f750853"
+        "${CMAKE_CURRENT_SOURCE_DIR}/research/private/spatial-query-native-v1/oracle-adapter/contract-final/oracle.bin"
+        "6001c779fa087083f9ebc4b857cc3ad4fbbdfde8efe8c85b68680f919a2e218e"
+        "${CMAKE_CURRENT_SOURCE_DIR}/research/private/spatial-query-native-v1/oracle-adapter/grid-final/oracle.bin"
+        "f12805407ee45671734d5af7ddb6ad832b6313bc7431a9df78a43934ce26ada8"
+        "${CMAKE_CURRENT_SOURCE_DIR}/research/private/spatial-query-native-v1/oracle-adapter/lifecycle-bounded/oracle.bin"
+        "ec5b9446afc77ec4d26ed3588eba79b710a3a204bf27ae9b423acf0cef8529d3"
+        "${CMAKE_CURRENT_SOURCE_DIR}/assets/local/collision-probe/v00a01-core2/source.sbc"
+        "3a408a050c5fe82eb6faceff28be897d407a79cb79e1474789c4200505f77c07")
+endif()
+foreach(collision_target mh4u_collision_resource mh4u-collision-resource-tests mh4u_spatial_face_query mh4u-spatial-face-query-tests mh4u_spatial_grid mh4u-spatial-grid-tests mh4u_spatial_query mh4u-spatial-query-tests)
     if(MSVC)
         target_compile_options(${collision_target} PRIVATE /W4 /utf-8 /fp:strict)
     else()
@@ -1046,6 +1090,31 @@ target_link_libraries(mh4u-player-state1-id2-tests PRIVATE mh4u_player_state1 mh
 add_executable(mh4u-player-state1-dynamics-tests src/player_state1_dynamics_tests.cpp)
 target_link_libraries(mh4u-player-state1-dynamics-tests PRIVATE mh4u_player_state1_dynamics)
 add_test(NAME player-state1-dynamics-boundaries COMMAND mh4u-player-state1-dynamics-tests)
+add_executable(mh4u-player-spatial-offset-tests src/player_spatial_offset_tests.cpp)
+target_include_directories(mh4u-player-spatial-offset-tests PRIVATE vendor/picosha2)
+target_link_libraries(mh4u-player-spatial-offset-tests PRIVATE mh4u_player_state1_dynamics)
+if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/research/private/player-spatial-offset-native-v1/arm-final/oracle.bin")
+    add_test(NAME player-spatial-offset-arm COMMAND mh4u-player-spatial-offset-tests
+        "${CMAKE_CURRENT_SOURCE_DIR}/research/private/player-spatial-offset-native-v1/arm-final/oracle.bin"
+        "6eb652ed2b2b41d4ee9588cf94aa1a442711d83de57530a726e64dbd887a9835")
+endif()
+add_executable(mh4u-player-spatial-acquisition-tests src/player_spatial_acquisition_tests.cpp)
+target_include_directories(mh4u-player-spatial-acquisition-tests PRIVATE vendor/picosha2)
+target_link_libraries(mh4u-player-spatial-acquisition-tests PRIVATE mh4u_player_spatial_acquisition)
+add_executable(mh4u-player-update-begin-tests src/player_update_begin_tests.cpp)
+target_include_directories(mh4u-player-update-begin-tests PRIVATE vendor/picosha2)
+target_link_libraries(mh4u-player-update-begin-tests PRIVATE mh4u_player_update_begin)
+if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/research/private/player-update-begin-v1/arm-final/oracle.bin")
+    add_test(NAME player-update-begin-arm COMMAND mh4u-player-update-begin-tests
+        "${CMAKE_CURRENT_SOURCE_DIR}/research/private/player-update-begin-v1/arm-final/oracle.bin"
+        "24625ce5de83912d2f338a5ea3edc0e4c1781df1a4ebf8e62a6a90491b2749fe")
+endif()
+if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/research/private/player-spatial-acquisition-v1/derived-indexed/oracle.bin")
+    add_test(NAME player-spatial-acquisition-arm COMMAND mh4u-player-spatial-acquisition-tests
+        "${CMAKE_CURRENT_SOURCE_DIR}/research/private/player-spatial-acquisition-v1/derived-indexed/oracle.bin"
+        "4f234709fa3b9bf0cf8f3fb3a5f342a1ca353456d161901aa7d0415afbe69e56"
+        "${CMAKE_CURRENT_SOURCE_DIR}")
+endif()
 if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/research/private/player-state1-continuation-native-v1/oracle-adapter/derived-v1/oracle.bin")
     add_test(NAME player-state1-continuations-arm COMMAND mh4u-player-state1-continuation-tests
         "${CMAKE_CURRENT_SOURCE_DIR}/research/private/player-state1-continuation-native-v1/oracle-adapter/derived-v1/oracle.bin"
@@ -1061,14 +1130,17 @@ endif()
 if(EXISTS "${MH4U_PLAYER_CONSTANTS}" AND
    EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/research/private/player-action-policy-v1/source-observed/table-f2efb8.bin" AND
    EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/research/private/player-state1-runtime-v1/inputs/table-f2f2d0.bin" AND
-   EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/research/private/player-state1-continuation-native-v1/actor-fixture/hunter-seven-co2.mhnative")
+   EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/research/private/player-state1-continuation-native-v1/actor-fixture/hunter-seven-co2.mhnative" AND
+   EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/assets/local/collision-probe/multigroup-search/86059.sbc")
     add_test(NAME player-state1-actor COMMAND mh4u-player-state1-actor-tests
         "${CMAKE_CURRENT_SOURCE_DIR}/research/private/player-state1-continuation-native-v1/actor-fixture/hunter-seven-co2.mhnative"
         "${MH4U_PLAYER_CONSTANTS}" "${MH4U_PLAYER_CONSTANTS_SHA}"
         "${CMAKE_CURRENT_SOURCE_DIR}/research/private/player-action-policy-v1/source-observed/table-f2efb8.bin"
         "688f58d2943eea064fbbd3b1063a9a49183128b30080523034f614c6f912a83a"
         "${CMAKE_CURRENT_SOURCE_DIR}/research/private/player-state1-runtime-v1/inputs/table-f2f2d0.bin"
-        "c7eacbb0116b97e7f88ad675e109e27675ea93791f4112928ccd1e8fe6f0e310")
+        "c7eacbb0116b97e7f88ad675e109e27675ea93791f4112928ccd1e8fe6f0e310"
+        "${CMAKE_CURRENT_SOURCE_DIR}/assets/local/collision-probe/multigroup-search/86059.sbc"
+        "a024dcc555ed3dd4df965e762f24349d4112ec0fe8b4630a254e84dbd1e48fb8")
 endif()
 if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/research/private/player-state1-id2-native-v1/oracle-adapter/derived-v2/oracle.bin")
     add_test(NAME player-state1-id2-arm COMMAND mh4u-player-state1-id2-tests
@@ -1082,7 +1154,7 @@ if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/research/private/player-state1-id2-native
         92610 "${CMAKE_CURRENT_SOURCE_DIR}/research/private/player-motion-banks/lmt/92610.lmt"
         "6dc7bd0b51f5c47722883efbaff8a95fc2504ebfc0e436a0e0f811ba51e04274")
 endif()
-foreach(state1_target mh4u-player-state1-tests mh4u-player-state1-actor-tests mh4u-player-state1-continuation-tests mh4u-player-state1-id2-tests mh4u-player-state1-dynamics-tests)
+foreach(state1_target mh4u-player-state1-tests mh4u-player-state1-actor-tests mh4u-player-state1-continuation-tests mh4u-player-state1-id2-tests mh4u-player-state1-dynamics-tests mh4u-player-spatial-offset-tests mh4u-player-spatial-acquisition-tests)
     if(MSVC)
         target_compile_options(${state1_target} PRIVATE /W4 /utf-8 /fp:strict)
     else()
@@ -1101,4 +1173,31 @@ if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/research/private/player-state1-runtime-v1
         "dbe3492d31191f8dff3dcf891b6e801d167b6928ab782769040960cc643c202a"
         92608 "${CMAKE_CURRENT_SOURCE_DIR}/research/private/lmt-events-v1/sources/entry-92608.lmt"
         "c5f8f0c5f86ad43323a3ca7dcf6394a6938363b038fd1bab264e4b2597e0c0d8")
+endif()
+
+add_executable(mh4u-player-update-accumulator-tests src/player_update_accumulator_tests.cpp)
+target_include_directories(mh4u-player-update-accumulator-tests PRIVATE vendor/picosha2)
+target_link_libraries(mh4u-player-update-accumulator-tests PRIVATE mh4u_player_update_accumulator)
+if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/research/private/player-update-accumulator-v1/arm-final/oracle.bin")
+    add_test(NAME player-update-accumulator-arm COMMAND mh4u-player-update-accumulator-tests
+        "${CMAKE_CURRENT_SOURCE_DIR}/research/private/player-update-accumulator-v1/arm-final/oracle.bin"
+        "58ae1b9b255e0b3e4e8e7b0b21831431562a1d2af767ba35d58b7810cdbd1a47")
+endif()
+add_executable(mh4u-player-input-block-tests src/player_input_block_tests.cpp)
+target_link_libraries(mh4u-player-input-block-tests PRIVATE mh4u_player_input_filter)
+add_test(NAME player-input-block-boundaries COMMAND mh4u-player-input-block-tests)
+add_executable(mh4u-player-input-filter-tests src/player_input_filter_tests.cpp)
+target_include_directories(mh4u-player-input-filter-tests PRIVATE vendor/picosha2)
+target_link_libraries(mh4u-player-input-filter-tests PRIVATE mh4u_player_input_filter)
+if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/research/private/player-input-filter-v1/derived-final/oracle.bin")
+    add_test(NAME player-input-filter-arm COMMAND mh4u-player-input-filter-tests
+        "${CMAKE_CURRENT_SOURCE_DIR}/research/private/player-input-filter-v1/derived-final/oracle.bin"
+        "b407c95947f88a2d5f39d8f6f1c558cb32b81de2e2fa64e4282e381eecf48961")
+endif()
+add_executable(mh4u-player-update-preparation-actor-tests src/player_update_preparation_actor_tests.cpp)
+target_link_libraries(mh4u-player-update-preparation-actor-tests PRIVATE mh4u_native_player_actor)
+if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/research/private/player-state1-continuation-native-v1/actor-fixture/hunter-seven-co2.mhnative" AND EXISTS "${MH4U_PLAYER_CONSTANTS}")
+    add_test(NAME player-update-preparation-actor COMMAND mh4u-player-update-preparation-actor-tests
+        "${CMAKE_CURRENT_SOURCE_DIR}/research/private/player-state1-continuation-native-v1/actor-fixture/hunter-seven-co2.mhnative"
+        "${MH4U_PLAYER_CONSTANTS}" "${MH4U_PLAYER_CONSTANTS_SHA}")
 endif()

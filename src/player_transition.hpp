@@ -47,6 +47,7 @@ struct PwFields {
 struct GlobalFields {
     std::uint16_t field22{};
     std::uint8_t field2b{},field2f{},field5d{};
+    std::optional<std::uint8_t> fieldd72{}; // Same fb6b7c object, consumed by 2b1f04.
     bool operator==(const GlobalFields&) const=default;
 };
 // Source d04924; shares canonical global/pbw fields with all consumers.

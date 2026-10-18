@@ -1,4 +1,5 @@
 #include "player_preview.hpp"
+#include <algorithm>
 #include <bit>
 #include <fstream>
 #include <iostream>
@@ -39,7 +40,7 @@ na::PolicyPreviewSeed policy_seed(const tbl::Table& table){
  p.pbw.field30=1;p.pbw.field33=1;p.pbw.field371=3;p.pbw.field372=1234;
  p.global.field2b=1;p.global.field2f=1;p.selection_pbw.field6f9=0;p.selection_pw.field9a8=1;
  p.pw.policy=tbl::install(table,0);p.pw.fieldf0=0x11000005;p.pw.fieldf4=0x12345678;p.pw.field261=3;
- x.pbw.flags3d8.fill(0);x.pbw.field3a8=x.pbw.field3ac=x.pbw.field3b8=x.pbw.field3bc=0;
+ x.pbw.words3d8.fill(mh4u::player_input_storage::split(0));x.pbw.field3a8=x.pbw.field3ac=x.pbw.field3b8=x.pbw.field3bc=0;
  x.pbw.field14_bits=x.pbw.field478=0;x.pbw.field6fb=x.pbw.field6fc=x.pbw.field93ee=0;
  x.pw.field14c=x.pw.field154=x.pw.field15c_bits=x.pw.field6a4_bits=0;
  x.pw.field150=x.pw.field158=x.pw.field159=x.pw.field15a=0;x.pw.field6a8=1;
@@ -104,7 +105,7 @@ void run(const char* recipe,const pt::Constants& constants,const tbl::Table& tab
  check(state_equal(missing_context.state(),original.state())&&missing_context.shared_fields()==original.shared_fields(),"Reference failure published state");
 
  check(value<na::PlayerPolicyOutput>(missing_context.apply_policy(input(110),context())).transition.has_value(),"Failure made future valid context unusable");
- auto unknown_inputs_seed=seed;unknown_inputs_seed.fields.pbw.flags3d8.fill(std::nullopt);
+ auto unknown_inputs_seed=seed;unknown_inputs_seed.fields.pbw.words3d8.fill({});
  unknown_inputs_seed.fields.pbw.field3a8.reset();unknown_inputs_seed.fields.pbw.field3ac.reset();unknown_inputs_seed.fields.pbw.field3b8.reset();unknown_inputs_seed.fields.pbw.field3bc.reset();
  auto unknown_inputs=make(unknown_inputs_seed);const auto unknown_before=unknown_inputs.state();
  check(std::holds_alternative<na::PlayerError>(unknown_inputs.apply_policy(input(0),context())),"Omitted unknown input silently zeroed");
@@ -112,7 +113,7 @@ void run(const char* recipe,const pt::Constants& constants,const tbl::Table& tab
  auto known_zero=input(0);known_zero.flags3d8.fill(0);known_zero.masks.fill(0);
  const auto cleared=value<na::PlayerPolicyOutput>(unknown_inputs.apply_policy(known_zero,context()));
  check(!cleared.returned&&cleared.visited_count==35,"Explicit known-zero masks/flags failed");
- check(unknown_inputs.shared_fields().pbw.flags3d8==known_zero.flags3d8&&unknown_inputs.shared_fields().pbw.field3a8==0&&unknown_inputs.shared_fields().pbw.field3bc==0,"Input patch did not retain known zero");
+ check(std::all_of(unknown_inputs.shared_fields().pbw.words3d8.begin(),unknown_inputs.shared_fields().pbw.words3d8.end(),[](const auto& word){return mh4u::player_input_storage::join(word)==0;})&&unknown_inputs.shared_fields().pbw.field3a8==0&&unknown_inputs.shared_fields().pbw.field3bc==0,"Input patch did not retain known zero");
  // A live LMT action is a caller-selected test seed, not a policy result or
  // bootstrap assertion. The policy consumes the same playing layer0 timing.
  auto playing_seed=initial(seed);playing_seed.layers[0].animation.layer.selector=8;

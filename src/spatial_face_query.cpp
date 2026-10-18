@@ -1,7 +1,6 @@
 #include "spatial_face_query.hpp"
 #include <bit>
 #include <cmath>
-#include <limits>
 
 #ifdef __FAST_MATH__
 #error "spatial_face_query requires ordered binary32 arithmetic"
@@ -37,14 +36,6 @@ float value(Word word){return std::bit_cast<float>(word);}
 float finite(Word word,std::string_view field){
     const auto out=value(word);if(!std::isfinite(out))fail(ErrorCode::nonfinite_operand,field);return out;
 }
-Word divide(Word a,Word b){
-    // Both inputs and the FP environment were checked by the owning arithmetic
-    // operations. The denominator gate excludes zero before this one DIV.
-    static_assert(std::numeric_limits<float>::is_iec559&&std::numeric_limits<float>::digits==24);
-    volatile float out=value(a)/value(b);
-    if(!std::isfinite(out))fail(ErrorCode::numeric_overflow,"intersection parameter");
-    return std::bit_cast<Word>(static_cast<float>(out));
-}
 }
 
 Result<std::optional<Replacement>> intersect(const Face& face,const Vertical& ray,
@@ -72,7 +63,7 @@ Result<std::optional<Replacement>> intersect(const Face& face,const Vertical& ra
         const auto x_distance=plus_product(plane,origin[0],n[0],"distance X");
         yz_distance=plus_product(yz_distance,origin[2],n[2],"distance Z");
         const auto distance=add(yz_distance,x_distance,"distance sum");
-        const auto t=divide(neg(distance),denominator);
+        const auto t=consume(math::divide(neg(distance),denominator),"intersection parameter");
         if(value(t)<0.0F)return std::optional<Replacement>{};
         const auto py=plus_product(origin[1],direction,t,"intersection height");
         if(!maximum_t)fail(ErrorCode::unknown_operand,"maximum t");

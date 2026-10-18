@@ -4,6 +4,7 @@
 #include "player_fields.hpp"
 #include "player_state1_dynamics.hpp"
 #include "player_object_query.hpp"
+#include "player_spatial_acquisition.hpp"
 #include <optional>
 
 namespace mh4u::player_state1 {
@@ -23,6 +24,7 @@ struct ContinuationContext {
     ps::AreaContext area{};
     std::optional<std::uint32_t> delta_time_bits{},context_ad50{};
     player_object_query::Manager manager=player_object_query::Unknown{};
+    player_spatial_acquisition::Context spatial{};
 };
 // Additional storage only. The handler's timer is not the policy owner's
 // timer140/144 and has no inferred clock or decrement in this operation.
@@ -50,6 +52,7 @@ struct Effects {
     std::uint8_t magnitude_queries{}; // Repeated source virtual+98 calls, not cached.
     std::uint8_t cost_calls{},cost_updates{},position_updates{},manager_queries{};
     std::optional<player_object_query::Output> object_query;
+    std::optional<player_spatial_acquisition::Effects> spatial;
 };
 struct Output {
     pcs::State state;
@@ -60,10 +63,10 @@ struct Output {
 };
 enum class ErrorCode {unsupported_state,unsupported_action,
     layer_extent,capacity,motion,unknown_field,nonfinite_operand,input,reference,
-    transition,controller,dynamics,object_query,unsupported_context,
-    floating_environment,numeric_overflow};
+    transition,controller,dynamics,object_query,spatial_acquisition};
 using Cause=std::variant<std::monostate,mc::Error,player_input::Error,pr::Error,
-    ps::Error,pcs::Error,player_state1_dynamics::Error,player_object_query::Error>;
+    ps::Error,pcs::Error,player_state1_dynamics::Error,player_object_query::Error,
+    player_spatial_acquisition::Error>;
 struct Error {
     ErrorCode code;
     std::string_view message;
@@ -74,8 +77,9 @@ using Result=std::variant<Output,Error>;
 // real motion-command owner and the post-request tail, including setter refusal
 // and if_changed skipping the setter. Continuations1/4/9 compose the original
 // gates, heading, direct transition and selection wrapper. ID2 also composes
-// cost, raw position and explicit cached/manager contexts; unclosed spatial
-// acquisition remains an error. Original no-op substates preserve all but byte376.
+// cost, raw position, cached/uncached spatial acquisition and manager contexts.
+// Returned spatial grid updates remain part of the combined transaction.
+// Original no-op substates preserve all but byte376.
 // No input mapping, pose tick, scheduler or fabricated helper return.
 // All layer copies are bounded before allocation; errors publish no partial
 // controller/timer/layer state. Resolver effects are owned by the caller.

@@ -121,7 +121,7 @@ inline sf::Fields shared_fields(const Case& c){sf::Fields out;
  if(auto bits=c.optional<std::uint16_t>(2,0x188,2))out.pw.field188=std::bit_cast<std::int16_t>(*bits);
  if(auto bits=c.optional<std::uint16_t>(2,0x224,2))out.pw.field224=std::bit_cast<std::int16_t>(*bits);
  if(auto bits=c.optional<std::uint16_t>(2,0x238,2))out.pw.field238=std::bit_cast<std::int16_t>(*bits);
- for(unsigned i=0;i<19;++i)out.pbw.flags3d8[i]=c.optional<std::uint32_t>(1,0x3d8+4*i,4);
+ for(unsigned i=0;i<19;++i)for(unsigned j=0;j<4;++j)out.pbw.words3d8[i][j]=c.optional<std::uint8_t>(1,0x3d8+4*i+j,1);
  return out;
 }
 inline void encode_shared(Snapshot& raw,const sf::Fields& fields){
@@ -155,7 +155,7 @@ inline void encode_shared(Snapshot& raw,const sf::Fields& fields){
  patch(raw[2],0x188,fields.pw.field188,2);
  patch(raw[2],0x224,fields.pw.field224,2);
  patch(raw[2],0x238,fields.pw.field238,2);
- for(unsigned i=0;i<19;++i)patch(raw[1],0x3d8+4*i,fields.pbw.flags3d8[i],4);
+ for(unsigned i=0;i<19;++i)for(unsigned j=0;j<4;++j)patch(raw[1],0x3d8+4*i+j,fields.pbw.words3d8[i][j],1);
 }
 inline Snapshot serialize_shared(const Case& c,const pcs::State& state,const st::Fields& fields,const std::vector<mp::Layer>& layers,const Context& context,const Bindings& events,const sf::Fields& shared){
  auto out=serialize(c,state,fields,layers,context,events);encode_shared(out,shared);return out;

@@ -25,7 +25,7 @@ struct Reader{const Bytes& b;std::size_t p{};std::uint32_t integer(){const auto 
 // This maps bytes only; no predicate or expected-state computation occurs here.
 template<class F>void extra_fields(mh4u::player_fields::Fields& x,F visit){
     visit(x.pbw.field3a8,1,0x3a8,2);visit(x.pbw.field3ac,1,0x3ac,2);visit(x.pbw.field3b8,1,0x3b8,2);visit(x.pbw.field3bc,1,0x3bc,2);
-    for(unsigned i=0;i<19;++i)visit(x.pbw.flags3d8[i],1,0x3d8+4*i,4);
+    for(unsigned i=0;i<19;++i)for(unsigned j=0;j<4;++j)visit(x.pbw.words3d8[i][j],1,0x3d8+4*i+j,1);
     visit(x.pbw.field14_bits,1,0x14,4);visit(x.pbw.field478,1,0x478,4);
     visit(x.pbw.field6fb,1,0x6fb,1);visit(x.pbw.field6fc,1,0x6fc,1);visit(x.pbw.field93ee,1,0x93ee,1);visit(x.pbw.field93f1,1,0x93f1,1);
     visit(x.pw.field14c,2,0x14c,4);visit(x.pw.field154,2,0x154,4);visit(x.pw.field15c_bits,2,0x15c,4);visit(x.pw.field6a4_bits,2,0x6a4,4);
@@ -93,7 +93,7 @@ void guards(const Decoded& original,const pt::Constants& k){
         d=original;d.state.transition.pw.fieldf0=0;d.state.transition.pw.fieldb0=invert?0x8000:0;
         d.fields.pw.field150=1;d.fields.pw.field154=invert?0:0x8000;d.fields.pw.field14c.reset();
         d.state.transition.pbw.angles={0,0};d.state.transition.pbw.magnitudes={110,0};d.state.transition.pbw.field451=0;
-        d.state.transition.pbw.field3d4=id==36?1:0;for(auto& f:d.fields.pbw.flags3d8)f=0;
+        d.state.transition.pbw.field3d4=id==36?1:0;for(auto& f:d.fields.pbw.words3d8)f=mh4u::player_input_storage::split(0);
         Bytes record(23);record[0]=1;record[2]=9;record[6]=static_cast<std::uint8_t>(id);record[22]=255;
         if(id!=36)put(record,8,0x400,2);if(id!=35)put(record,10,0x400,2);
         const auto hash=picosha2::hash256_hex_string(record.begin(),record.end());

@@ -17,19 +17,33 @@ Na árvore de desenvolvimento, as [ações do estado1](docs/player-state1-native
 já ligam quatro entradas e quatro continuações aos pedidos de animação e ao
 Player persistente, comparadas em 384 e 487 execuções ARM completas,
 respectivamente. O [ID2](docs/player-state1-id2-native.md) acrescenta custo,
-posição e consulta de objetos em contexto explícito. Scheduler, bootstrap e
-aquisição espacial sem cache continuam pendentes no runtime.
+posição e consulta de objetos em contexto explícito. A
+[aquisição de altura do Player](docs/player-spatial-acquisition.md) já liga a
+consulta sem cache ao handler e ao Player persistente. O
+[início de atualização](docs/player-update-begin.md) copia a posição anterior,
+limpa as flags da rotina original e invalida esse cache por uma operação
+explícita. A [preparação de entrada](docs/player-input-preparation.md) acrescenta
+agora o filtro local completo e o acumulador anterior a essa etapa. Preserva
+limpezas parciais por byte e fornece operações explícitas no mesmo Player.
+Scheduler e bootstrap continuam pendentes no runtime.
 O módulo de [interseção vertical original](docs/spatial-triangle.md) passou
-1.464 consultas preservadas, com102 hits idênticos byte a byte. Ele ainda
-precisa ser composto com a busca de objetos e a seleção do resultado.
+1.464 consultas preservadas, com102 hits idênticos byte a byte. É uma rota
+distinta da função de face17fec8 usada na consulta espacial descrita abaixo.
 A [ponte de posição](docs/player-position-bridge.md) agora tem implementação
 nativa e operação transacional no Player, comparadas com 150 chamadas originais
 PBW→modelo→PBW. A [orientação](docs/player-orientation.md) reproduz 69.076 casos
 novos e 144 checkpoints retidos. O [leitor SBC e a consulta de faces](docs/spatial-face-query.md)
 preservam os recursos e a normal original; a consulta passou em 1.444 chamadas ARM.
-O estado inicial continua explícito. Bootstrap, scheduler e a composição da busca
-espacial completa ainda estão pendentes.
-O launcher publicado permanece 0.17.0.
+A [consulta espacial nativa](docs/spatial-query-native.md) agora compõe os filtros,
+a grade GRCO, a seleção de contato e a função de altura, com estado persistente
+de contadores e marcas. A referência inclui 312 consultas completas do código
+original. A aquisição do Player acrescenta filtros, preparação do raio e cache,
+com 88 chamadas originais completas e testes de integração persistente.
+O estado inicial continua explícito; bootstrap e scheduler permanecem pendentes.
+O launcher publicado permanece 0.17.0. A validação atual do
+[preparação de entrada](docs/player-input-preparation.md) passou em 117/117 CTests
+no Mac e a compilação Windows x64 concluiu sem avisos; execução no Windows
+continua sem validação.
 Veja também o [catálogo v4](docs/localization-v4.md) e o
 [ensaio da consulta espacial sobre a grade real](docs/player-spatial-context-v4.md),
 com223 retornos completos,122 hits e101 misses no código original.

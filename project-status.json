@@ -22,12 +22,12 @@
     "checksums": "tools/dependencies.lock.json"
   },
   "runtime": {
-    "macos_arm64": "Published native laboratory0.17.0 retained open. Integrated source including spatial_triangle compiled;102/102 CTests passed in43.17s. This geometry component is not exposed by a new package or gameplay loop.",
-    "windows_x64": "Integrated source including spatial_triangle cross-compiled for Windows x64 with no warnings; Windows execution remains unavailable. Published package0.17.0 retained.",
+    "macos_arm64": "Published laboratory0.17.0 remains open. Development engine now exposes explicit local input filtering, accumulator update and begin-update with partial-byte ownership;117/117 CTests passed in46.71s. Full bootstrap/scheduler remain unfinished.",
+    "windows_x64": "Current development engine cross-compiled for Windows x64 without compiler warnings, including explicit Player input preparation. Windows execution remains unverified; published laboratory0.17.0 retained.",
     "scene": "real em062 actor: 12 joints, 1516 vertices, 1564 triangles, 28 source LMT actions; static OBJ samples retained",
     "texture_selector": "PNG replacement packs keyed by original encoded SHA256 work through common presentation materials, including native recipes. No HD pack included; original selector verification retained.",
     "controller_configuration": "movement/camera axes, deadzone and remapping implemented with backup; physical controller not available",
-    "gameplay": "diagnostic grounded movement only; original action controller, combat, quests and saves absent",
+    "gameplay": "Diagnostic grounded movement plus verified partial native Player action/spatial components; full gameplay, combat, quests and saves remain absent.",
     "online": "two macOS GUI clients on loopback; server-owned 20Hz movement/collision, four-participant protocol; no internet, synchronized actions or playable coop",
     "3ds_interoperability": "deferred by user",
     "animation": "72 selected native MOD/LMT actions with9573b8,95b490,95b940, model movement and clock events; original LMT loop/clamp intervals. Inspection pacing remains60ticks/s withdelta1; no glTF on this path.",
@@ -274,14 +274,26 @@
       "research/private/player-position-bridge-native-v1/manifest.json",
       "research/private/player-orientation-native-v1/manifest.json",
       "research/private/collision-resource-native-v1/manifest.json",
-      "research/private/spatial-face-query-native-v1/oracle-adapter/manifest.json"
+      "research/private/spatial-face-query-native-v1/oracle-adapter/manifest.json",
+      "research/private/spatial-query-native-v1/macos-project-validation.json",
+      "research/private/spatial-query-native-v1/windows-x64-project-validation.json",
+      "research/private/spatial-query-native-v1/ctest-audit.json",
+      "research/private/player-spatial-acquisition-v1/macos-project-validation.json",
+      "research/private/player-spatial-acquisition-v1/windows-x64-project-validation.json",
+      "research/private/player-spatial-acquisition-v1/ctest-results.json",
+      "research/private/player-update-begin-v1/macos-project-validation.json",
+      "research/private/player-update-begin-v1/windows-x64-project-validation.json",
+      "research/private/player-update-begin-v1/actor-integration/native-strict/validation.json",
+      "research/private/player-update-begin-v1/native-final/validation.json",
+      "research/private/player-input-filter-v1/manifest.json",
+      "research/private/player-update-accumulator-v1/manifest.json"
     ],
     "analysis_elf_checks": 23,
     "index_cli_tests": 7,
     "skeletal_import_tests": 11,
     "khronos_actor_errors": 0,
     "khronos_actor_warnings": 0,
-    "cpp_ctest_suites_passed": 97,
+    "cpp_ctest_suites_passed": 113,
     "native_skin_bind_max_error_source_units": 1.52588e-05,
     "native_animation_sample_max_motion_source_units": 1049.41,
     "macos_actor_playback_frames": 240,
@@ -343,7 +355,7 @@
     "motion_events_assertions": 305145,
     "motion_events_sanitizers": "ASan+UBSan final standalone passed",
     "motion_events_python_tests": 14,
-    "cpp_ctest_seconds": 46.47,
+    "cpp_ctest_seconds": 47.03,
     "event_prefix_present_arm_rows_compared": 855,
     "event_prefix_mismatches": 0,
     "player_input_arm_executions": 131980,
@@ -528,7 +540,7 @@
     "playable coop, synchronized actions and Internet transport",
     "Windows runtime validation"
   ],
-  "next": "Compose source-bound SBC grid traversal, original filters and hit selection for native uncached spatial acquisition. Recover full placement/scheduler/bootstrap; combat, quests, saves, complete PT-BR, physical controller validation, Windows execution and Internet coop remain required.",
+  "next": "Recover the5b8f14→5ba61c lookup that produces PW5a8 before policy, then remaining b1407c virtual/helper gates and dispatch order. Complete world/bootstrap/scheduler, combat, quests, saves, fullPT-BR, physical controls, Windows execution and Internet coop remain required.",
   "roadmap": "docs/roadmap.md",
   "resource_index": {
     "archives": 10592,
@@ -618,7 +630,7 @@
     "complete_character": false,
     "documentation": "docs/player-assembly.md"
   },
-  "updated_at": "2026-10-18T05:53:51.380534-03:00",
+  "updated_at": "2026-10-18T06:58:44.960515-03:00",
   "player_appearance": {
     "parts": 7,
     "joints": 19,
@@ -1108,7 +1120,7 @@
     "native_graphics": "Native geometry/palette/CPU skinning integrated. Original material pipeline, projection/camera, visibility policy and PICA precision remain separate unverified frontiers.",
     "animation": "Native PBW/model bridge and explicit Player::step_position now share frame/output owners and transactional render commit. Original150calls retained, diagnostics remain explicit; active b06b38, direction refresh, full placement, scheduler and startup remain open.",
     "product": "Playable combat, quests, saves, full PT-BR and Internet cooperative play remain required for the original objective. Laboratory is not the completed port.",
-    "spatial": "Immutable SBC core/known GRCO resource owner and source-normal17fec8 leaf validated. Compose original grid traversal/filtering/hit selection for uncached acquisition; gameplay masks, resource population and transforms remain explicit unknowns."
+    "spatial": "Per-update cache/previous-position lifecycle and input preparation are implemented as explicit operations. Recover source lookup/container producing PW5a8, then world population, multiple groups, transformed objects and alternate collections."
   },
   "native_actor": {
     "documentation": "docs/native-actor-rendering.md",
@@ -1174,7 +1186,7 @@
     "original_bootstrap_scheduler_proven": false,
     "windows_execution": false
   },
-  "development_extension": "native-player-position-bridge-orientation-and-source-normal-collision",
+  "development_extension": "native-source-bound-spatial-grid-query-and-height",
   "player_state1": {
     "documentation": "docs/player-state1-native.md",
     "native": "src/player_state1.cpp",
@@ -1186,7 +1198,7 @@
     ],
     "arm_entry_cases": 384,
     "native_entry_checks": 66006,
-    "native_actor_checks": 227467,
+    "native_actor_checks": 257792,
     "complete_gameplay": false,
     "continuations_native": [
       1,
@@ -1195,7 +1207,7 @@
       9
     ],
     "continuations_arm_cases": 375,
-    "integration": "explicit policy, entry/continuation dispatch and pose-step; canonical shared PBW cost/position and borrowed manager; no implicit clock/input scheduling or mapping PBW coordinates to rendered model",
+    "integration": "Explicit policy, entry/continuation dispatch, uncached/cached spatial acquisition and pose-step; canonical shared fields and transactional caller-owned grid updates; no implicit scheduler/bootstrap.",
     "evidence": "research/private/player-state1-native-v1/",
     "arm_continuation_cases_compared": 487,
     "continuation_evidence": "research/private/player-state1-continuation-native-v1/",
@@ -1204,7 +1216,8 @@
       "player_reference::resolve_state/orient",
       "player_selection::contains_id/direct_transition",
       "player_state1_dynamics::cost/advance",
-      "player_object_query::query"
+      "player_object_query::query",
+      "player_spatial_acquisition::apply"
     ],
     "context_evidence": {
       "documentation": "docs/player-state1-context.md",
@@ -1212,16 +1225,16 @@
       "manager_complete_arm_cases": 112,
       "manager_transitions_1_13": 76,
       "uncached_spatial_prefixes": 24,
-      "uncached_spatial_complete_returns": 0
+      "uncached_spatial_complete_returns": 0,
+      "scope": "Historical prefix/manager milestone; complete acquisition is recorded separately in player_spatial_acquisition."
     },
     "native_continuation_checks_by_suite": {
       "id1_4_9": 101754,
-      "id2": 115743
+      "id2": 115745
     },
     "id2_evidence": "research/private/player-state1-id2-native-v1/",
     "id2_documentation": "docs/player-state1-id2-native.md",
     "remaining_contexts": [
-      "uncached spatial acquisition",
       "network availability",
       "object position types24/110",
       "producer/lifetime/bootstrap of live objects and cache"
@@ -1388,5 +1401,198 @@
     "negative_processes": 58,
     "normal_and_strict": true,
     "grid_traversal_integrated": false
+  },
+  "spatial_grid": {
+    "native": "src/spatial_grid.cpp",
+    "documentation": "docs/spatial-query-native.md",
+    "manifest": "research/private/spatial-grid-native-v1/manifest.json",
+    "original_queries": 565,
+    "setup_words": 340,
+    "ordered_candidates": 2290,
+    "normal_and_strict_checks": 12154,
+    "negative_processes": 36
+  },
+  "spatial_query": {
+    "native": "src/spatial_query.cpp",
+    "documentation": "docs/spatial-query-native.md",
+    "manifest": "research/private/spatial-query-native-v1/manifest.json",
+    "contract_manifest": "research/private/spatial-query-native-v1/contract-manifest.json",
+    "adapter_manifest": "research/private/spatial-query-native-v1/oracle-adapter/manifest.json",
+    "original_queries": 312,
+    "hits": 176,
+    "misses": 136,
+    "ordered_candidates": 2562,
+    "face_calls": 468,
+    "grid_updates": 191,
+    "normal_and_strict_checks": 237463,
+    "negative_processes": 88,
+    "typed_rejections": 20,
+    "lazy_controls": 4,
+    "macos_ctest_passed": 110,
+    "macos_ctest_seconds": 56.33,
+    "windows_cross_build": true,
+    "windows_execution": false,
+    "player_uncached_integration": true,
+    "delivered_package_unchanged": true,
+    "runtime_state": "explicit source-bound counter/depth/marks; immutable SBC; transactional returned updates",
+    "limitations": [
+      "One-group direct instances with compressed kind1 GRCO and single-face pairs",
+      "Known zero/null status profile and absent optional callbacks; unknown consumed values fail explicitly",
+      "Nonempty alternate collections, trees, transforms, nested grids and multi-group traversal unsupported",
+      "Complete game and Internet coop remain unfinished"
+    ],
+    "player_integration_manifest": "research/private/player-spatial-acquisition-v1/manifest.json"
+  },
+  "player_spatial_acquisition": {
+    "native": "src/player_spatial_acquisition.cpp",
+    "documentation": "docs/player-spatial-acquisition.md",
+    "manifest": "research/private/player-spatial-acquisition-v1/manifest.json",
+    "oracle_manifest": "research/private/player-spatial-acquisition-v1/oracle-manifest.json",
+    "acquisition": {
+      "status": "passed",
+      "cases": 88,
+      "queries": 75,
+      "cached": 13,
+      "hits": 66,
+      "cache_writes": 3,
+      "candidates": 925,
+      "face_calls": 201,
+      "grid_updates": 67,
+      "grid_words": 208780,
+      "math_words": 1308,
+      "typed_rejections": 12,
+      "lazy_controls": 3,
+      "checks": 217145
+    },
+    "rotation": {
+      "status": "passed",
+      "cases": 68254,
+      "fixed_angles": 65536,
+      "numeric_rejections": 40,
+      "checks": 341169
+    },
+    "retained_id2": {
+      "status": "passed",
+      "cases": 252,
+      "checks": 115745,
+      "transitions": 114,
+      "magnitude_queries": 265,
+      "setters": 44,
+      "accepted": 22,
+      "wrappers": 22,
+      "compared_bytes": 40255488,
+      "boundary_errors": 18,
+      "boundary_ignored": 1
+    },
+    "persistent_player": {
+      "status": "passed",
+      "checks": 257792
+    },
+    "acquisition_normal_and_strict": true,
+    "acquisition_negative_processes": 46,
+    "rotation_normal_and_strict": true,
+    "rotation_negative_processes": 36,
+    "macos_ctest_passed": 112,
+    "macos_ctest_seconds": 47.03,
+    "macos_build_and_test_wall_seconds": 61.201766583,
+    "windows_cross_build_wall_seconds": 16.824528042,
+    "windows_execution": false,
+    "published_launcher_replaced": false,
+    "measurement_scope": "Warm incremental builds run concurrently; child CPU in individual reports; process-family peak memory and agent-token costs unmeasured.",
+    "next_cache_lifecycle": "research/private/player-spatial-acquisition-v1/next-cache-lifecycle.md",
+    "complete_gameplay": false
+  },
+  "player_update_begin": {
+    "native": "src/player_update_begin.cpp",
+    "documentation": "docs/player-update-begin.md",
+    "manifest": "research/private/player-update-begin-v1/manifest.json",
+    "source_routine": "b3b3a0 complete16stores",
+    "api": "Player::begin_update() explicit, no automatic tick/dispatch invocation",
+    "original_calls": 96,
+    "original_read_guards": 8,
+    "normal_and_strict": true,
+    "leaf_comparison": {
+      "status": "passed",
+      "cases": 96,
+      "native_calls": 192,
+      "typed_rejections": 5,
+      "lazy_controls": 1,
+      "arm_store_bytes": 3264,
+      "arm_output_arena_bytes": 8650752,
+      "projection_passes": 2,
+      "checks": 82509
+    },
+    "negative_processes": 52,
+    "persistent_player_checks": 272990,
+    "persistent_player_strict": true,
+    "persistent_player_negative_processes": 14,
+    "macos_ctest_passed": 113,
+    "macos_ctest_seconds": 47.88,
+    "macos_build_and_tests_wall_seconds": 63.776447375000004,
+    "windows_crossbuild_wall_seconds": 18.542730667,
+    "windows_execution": false,
+    "published_launcher_replaced": false,
+    "full_scheduler": false,
+    "complete_gameplay": false,
+    "next_production_frontier": "research/private/player-update-begin-v1/next-production-frontier.md"
+  },
+  "player_input_preparation": {
+    "documentation": "docs/player-input-preparation.md",
+    "manifest": "research/private/player-input-filter-v1/manifest.json",
+    "filter_source_routine": "b33638 complete helper closure",
+    "accumulator_source_routine": "b09ccc finite/RNE profile",
+    "api": [
+      "Player::filter_input(context)",
+      "Player::update_accumulator(delta)",
+      "Player::begin_update()"
+    ],
+    "transaction": "Each call commits separately after rendering; no implicit clock/scheduler",
+    "original_filter_calls": 309,
+    "original_filter_guards": 34,
+    "filter": {
+      "status": "passed",
+      "cases": 309,
+      "canonical_cases": 304,
+      "known_output_bytes": 60172,
+      "source_stores": 9886,
+      "source_store_bytes": 34846,
+      "typed_errors": 24,
+      "lazy_controls": 1,
+      "checks": 279064
+    },
+    "filter_normal_and_strict": true,
+    "filter_negative_processes": 70,
+    "canonical_input_block_checks": 607,
+    "original_accumulator_calls": 3634,
+    "accumulator_finite_outputs": 3325,
+    "accumulator_numeric_rejections": 309,
+    "accumulator_checks_per_profile": 147787,
+    "accumulator_negative_processes": 54,
+    "actor_checks_per_profile": 75814,
+    "actor_normal_and_strict": true,
+    "actor_strict_negative_processes": 8,
+    "actor_project_units_instrumented": 55,
+    "begin_mapping_corrected": true,
+    "begin_comparison": {
+      "status": "passed",
+      "cases": 96,
+      "native_calls": 192,
+      "typed_rejections": 5,
+      "lazy_controls": 1,
+      "arm_store_bytes": 3264,
+      "arm_output_arena_bytes": 8650752,
+      "projection_passes": 2,
+      "checks": 112751
+    },
+    "begin_negative_processes": 52,
+    "macos_ctests": 117,
+    "macos_ctest_seconds": 46.71,
+    "macos_build_and_test_wall_seconds": 92.205675958,
+    "windows_crossbuild_wall_seconds": 36.872562208,
+    "windows_executed": false,
+    "compiler_warnings": 0,
+    "published_launcher_replaced": false,
+    "complete_gameplay": false,
+    "internet_coop": false
   }
 }

@@ -1,6 +1,7 @@
 #pragma once
 #include "player_fields.hpp"
 #include "player_selection.hpp"
+#include <array>
 #include <cstdint>
 #include <optional>
 #include <string_view>
@@ -13,6 +14,12 @@ struct Error {
     ErrorCode code;std::string_view field;
     std::optional<player_selection::Error> selection;
 };
+using Bits3=std::array<std::uint32_t,3>;
+using RotationResult=std::variant<Bits3,Error>;
+// Complete aacf0c with source table568ab8/568a80. Low16(angle) only;
+// X/Z arithmetic is binary32, Y is copied raw and never validated/normalized.
+// Shared by b2a318 advancement and b40b88's explicit {0,300,60} offset.
+[[nodiscard]] RotationResult rotate_y(const Bits3&,std::uint32_t angle);
 struct Output {
     player_fields::Fields fields;
     // True when source stores execute, including writes of unchanged bits.

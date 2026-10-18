@@ -72,6 +72,19 @@ struct Arithmetic {
     }
 };
 }
+RotationResult rotate_y(const Bits3& vector,std::uint32_t angle){
+    Arithmetic a;
+    const auto input_x=a.operand(vector[0],"aacf0c input X");if(a.error)return *a.error;
+    const auto input_z=a.operand(vector[2],"aacf0c input Z");if(a.error)return *a.error;
+    const auto first=a.coefficient(angle,0);
+    const auto second=a.coefficient(angle,1);
+    const auto x_product=a.mul(second,input_x,"aacf0c x1");
+    const auto z_product=a.mul(second,input_z,"aacf0c z1");
+    const auto x=a.add(x_product,a.mul(first,input_z,"aacf0c x product"),"aacf0c x sum");
+    const auto z=a.sub(z_product,a.mul(first,input_x,"aacf0c z product"),"aacf0c z difference");
+    if(a.error)return *a.error;
+    return Bits3{std::bit_cast<std::uint32_t>(x),vector[1],std::bit_cast<std::uint32_t>(z)};
+}
 Result cost(const player_controller_step::PlayerFields& player,const player_fields::Fields& fields,
     std::optional<std::uint32_t> delta_bits,std::optional<std::uint32_t> context_ad50){
     Output output{fields,false};Arithmetic a;
@@ -121,13 +134,10 @@ Result advance(const player_controller_step::PlayerFields& player,const player_f
     auto z=a.add(z0,a.mul(second0,2.5F,"b2a318 z product"),"b2a318 z sum");
     const auto y=a.sub(y0,a.mul(first0,2.5F,"b2a318 y product"),"b2a318 y difference");
     if(a.error)return *a.error;
-    const auto first1=a.coefficient(player.pbw.field24,0);
-    const auto second1=a.coefficient(player.pbw.field24,1);
-    const auto x1=a.mul(second1,0.0F,"aacf0c x1");
-    const auto z1=a.mul(second1,z,"aacf0c z1");
-    auto x=a.add(x1,a.mul(first1,z,"aacf0c x product"),"aacf0c x sum");
-    z=a.sub(z1,a.mul(first1,0.0F,"aacf0c z product"),"aacf0c z difference");
-    if(a.error)return *a.error;
+    const auto rotated=rotate_y({0,std::bit_cast<std::uint32_t>(y),std::bit_cast<std::uint32_t>(z)},player.pbw.field24);
+    if(const auto* error=std::get_if<Error>(&rotated))return *error;
+    const auto& vector=std::get<Bits3>(rotated);
+    auto x=std::bit_cast<float>(vector[0]);z=std::bit_cast<float>(vector[2]);
     const auto first2=a.coefficient(player.pbw.field28,0);
     const auto second2=a.coefficient(player.pbw.field28,1);
     const auto final_x_product=a.mul(second2,x,"b2a318 final x product");

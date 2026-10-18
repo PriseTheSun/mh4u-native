@@ -3,6 +3,9 @@
 #include "player_animation.hpp"
 #include "player_policy_interpreter.hpp"
 #include "player_position_bridge.hpp"
+#include "player_update_begin.hpp"
+#include "player_update_accumulator.hpp"
+#include "player_input_filter.hpp"
 #include <array>
 #include <optional>
 #include <string>
@@ -48,13 +51,16 @@ struct PlayerPolicyContext {
     std::optional<std::uint32_t> global_c8c;
     std::optional<std::array<std::uint16_t,2>> direction_bounds;
 };
-enum class PlayerErrorCode {initial_state,bank,driver,render,capacity,policy,position};
+enum class PlayerErrorCode {initial_state,bank,driver,render,capacity,policy,position,update_begin,input_filter,update_accumulator};
 struct PlayerError {
     PlayerErrorCode code;std::string message;
     std::optional<player_animation::Error> driver;
     std::optional<Error> render;
     std::optional<player_policy_interpreter::Error> policy{};
     std::optional<player_position_bridge::Error> position{};
+    std::optional<player_update_begin::Error> update_begin{};
+    std::optional<player_input_filter::Error> input_filter{};
+    std::optional<player_update_accumulator::Error> update_accumulator{};
 };
 template<class T>using PlayerResult=std::variant<T,PlayerError>;
 struct PlayerOutput {
@@ -71,11 +77,13 @@ struct PlayerPolicyOutput {
 };
 struct PlayerState1Output {Frame frame;player_state1::Effects effects;};
 struct PlayerPositionOutput {Frame frame;player_position_bridge::Effects effects;};
+struct PlayerInputFilterOutput {Frame frame;player_input_filter::Effects effects;};
 struct PlayerState1Context {
     player_reference::Reference reference=player_reference::Unknown{};
     player_selection::AreaContext area{};
     std::optional<std::uint32_t> delta_time_bits{},context_ad50{};
     player_object_query::Manager manager=player_object_query::Unknown{};
+    player_spatial_acquisition::Context spatial{};
 };
 class Player {
 public:
@@ -95,6 +103,15 @@ public:
     const motion_request::Model& banks()const noexcept{return banks_;}
     std::uint64_t completed_steps()const noexcept{return completed_steps_;}
     PlayerResult<Frame> capture()const;
+    // Explicit b3b3a0 only, before a caller-selected action sequence. No clock
+    // tick or b1407c/b48230 entry-gate inference. Commit follows rendering;
+    // dispatch_state1 and tick do not reset this cache automatically.
+    PlayerResult<Frame> begin_update();
+    // Explicit source helpers preceding b3b3a0 in the local update branch.
+    // Each call commits after rendering, advances no clock and applies no
+    // policy. The caller selects sequencing; b1407c remains incomplete.
+    PlayerResult<PlayerInputFilterOutput> filter_input(const player_input_filter::Context&);
+    PlayerResult<Frame> update_accumulator(std::optional<std::uint32_t> delta_bits);
     // b0d0e4 only. No animation request, clock tick or automatic table reinstall.
     // Controller, layer1 weight and extra fields commit only after rendering.
     PlayerResult<PlayerPolicyOutput> apply_policy(const PlayerPolicyInput&,const PlayerPolicyContext&);

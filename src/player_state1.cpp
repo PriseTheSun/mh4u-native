@@ -1,8 +1,4 @@
 #include "player_state1.hpp"
-#include <bit>
-#include <cfenv>
-#include <cmath>
-#include <limits>
 #include <new>
 #include <stdexcept>
 #include <utility>
@@ -121,23 +117,15 @@ class Continuation {
         if(gate==1)return true;
         const auto flags=read(x.pbw.field478,"pbw+478");
         if(error||(flags&0x40000U)||p.selection_pw.field9a8!=0)return false;
-        const auto cache=read(x.pw.field6a8,"pw+6a8");
-        if(error)return false;
-        if(cache==0){fail(ErrorCode::unsupported_context,"b40b88 uncached spatial acquisition");return false;}
-        const auto height=read(x.pw.field6a4_bits,"pw+6a4");
-        if(error||!finite_bits(height,"pw+6a4"))return false;
-        const auto y=read(x.pbw.field14_bits,"pbw+14");
-        if(error||!finite_bits(y,"pbw+14"))return false;
-        if(sizeof(float)!=4||!std::numeric_limits<float>::is_iec559||std::fegetround()!=FE_TONEAREST){
-            fail(ErrorCode::floating_environment,"Cached height requires round-to-nearest binary32");return false;
+        namespace sa=player_spatial_acquisition;
+        auto result=sa::apply(p,x,{0,0xc2700000U},context.spatial);
+        if(const auto* e=std::get_if<sa::Error>(&result)){
+            fail(ErrorCode::spatial_acquisition,e->field,*e);return false;
         }
-        volatile float tiny=std::bit_cast<float>(1U),twice=tiny+tiny;
-        if(std::bit_cast<std::uint32_t>(static_cast<float>(twice))!=2U){
-            fail(ErrorCode::floating_environment,"Cached height requires gradual binary32 underflow");return false;
-        }
-        volatile float limit=std::bit_cast<float>(y)+(-60.0F);
-        if(!std::isfinite(static_cast<float>(limit))){fail(ErrorCode::numeric_overflow,"pbw.y-60");return false;}
-        return std::bit_cast<float>(height)<static_cast<float>(limit);
+        auto acquired=std::get<sa::Output>(std::move(result));
+        out.shared_fields=std::move(acquired.fields);
+        out.effects.spatial=std::move(acquired.effects);
+        return acquired.returned;
     }
     bool enough_cost(){
         const auto value=read(out.shared_fields.pbw.field354_bits,"pbw+354");

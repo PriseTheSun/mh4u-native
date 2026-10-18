@@ -89,8 +89,10 @@ void run(const Bytes& bytes,const pt::Constants& constants,const std::vector<std
     auto extra=shared;extra.pbw.field354_bits.reset();reject(state,extra,context,st::ErrorCode::dynamics);
     extra=shared;extra.pbw.field10_bits.reset();reject(state,extra,context,st::ErrorCode::dynamics);
     extra=shared;extra.pw.field7f0.reset();reject(state,extra,context,st::ErrorCode::unknown_field);
-    extra=shared;extra.pw.field6a8=0;reject(state,extra,context,st::ErrorCode::unsupported_context);
-    extra=shared;extra.pw.field6a4_bits=0x7fc12345;reject(state,extra,context,st::ErrorCode::nonfinite_operand);
+    extra=shared;extra.pw.field6a8=0;auto spatial_error=reject(state,extra,context,st::ErrorCode::spatial_acquisition);
+    check(std::get<mh4u::player_spatial_acquisition::Error>(spatial_error.cause).code==mh4u::player_spatial_acquisition::ErrorCode::unknown_field,"Uncached acquisition retains missing-field cause");
+    extra=shared;extra.pw.field6a4_bits=0x7fc12345;spatial_error=reject(state,extra,context,st::ErrorCode::spatial_acquisition);
+    check(std::get<mh4u::player_spatial_acquisition::Error>(spatial_error.cause).code==mh4u::player_spatial_acquisition::ErrorCode::nonfinite_operand,"Cached acquisition retains numeric cause");
     facts=context;facts.manager=oq::Unknown{};auto failure=reject(state,shared,facts,st::ErrorCode::object_query);check(std::get<oq::Error>(failure.cause).code==oq::ErrorCode::unknown_field,"Unknown manager reason retained");
     facts=context;facts.manager=std::span<const oq::Slot>{slots.data(),31};failure=reject(state,shared,facts,st::ErrorCode::object_query);check(std::get<oq::Error>(failure.cause).code==oq::ErrorCode::manager_extent,"Manager extent reason retained");
     auto changed=slots;changed[0]=oq::Unknown{};facts=context;facts.manager=std::span<const oq::Slot>{changed};failure=reject(state,shared,facts,st::ErrorCode::object_query);check(std::get<oq::Error>(failure.cause).slot==0,"Unknown slot identity retained");

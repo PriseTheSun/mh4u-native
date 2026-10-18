@@ -50,7 +50,8 @@ class Evaluation {
     }
     bool predicate(const tbl::Record& record){
         std::array<std::optional<std::uint32_t>,20> flags;flags[0]=t.pbw.field3d4;
-        std::copy(x.pbw.flags3d8.begin(),x.pbw.flags3d8.end(),flags.begin()+1);
+        for(std::size_t i=0;i<x.pbw.words3d8.size();++i)
+            flags[i+1]=player_input_storage::join(x.pbw.words3d8[i]);
         const player_policy_predicate::Context context{{t.pbw.angles,t.pbw.magnitudes},magnitude_gate(),
             x.pbw.field3a8,x.pbw.field3ac,x.pbw.field3b8,x.pbw.field3bc,flags,t.pbw.field451,
             reference(),t.pbw.field24,x.pw.field154,c.direction_bounds};

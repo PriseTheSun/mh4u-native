@@ -123,8 +123,10 @@ Windows continua sem validação.
 ## Próxima fronteira
 
 O [ID2 nativo](player-state1-id2-native.md) compõe custo, posição e o perfil de
-contexto recuperado, comparado em252 chamadas originais. A aquisição espacial
-sem cache permanece pendente no runtime. O decremento do timer pelo
+contexto recuperado, comparado em252 chamadas originais. A
+[aquisição espacial sem cache](player-spatial-acquisition.md) e o
+[início explícito de atualização](player-update-begin.md) já têm componentes
+nativos. O decremento do timer pelo
 scheduler, o bootstrap e os estados de destino também
 continuam pendentes. Este avanço não acrescenta combate, missões, saves ou
 coop pela internet. O launcher 0.17 permanece como inspeção da cena nativa;
