@@ -39,6 +39,10 @@ struct Error {
     ErrorCode code;std::string_view field;
     std::optional<player_input_block::Error> projection{};
 };
+enum class ManagerQuery {pre_action,restore_input}; // Source6b398c selectors0/5.
+// Shared interpretation of the same manager AD24 byte. Other selectors are
+// outside this API; the native caller supplies facts, never a helper result.
+[[nodiscard]] std::variant<bool,Error> query_manager(const Manager&,ManagerQuery) noexcept;
 struct BlockOutput {Block block;Effects effects;};
 using BlockResult=std::variant<BlockOutput,Error>;
 // Complete b33638 helper closure, disjoint objects and immutable snapshots.

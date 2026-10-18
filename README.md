@@ -31,8 +31,39 @@ A consulta percorre a coleção original e resolve sobreposições pela priorida
 do executável. A [construção dos registros](docs/item-pop-builder.md) agora inclui
 a seleção ponderada original, referências IPL e o estado aleatório compartilhado.
 A [atualização dos registros](docs/item-pop-update.md) acrescenta atraso, ativação,
-intensidade e desativação no mesmo estado da consulta. Renovação e remoção
-ainda exigem rotinas adicionais.
+intensidade, desativação, renovação e remoção no mesmo estado da consulta.
+O Player persistente publica o gerenciador e seu estado aleatório em uma
+transação, após renderizar, sem recriar o personagem.
+A [preparação e seleção de ações](docs/player-update-admission.md) reúne o
+prefixo, a busca de objetos e a política no mesmo Player até o ponto anterior
+a `b142d0`. Preserva referências compartilhadas e marcas produzidas por buscas
+sem resultado; as alterações do jogador e da coleção são publicadas juntas.
+Os caminhos ainda não reconstruídos retornam erro explícito.
+A [continuação até o primeiro despacho](docs/player-update-continuation.md)
+acrescenta consultas reais de atributos e bônus, conversões numéricas e os
+retornos iniciais admitidos das duas rotinas seguintes. A composição foi
+comparada em 216 execuções originais, desde `b1407c` até antes de `b143f8`,
+e publica o Player e a coleção somente após preparar a renderização.
+O [despacho de ações na atualização](docs/player-update-dispatch.md) estende
+essa mesma operação até antes de `b1441c`, incluindo a segunda chamada quando
+solicitada pela primeira. Os 49 casos originais incluem quatro chamadas duplas;
+o Player persistente publica personagem, coleção e resultados espaciais juntos
+após renderizar. Estados e ações ainda não recuperados retornam erros explícitos.
+Os [ajustes após o despacho](docs/player-update-post-dispatch.md) prolongam essa
+operação até antes de `b145dc`: velocidades das duas camadas, interpolação,
+consulta da tabela até o marcador final e regras de elegibilidade. Foram
+comparadas 107 execuções completas até esse ponto, oito cenários isolados da
+fase e 446 chamadas de ajuste, em perfis normal e com sanitizadores.
+Os [indicadores, temporizadores e ajustes de posição](docs/player-update-late-helpers.md)
+foram primeiro recuperados como componentes isolados. A
+[integração dos indicadores no Player](docs/player-update-status.md) agora
+estende a mesma transação até antes de `b145e4`, após o retorno de `b22164`.
+O scanner consulta a coleção candidata e as falhas tardias preservam o Player,
+a coleção e a grade. A [integração das notificações](docs/player-update-notifications.md)
+estende esse fluxo até antes de `b145f0`, com uma fila compartilhada pelo mundo.
+Player, coleção, grade e fila são publicados juntos após renderizar; uma falha
+preserva o estado anterior dos quatro. O sistema de eventos, as chamadas
+seguintes e a integração do trecho de posição ainda precisam ser concluídos.
 Scheduler e bootstrap continuam pendentes no runtime.
 O módulo de [interseção vertical original](docs/spatial-triangle.md) passou
 1.464 consultas preservadas, com102 hits idênticos byte a byte. É uma rota
@@ -48,8 +79,8 @@ de contadores e marcas. A referência inclui 312 consultas completas do código
 original. A aquisição do Player acrescenta filtros, preparação do raio e cache,
 com 88 chamadas originais completas e testes de integração persistente.
 O estado inicial continua explícito; bootstrap e scheduler permanecem pendentes.
-O launcher publicado permanece 0.17.0. A validação atual do
-[construção dos registros](docs/item-pop-builder.md) passou em 122/122 CTests
+O launcher publicado permanece 0.17.0. A validação atual da
+[integração das notificações](docs/player-update-notifications.md) passou em 151/151 CTests
 no Mac e a compilação Windows x64 concluiu sem avisos; execução no Windows
 continua sem validação.
 Veja também o [catálogo v4](docs/localization-v4.md) e o

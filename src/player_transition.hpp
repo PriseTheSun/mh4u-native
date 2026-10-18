@@ -48,10 +48,21 @@ struct GlobalFields {
     std::uint16_t field22{};
     std::uint8_t field2b{},field2f{},field5d{};
     std::optional<std::uint8_t> fieldd72{}; // Same fb6b7c object, consumed by 2b1f04.
+    // RNG channel0 in the same source global; omission is not an inferred seed.
+    std::optional<std::uint16_t> field20{};
+    std::optional<std::uint8_t> field5a{};
+    std::array<std::optional<std::uint8_t>,3> fieldsd38{};
+    std::array<std::optional<std::int16_t>,3> fieldsd3c{};
     bool operator==(const GlobalFields&) const=default;
 };
 // Source d04924; shares canonical global/pbw fields with all consumers.
 bool local_control(const GlobalFields&,const PbwFields&) noexcept;
+// Full b43dcc; the second argument stays full-width. State2/action21
+// accepts only argument0; admission and direction use this single predicate.
+bool state_action_gate(const PbwFields&,std::uint32_t argument) noexcept;
+// Full b3444c: concrete type13 and selectors0..2 select bits22..24 ofPW1f4.
+// Other full-width selectors return false; no shift is performed for them.
+bool type13_flag(const PbwFields&,const PwFields&,std::uint32_t selector) noexcept;
 struct State {
     PlayerFields player; PbwFields pbw; PwFields pw; GlobalFields global;
     bool operator==(const State&) const=default;

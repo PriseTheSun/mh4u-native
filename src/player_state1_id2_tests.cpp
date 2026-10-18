@@ -1,7 +1,7 @@
 // Independent expected bytes/calls from complete original ID2 ARM returns.
 #include "test_support/player_continuation_arena.hpp"
 #include <iostream>
-#include <tuple>
+#include <map>
 
 namespace {
 using namespace mh4u::test::player_continuation;
@@ -10,28 +10,34 @@ std::optional<std::uint32_t> absolute(const Case& c,std::uint32_t address,unsign
  for(unsigned i=0;i<7;++i)if(address>=bases[i]&&std::uint64_t(address)+width<=std::uint64_t(bases[i])+sizes[i])return c.optional<std::uint32_t>(i,address-bases[i],width);
  throw std::runtime_error("Object field outside retained arenas");
 }
-std::array<oq::Slot,32> object_slots(const Case& c){
- std::array<oq::Slot,32> out;
+oq::Collection object_collection(const Case& c){
+ oq::Collection out;std::map<std::uint32_t,std::uint32_t> roots,data;
  for(unsigned i=0;i<32;++i){
   const auto pointer=absolute(c,bases[5]+0x18+4*i,4);
   if(!pointer)continue;
-  if(!*pointer){out[i]=oq::Absent{};continue;}
-  oq::Object object;const auto d=absolute(c,*pointer+0xe28,4);
-  if(d){
-   check(*d!=0&&*d<=0xffffffffU-0x34d,"Declared object subobject extent");
-   const auto byte=[&](std::uint32_t offset)->std::optional<std::uint8_t>{auto v=absolute(c,*d+offset,1);return v?std::optional<std::uint8_t>{std::uint8_t(*v)}:std::nullopt;};
-   object.field140=byte(0x140);object.field34c=byte(0x34c);object.field290=byte(0x290);object.field1c0=byte(0x1c0);object.field14c=byte(0x14c);object.field1b4=absolute(c,*d+0x1b4,4);
-   const auto x=absolute(c,*d+0x198,4),y=absolute(c,*d+0x19c,4),z=absolute(c,*d+0x1a0,4);
-   if(x&&y&&z)object.position_bits=std::array{*x,*y,*z};
-  }
-  out[i]=object;
+  if(!*pointer){out.slots[i]=oq::Absent{};continue;}
+  const auto [root_it,new_root]=roots.emplace(*pointer,static_cast<std::uint32_t>(roots.size()));
+  const auto root=root_it->second;out.slots[i]=oq::ObjectIndex{root};
+  if(!new_root)continue;
+  check(root<out.objects.size()&&*pointer<=0xffffffffU-0xe2c,"Declared root object extent");
+  const auto d=absolute(c,*pointer+0xe28,4);if(!d)continue;
+  if(!*d){out.objects[root].data=oq::Absent{};continue;}
+  const auto [data_it,new_data]=data.emplace(*d,static_cast<std::uint32_t>(data.size()));
+  const auto index=data_it->second;out.objects[root].data=oq::DataIndex{index};
+  if(!new_data)continue;
+  check(index<out.data.size()&&*d<=0xffffffffU-0x34d,"Declared object subobject extent");
+  auto& object=out.data[index];
+  const auto byte=[&](std::uint32_t offset)->std::optional<std::uint8_t>{auto v=absolute(c,*d+offset,1);return v?std::optional<std::uint8_t>{std::uint8_t(*v)}:std::nullopt;};
+  object.field140=byte(0x140);object.field34c=byte(0x34c);object.field290=byte(0x290);object.field1c0=byte(0x1c0);object.field14c=byte(0x14c);object.field1b4=absolute(c,*d+0x1b4,4);
+  object.position_bits={absolute(c,*d+0x198,4),absolute(c,*d+0x19c,4),absolute(c,*d+0x1a0,4)};
+  object.field349=byte(0x349);if(const auto v=absolute(c,*d+0x1c4,2))object.field1c4=static_cast<std::uint16_t>(*v);
  }
  return out;
 }
-bool same_slots(const std::array<oq::Slot,32>& a,const std::array<oq::Slot,32>& b){
- for(unsigned i=0;i<32;++i){if(a[i].index()!=b[i].index())return false;if(const auto* x=std::get_if<oq::Object>(&a[i])){const auto& y=std::get<oq::Object>(b[i]);
-  if(std::tie(x->field140,x->field34c,x->field290,x->field1c0,x->field14c,x->field1b4,x->position_bits)!=std::tie(y.field140,y.field34c,y.field290,y.field1c0,y.field14c,y.field1b4,y.position_bits))return false;
- }}return true;
+oq::DataFields& slot_data(oq::Collection& collection,std::size_t slot){
+ const auto root=std::get<oq::ObjectIndex>(collection.slots.at(slot)).value;
+ const auto index=std::get<oq::DataIndex>(collection.objects.at(root).data).value;
+ return collection.data.at(index);
 }
 void run(const Bytes& bytes,const pt::Constants& constants,const std::vector<std::array<std::string,3>>& args,bool projection){
  Reader r{bytes};check(r.bytes(8)==Bytes({'M','H','4','U','S','2','D','2'}),"ID2 fixture schema");check(r.integer()==252&&r.integer()==7&&r.integer()==3&&r.integer()==2,"ID2 corpus counts");
@@ -48,14 +54,14 @@ void run(const Bytes& bytes,const pt::Constants& constants,const std::vector<std
    retain_inactive(c.before[0],2,8,resolver,events);const auto storage=decode(c.before[0],8,resolver,events,2);const auto state=project(c,storage.fields);const auto shared=shared_fields(c);const st::Fields fields{c.optional<std::uint32_t>(2,0x50,4)};
    check(state.player.pbw.field371==1&&state.player.pbw.field372==2&&state.player.pbw.fields5[0]==c.substate,"Original ID2 state");check(word(c.before[0],0x234)==2,"Original active prefix");
    compare_snapshots(serialize_shared(c,state,fields,storage.layers,resolver,events,shared),c.before,"Complete ID2 input roundtrip");
-   const auto slots=object_slots(c);const auto preserved_slots=slots;const auto resources=model(c,headers,sources);
-   st::ContinuationContext context;context.constants=&constants;context.shared_fields=&shared;context.reference=reference(c,c.corpus?0x2408000U:0x2500000U);context.area.mode_c8c=c.optional<std::uint32_t>(3,0xc8c,4);context.delta_time_bits=c.optional<std::uint32_t>(0,0x14,4);context.context_ad50=c.optional<std::uint32_t>(4,0xad50,4);context.manager=std::span<const oq::Slot>{slots};
+   const auto slots=object_collection(c);const auto preserved_slots=slots;const auto resources=model(c,headers,sources);
+   st::ContinuationContext context;context.constants=&constants;context.shared_fields=&shared;context.reference=reference(c,c.corpus?0x2408000U:0x2500000U);context.area.mode_c8c=c.optional<std::uint32_t>(3,0xc8c,4);context.delta_time_bits=c.optional<std::uint32_t>(0,0x14,4);context.context_ad50=c.optional<std::uint32_t>(4,0xad50,4);context.manager=&slots;
    if(projection){auto initial=c;initial.after=c.before;initial.setters.clear();identities(initial,storage.layers,resolver,events);continue;}
    resolver.resolutions.clear();const auto result=st::apply(state,fields,storage.layers,2,{},resources,globals,sampling,{},context);
    if(const auto* e=std::get_if<st::Error>(&result))throw std::runtime_error("Native error "+std::to_string(unsigned(e->code))+": "+std::string(e->message));
    const auto& out=std::get<st::Output>(result);const auto& e=out.effects;
    compare_snapshots(serialize_shared(c,out.state,out.fields,out.layers,resolver,events,out.shared_fields),c.after,"Complete ID2 original after");
-   compare_snapshots(serialize_shared(c,state,fields,storage.layers,resolver,events,shared),c.before,"Complete ID2 input unchanged");identities(c,out.layers,resolver,events);check(same_slots(slots,preserved_slots),"Borrowed object facts unchanged");
+   compare_snapshots(serialize_shared(c,state,fields,storage.layers,resolver,events,shared),c.before,"Complete ID2 input unchanged");identities(c,out.layers,resolver,events);check(slots==preserved_slots,"Borrowed object facts unchanged");
    check(e.request_count==c.setters.size(),"Original setter count");
    for(unsigned i=0;i<e.request_count;++i){const auto& call=e.requests[i];const auto& q=call.request;const auto& wanted=c.setters[i];
     check(std::array{q.layer,q.selector,q.attributes,std::bit_cast<std::uint32_t>(q.interpolation),std::bit_cast<std::uint32_t>(q.start_frame),std::bit_cast<std::uint32_t>(q.speed),call.command_flags,std::uint32_t(call.accepted)}==std::array{wanted[0],wanted[1],wanted[2],wanted[3],wanted[4],wanted[5],wanted[6],wanted[7]},"Original setter full arguments/acceptance");accepted+=call.accepted;
@@ -94,12 +100,12 @@ void run(const Bytes& bytes,const pt::Constants& constants,const std::vector<std
     extra=shared;extra.pw.field6a4_bits=0x7fc12345;spatial_error=reject(state,extra,context,st::ErrorCode::spatial_acquisition);
     check(std::get<mh4u::player_spatial_acquisition::Error>(spatial_error.cause).code==mh4u::player_spatial_acquisition::ErrorCode::nonfinite_operand,"Cached acquisition retains numeric cause");
     facts=context;facts.manager=oq::Unknown{};auto failure=reject(state,shared,facts,st::ErrorCode::object_query);check(std::get<oq::Error>(failure.cause).code==oq::ErrorCode::unknown_field,"Unknown manager reason retained");
-    facts=context;facts.manager=std::span<const oq::Slot>{slots.data(),31};failure=reject(state,shared,facts,st::ErrorCode::object_query);check(std::get<oq::Error>(failure.cause).code==oq::ErrorCode::manager_extent,"Manager extent reason retained");
-    auto changed=slots;changed[0]=oq::Unknown{};facts=context;facts.manager=std::span<const oq::Slot>{changed};failure=reject(state,shared,facts,st::ErrorCode::object_query);check(std::get<oq::Error>(failure.cause).slot==0,"Unknown slot identity retained");
-    changed=slots;std::get<oq::Object>(changed[0]).field140.reset();reject(state,shared,facts,st::ErrorCode::object_query);
-    for(auto kind:{24,110}){changed=slots;std::get<oq::Object>(changed[0]).field1c0=static_cast<std::uint8_t>(kind);failure=reject(state,shared,facts,st::ErrorCode::object_query);check(std::get<oq::Error>(failure.cause).code==oq::ErrorCode::unsupported_position,"Unrecovered position helper is not false");}
-    changed=slots;std::get<oq::Object>(changed[0]).position_bits.reset();reject(state,shared,facts,st::ErrorCode::object_query);
-    changed=slots;(*std::get<oq::Object>(changed[0]).position_bits)[0]=0x7f800000;failure=reject(state,shared,facts,st::ErrorCode::object_query);check(std::get<oq::Error>(failure.cause).reference.has_value(),"Angular numeric cause retained");
+    facts=context;auto invalid_collection=slots;invalid_collection.slots[0]=oq::ObjectIndex{32};facts.manager=&invalid_collection;failure=reject(state,shared,facts,st::ErrorCode::object_query);check(std::get<oq::Error>(failure.cause).code==oq::ErrorCode::invalid_index,"Manager index reason retained");
+    auto changed=slots;changed.slots[0]=oq::Unknown{};facts=context;facts.manager=&changed;failure=reject(state,shared,facts,st::ErrorCode::object_query);check(std::get<oq::Error>(failure.cause).slot==0,"Unknown slot identity retained");
+    changed=slots;slot_data(changed,0).field140.reset();reject(state,shared,facts,st::ErrorCode::object_query);
+    for(auto kind:{24,110}){changed=slots;slot_data(changed,0).field1c0=static_cast<std::uint8_t>(kind);failure=reject(state,shared,facts,st::ErrorCode::object_query);check(std::get<oq::Error>(failure.cause).code==oq::ErrorCode::unsupported_position,"Unrecovered position helper is not false");}
+    changed=slots;slot_data(changed,0).position_bits[0].reset();reject(state,shared,facts,st::ErrorCode::object_query);
+    changed=slots;slot_data(changed,0).position_bits[0]=0x7f800000;failure=reject(state,shared,facts,st::ErrorCode::object_query);check(std::get<oq::Error>(failure.cause).reference.has_value(),"Angular numeric cause retained");
     auto input=state;input.player.global.field5d=1;failure=reject(input,shared,context,st::ErrorCode::object_query);check(std::get<oq::Error>(failure.cause).code==oq::ErrorCode::unsupported_availability,"Unrecovered network availability is not false");
     facts=context;facts.constants=nullptr;reject(state,shared,facts,st::ErrorCode::unknown_field);
    }

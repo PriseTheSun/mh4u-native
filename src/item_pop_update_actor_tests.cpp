@@ -56,6 +56,13 @@ void same_frame(const na::Frame& a,const na::Frame& b){
 struct Saved {pa::State state;mh4u::player_fields::Fields fields;mh4u::player_state1::Fields state1;mh4u::player_position_bridge::Fields position;std::uint64_t steps;};
 Saved save(const na::Player& p){return {p.state(),p.shared_fields(),p.state1_fields(),p.position_fields(),p.completed_steps()};}
 void unchanged(const na::Player& p,const Saved& s){check(mh4u::test_player_actor_state::state_equal(p.state(),s.state)&&p.shared_fields()==s.fields&&p.state1_fields()==s.state1&&p.position_fields()==s.position&&p.completed_steps()==s.steps,"Failed transaction changed Player");}
+void unchanged_animation(const na::Player& p,const Saved& s){
+ // The prefix may update Player fields, but no animation/command owner. Compare
+ // hidden layers and raw NaN payloads as well as the observable rendered Frame.
+ auto expected=s.state;expected.controller.player=p.state().controller.player;
+ check(mh4u::test_player_actor_state::state_equal(p.state(),expected),"Successful preparation changed canonical animation state");
+ check(p.state1_fields()==s.state1&&p.position_fields()==s.position&&p.completed_steps()==s.steps,"Successful preparation changed another owner");
+}
 void equal_lookup(const wl::Output& actual,const wl::Output& original){check(actual.returned==original.returned&&actual.match==original.match&&actual.visited==original.visited,"Player lookup differs from original query");}
 // The fixture owner supplies original observations. This routine never derives
 // expected lookup results from the native Manager or from a selected record.
@@ -64,25 +71,25 @@ void query_pair(const na::Actor& actor,const pt::Constants& constants,
  U area_mask,const wl::Output& expected_before,const wl::Output& expected_after){
  auto initial=seed(built.global,query);
  auto player=value<na::Player>(na::Player::from_rest(actor,initial,constants,banks()));
- const auto baseline=value<na::Frame>(player.capture());const auto presentation=player.presentation();
+ const auto baseline=value<na::Frame>(player.capture());const auto presentation=player.presentation();const auto animation_before=save(player);
  const auto before_manager=built.manager,after_manager=after_update;
  mh4u::player_update_prefix::Context context{{},U(0),{&built.manager,area_mask}};
  const auto pre=value<na::PlayerPreparationOutput>(player.prepare_update(context));equal_lookup(pre.lookup,expected_before);
  check(player.shared_fields().pw.field5a8==(expected_before.returned==0xffff?0:expected_before.returned),"Pre-update PW5a8 publication");
- same_frame(pre.frame,baseline);
+ same_frame(pre.frame,baseline);unchanged_animation(player,animation_before);
  // The same Player survives the explicit caller-owned Manager replacement.
  context.world.manager=&after_update;
  const auto post=value<na::PlayerPreparationOutput>(player.prepare_update(context));equal_lookup(post.lookup,expected_after);
  check(player.shared_fields().pw.field5a8==(expected_after.returned==0xffff?0:expected_after.returned),"Post-update PW5a8 publication");
  check(player.state().controller.player.global==built.global&&player.completed_steps()==0&&player.presentation()==presentation,"Preparation duplicated or advanced canonical RNG/animation owner");
- check(built.manager==before_manager&&after_update==after_manager,"Player mutated borrowed Manager");same_frame(post.frame,baseline);
+ check(built.manager==before_manager&&after_update==after_manager,"Player mutated borrowed Manager");same_frame(post.frame,baseline);unchanged_animation(player,animation_before);
  // A late missing world must roll back earlier prefix stores. The committed
  // external Manager stays committed; corrected retry does not call update.
  const auto saved=save(player);context.world.manager=nullptr;context.delta_bits=one;
  const auto failed=value<na::PlayerError>(player.prepare_update(context));
  check(failed.code==na::PlayerErrorCode::update_prefix&&failed.update_prefix&&failed.update_prefix->phase==mh4u::player_update_prefix::Phase::lookup,"Missing world lost typed late phase");
  unchanged(player,saved);check(player.shared_fields().pbw.field54_bits==0,"Failed prefix published accumulator candidate");check(after_update==after_manager,"Player failure rolled back an external Manager transaction");
- context.world.manager=&after_update;const auto retried=value<na::PlayerPreparationOutput>(player.prepare_update(context));equal_lookup(retried.lookup,expected_after);check(player.shared_fields().pbw.field54_bits==one,"Corrected retry did not commit prefix once");same_frame(retried.frame,baseline);
+ context.world.manager=&after_update;const auto retried=value<na::PlayerPreparationOutput>(player.prepare_update(context));equal_lookup(retried.lookup,expected_after);check(player.shared_fields().pbw.field54_bits==one,"Corrected retry did not commit prefix once");same_frame(retried.frame,baseline);unchanged_animation(player,animation_before);
  ++pairs;
 }
 void failed_update(const na::Actor& actor,const pt::Constants& constants,
@@ -92,7 +99,7 @@ void failed_update(const na::Actor& actor,const pt::Constants& constants,
  auto candidate=built.manager;const auto head=std::get<wl::Index>(candidate.head).value;
  const auto second=std::get<wl::Index>(candidate.records[head].next).value;
  candidate.records[second].field63.reset();const auto before=candidate;
- const auto result=update::apply(candidate,context);const auto error=value<update::Error>(result);
+ const auto result=update::apply(candidate,built.global,context);const auto error=value<update::Error>(result);
  check(error.code==update::ErrorCode::unknown_field&&error.field=="record63"&&error.index==second,"Late update error cause/index lost");
  check(candidate==before,"Failed update published earlier record writes");
  unchanged(player,saved);same_frame(value<na::Frame>(player.capture()),baseline);
@@ -106,7 +113,7 @@ void run(const std::filesystem::path& recipe,const pt::Constants& constants,
  const auto& set=resources.get(fixture.sources[0].path,fixture.sources[0].sha,fixture.sources[0].size);
  const auto& list=resources.get(fixture.sources[1].path,fixture.sources[1].sha,fixture.sources[1].size);
  const auto& c=fixture.cases.at(0);
- check(c.index==0&&c.name=="real-seed0"&&c.set_present&&c.list_present,"Unexpected original integration scenario");
+ check(c.index==0&&c.name=="real-delta1"&&c.set_present&&c.list_present,"Unexpected original integration scenario");
  check(c.steps.size()==1&&c.steps[0].mutations.empty(),"Integration scenario requires unmodified original continuity");
  const auto& step=c.steps[0];
  check(std::equal(c.built.begin(),c.built.end(),step.before.begin()),"Original builder/update continuity");
@@ -117,7 +124,7 @@ void run(const std::filesystem::path& recipe,const pt::Constants& constants,
  f::Bytes global(c.global_before.begin(),c.global_before.end());f::put(global,0x22,built.global.field22,2);
  check(std::equal(global.begin(),global.end(),c.global_after.begin()),"Original global changed outside canonical RNG owner");
  const auto before=built.manager;
- const auto updated=value<update::Output>(update::apply(built.manager,step.context));
+ const auto updated=value<update::Output>(update::apply(built.manager,built.global,step.context));
  check(updated.manager==f::decode_manager(step.after,list,c.binding),"Native update differs from original Manager");
  check(updated.visited==step.record_calls.size()&&!updated.clock_gated,"Original update dispatch coverage differs");
  check(built.manager==before,"Native update mutated borrowed pre-state");

@@ -46,6 +46,33 @@ void consume_command(State& destination,pcs::State controller,std::vector<motion
     for(std::size_t i=0;i<6;++i)destination.inactive[i]=std::move(layers[i+2]);
 }
 
+UpdateDispatchOutput consume_dispatch(const State& source,player_update_dispatch::Output applied){
+    auto& prepared=applied.prepared.prepared;
+    UpdateDispatchOutput out{source,std::move(applied.action_fields),std::move(prepared.fields),
+        std::move(prepared.collection),{std::move(prepared.effects),std::move(applied.prepared.statistics),
+        applied.prepared.returns,std::move(applied.dispatches),applied.dispatch_count}};
+    consume_command(out.state,std::move(prepared.state),std::move(prepared.layers));
+    return out;
+}
+UpdateAdjustmentOutput consume_adjustment(const State& source,player_update_post_dispatch::Output applied){
+    return {consume_dispatch(source,std::move(applied.dispatched)),std::move(applied.effects)};
+}
+UpdateStatusOutput consume_status(const State& source,player_update_status::Output applied){
+    return {consume_adjustment(source,std::move(applied.adjusted)),std::move(applied.effects)};
+}
+UpdateNotificationsOutput consume_notifications(const State& source,player_update_notifications::Output applied){
+    return {consume_status(source,std::move(applied.status)),std::move(applied.queue),std::move(applied.effects)};
+}
+// Each caller checkpoint shares this one bounded projection and allocation
+// boundary. The operation receives temporary storage and publishes nothing.
+template<class Result,class Operation>Result prepare_update(const State& source,const Limits& limits,Operation operation){
+    try{
+        if(auto error=validate(source,limits,true))return *error;
+        auto storage=command_storage(source);
+        return operation(std::span<const motion_pending::Layer>{storage});
+    }catch(const std::bad_alloc&){return capacity();}catch(const std::length_error&){return capacity();}
+}
+
 }
 Result apply(const State& source,const Command& command,const CommandContext& context,Limits limits){
     try{
@@ -77,6 +104,59 @@ State1Result dispatch_state1(const State& source,const player_state1::Fields& fi
         consume_command(out.state,std::move(applied.state),std::move(applied.layers));
         return out;
     }catch(const std::bad_alloc&){return capacity();}catch(const std::length_error&){return capacity();}
+}
+UpdateDispatchResult dispatch_update(const State& source,const player_state1::Fields& action_fields,
+    const player_fields::Fields& fields,const player_object_query::Manager& objects,
+    const player_update_dispatch::Context& context,Limits limits){
+    return prepare_update<UpdateDispatchResult>(source,limits,[&](std::span<const motion_pending::Layer> storage)->UpdateDispatchResult{
+        auto result=player_update_dispatch::apply(source.controller,action_fields,storage,2,
+            fields,objects,context,limits.command);
+        if(auto* error=std::get_if<player_update_dispatch::Error>(&result))return Error{Phase::update_dispatch,*error};
+        return consume_dispatch(source,std::get<player_update_dispatch::Output>(std::move(result)));
+    });
+}
+UpdateAdjustmentResult adjust_update(const State& source,const player_state1::Fields& action_fields,
+    const player_fields::Fields& fields,const player_object_query::Manager& objects,
+    const player_update_post_dispatch::Context& context,Limits limits){
+    return prepare_update<UpdateAdjustmentResult>(source,limits,[&](std::span<const motion_pending::Layer> storage)->UpdateAdjustmentResult{
+        auto result=player_update_post_dispatch::apply(source.controller,action_fields,storage,2,
+            fields,objects,context,limits.command);
+        if(auto* error=std::get_if<player_update_post_dispatch::Error>(&result))return Error{Phase::update_adjustment,*error};
+        return consume_adjustment(source,std::get<player_update_post_dispatch::Output>(std::move(result)));
+    });
+}
+UpdateStatusResult update_status(const State& source,const player_state1::Fields& action_fields,
+    const player_fields::Fields& fields,const player_object_query::Manager& objects,
+    const player_update_post_dispatch::Context& context,Limits limits){
+    return prepare_update<UpdateStatusResult>(source,limits,[&](std::span<const motion_pending::Layer> storage)->UpdateStatusResult{
+        auto result=player_update_status::apply(source.controller,action_fields,storage,2,
+            fields,objects,context,limits.command);
+        if(auto* error=std::get_if<player_update_status::Error>(&result))return Error{Phase::update_status,*error};
+        auto applied=std::get<player_update_status::Output>(std::move(result));
+        return consume_status(source,std::move(applied));
+    });
+}
+UpdateNotificationsResult update_notifications(const State& source,const player_state1::Fields& action_fields,
+    const player_fields::Fields& fields,const player_object_query::Manager& objects,
+    const player_update_post_dispatch::Context& context,const notification_queue::State& queue,Limits limits){
+    return prepare_update<UpdateNotificationsResult>(source,limits,[&](std::span<const motion_pending::Layer> storage)->UpdateNotificationsResult{
+        auto result=player_update_notifications::apply(source.controller,action_fields,storage,2,
+            fields,objects,context,queue,limits.command);
+        if(auto* error=std::get_if<player_update_notifications::Error>(&result))return Error{Phase::update_notifications,*error};
+        auto applied=std::get<player_update_notifications::Output>(std::move(result));
+        return consume_notifications(source,std::move(applied));
+    });
+}
+UpdateDirectionResult update_direction(const State& source,const player_state1::Fields& action_fields,
+    const player_fields::Fields& fields,const player_object_query::Manager& objects,
+    const player_update_direction::Context& context,const notification_queue::State& queue,Limits limits){
+    return prepare_update<UpdateDirectionResult>(source,limits,[&](std::span<const motion_pending::Layer> storage)->UpdateDirectionResult{
+        auto result=player_update_direction::apply(source.controller,action_fields,storage,2,
+            fields,objects,context,queue,limits.command);
+        if(auto* error=std::get_if<player_update_direction::Error>(&result))return Error{Phase::update_direction,*error};
+        auto applied=std::get<player_update_direction::Output>(std::move(result));
+        return UpdateDirectionOutput{consume_notifications(source,std::move(applied.notified)),std::move(applied.material),std::move(applied.effects)};
+    });
 }
 Result step(const State& source,const FrameContext& context,Limits limits){
     try{

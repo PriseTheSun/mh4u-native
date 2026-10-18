@@ -28,8 +28,17 @@ struct Primary {
  std::array<std::uint16_t,2> words18{};std::array<std::uint8_t,8> bytes1c{};
  bool operator==(const Primary&)const=default;
 };
-struct Position {Word source_offset{},buffer_offset{};std::array<std::byte,28> raw{};bool operator==(const Position&)const=default;};
-struct Choice {Word source_offset{},buffer_offset{};std::array<std::byte,6> raw{};bool operator==(const Choice&)const=default;};
+struct Position {
+ Word source_offset{},buffer_offset{};std::array<std::byte,28> raw{};
+ std::array<Word,3> position_bits{};Word radius_bits{},height_bits{};
+ std::array<std::uint16_t,2> words14{};std::array<std::uint8_t,4> bytes18{};
+ bool operator==(const Position&)const=default;
+};
+struct Choice {
+ Word source_offset{},buffer_offset{};std::array<std::byte,6> raw{};
+ std::uint8_t weight{},member{};std::array<std::uint8_t,2> counts{},flags{};
+ bool operator==(const Choice&)const=default;
+};
 struct PositionSet {Descriptor descriptor;std::span<const Position> records;};
 struct ChoiceSet {Descriptor descriptor;std::span<const Choice> records;};
 struct Group {

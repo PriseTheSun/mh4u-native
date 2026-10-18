@@ -73,6 +73,8 @@ foreach(state1_owner mh4u_player_state1_dynamics mh4u_player_object_query mh4u_p
 endforeach()
 
 
+
+
 if(MSVC)
     target_compile_options(mh4u_player_state1 PRIVATE /W4 /utf-8 /fp:strict)
 else()
@@ -1254,9 +1256,13 @@ foreach(item_pop_target mh4u_item_pop_resources mh4u-item-pop-resources-tests)
     endif()
 endforeach()
 
+add_library(mh4u_item_pop_secondary src/item_pop_secondary.cpp)
+target_include_directories(mh4u_item_pop_secondary PUBLIC src)
+target_link_libraries(mh4u_item_pop_secondary PUBLIC mh4u_item_pop_resources mh4u_player_selection mh4u_source_rng)
+
 add_library(mh4u_item_pop_builder src/item_pop_builder.cpp)
 target_include_directories(mh4u_item_pop_builder PUBLIC src)
-target_link_libraries(mh4u_item_pop_builder PUBLIC mh4u_item_pop_resources mh4u_player_selection)
+target_link_libraries(mh4u_item_pop_builder PUBLIC mh4u_item_pop_secondary)
 add_executable(mh4u-item-pop-builder-tests src/item_pop_builder_tests.cpp)
 target_include_directories(mh4u-item-pop-builder-tests PRIVATE vendor/picosha2)
 target_link_libraries(mh4u-item-pop-builder-tests PRIVATE mh4u_item_pop_builder)
@@ -1274,7 +1280,7 @@ if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/research/private/item-pop-builder-v2/shar
         "${CMAKE_CURRENT_SOURCE_DIR}/research/private/item-pop-builder-v2/shared-primitives/arm-first/oracle.bin"
         "1644c045636b2aeab55d456ed7c67263654aec2d540d0de4167fac813f849ab5")
 endif()
-foreach(builder_target mh4u_item_pop_builder mh4u-item-pop-builder-tests mh4u_source_rng mh4u-source-primitives-tests)
+foreach(builder_target mh4u_item_pop_secondary mh4u_item_pop_builder mh4u-item-pop-builder-tests mh4u_source_rng mh4u-source-primitives-tests)
     if(MSVC)
         target_compile_options(${builder_target} PRIVATE /W4 /utf-8)
     else()
@@ -1286,7 +1292,8 @@ add_library(mh4u_binary32_arithmetic src/binary32_arithmetic.cpp)
 target_include_directories(mh4u_binary32_arithmetic PUBLIC src)
 add_library(mh4u_item_pop_update src/item_pop_update.cpp)
 target_include_directories(mh4u_item_pop_update PUBLIC src)
-target_link_libraries(mh4u_item_pop_update PUBLIC mh4u_binary32_arithmetic mh4u_player_world_lookup)
+target_link_libraries(mh4u_item_pop_update PUBLIC mh4u_binary32_arithmetic mh4u_player_world_lookup mh4u_item_pop_secondary)
+target_link_libraries(mh4u_native_player_actor PUBLIC mh4u_item_pop_update)
 add_executable(mh4u-binary32-arithmetic-tests src/binary32_arithmetic_tests.cpp)
 target_include_directories(mh4u-binary32-arithmetic-tests PRIVATE vendor/picosha2)
 target_link_libraries(mh4u-binary32-arithmetic-tests PRIVATE mh4u_binary32_arithmetic)
@@ -1322,3 +1329,340 @@ foreach(update_target mh4u_binary32_arithmetic mh4u_item_pop_update mh4u-binary3
         target_compile_options(${update_target} PRIVATE -Wall -Wextra -Wpedantic -ffp-contract=off)
     endif()
 endforeach()
+
+add_executable(mh4u-item-pop-lifecycle-tests src/item_pop_lifecycle_tests.cpp)
+target_include_directories(mh4u-item-pop-lifecycle-tests PRIVATE vendor/picosha2)
+target_link_libraries(mh4u-item-pop-lifecycle-tests PRIVATE mh4u_item_pop_builder mh4u_item_pop_update)
+add_executable(mh4u-item-pop-lifecycle-actor-tests src/item_pop_lifecycle_actor_tests.cpp)
+target_include_directories(mh4u-item-pop-lifecycle-actor-tests PRIVATE vendor/picosha2)
+target_link_libraries(mh4u-item-pop-lifecycle-actor-tests PRIVATE mh4u_native_player_actor mh4u_item_pop_builder)
+set(MH4U_ITEM_POP_LIFECYCLE_FIXTURE "${CMAKE_CURRENT_SOURCE_DIR}/research/private/item-pop-lifecycle-v1/oracle/derived-final/oracle.bin")
+set(MH4U_ITEM_POP_LIFECYCLE_FIXTURE_SHA "c336c5cf79dcb3d2f58955fabd484b7d9a6082731054dbbbaca4dc7446807c6d")
+if(EXISTS "${MH4U_ITEM_POP_LIFECYCLE_FIXTURE}")
+    add_test(NAME item-pop-lifecycle-arm-oracle COMMAND mh4u-item-pop-lifecycle-tests
+        "${MH4U_ITEM_POP_LIFECYCLE_FIXTURE}" "${MH4U_ITEM_POP_LIFECYCLE_FIXTURE_SHA}"
+        "${CMAKE_CURRENT_SOURCE_DIR}")
+endif()
+if(EXISTS "${MH4U_ITEM_POP_LIFECYCLE_FIXTURE}" AND EXISTS "${MH4U_PLAYER_CONSTANTS}" AND EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/research/private/player-state1-continuation-native-v1/actor-fixture/hunter-seven-co2.mhnative")
+    add_test(NAME item-pop-lifecycle-player-integration COMMAND mh4u-item-pop-lifecycle-actor-tests
+        "${CMAKE_CURRENT_SOURCE_DIR}/research/private/player-state1-continuation-native-v1/actor-fixture/hunter-seven-co2.mhnative"
+        "${MH4U_PLAYER_CONSTANTS}" "${MH4U_PLAYER_CONSTANTS_SHA}"
+        "${MH4U_ITEM_POP_LIFECYCLE_FIXTURE}" "${MH4U_ITEM_POP_LIFECYCLE_FIXTURE_SHA}"
+        "${CMAKE_CURRENT_SOURCE_DIR}")
+endif()
+foreach(lifecycle_target mh4u-item-pop-lifecycle-tests mh4u-item-pop-lifecycle-actor-tests)
+    if(MSVC)
+        target_compile_options(${lifecycle_target} PRIVATE /W4 /utf-8 /fp:strict)
+    else()
+        target_compile_options(${lifecycle_target} PRIVATE -Wall -Wextra -Wpedantic -ffp-contract=off)
+    endif()
+endforeach()
+
+# Explicit player-update checkpoint; no full caller or scheduler is inferred.
+add_library(mh4u_player_object_interaction src/player_object_interaction.cpp)
+target_include_directories(mh4u_player_object_interaction PUBLIC src)
+target_link_libraries(mh4u_player_object_interaction PUBLIC mh4u_player_object_query mh4u_binary32_arithmetic)
+add_library(mh4u_player_update_admission src/player_update_admission.cpp)
+target_include_directories(mh4u_player_update_admission PUBLIC src)
+target_link_libraries(mh4u_player_update_admission PUBLIC mh4u_player_update_prefix mh4u_player_object_interaction mh4u_player_policy_interpreter)
+target_link_libraries(mh4u_native_player_actor PUBLIC mh4u_player_update_admission)
+foreach(admission_owner mh4u_player_object_interaction mh4u_player_update_admission)
+    if(MSVC)
+        target_compile_options(${admission_owner} PRIVATE /W4 /utf-8 /fp:strict)
+    else()
+        target_compile_options(${admission_owner} PRIVATE -Wall -Wextra -Wpedantic -ffp-contract=off)
+    endif()
+endforeach()
+
+add_executable(mh4u-player-update-admission-actor-tests src/player_update_admission_actor_tests.cpp)
+target_include_directories(mh4u-player-update-admission-actor-tests PRIVATE vendor/picosha2)
+target_link_libraries(mh4u-player-update-admission-actor-tests PRIVATE mh4u_player_preview)
+if(EXISTS "${MH4U_PLAYER_CONSTANTS}" AND EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/research/private/player-state1-continuation-native-v1/actor-fixture/hunter-seven-co2.mhnative")
+    add_test(NAME player-update-admission-player-integration COMMAND mh4u-player-update-admission-actor-tests
+        "${CMAKE_CURRENT_SOURCE_DIR}/research/private/player-state1-continuation-native-v1/actor-fixture/hunter-seven-co2.mhnative"
+        "${MH4U_PLAYER_CONSTANTS}" "${MH4U_PLAYER_CONSTANTS_SHA}"
+        "${CMAKE_CURRENT_SOURCE_DIR}/research/private/player-action-policy-v1/source-observed/table-f2efb8.bin"
+        "688f58d2943eea064fbbd3b1063a9a49183128b30080523034f614c6f912a83a")
+endif()
+if(MSVC)
+    target_compile_options(mh4u-player-update-admission-actor-tests PRIVATE /W4 /utf-8 /fp:strict)
+else()
+    target_compile_options(mh4u-player-update-admission-actor-tests PRIVATE -Wall -Wextra -Wpedantic -ffp-contract=off)
+endif()
+
+if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/research/private/player-update-admission-v1/interaction-owner/mul-probe/arm-first/oracle.bin")
+    add_test(NAME binary32-mul-vmla-arm-oracle COMMAND mh4u-binary32-arithmetic-tests
+        "${CMAKE_CURRENT_SOURCE_DIR}/research/private/player-update-admission-v1/interaction-owner/mul-probe/arm-first/oracle.bin"
+        "d1cc3a4759688e7ec5adf9d2ebe2c16531d6a94290f17a2a43e5516afe883a0e")
+endif()
+
+add_executable(mh4u-player-update-admission-tests src/player_update_admission_tests.cpp)
+target_include_directories(mh4u-player-update-admission-tests PRIVATE vendor/picosha2 "${MH4U_POLICY_OWNER_FIXTURES}")
+target_link_libraries(mh4u-player-update-admission-tests PRIVATE mh4u_player_update_admission mh4u_motion_resource)
+if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/research/private/player-update-admission-v1/oracle/derived-final/oracle.bin")
+    add_test(NAME player-update-admission-arm-oracle COMMAND mh4u-player-update-admission-tests
+        "${CMAKE_CURRENT_SOURCE_DIR}/research/private/player-update-admission-v1/oracle/derived-final/oracle.bin"
+        "dfb32c4e32517df7e031ef6769180654178577a8e8d202288218a820686cf1d4"
+        "${CMAKE_CURRENT_SOURCE_DIR}")
+endif()
+if(MSVC)
+    target_compile_options(mh4u-player-update-admission-tests PRIVATE /W4 /utf-8 /fp:strict)
+else()
+    target_compile_options(mh4u-player-update-admission-tests PRIVATE -Wall -Wextra -Wpedantic -ffp-contract=off)
+endif()
+
+add_library(mh4u_player_parameter_query src/player_parameter_query.cpp)
+target_include_directories(mh4u_player_parameter_query PUBLIC src)
+add_library(mh4u_player_update_statistics src/player_update_statistics.cpp)
+target_include_directories(mh4u_player_update_statistics PUBLIC src)
+target_link_libraries(mh4u_player_update_statistics PUBLIC mh4u_player_parameter_query mh4u_player_selection mh4u_binary32_arithmetic)
+add_library(mh4u_player_update_continuation src/player_update_continuation.cpp)
+target_include_directories(mh4u_player_update_continuation PUBLIC src)
+target_link_libraries(mh4u_player_update_continuation PUBLIC mh4u_player_update_admission mh4u_player_update_statistics)
+target_link_libraries(mh4u_native_player_actor PUBLIC mh4u_player_update_continuation)
+add_executable(mh4u-player-parameter-query-tests src/player_parameter_query_tests.cpp)
+target_include_directories(mh4u-player-parameter-query-tests PRIVATE vendor/picosha2)
+target_link_libraries(mh4u-player-parameter-query-tests PRIVATE mh4u_player_parameter_query)
+add_test(NAME player-parameter-query-boundaries COMMAND mh4u-player-parameter-query-tests)
+if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/research/private/player-update-continuation-v1/conversion-oracle/arm-first/oracle.bin")
+    add_test(NAME binary32-conversion-arm-oracle COMMAND mh4u-binary32-arithmetic-tests
+        "${CMAKE_CURRENT_SOURCE_DIR}/research/private/player-update-continuation-v1/conversion-oracle/arm-first/oracle.bin"
+        "6432bfbf238db5273c2d96b6b5a4b22244322f63e095865824f659b1dec4d91f")
+endif()
+foreach(continuation_target mh4u_player_parameter_query mh4u_player_update_statistics mh4u_player_update_continuation mh4u-player-parameter-query-tests)
+    if(MSVC)
+        target_compile_options(${continuation_target} PRIVATE /W4 /utf-8 /fp:strict)
+    else()
+        target_compile_options(${continuation_target} PRIVATE -Wall -Wextra -Wpedantic -ffp-contract=off)
+    endif()
+endforeach()
+
+add_executable(mh4u-player-update-continuation-actor-tests src/player_update_continuation_actor_tests.cpp)
+target_include_directories(mh4u-player-update-continuation-actor-tests PRIVATE vendor/picosha2)
+target_link_libraries(mh4u-player-update-continuation-actor-tests PRIVATE mh4u_native_player_actor)
+if(EXISTS "${MH4U_PLAYER_CONSTANTS}" AND EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/research/private/player-update-continuation-v1/source-memory-windows/primary-caps.bin")
+    add_test(NAME player-update-continuation-player-integration COMMAND mh4u-player-update-continuation-actor-tests
+        "${CMAKE_CURRENT_SOURCE_DIR}/research/private/player-state1-continuation-native-v1/actor-fixture/hunter-seven-co2.mhnative"
+        "${MH4U_PLAYER_CONSTANTS}" "${MH4U_PLAYER_CONSTANTS_SHA}"
+        "${CMAKE_CURRENT_SOURCE_DIR}/research/private/player-update-continuation-v1/source-memory-windows/primary-caps.bin"
+        "6d21942f7ba2ee8cdb1f179af91da2a1af58a147f63bdb7540ca1722f8194f1b")
+endif()
+if(MSVC)
+    target_compile_options(mh4u-player-update-continuation-actor-tests PRIVATE /W4 /utf-8 /fp:strict)
+else()
+    target_compile_options(mh4u-player-update-continuation-actor-tests PRIVATE -Wall -Wextra -Wpedantic -ffp-contract=off)
+endif()
+
+add_executable(mh4u-player-update-continuation-tests src/player_update_continuation_tests.cpp)
+target_include_directories(mh4u-player-update-continuation-tests PRIVATE vendor/picosha2 "${MH4U_POLICY_OWNER_FIXTURES}")
+target_link_libraries(mh4u-player-update-continuation-tests PRIVATE mh4u_player_update_continuation mh4u_motion_resource)
+if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/research/private/player-update-continuation-v1/oracle/derived-complete/oracle.bin")
+    add_test(NAME player-update-continuation-arm-oracle COMMAND mh4u-player-update-continuation-tests
+        "${CMAKE_CURRENT_SOURCE_DIR}/research/private/player-update-continuation-v1/oracle/derived-complete/oracle.bin"
+        "3f306ece311c1a241614c84995c84887d6b1ebac8e1609166c8fa483c1b6a021"
+        "${CMAKE_CURRENT_SOURCE_DIR}")
+endif()
+if(MSVC)
+    target_compile_options(mh4u-player-update-continuation-tests PRIVATE /W4 /utf-8 /fp:strict)
+else()
+    target_compile_options(mh4u-player-update-continuation-tests PRIVATE -Wall -Wextra -Wpedantic -ffp-contract=off)
+endif()
+
+add_library(mh4u_player_update_dispatch src/player_update_dispatch.cpp)
+target_include_directories(mh4u_player_update_dispatch PUBLIC src)
+target_link_libraries(mh4u_player_update_dispatch PUBLIC mh4u_player_update_continuation mh4u_player_state1)
+target_link_libraries(mh4u_player_animation PUBLIC mh4u_player_update_dispatch)
+add_executable(mh4u-player-state3-tests src/player_state3_tests.cpp)
+target_link_libraries(mh4u-player-state3-tests PRIVATE mh4u_player_state1)
+add_test(NAME player-state3-dispatch-boundaries COMMAND mh4u-player-state3-tests)
+foreach(dispatch_target mh4u_player_update_dispatch mh4u-player-state3-tests)
+    if(MSVC)
+        target_compile_options(${dispatch_target} PRIVATE /W4 /utf-8 /fp:strict)
+    else()
+        target_compile_options(${dispatch_target} PRIVATE -Wall -Wextra -Wpedantic -ffp-contract=off)
+    endif()
+endforeach()
+
+add_executable(mh4u-player-update-dispatch-actor-tests src/player_update_dispatch_actor_tests.cpp)
+target_include_directories(mh4u-player-update-dispatch-actor-tests PRIVATE vendor/picosha2)
+target_link_libraries(mh4u-player-update-dispatch-actor-tests PRIVATE mh4u_native_player_actor)
+add_executable(mh4u-player-update-adjustment-actor-tests src/player_update_adjustment_actor_tests.cpp)
+target_include_directories(mh4u-player-update-adjustment-actor-tests PRIVATE vendor/picosha2)
+target_link_libraries(mh4u-player-update-adjustment-actor-tests PRIVATE mh4u_native_player_actor)
+add_executable(mh4u-player-update-status-actor-tests src/player_update_status_actor_tests.cpp)
+target_include_directories(mh4u-player-update-status-actor-tests PRIVATE vendor/picosha2)
+target_link_libraries(mh4u-player-update-status-actor-tests PRIVATE mh4u_native_player_actor)
+add_executable(mh4u-player-update-notifications-actor-tests src/player_update_notifications_actor_tests.cpp)
+target_include_directories(mh4u-player-update-notifications-actor-tests PRIVATE vendor/picosha2)
+target_link_libraries(mh4u-player-update-notifications-actor-tests PRIVATE mh4u_native_player_actor)
+if(EXISTS "${MH4U_PLAYER_CONSTANTS}" AND EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/research/private/player-update-continuation-v1/source-memory-windows/primary-caps.bin"
+   AND EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/research/private/player-state1-continuation-native-v1/actor-fixture/hunter-seven-co2.mhnative"
+   AND EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/research/private/player-action-policy-v1/source-observed/table-f2efb8.bin"
+   AND EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/research/private/player-state1-runtime-v1/inputs/table-f2f2d0.bin"
+   AND EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/assets/local/collision-probe/multigroup-search/86059.sbc")
+    foreach(update_operation dispatch adjustment status notifications)
+    add_test(NAME player-update-${update_operation}-player-integration COMMAND mh4u-player-update-${update_operation}-actor-tests
+        "${CMAKE_CURRENT_SOURCE_DIR}/research/private/player-state1-continuation-native-v1/actor-fixture/hunter-seven-co2.mhnative"
+        "${MH4U_PLAYER_CONSTANTS}" "${MH4U_PLAYER_CONSTANTS_SHA}"
+        "${CMAKE_CURRENT_SOURCE_DIR}/research/private/player-update-continuation-v1/source-memory-windows/primary-caps.bin"
+        "6d21942f7ba2ee8cdb1f179af91da2a1af58a147f63bdb7540ca1722f8194f1b"
+        "${CMAKE_CURRENT_SOURCE_DIR}/research/private/player-action-policy-v1/source-observed/table-f2efb8.bin"
+        "688f58d2943eea064fbbd3b1063a9a49183128b30080523034f614c6f912a83a"
+        "${CMAKE_CURRENT_SOURCE_DIR}/research/private/player-state1-runtime-v1/inputs/table-f2f2d0.bin"
+        "c7eacbb0116b97e7f88ad675e109e27675ea93791f4112928ccd1e8fe6f0e310"
+        "${CMAKE_CURRENT_SOURCE_DIR}/assets/local/collision-probe/multigroup-search/86059.sbc"
+        "a024dcc555ed3dd4df965e762f24349d4112ec0fe8b4630a254e84dbd1e48fb8")
+    endforeach()
+endif()
+
+add_executable(mh4u-player-update-dispatch-tests src/player_update_dispatch_tests.cpp)
+target_include_directories(mh4u-player-update-dispatch-tests PRIVATE vendor/picosha2 "${MH4U_POLICY_OWNER_FIXTURES}")
+target_link_libraries(mh4u-player-update-dispatch-tests PRIVATE mh4u_player_update_dispatch mh4u_motion_resource)
+if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/research/private/player-update-dispatch-v1/oracle/derived-complete/oracle.bin")
+    add_test(NAME player-update-dispatch-arm-oracle COMMAND mh4u-player-update-dispatch-tests
+        "${CMAKE_CURRENT_SOURCE_DIR}/research/private/player-update-dispatch-v1/oracle/derived-complete/oracle.bin"
+        "c9bbc12b9c8cdeb62534a89fd976e69e5bc81907fdb1e909fa36198dfca635b4"
+        "${CMAKE_CURRENT_SOURCE_DIR}")
+endif()
+if(MSVC)
+    target_compile_options(mh4u-player-update-dispatch-tests PRIVATE /W4 /utf-8 /fp:strict)
+else()
+    target_compile_options(mh4u-player-update-dispatch-tests PRIVATE -Wall -Wextra -Wpedantic -ffp-contract=off)
+endif()
+if(MSVC)
+    target_compile_options(mh4u-player-update-dispatch-actor-tests PRIVATE /W4 /utf-8 /fp:strict)
+else()
+    target_compile_options(mh4u-player-update-dispatch-actor-tests PRIVATE -Wall -Wextra -Wpedantic -ffp-contract=off)
+endif()
+
+add_library(mh4u_motion_speed src/motion_speed.cpp)
+target_include_directories(mh4u_motion_speed PUBLIC src)
+target_link_libraries(mh4u_motion_speed PUBLIC mh4u_binary32_arithmetic)
+add_library(mh4u_player_position_timer src/player_position_timer.cpp)
+target_include_directories(mh4u_player_position_timer PUBLIC src)
+target_link_libraries(mh4u_player_position_timer PUBLIC mh4u_binary32_arithmetic)
+add_library(mh4u_player_status_update src/player_status_update.cpp)
+target_include_directories(mh4u_player_status_update PUBLIC src)
+target_link_libraries(mh4u_player_status_update PUBLIC mh4u_player_object_query mh4u_player_position_timer)
+add_executable(mh4u-player-status-update-boundaries src/player_status_update_boundaries.cpp)
+target_link_libraries(mh4u-player-status-update-boundaries PRIVATE mh4u_player_status_update)
+add_test(NAME player-status-update-boundaries COMMAND mh4u-player-status-update-boundaries)
+add_executable(mh4u-player-status-update-tests src/player_status_update_tests.cpp)
+target_include_directories(mh4u-player-status-update-tests PRIVATE vendor/picosha2)
+target_link_libraries(mh4u-player-status-update-tests PRIVATE mh4u_player_status_update)
+set(MH4U_STATUS_FIXTURE "${CMAKE_CURRENT_SOURCE_DIR}/research/private/player-update-late-helpers-v1/oracle/derived-first/oracle.bin")
+if(EXISTS "${MH4U_STATUS_FIXTURE}")
+    add_test(NAME player-status-update-arm-oracle COMMAND mh4u-player-status-update-tests
+        "${MH4U_STATUS_FIXTURE}" "1850a1d21503baea52506a0fa3da2ca99da76ac52a092dfdcaba4771724d4138")
+endif()
+add_executable(mh4u-player-position-timer-tests src/player_position_timer_tests.cpp)
+target_include_directories(mh4u-player-position-timer-tests PRIVATE vendor/picosha2)
+target_link_libraries(mh4u-player-position-timer-tests PRIVATE mh4u_player_position_timer)
+add_test(NAME player-position-timer-boundaries COMMAND mh4u-player-position-timer-tests)
+set(MH4U_POSITION_TIMER_FIXTURE "${CMAKE_CURRENT_SOURCE_DIR}/research/private/player-update-late-helpers-v1/position-tail/arm-first/oracle.bin")
+if(EXISTS "${MH4U_POSITION_TIMER_FIXTURE}")
+    add_test(NAME player-position-timer-arm-oracle COMMAND mh4u-player-position-timer-tests
+        "${MH4U_POSITION_TIMER_FIXTURE}" "63fb3b49b002533323c91810a235b48d49108ab8f555664c3120f0986450c9d2")
+endif()
+foreach(late_target mh4u_player_position_timer mh4u_player_status_update mh4u-player-status-update-boundaries mh4u-player-status-update-tests mh4u-player-position-timer-tests)
+    if(MSVC)
+        target_compile_options(${late_target} PRIVATE /W4 /utf-8 /fp:strict)
+    else()
+        target_compile_options(${late_target} PRIVATE -Wall -Wextra -Wpedantic -ffp-contract=off)
+    endif()
+endforeach()
+add_library(mh4u_player_update_post_dispatch src/player_update_post_dispatch.cpp)
+target_include_directories(mh4u_player_update_post_dispatch PUBLIC src)
+target_link_libraries(mh4u_player_update_post_dispatch PUBLIC mh4u_player_update_dispatch mh4u_motion_speed)
+add_library(mh4u_player_update_status src/player_update_status.cpp)
+target_include_directories(mh4u_player_update_status PUBLIC src)
+target_link_libraries(mh4u_player_update_status PUBLIC mh4u_player_update_post_dispatch mh4u_player_status_update)
+add_library(mh4u_notification_queue src/notification_queue.cpp)
+target_include_directories(mh4u_notification_queue PUBLIC src)
+add_library(mh4u_player_status_notifications src/player_status_notifications.cpp)
+target_include_directories(mh4u_player_status_notifications PUBLIC src)
+target_link_libraries(mh4u_player_status_notifications PUBLIC mh4u_notification_queue mh4u_player_transition)
+add_library(mh4u_player_update_notifications src/player_update_notifications.cpp)
+target_include_directories(mh4u_player_update_notifications PUBLIC src)
+target_link_libraries(mh4u_player_update_notifications PUBLIC mh4u_player_update_status mh4u_player_status_notifications)
+target_link_libraries(mh4u_player_animation PUBLIC mh4u_player_update_notifications)
+add_executable(mh4u-motion-speed-tests src/motion_speed_tests.cpp)
+target_link_libraries(mh4u-motion-speed-tests PRIVATE mh4u_motion_speed)
+add_test(NAME motion-speed-boundaries COMMAND mh4u-motion-speed-tests)
+add_executable(mh4u-player-update-post-dispatch-boundaries src/player_update_post_dispatch_boundaries.cpp)
+target_include_directories(mh4u-player-update-post-dispatch-boundaries PRIVATE vendor/picosha2)
+target_link_libraries(mh4u-player-update-post-dispatch-boundaries PRIVATE mh4u_player_update_post_dispatch)
+add_test(NAME player-update-post-dispatch-boundaries COMMAND mh4u-player-update-post-dispatch-boundaries)
+foreach(post_target mh4u_notification_queue mh4u_player_status_notifications mh4u_player_update_notifications mh4u-player-update-notifications-actor-tests mh4u-player-update-adjustment-actor-tests mh4u-player-update-status-actor-tests mh4u_motion_speed mh4u_player_update_post_dispatch mh4u_player_update_status mh4u-motion-speed-tests mh4u-player-update-post-dispatch-boundaries)
+    if(MSVC)
+        target_compile_options(${post_target} PRIVATE /W4 /utf-8 /fp:strict)
+    else()
+        target_compile_options(${post_target} PRIVATE -Wall -Wextra -Wpedantic -ffp-contract=off)
+    endif()
+endforeach()
+
+add_executable(mh4u-player-update-post-dispatch-tests src/player_update_post_dispatch_tests.cpp)
+target_include_directories(mh4u-player-update-post-dispatch-tests PRIVATE vendor/picosha2 "${MH4U_POLICY_OWNER_FIXTURES}")
+target_link_libraries(mh4u-player-update-post-dispatch-tests PRIVATE mh4u_player_update_post_dispatch mh4u_motion_resource)
+set(MH4U_POST_FIXTURES "${CMAKE_CURRENT_SOURCE_DIR}/research/private/player-update-post-dispatch-v1/oracle")
+if(EXISTS "${MH4U_POST_FIXTURES}/derived-first/oracle.bin" AND EXISTS "${MH4U_POST_FIXTURES}/derived-leaves/speed.bin" AND EXISTS "${MH4U_POST_FIXTURES}/derived-leaves/phase.bin")
+    add_test(NAME player-update-post-dispatch-arm-oracle COMMAND mh4u-player-update-post-dispatch-tests
+        "${MH4U_POST_FIXTURES}/derived-first/oracle.bin"
+        "733dc120f38cea7a24dc9de032ccef26c459f57a894c5a97a7aca7b1055ec007"
+        "${MH4U_POST_FIXTURES}/derived-leaves/speed.bin"
+        "d427056a53befcf2289602f853a0ec532227be4a890a46f7b669c93407f56fec"
+        "${MH4U_POST_FIXTURES}/derived-leaves/phase.bin"
+        "7ba419fe9f8bcce43fa650dd3460141e458b34e907fa27b65e09e7d70cc5c225"
+        "${CMAKE_CURRENT_SOURCE_DIR}")
+endif()
+if(MSVC)
+    target_compile_options(mh4u-player-update-post-dispatch-tests PRIVATE /W4 /utf-8 /fp:strict)
+else()
+    target_compile_options(mh4u-player-update-post-dispatch-tests PRIVATE -Wall -Wextra -Wpedantic -ffp-contract=off)
+endif()
+
+add_executable(mh4u-player-update-status-tests src/player_update_status_tests.cpp)
+target_include_directories(mh4u-player-update-status-tests PRIVATE vendor/picosha2 "${MH4U_POLICY_OWNER_FIXTURES}")
+target_link_libraries(mh4u-player-update-status-tests PRIVATE mh4u_player_update_status mh4u_motion_resource)
+set(MH4U_UPDATE_STATUS_FIXTURE "${CMAKE_CURRENT_SOURCE_DIR}/research/private/player-update-status-v1/oracle/derived-first/oracle.bin")
+if(EXISTS "${MH4U_UPDATE_STATUS_FIXTURE}")
+    add_test(NAME player-update-status-arm-oracle COMMAND mh4u-player-update-status-tests
+        "${MH4U_UPDATE_STATUS_FIXTURE}"
+        "c7ad64b4014929a8d359b3e87f7e2e5a21b78e8c0c244efb6ee4ff4f20b42198"
+        "${CMAKE_CURRENT_SOURCE_DIR}")
+endif()
+if(MSVC)
+    target_compile_options(mh4u-player-update-status-tests PRIVATE /W4 /utf-8 /fp:strict)
+else()
+    target_compile_options(mh4u-player-update-status-tests PRIVATE -Wall -Wextra -Wpedantic -ffp-contract=off)
+endif()
+
+add_executable(mh4u-player-status-notifications-tests src/player_status_notifications_tests.cpp)
+target_include_directories(mh4u-player-status-notifications-tests PRIVATE vendor/picosha2)
+target_link_libraries(mh4u-player-status-notifications-tests PRIVATE mh4u_player_status_notifications)
+add_test(NAME player-status-notifications-boundaries COMMAND mh4u-player-status-notifications-tests)
+set(MH4U_STATUS_NOTIFICATIONS_FIXTURE "${CMAKE_CURRENT_SOURCE_DIR}/research/private/player-update-notifications-v1/queue-native/derived-first/oracle.bin")
+if(EXISTS "${MH4U_STATUS_NOTIFICATIONS_FIXTURE}")
+    add_test(NAME player-status-notifications-arm-oracle COMMAND mh4u-player-status-notifications-tests
+        "${MH4U_STATUS_NOTIFICATIONS_FIXTURE}" "aad81d4505b88d48802364e7339ebd9197121bc6208e943a4c384b99151681fa")
+endif()
+if(MSVC)
+    target_compile_options(mh4u-player-status-notifications-tests PRIVATE /W4 /utf-8 /fp:strict)
+else()
+    target_compile_options(mh4u-player-status-notifications-tests PRIVATE -Wall -Wextra -Wpedantic -ffp-contract=off)
+endif()
+
+add_executable(mh4u-player-update-notifications-tests src/player_update_notifications_tests.cpp)
+target_include_directories(mh4u-player-update-notifications-tests PRIVATE vendor/picosha2 "${MH4U_POLICY_OWNER_FIXTURES}")
+target_link_libraries(mh4u-player-update-notifications-tests PRIVATE mh4u_player_update_notifications mh4u_motion_resource)
+set(MH4U_UPDATE_NOTIFICATIONS_FIXTURE "${CMAKE_CURRENT_SOURCE_DIR}/research/private/player-update-notifications-v1/oracle/derived-first/oracle.bin")
+if(EXISTS "${MH4U_UPDATE_NOTIFICATIONS_FIXTURE}")
+    add_test(NAME player-update-notifications-arm-oracle COMMAND mh4u-player-update-notifications-tests
+        "${MH4U_UPDATE_NOTIFICATIONS_FIXTURE}" "a3f8f4a04bbc24a7bc8032805a16fd32909c422a6fec3dccbcd751feb61df3a9"
+        "${CMAKE_CURRENT_SOURCE_DIR}")
+endif()
+if(MSVC)
+    target_compile_options(mh4u-player-update-notifications-tests PRIVATE /W4 /utf-8 /fp:strict)
+else()
+    target_compile_options(mh4u-player-update-notifications-tests PRIVATE -Wall -Wextra -Wpedantic -ffp-contract=off)
+endif()

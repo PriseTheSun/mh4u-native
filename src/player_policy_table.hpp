@@ -3,6 +3,7 @@
 #include <bit>
 #include <cstdint>
 #include <memory>
+#include <optional>
 #include <span>
 #include <string_view>
 #include <variant>
@@ -36,15 +37,24 @@ struct Coverage {
     std::uint8_t next_first_byte{}; // Always observed, including after48 records.
     bool operator==(const Coverage&)const=default;
 };
+// b2a75c scans until a sentinel, independently of the interpreter's48-row
+// cap. Omitted fields are unavailable carrier bytes, consumed lazily by that
+// query. The table owner alone interprets the22-byte source layout.
+struct ScanRecord {
+    std::uint8_t first{};
+    std::optional<std::uint16_t> action,flags06,flags0e;
+};
+struct DecodeLimits {std::size_t source_bytes=maximum_source_bytes;};
 enum class ErrorCode {invalid_expected,hash_mismatch,source_limit,incomplete_first_byte,incomplete_record,identity_exhausted,capacity};
 struct Error {ErrorCode code;std::string_view message;std::size_t byte_offset{};};
 template<class T>using Result=std::variant<T,Error>;
 class Table {
 public:
-    static Result<Table> decode(std::span<const std::uint8_t>,std::string_view expected_sha256);
+    static Result<Table> decode(std::span<const std::uint8_t>,std::string_view expected_sha256,DecodeLimits = {});
     std::span<const std::uint8_t> bytes()const noexcept;
     std::span<const Record> records()const noexcept;
     Coverage coverage()const noexcept;
+    [[nodiscard]] Result<ScanRecord> scan_record(std::size_t index)const noexcept;
     std::string_view sha256()const noexcept;
     std::uint64_t identity()const noexcept;
     bool operator==(const Table& other)const noexcept{return identity()==other.identity();}

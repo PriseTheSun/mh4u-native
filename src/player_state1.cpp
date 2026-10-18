@@ -212,16 +212,19 @@ Result apply(const pcs::State& input,const Fields& fields,
         if(auto error=mc::validate_storage(layers,limits))
             return Error{ErrorCode::capacity,error->message,*error};
         const auto& source=input.player;
-        if(source.pbw.field371!=1)
-            return failure(ErrorCode::unsupported_state,"Only act_st1 has a recovered dispatch profile here");
+        if(source.pbw.field371!=1&&source.pbw.field371!=3)
+            return failure(ErrorCode::unsupported_state,"Only state1 handlers and the source state3 return are recovered here");
         const auto action=source.pbw.field372;
-        if(action!=1&&action!=2&&action!=4&&action!=9)
+        if(source.pbw.field371==1&&action!=1&&action!=2&&action!=4&&action!=9)
             return failure(ErrorCode::unsupported_action,"This state1 action handler is not reconstructed");
         const auto substate=source.pbw.fields5[0];
         Output out{input,fields,{layers.begin(),layers.end()},{},
             context.shared_fields?*context.shared_fields:player_fields::Fields{}};
         auto& p=out.state.player;
         p.selection_pbw.field376=0; // Dispatcher entry, including no-op substates.
+        // b66a4c selects b66ae8 (BX LR) for state3. No action, layer,
+        // resource, timer or helper context is consumed by that source path.
+        if(source.pbw.field371==3)return out;
         if(substate!=0){
             if(auto error=Continuation(out,context,active_count,model,globals,sampling,limits).run(action,substate))return *error;
             return out;

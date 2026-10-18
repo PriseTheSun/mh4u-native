@@ -1,5 +1,4 @@
 #include "item_pop_builder.hpp"
-#include "source_rng.hpp"
 #include <new>
 #include <stdexcept>
 
@@ -15,12 +14,12 @@ struct Builder {
     std::size_t work{};
     std::optional<Word> group_index,record_index;
     [[noreturn]] void fail(ErrorCode code,std::string_view message)const {
-        throw Failure{Error{code,message,group_index,record_index,{},{}}};
+        throw Failure{Error{code,message,group_index,record_index,{},{},{}}};
     }
     template<class T>T require(ip::Result<T> result)const {
         if(const auto* e=std::get_if<ip::Error>(&result))
             throw Failure{Error{ErrorCode::resource_failure,"Resource lookup rejected",
-                group_index,record_index,*e,{}}};
+                group_index,record_index,*e,{},{}}};
         return std::get<T>(std::move(result));
     }
     void charge(std::size_t n) {
@@ -62,62 +61,37 @@ struct Builder {
         r.next=out.manager.head;r.previous=wl::Absent{};
         out.manager.head=wl::Index{index};++*out.manager.field4a20;
     }
-    Word random() {
-        out.global.field22=source_rng::advance_seed(out.global.field22);
-        ++out.rng_calls;return out.global.field22;
-    }
     static std::uint16_t signed_byte(std::uint8_t b) {
         return static_cast<std::uint16_t>(b<128?Word(b):Word(b)|0xff00U);
     }
-    static Word read(std::span<const std::byte> raw,unsigned offset,unsigned size) {
-        Word v=0;for(unsigned k=0;k<size;++k)v|=Word(std::to_integer<std::uint8_t>(raw[offset+k]))<<(8*k);
-        return v;
-    }
-    static Location location(const auto& record){return {record.source_offset,record.buffer_offset};}
+    static item_pop_secondary::Location location(const auto& record){return {record.source_offset,record.buffer_offset};}
     bool secondary(const Resource& set,const Resource& list,std::size_t index) {
-        auto& r=out.manager.records[index];auto& source=*out.sources[index];
-        const auto mapped=player_selection::remap_area(r.field2f,context.area);
-        if(const auto* e=std::get_if<player_selection::Error>(&mapped))
-            throw Failure{Error{ErrorCode::selection_failure,"Area remap rejected",
-                group_index,record_index,{},*e}};
-        const auto group=std::get<Word>(mapped);source.remapped_group=group;
-        if(group>=set.group_count())return false; // Both original getters return null.
-        const auto g=require(set.group(group));const auto ordinal=*r.field57;
-        // Original getters do not check this bound. Do not convert an unknown
-        // read past an admitted descriptor table into the source's null branch.
-        if(ordinal>=g.positions.size()||ordinal>=g.choices.size())
-            fail(ErrorCode::unsupported_descriptor,"Remapped ordinal escapes admitted descriptor table");
-        const auto positions=g.positions[ordinal].records;
-        const auto choices=g.choices[ordinal].records;
-        if(positions.empty()||choices.empty())return false;
-        const auto pi=random()%static_cast<Word>(positions.size());source.position_index=pi;
-        source.position=location(positions[pi]);
-        Word total=0;for(const auto& c:choices){charge(1);total+=read(c.raw,0,1);}
-        if(total==0)return false;
-        const Word remainder=random()%total;
-        Word cumulative=0;std::size_t ci=0;
-        for(;ci<choices.size();++ci){charge(1);cumulative+=read(choices[ci].raw,0,1);if(cumulative>=remainder)break;}
-        // With an immutable snapshot and total!=0, the last cumulative value
-        // equals total modulo2^32 and must exceed remainder, even after wrap.
-        const auto& choice=choices[ci];source.choice_index=static_cast<Word>(ci);
-        source.choice=location(choice);
-        const auto member=require(list.member(1,read(choice.raw,1,1)));
-        if(!member){++out.missing_members;return false;}
-        const auto& p=positions[pi];r.field1c_bits=0x4628c000;
-        for(unsigned k=0;k<3;++k)r.fields34[k]=read(p.raw,4*k,4);
-        r.field4c_bits=read(p.raw,12,4);r.field50_bits=read(p.raw,16,4);
-        r.fields40={read(p.raw,20,2),read(p.raw,22,2),Word(0)};
-        r.field56=static_cast<std::uint8_t>(read(p.raw,24,1));
-        r.field28=wl::Field28{member->reference};
-        r.field30=signed_byte(static_cast<std::uint8_t>(read(choice.raw,2,1)));
-        r.field32=signed_byte(static_cast<std::uint8_t>(read(choice.raw,3,1)));
-        r.field54=static_cast<std::uint8_t>(read(choice.raw,4,1));
-        r.field55=static_cast<std::uint8_t>(read(choice.raw,5,1));return true;
+        auto allowance=limits;allowance.records-=work;
+        item_pop_secondary::Environment environment{&out.manager,&set,&list,context.area};
+        auto result=item_pop_secondary::initialize(out.manager.records[index],out.global,out.manager,environment,allowance);
+        if(const auto* e=std::get_if<item_pop_secondary::Error>(&result)){
+            // Translate the existing builder contract, preserving the producing cause.
+            auto code=ErrorCode::secondary_failure;
+            switch(e->code){
+            case item_pop_secondary::ErrorCode::resource_limit:code=ErrorCode::resource_limit;break;
+            case item_pop_secondary::ErrorCode::resource_failure:code=ErrorCode::resource_failure;break;
+            case item_pop_secondary::ErrorCode::selection_failure:code=ErrorCode::selection_failure;break;
+            case item_pop_secondary::ErrorCode::unsupported_descriptor:code=ErrorCode::unsupported_descriptor;break;
+            default:break;
+            }
+            throw Failure{Error{code,e->field,group_index,record_index,e->resource,e->selection,*e}};
+        }
+        auto initialized=std::get<item_pop_secondary::Output>(std::move(result));
+        work+=initialized.work;out.rng_calls+=initialized.rng_calls;
+        out.missing_members+=initialized.missing_members;
+        out.manager.records[index]=std::move(initialized.record);out.global=std::move(initialized.global);
+        out.sources[index]->secondary=std::move(initialized.selection);
+        return initialized.initialized;
     }
     Built run(const Resource* set,const Resource* list) {
         // Includes both per-slot identities, one temporary Member and the
         // terminating bytes. No source/resource storage is copied into Built.
-        constexpr auto output_budget=sizeof(Built)+(wl::Manager::capacity*2+1)*65;
+        constexpr auto output_budget=sizeof(Built)+sizeof(item_pop_secondary::Output)+(wl::Manager::capacity*2+4)*65;
         if(output_budget>limits.representation_bytes)
             fail(ErrorCode::resource_limit,"Builder output exceeds representation policy");
         out.global=context.global;out.manager.head=wl::Absent{};
@@ -145,7 +119,7 @@ struct Builder {
                 if(!member){++out.missing_members;continue;}
                 const auto allocated=allocate();if(!allocated)continue;
                 const auto index=*allocated;auto& r=out.manager.records[index];
-                out.sources[index]=SlotSource{g,source_group,*record_index,{},{},{},location(p),{},{},std::string(set->sha256())};
+                out.sources[index]=SlotSource{g,source_group,*record_index,PrimarySource{location(p),std::string(set->sha256())},{}};
                 r.field2e=1;r.field2f=static_cast<std::uint8_t>(g);
                 r.field30=signed_byte(p.bytes1c[0]);r.field32=signed_byte(p.bytes1c[1]);
                 for(unsigned k=0;k<3;++k)r.fields34[k]=p.position_bits[k];
@@ -157,7 +131,7 @@ struct Builder {
             for(Word i=0;i<group.secondary_count;++i){
                 record_index=i;charge(1);const auto allocated=allocate();if(!allocated)continue;
                 const auto index=*allocated;auto& r=out.manager.records[index];
-                out.sources[index]=SlotSource{g,source_group,i,{},{},{},{},{},{},std::string(set->sha256())};
+                out.sources[index]=SlotSource{g,source_group,i,{},{}};
                 r.field2e=2;r.field2f=static_cast<std::uint8_t>(g);r.field57=static_cast<std::uint8_t>(i);
                 if(secondary(*set,*list,index))link(index);else ++out.failed_secondary;
             }
@@ -169,7 +143,7 @@ struct Builder {
 Result build_fresh(const Resource* set,const Resource* list,const Context& context,Limits limits) {
     try{return Builder{context,limits,{},{},{},{}}.run(set,list);}
     catch(const Failure& f){return f.error;}
-    catch(const std::bad_alloc&){return Error{ErrorCode::resource_limit,"Cannot allocate builder output",{},{},{},{}};}
-    catch(const std::length_error&){return Error{ErrorCode::resource_limit,"Builder output exceeds host capacity",{},{},{},{}};}
+    catch(const std::bad_alloc&){return Error{ErrorCode::resource_limit,"Cannot allocate builder output",{},{},{},{},{}};}
+    catch(const std::length_error&){return Error{ErrorCode::resource_limit,"Builder output exceeds host capacity",{},{},{},{},{}};}
 }
 } // namespace mh4u::item_pop_builder

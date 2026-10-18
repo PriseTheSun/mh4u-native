@@ -1,4 +1,5 @@
 #include "player_policy_interpreter.hpp"
+#include "player_status_predicates.hpp"
 #include <algorithm>
 #include <bit>
 #include <cfenv>
@@ -108,9 +109,11 @@ class Evaluation {
         case 0x12:return read(x.pw.field188,"pw+188")>49?Gate::accept:Gate::clear;
         case 0x24:return read(x.pbw.field478,"pbw+478")&0x20U?Gate::accept:Gate::clear;
         case 0x27:return read(x.pbw.field93ee,"pbw+93ee")!=0?Gate::accept:Gate::clear;
-        case 0x2a:
-            if(read(x.pw.field224,"pw+224")>0)return Gate::accept;
-            return t.pbw.field371==6&&one_of(t.pbw.field372,{0x27,0x28,0x2a,0x2b,0x2c,0x2d,0x2e,0x2f,0x3f})?Gate::accept:Gate::clear;
+        case 0x2a:{
+            const auto accepted=player_status_predicates::status224(x.pw.field224,t.pbw);
+            if(!accepted){fail(ErrorCode::unknown_field,"pw+224");return Gate::skip;}
+            return *accepted?Gate::accept:Gate::clear;
+        }
         case 0x2e:x.pbw.field6fc=1;return read(x.pbw.field6fb,"pbw+6fb")!=0?Gate::accept:Gate::clear;
         case 0x2f:
             if(!one_of(read(c.context_ad24,"context+ad24"),{4,5,6,7}))return Gate::clear;

@@ -31,6 +31,18 @@ bool local_control(const GlobalFields& global,const PbwFields& pbw) noexcept {
     const auto signed_index=global.field2f<128?int(global.field2f):int(global.field2f)-256;
     return signed_index==int(pbw.field33);
 }
+bool state_action_gate(const PbwFields& pbw,std::uint32_t argument) noexcept {
+    switch(pbw.field371){
+    case 0:return pbw.field372>=114 && pbw.field372<=119;
+    case 2:return pbw.field372==21 && argument==0;
+    case 4:return pbw.field372==107 || pbw.field372==108;
+    case 6:return pbw.field372==82;
+    default:return false;
+    }
+}
+bool type13_flag(const PbwFields& pbw,const PwFields& pw,std::uint32_t selector) noexcept {
+    return pbw.field31==13&&selector<3&&(pw.field1f4&(0x00400000U<<selector))!=0;
+}
 std::string_view error_name(ErrorCode code) noexcept {
     switch(code) {
     case ErrorCode::invalid_expected:return "invalid_expected";

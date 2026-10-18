@@ -218,18 +218,19 @@ void run(const char* recipe,const pt::Constants& constants,const tbl::Table& tab
   x.pw.field7f0=0;x.pbw.field478=0;x.pw.field6a8=1;x.pw.field6a4_bits=bits(1000);
   init.state1_fields.field50_bits=bits(20);return init;
  };
- std::array<oq::Slot,32> empty_manager;for(auto& slot:empty_manager)slot=oq::Absent{};
+ oq::Collection empty_manager;empty_manager.slots.fill(oq::Absent{});
  na::PlayerState1Context id2_context;id2_context.delta_time_bits=one;id2_context.context_ad50=0;
- id2_context.manager=std::span<const oq::Slot>{empty_manager};
+ id2_context.manager=&empty_manager;
  for(unsigned branch=0;branch<3;++branch){
   auto init=id2_initial();
   if(branch==0){init.shared_fields.pbw.field14_bits=bits(200);init.shared_fields.pw.field6a4_bits=bits(100);}
   if(branch==1)init.shared_fields.pbw.field354_bits=bits(100);
-  auto manager=empty_manager;oq::Object candidate;candidate.field140=1;candidate.field1b4=1;
+  auto manager=empty_manager;oq::DataFields candidate;candidate.field140=1;candidate.field1b4=1;
   candidate.field34c=1;candidate.field290=2;candidate.field1c0=0;candidate.field14c=0;
-  candidate.position_bits=std::array<std::uint32_t,3>{0,bits(20),bits(-100)};
-  manager[15]=candidate;auto disabled=candidate;disabled.field140=0;manager[0]=disabled;
-  auto ctx=id2_context;if(branch==2)ctx.manager=std::span<const oq::Slot>{manager};
+  candidate.position_bits={0,bits(20),bits(-100)};
+  manager.slots[15]=oq::ObjectIndex{0};manager.objects[0].data=oq::DataIndex{0};manager.data[0]=candidate;
+  manager.slots[0]=oq::ObjectIndex{1};manager.objects[1].data=oq::DataIndex{1};manager.data[1]=candidate;manager.data[1].field140=0;
+  auto ctx=id2_context;if(branch==2)ctx.manager=&manager;
   auto player=make(init,banks());const auto old=player.state();
   const auto out=value<na::PlayerState1Output>(player.dispatch_state1(tables,params.templates,ctx));
   check(out.effects.cost_calls==1&&out.effects.cost_updates==1&&out.effects.position_updates==1,"ID2 did not execute original cost/position owners");

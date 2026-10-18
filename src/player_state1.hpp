@@ -73,7 +73,9 @@ struct Error {
     Cause cause;
 };
 using Result=std::variant<Output,Error>;
-// b66a20 -> b6a424 selected state1 handlers. Entry substate0 composes the
+// b66a20 -> b6a424 selected state1 handlers, plus the exact state3 BX LR.
+// State3 performs only the shared dispatcher clear of376; all other states
+// remain unsupported until their actual targets are recovered. Entry substate0 composes the
 // real motion-command owner and the post-request tail, including setter refusal
 // and if_changed skipping the setter. Continuations1/4/9 compose the original
 // gates, heading, direct transition and selection wrapper. ID2 also composes

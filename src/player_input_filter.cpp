@@ -1,6 +1,11 @@
 #include "player_input_filter.hpp"
 
 namespace mh4u::player_input_filter {
+std::variant<bool,Error> query_manager(const Manager& manager,ManagerQuery query) noexcept {
+    if(!manager.ad24)return Error{ErrorCode::unknown_field,"contextAD24"};
+    const auto value=*manager.ad24;
+    return value>=(query==ManagerQuery::pre_action?3:4) && value<=7;
+}
 namespace {
 constexpr std::size_t base=player_input_storage::first;
 // VCMPE/BGT and VCMPE/BLE, under the nontrapping gradual binary32
@@ -114,8 +119,9 @@ struct Evaluation {
     BlockResult run() noexcept {
         effects.local=local();if(!effects.local)return finish();
         if(ordered_positive(read(facts.pw13c_bits,"PW13c")) || external()){clear();return finish();}
-        const auto selector=read(context.manager.ad24,"contextAD24");
-        if((selector>=4 && selector<=7) || ordered_positive(read(facts.pbw464_bits,"PBW464"))){clear();restore();}
+        const auto queried=query_manager(context.manager,ManagerQuery::restore_input);
+        if(const auto* failure=std::get_if<Error>(&queried)){if(!error)error=*failure;return finish();}
+        if(std::get<bool>(queried) || ordered_positive(read(facts.pbw464_bits,"PBW464"))){clear();restore();}
         effects.suppressed=suppress();if(effects.suppressed)suppress_writes();
         return finish();
     }

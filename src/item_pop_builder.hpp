@@ -1,6 +1,5 @@
 #pragma once
-#include "item_pop_resources.hpp"
-#include "player_selection.hpp"
+#include "item_pop_secondary.hpp"
 
 namespace mh4u::item_pop_builder {
 using Word=std::uint32_t;
@@ -10,19 +9,17 @@ struct Context {
     Word id_counter{}; //5ba7b4 preserves the incoming manager+4a24.
     // Explicit snapshots of10e6370 and10e6270, never inferred BSS values.
     std::array<Word,3> position_template{},auxiliary_template{};
-    player_transition::GlobalFields global; // Sole owner of RNG channel1 (+22).
+    player_transition::GlobalFields global; // Canonical global owner, including RNG channel1 (+22).
     player_selection::AreaContext area; // Borrowed for this call only.
 };
-struct Location {
-    Word source_offset{},buffer_offset{};
-    bool operator==(const Location&)const=default;
+struct PrimarySource {
+    item_pop_secondary::Location location;
+    std::string set_sha256;
 };
 struct SlotSource {
     Word group_iteration{},group_index{},record_index{};
-    std::optional<Word> remapped_group,position_index,choice_index;
-    std::optional<Location> primary,position,choice;
-    // Identity of all above IPS locations; IPL identity lives only in field28.
-    std::string set_sha256;
+    std::optional<PrimarySource> primary;
+    std::optional<item_pop_secondary::Selection> secondary;
 };
 struct Built {
     player_world_lookup::Manager manager;
@@ -30,13 +27,14 @@ struct Built {
     std::array<std::optional<SlotSource>,player_world_lookup::Manager::capacity> sources{};
     std::size_t allocated{},missing_members{},failed_secondary{},capacity_skips{},rng_calls{};
 };
-enum class ErrorCode {wrong_kind,resource_limit,resource_failure,selection_failure,unsupported_descriptor};
+enum class ErrorCode {wrong_kind,resource_limit,resource_failure,selection_failure,unsupported_descriptor,secondary_failure};
 struct Error {
     ErrorCode code;
     std::string_view message;
     std::optional<Word> group_iteration,record_index;
     std::optional<item_pop_resources::Error> resource;
     std::optional<player_selection::Error> selection;
+    std::optional<item_pop_secondary::Error> secondary;
 };
 using Result=std::variant<Built,Error>;
 // Entire5ba7b4, including real5b928c semantics, for a fresh/unattached pool.

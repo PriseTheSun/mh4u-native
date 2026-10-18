@@ -25,9 +25,9 @@ std::uint32_t integer_float(std::int32_t value)noexcept{
     return sign|((exponent+127U)<<23)|(significand&0x7fffffU);
 }
 }
-Result<Table> Table::decode(std::span<const std::uint8_t> bytes,std::string_view expected){
+Result<Table> Table::decode(std::span<const std::uint8_t> bytes,std::string_view expected,DecodeLimits limits){
     try{
-        if(bytes.size()>maximum_source_bytes)return Error{ErrorCode::source_limit,"Carrier exceeds bounded49-slot profile",maximum_source_bytes};
+        if(bytes.size()>limits.source_bytes)return Error{ErrorCode::source_limit,"Carrier exceeds selected byte budget",limits.source_bytes};
         if(expected.size()!=64||!std::all_of(expected.begin(),expected.end(),[](char c){return(c>='0'&&c<='9')||(c>='a'&&c<='f');}))return Error{ErrorCode::invalid_expected,"Expected SHA256 must be64 lowercase hexadecimal digits"};
         const auto digest=picosha2::hash256_hex_string(bytes.begin(),bytes.end());
         if(digest!=expected)return Error{ErrorCode::hash_mismatch,"Policy bytes differ from expected SHA256"};
@@ -51,6 +51,21 @@ Result<Table> Table::decode(std::span<const std::uint8_t> bytes,std::string_view
 std::span<const std::uint8_t> Table::bytes()const noexcept{return data_->bytes;}
 std::span<const Record> Table::records()const noexcept{return data_->records;}
 Coverage Table::coverage()const noexcept{return data_->coverage;}
+Result<ScanRecord> Table::scan_record(std::size_t index)const noexcept{
+    const auto source=bytes();
+    // Check before multiplication, including a zero-length or truncated tail.
+    if(source.empty()||index>(source.size()-1)/record_bytes)
+        return Error{ErrorCode::incomplete_first_byte,"Missing reached scan record first byte",source.size()};
+    const auto offset=index*record_bytes;
+    ScanRecord out{source[offset],{},{},{}};
+    if(out.first==0xff)return out;
+    const auto word=[&](std::size_t field)->std::optional<std::uint16_t>{
+        if(source.size()-offset<field+2)return {};
+        return static_cast<std::uint16_t>(source[offset+field]|(std::uint16_t(source[offset+field+1])<<8));
+    };
+    out.action=word(2);out.flags06=word(6);out.flags0e=word(14);
+    return out;
+}
 std::string_view Table::sha256()const noexcept{return data_->digest;}
 std::uint64_t Table::identity()const noexcept{return data_->identity;}
 State install(TableReference table,std::int32_t delay)noexcept{

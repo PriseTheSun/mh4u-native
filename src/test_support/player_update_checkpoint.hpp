@@ -6,11 +6,107 @@
 #include <array>
 #include <vector>
 #include <stdexcept>
+#include <type_traits>
 namespace mh4u::test_player_checkpoint {
 namespace pcs=player_controller_step;namespace pf=player_fields;
 using U=std::uint32_t;using Bytes=std::vector<std::uint8_t>;using Arenas=std::array<Bytes,3>;
 inline U read(const Bytes& b,U o,U n=4){if(n>4||o>b.size()||n>b.size()-o)throw std::runtime_error("checkpoint read extent");U v{};for(U i=0;i<n;++i)v|=U(b[o+i])<<(8*i);return v;}
 struct Input{pcs::PlayerFields p;pf::Fields f;};
+// One test-only offset declaration for every shared optional field. Consumers
+// decode source observations and project native outputs through the same map.
+template<class Fields,class Visitor>inline void shared_fields(Fields& f,Visitor visit){
+ visit(f.pw.field1fc,2,0x1fc,4);visit(f.pw.field200,2,0x200,4);visit(f.pw.field586,2,0x586,2);
+ visit(f.pw.field9e8,2,0x9e8,1);
+ visit(f.pbw.field368_bits,1,0x368,4);
+ visit(f.pw.field17e,2,0x17e,2);
+ visit(f.pw.field190,2,0x190,2);visit(f.pw.field198,2,0x198,2);visit(f.pw.field240,2,0x240,2);
+ visit(f.pw.field29a,2,0x29a,2);visit(f.pw.field2a0,2,0x2a0,2);visit(f.pw.field2a2,2,0x2a2,2);
+ visit(f.pw.field1d0,2,0x1d0,1);visit(f.pw.field265,2,0x265,1);visit(f.pw.field299,2,0x299,1);
+ visit(f.pw.field5c_bits,2,0x5c,4);visit(f.pw.field68_bits,2,0x68,4);visit(f.pw.field6c_bits,2,0x6c,4);
+ visit(f.pw.field1a8_bits,2,0x1a8,4);visit(f.pw.field1b4_bits,2,0x1b4,4);visit(f.pw.field1c0_bits,2,0x1c0,4);
+ visit(f.pw.field268_bits,2,0x268,4);visit(f.pw.field28c_bits,2,0x28c,4);visit(f.pw.field2a4_bits,2,0x2a4,4);visit(f.pw.field29c_bits,2,0x29c,4);
+ visit(f.pw.field2c8_bits,2,0x2c8,4);visit(f.pw.field2cc_bits,2,0x2cc,4);visit(f.pw.field2f0_bits,2,0x2f0,4);visit(f.pw.field2fc_bits,2,0x2fc,4);
+ visit(f.pw.field940_bits,2,0x940,4);visit(f.pw.field948_bits,2,0x948,4);visit(f.pw.field950_bits,2,0x950,4);
+
+ visit(f.pw.field10_bits,2,0x10,4);visit(f.pw.fieldc0_bits,2,0xc0,4);visit(f.pw.field339,2,0x339,1);visit(f.pw.field80f,2,0x80f,1);
+ visit(f.pbw.field37c,1,0x37c,2);visit(f.pbw.field37e,1,0x37e,2);
+ visit(f.pbw.field380_bits,1,0x380,4);visit(f.pbw.field384_bits,1,0x384,4);
+ visit(f.pbw.field34e,1,0x34e,2);visit(f.pbw.field93e9,1,0x93e9,1);
+ for(U i=0;i<7;++i)for(U j=0;j<28;++j)visit(f.pbw.descriptors[i][j],1,(i?0x70+(i-1)*28:0x1c0)+j,1);
+ for(U i=0;i<256;++i)visit(f.pbw.words9404[i],1,0x9404+4*i,4);
+ for(U i=0;i<40;++i){visit(f.pbw.bonus236[i].id,1,0x236+4*i,2);visit(f.pbw.bonus236[i].value,1,0x238+4*i,2);}
+ for(U i=0;i<5;++i){visit(f.pbw.fields388_bits[i],1,0x388+4*i,4);visit(f.pw.fields248_bits[i],2,0x248+4*i,4);visit(f.pw.fields814[i],2,0x814+i,1);visit(f.pw.fields864_bits[i],2,0x864+4*i,4);}
+ visit(f.pw.field262,2,0x262,1);visit(f.pw.field805,2,0x805,1);visit(f.pw.field806,2,0x806,1);visit(f.pw.field81c,2,0x81c,1);visit(f.pw.fielda15,2,0xa15,1);
+ visit(f.pw.field274,2,0x274,1);visit(f.pw.field275,2,0x275,1);visit(f.pw.field276,2,0x276,1);
+ visit(f.pw.field278_bits,2,0x278,4);visit(f.pw.field284_bits,2,0x284,4);visit(f.pw.field288_bits,2,0x288,4);
+ visit(f.pw.field1a0_bits,2,0x1a0,4);visit(f.pw.field1a4_bits,2,0x1a4,4);
+ visit(f.pw.field294,2,0x294,2);visit(f.pw.field296,2,0x296,2);visit(f.pw.field4f8,2,0x4f8,4);visit(f.pw.field4fc,2,0x4fc,4);
+ visit(f.pbw.field464_bits,1,0x464,4);
+ visit(f.pbw.field54_bits,1,0x54,4);
+ visit(f.pbw.field10_bits,1,0x10,4);
+ visit(f.pbw.field14_bits,1,0x14,4);
+ visit(f.pbw.field18_bits,1,0x18,4);
+ visit(f.pbw.field1c_bits,1,0x1c,4);
+ visit(f.pbw.field354_bits,1,0x354,4);
+ visit(f.pbw.field478,1,0x478,4);
+ visit(f.pbw.field6e8_bits,1,0x6e8,4);
+ visit(f.pbw.field6ec_bits,1,0x6ec,4);
+ visit(f.pbw.field6f0_bits,1,0x6f0,4);
+ visit(f.pbw.field6f4_bits,1,0x6f4,4);
+ visit(f.pbw.field6fb,1,0x6fb,1);
+ visit(f.pbw.field6fc,1,0x6fc,1);
+ visit(f.pbw.field93ee,1,0x93ee,1);
+ visit(f.pbw.field93f1,1,0x93f1,1);
+ visit(f.pbw.field37a,1,0x37a,1);
+ visit(f.pbw.field6c0,1,0x6c0,1);
+ visit(f.pw.field13c_bits,2,0x13c,4);
+ visit(f.pw.field14c,2,0x14c,4);
+ visit(f.pw.field154,2,0x154,4);
+ visit(f.pw.field15c_bits,2,0x15c,4);
+ visit(f.pw.field6a4_bits,2,0x6a4,4);
+ visit(f.pw.field1f8,2,0x1f8,4);
+ visit(f.pw.field220_bits,2,0x220,4);
+ visit(f.pw.field838_bits,2,0x838,4);
+ visit(f.pw.field5a8,2,0x5a8,4);
+ visit(f.pw.field9dc,2,0x9dc,1);
+ visit(f.pw.field9de,2,0x9de,1);
+ visit(f.pw.field9dd,2,0x9dd,1);
+ visit(f.pw.field150,2,0x150,1);
+ visit(f.pw.field158,2,0x158,1);
+ visit(f.pw.field159,2,0x159,1);
+ visit(f.pw.field15a,2,0x15a,1);
+ visit(f.pw.field6a8,2,0x6a8,1);
+ visit(f.pw.field7f0,2,0x7f0,1);
+ visit(f.pw.field01,2,1,1);
+ visit(f.pw.field0b,2,0xb,1);
+ visit(f.pw.field589,2,0x589,1);
+ visit(f.pw.field6a9,2,0x6a9,1);
+ for(U i=0;i<19;++i)for(U j=0;j<4;++j)visit(f.pbw.words3d8[i][j],1,0x3d8+4*i+j,1);
+ for(U i=0;i<99;++i)visit(f.pbw.input_other[i],1,player_input_storage::remaining_offsets[i],1);
+ visit(f.pbw.field3a8,1,0x3a8,2);
+ visit(f.pbw.field3ac,1,0x3ac,2);
+ visit(f.pbw.field3b8,1,0x3b8,2);
+ visit(f.pbw.field3bc,1,0x3bc,2);
+ visit(f.pbw.field34c,1,0x34c,2);
+ visit(f.pw.field188,2,0x188,2);
+ visit(f.pw.field224,2,0x224,2);
+ visit(f.pw.field238,2,0x238,2);
+ visit(f.pw.field0a,2,0xa,1);
+ visit(f.pw.field319,2,0x319,1);
+ visit(f.pw.field338,2,0x338,1);
+ visit(f.pw.field33a,2,0x33a,1);
+ visit(f.pw.fielda2c,2,0xa2c,1);
+ visit(f.pw.field31c,2,0x31c,4);
+ visit(f.pw.field324_bits,2,0x324,4);
+ visit(f.pw.field1b8_bits,2,0x1b8,4);
+ visit(f.pw.field1bc_bits,2,0x1bc,4);
+ visit(f.pw.field328_bits,2,0x328,4);
+ visit(f.pw.field32c_bits,2,0x32c,4);
+ visit(f.pw.field7fd,2,0x7fd,1);
+ visit(f.pw.field7f1,2,0x7f1,1);
+ visit(f.pw.field7f4,2,0x7f4,1);
+ for(U i=0;i<7;++i){visit(f.pbw.linked_records[i].present,1,0x7e84+792*i,4);visit(f.pbw.linked_records[i].flag,1,0x7e49+792*i,1);}
+}
 inline Input decode(const Arenas& a){Input x;auto& p=x.p;auto& f=x.f;const auto& b=a[1];const auto& w=a[2];
  for(U i=0;i<3;++i)p.fieldsd10[i]=read(a[0],0xd10+4*i);
  #define PB(name,offset,n) p.pbw.name=static_cast<decltype(p.pbw.name)>(read(b,offset,n))
@@ -28,20 +124,6 @@ inline Input decode(const Arenas& a){Input x;auto& p=x.p;auto& f=x.f;const auto&
  p.global={0xa5a5,0x39,0xe2,0xc5,0xd7};
  auto& s=p.selection_pbw;s.field370=std::uint8_t(read(b,0x370,1));s.field376=std::uint8_t(read(b,0x376,1));s.field6fa=std::uint8_t(read(b,0x6fa,1));s.field6f9=std::uint8_t(read(b,0x6f9,1));s.field358=read(b,0x358);s.field9=std::uint8_t(read(b,9,1));for(U i=0;i<20;++i)s.fields2fc[i]=std::uint16_t(read(b,0x2fc+2*i,2));
  auto& q=p.selection_pw;q.field170=read(w,0x170);q.field176=std::uint8_t(read(w,0x176,1));q.field1b0=read(w,0x1b0);q.field5b2=std::uint16_t(read(w,0x5b2,2));q.field5b4=std::uint16_t(read(w,0x5b4,2));q.field594=std::uint8_t(read(w,0x594,1));q.field9a8=std::uint8_t(read(w,0x9a8,1));q.fielda10=read(w,0xa10);q.field7fc=std::uint8_t(read(w,0x7fc,1));q.field800=read(w,0x800);
- #define B32(name,offset) f.pbw.name=read(b,offset)
- B32(field464_bits,0x464);B32(field54_bits,0x54);B32(field10_bits,0x10);B32(field14_bits,0x14);B32(field18_bits,0x18);B32(field1c_bits,0x1c);B32(field354_bits,0x354);B32(field478,0x478);B32(field6e8_bits,0x6e8);B32(field6ec_bits,0x6ec);B32(field6f0_bits,0x6f0);B32(field6f4_bits,0x6f4);
- #undef B32
- #define B8(name,offset) f.pbw.name=std::uint8_t(read(b,offset,1))
- B8(field6fb,0x6fb);B8(field6fc,0x6fc);B8(field93ee,0x93ee);B8(field93f1,0x93f1);B8(field37a,0x37a);B8(field6c0,0x6c0);
- #undef B8
- f.pbw.field3a8=std::uint16_t(read(b,0x3a8,2));f.pbw.field3ac=std::uint16_t(read(b,0x3ac,2));f.pbw.field3b8=std::uint16_t(read(b,0x3b8,2));f.pbw.field3bc=std::uint16_t(read(b,0x3bc,2));for(U i=0;i<19;++i)f.pbw.words3d8[i]=mh4u::player_input_storage::split(read(b,0x3d8+4*i));
- for(U i=0;i<99;++i)f.pbw.input_other[i]=std::uint8_t(read(b,mh4u::player_input_storage::remaining_offsets[i],1));
- #define W32(name,offset) f.pw.name=read(w,offset)
- W32(field13c_bits,0x13c);W32(field14c,0x14c);W32(field154,0x154);W32(field15c_bits,0x15c);W32(field6a4_bits,0x6a4);W32(field1f8,0x1f8);W32(field220_bits,0x220);W32(field838_bits,0x838);W32(field5a8,0x5a8);
- #undef W32
- #define W8(name,offset) f.pw.name=std::uint8_t(read(w,offset,1))
- W8(field9dc,0x9dc);W8(field9de,0x9de);W8(field9dd,0x9dd);W8(field150,0x150);W8(field158,0x158);W8(field159,0x159);W8(field15a,0x15a);W8(field6a8,0x6a8);W8(field7f0,0x7f0);W8(field01,1);W8(field0b,0xb);W8(field589,0x589);W8(field6a9,0x6a9);
- #undef W8
- f.pw.field188=std::int16_t(read(w,0x188,2));f.pw.field224=std::int16_t(read(w,0x224,2));f.pw.field238=std::int16_t(read(w,0x238,2));return x;
+ shared_fields(f,[&](auto& value,U arena,U offset,U width){using T=typename std::remove_reference_t<decltype(value)>::value_type;value=static_cast<T>(read(a[arena],offset,width));});return x;
 }
 }
