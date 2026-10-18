@@ -112,7 +112,7 @@ PlayerResult<Frame> Player::render(const pa::State& state,std::uint64_t complete
     Frame frame;frame.tick=completed;frame.samples=samples;
     const auto& layer=state.frame.animation.layers[0].animation.layer;
     frame.source_frame=layer.prepared_frame;frame.event_masks=layer.masks;frame.ended=(layer.attributes&4U)&&(layer.flags&4U);
-    auto result=data_->render(std::move(frame),Actor::Data::Matrices{std::span<const pa::JointOutput>(state.hierarchy.joints)},revision);
+    auto result=data_->render(std::move(frame),Actor::Data::Matrices{std::span<const model_animation_output::JointOutput>(state.hierarchy.joints)},revision);
     if(auto* e=std::get_if<Error>(&result))return PlayerError{PlayerErrorCode::render,"Player palette/skinning: "+e->message,{},*e};
     return std::get<Frame>(std::move(result));
 }

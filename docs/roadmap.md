@@ -27,8 +27,11 @@ comparações de custo, posição e contexto explícito. A consulta espacial sem
 cache continua em construção.
 Sua [interseção vertical nativa](spatial-triangle.md) já coincide com1.464
 consultas preservadas e102 hits; a enumeração de objetos/grupos e a escolha
-do resultado continuam separadas. A [ponte PBW/modelo](player-position-bridge.md)
-tem contrato estático recuperado, ainda sem executar o update completo.
+do resultado continuam separadas. A [consulta original sobre GRCO](player-spatial-context-v4.md)
+passou223 casos, com122 hits e101 misses, usando a grade real e contexto
+explícito. Ela fornece a próxima referência para busca e seleção nativas.
+A [ponte PBW/modelo](player-position-bridge.md) passou150 execuções originais
+com animação e publicação de juntas; sua versão nativa ainda está pendente.
 Scheduler e bootstrap permanecem necessários antes
 de ligar esse fluxo aos controles de gameplay.
 

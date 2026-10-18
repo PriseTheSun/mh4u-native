@@ -1,37 +1,17 @@
 #pragma once
 #include "player_controller_step.hpp"
 #include "player_state1.hpp"
-#include "model_animation_frame.hpp"
-#include "motion_transition.hpp"
-#include "joint_output.hpp"
+#include "model_animation_output.hpp"
 #include <array>
 #include <optional>
 #include <variant>
 
 namespace mh4u::player_animation {
-// Output-only joint fields. Pose has exactly one persistent owner:
-// State.frame.animation.joints. Metadata is canonical joint_update::Metadata.
-struct JointOutput {
-    joint_update::Metadata metadata;
-    joint_pose::Matrix matrix;
-    std::uint32_t depth{};
-    joint_output::Callback callback=joint_output::Callback::unknown;
-    joint_output::Owner owner=joint_output::Owner::unknown;
-    bool operator==(const JointOutput&) const=default;
-};
-struct Hierarchy {
-    joint_pose::Matrix local_rt,world;
-    std::uint32_t flags4{},flags104{},flags230{},attachment_index{},attachment_mode{};
-    std::uint8_t dirty{};
-    std::uint32_t fieldc4c{};
-    std::vector<JointOutput> joints;
-    joint_output::Order order=joint_pose::Unknown{};
-};
 struct State {
     model_animation_frame::State frame; // Exactly two active layers, canonical J/B/A.
     std::array<motion_pending::Layer,6> inactive; // Physical slots2..7, never active in this profile.
     player_controller_step::State controller; // Excludes shared layer1.weight.
-    Hierarchy hierarchy; // No second pose, model TRS, calculation flags or snapshots.
+    model_animation_output::Hierarchy hierarchy; // No second pose, model TRS, calculation flags or snapshots.
 };
 struct WrapperCommand {player_selection::Wrapper wrapper;player_selection::WrapperArguments arguments;};
 using Command=std::variant<player_selection::CommonArguments,WrapperCommand>;

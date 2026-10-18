@@ -8,8 +8,7 @@ namespace mh4u::player_animation {
 namespace {
 namespace pcs=player_controller_step;
 namespace mf=model_animation_frame;
-namespace mt=motion_transition;
-namespace jo=joint_output;
+namespace mo=model_animation_output;
 Error domain(DomainCode code,std::string_view message){return{Phase::domain,DomainError{code,message}};}
 Error capacity(){return domain(DomainCode::resource_limit,"Player animation exceeds its bounded storage/copy policy");}
 std::optional<Error> validate(const State& source,const Limits& limits,bool command=false){
@@ -46,30 +45,7 @@ void consume_command(State& destination,pcs::State controller,std::vector<motion
     for(std::size_t i=0;i<2;++i)destination.frame.animation.layers[i]=std::move(layers[i]);
     for(std::size_t i=0;i<6;++i)destination.inactive[i]=std::move(layers[i+2]);
 }
-jo::State project_output(const State& source){
-    const auto& h=source.hierarchy;jo::State result;
-    result.local_rt=h.local_rt;result.world=h.world;
-    result.scale={source.frame.model.scale[0],source.frame.model.scale[1],source.frame.model.scale[2]};
-    result.flags4=h.flags4;result.flags104=h.flags104;result.flags230=h.flags230;
-    result.flags238=source.frame.animation.calculation_flags;
-    result.attachment_index=h.attachment_index;result.attachment_mode=h.attachment_mode;
-    result.dirty=h.dirty;result.fieldc4c=h.fieldc4c;result.order=h.order;
-    result.joints.reserve(h.joints.size());
-    for(std::size_t i=0;i<h.joints.size();++i){const auto& joint=h.joints[i];
-        result.joints.push_back({source.frame.animation.joints[i],joint.metadata,joint.matrix,joint.depth,joint.callback,joint.owner});
-    }
-    return result;
-}
-void consume_output(State& destination,jo::State source){
-    auto& h=destination.hierarchy;h.local_rt=source.local_rt;h.world=source.world;
-    h.flags4=source.flags4;h.flags104=source.flags104;h.flags230=source.flags230;
-    h.attachment_index=source.attachment_index;h.attachment_mode=source.attachment_mode;
-    h.dirty=source.dirty;h.fieldc4c=source.fieldc4c;h.order=std::move(source.order);
-    for(std::size_t i=0;i<source.joints.size();++i){const auto& joint=source.joints[i];
-        destination.frame.animation.joints[i]=joint.pose;
-        h.joints[i]={joint.metadata,joint.matrix,joint.depth,joint.callback,joint.owner};
-    }
-}
+
 }
 Result apply(const State& source,const Command& command,const CommandContext& context,Limits limits){
     try{
@@ -113,20 +89,22 @@ Result step(const State& source,const FrameContext& context,Limits limits){
         Output out{source,std::nullopt,FrameEffects{frame.pending_found,frame.restored_joints,false,false,
             frame.joint_leaf,std::nullopt,frame.initializer_calls,frame.prepared_layers,frame.model_samples,
             frame.joint_samples,frame.loop_iterations,frame.event_queries,0,0}};
-        out.state.frame=std::move(frame.state);auto& animation=out.state.frame.animation;
-        const std::array<mt::LayerView,2> layers{{{animation.layers[0].animation.layer},{animation.layers[1].animation.layer}}};
-        const auto& model=out.state.frame.model;
-        auto blended=mt::apply(animation.joints,metadata,animation.snapshots,layers,
-            {model.rotation,{model.position[0],model.position[1],model.position[2]},animation.accumulated_flags},limits.transition);
-        if(auto* error=std::get_if<mt::Error>(&blended))return Error{Phase::transition,*error};
-        auto transition=std::get<mt::Output>(std::move(blended));animation.joints=std::move(transition.joints);
-        animation.accumulated_flags=transition.accumulated_flags;out.state.hierarchy.local_rt=transition.local_rt;
-        out.frame->blend_layer_found=transition.blend_layer_found;out.frame->blended_joints=transition.blended_joints;
-        auto projected=project_output(out.state);auto matrices=jo::apply(projected,context.output,limits.output);
-        if(auto* error=std::get_if<jo::Error>(&matrices))return Error{Phase::hierarchy,*error};
-        auto hierarchy=std::get<jo::Output>(std::move(matrices));out.frame->attachment_cleared=hierarchy.attachment_cleared;
-        out.frame->output_callback=hierarchy.selected;out.frame->output_joints=hierarchy.updated_joints;
-        consume_output(out.state,std::move(hierarchy.state));return out;
+        out.state.frame=std::move(frame.state);
+        auto published=mo::apply(out.state.frame,out.state.hierarchy,context.output,
+            {limits.frame.layers,limits.joints,limits.snapshots,limits.order,limits.transition,limits.output});
+        if(auto* error=std::get_if<mo::Error>(&published)){
+            if(auto* e=std::get_if<mo::DomainError>(&error->cause))return domain(
+                e->code==mo::DomainCode::joint_extent?DomainCode::joint_extent:DomainCode::resource_limit,e->message);
+            if(auto* e=std::get_if<motion_transition::Error>(&error->cause))return Error{Phase::transition,*e};
+            return Error{Phase::hierarchy,std::get<joint_output::Error>(error->cause)};
+        }
+        auto output=std::get<mo::Output>(std::move(published));
+        out.state.frame.animation.joints=std::move(output.joints);
+        out.state.frame.animation.accumulated_flags=output.accumulated_flags;
+        out.state.hierarchy=std::move(output.hierarchy);
+        out.frame->blend_layer_found=output.effects.blend_layer_found;out.frame->blended_joints=output.effects.blended_joints;
+        out.frame->attachment_cleared=output.effects.attachment_cleared;out.frame->output_callback=output.effects.output_callback;
+        out.frame->output_joints=output.effects.output_joints;return out;
     }catch(const std::bad_alloc&){return capacity();}catch(const std::length_error&){return capacity();}
 }
 Result tick(const State& source,const Command& command,const CommandContext& commands,const FrameContext& frame,Limits limits){

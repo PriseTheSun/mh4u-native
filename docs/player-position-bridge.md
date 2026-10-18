@@ -3,8 +3,9 @@
 A posição PBW10/14/18 não deve ser copiada para o renderer como um ajuste
 isolado. O código original passa por um estado intermediário em player+d00,
 aplica animação e só então publica novamente a posição do modelo e do PBW.
-Este documento fixa o fluxo observado estaticamente para a próxima composição
-nativa; não afirma execução desse update completo.
+O fluxo foi identificado estaticamente e depois executado no código ARM original,
+com recursos reais e estado de diagnóstico explícito. A composição nativa e o
+update completo que a envolve ainda estão pendentes.
 
 | Função | Escritas observadas |
 | --- | --- |
@@ -41,8 +42,39 @@ contra o ELF fixado. Evidence:
 - b07bb8: `ev_5a13ba24cf6b66425b93ab7da45a1179b66513a47a043ef7d1e00124ff797a4b`.
 
 O relatório `research/private/spatial-triangle-native-v1/position-bridge-source.json`
-fixa arquivos, hashes e cobertura. Esta auditoria reutiliza a sessão fechada
-1792300233949 e não executa ARM. Ainda faltam o contrato de b05350, os alvos
-dos slots virtuais no perfil concreto, a composição executável com9573b8 e a
-ordem completa de placement/scheduler. A cena do laboratório mantém sua
-política de apresentação explícita até essas dependências serem verificadas.
+fixa arquivos, hashes e cobertura dessa primeira auditoria estática. Ela reutiliza
+a sessão fechada1792300233949 e não executa ARM.
+
+## Execução original da ponte
+
+O conjunto separado `research/private/player-position-bridge-v1/` preserva150
+execuções completas em66 sequências de `b07c08→b06f8c→b07bb8`, sem substituir
+helpers ou alterar o PC. Usa body001 com19 juntas e os LMT54913 e92608.
+Os bancos, globals, PBW e estado inicial do modelo são explícitos de diagnóstico;
+não representam o startup recuperado do jogo.
+
+Em144 casos o fluxo passou pela animação9573b8; em141 houve publicação final
+via95b490→95b940. Em51 casos, tanto o PBW quanto a posição do modelo mudaram.
+Seis casos retornaram pelo gate `d64&0x8`, e três pularam a publicação final
+por `d64&0x2`. Os150 casos preservaram os campos opacos observados do PBW.
+Uma auditoria posterior conferiu cópia, interpolação, offsets e consumo
+condicional dos campos. Esses resultados são observações do ARM e uma auditoria
+das saídas; ainda não são equivalência de uma implementação C++ da ponte.
+
+As vtables `e6ed8c` e `e6bca4` selecionam95b490 no slot4c,95b940 no slot50
+e b05328 no slot80. O último retorna zero nesse perfil; b05350 continua pela
+conversão original6d4080 de ângulos para matriz e quaternion. Os oito readbacks
+REA da investigação somam3528bytes, conferidos contra o mesmo ELF.
+
+A futura implementação precisa conservar os donos existentes:
+
+- `motion_application::Model` guarda posição e rotação do modelo;
+- `motion_command::Fields.fieldsd48[1..6]` guarda d4c/d50/d54/d58/d5c/d60;
+- `player_controller_step::PlayerFields.fieldsd10` guarda d10/d14/d18;
+- o modo Euler nos16bits baixos de model38 deve ser distinto do attachment mode
+  nos16bits altos usado pela saída das juntas.
+
+A direção atualizada pelo ramo `d64&0x1` e a rota ativa de b06b38 continuam
+fora do perfil admitido. Também faltam a implementação nativa da ponte, sua
+integração no Player e a ordem completa de placement/scheduler. A cena do
+laboratório mantém sua política de apresentação explícita.

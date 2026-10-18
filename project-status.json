@@ -22,8 +22,8 @@
     "checksums": "tools/dependencies.lock.json"
   },
   "runtime": {
-    "macos_arm64": "Native laboratory0.17.0 retained open. Current source including state1 entries compiled;97/97 CTests passed in45.83s. No new gameplay loop or package released by the entry integration.",
-    "windows_x64": "Current source including state1 entries and actor integration cross-compiled for Windows x64 with no warnings; execution on Windows remains unavailable. Published package0.17.0 retained.",
+    "macos_arm64": "Published native laboratory0.17.0 retained open. Integrated source including spatial_triangle compiled;102/102 CTests passed in43.17s. This geometry component is not exposed by a new package or gameplay loop.",
+    "windows_x64": "Integrated source including spatial_triangle cross-compiled for Windows x64 with no warnings; Windows execution remains unavailable. Published package0.17.0 retained.",
     "scene": "real em062 actor: 12 joints, 1516 vertices, 1564 triangles, 28 source LMT actions; static OBJ samples retained",
     "texture_selector": "PNG replacement packs keyed by original encoded SHA256 work through common presentation materials, including native recipes. No HD pack included; original selector verification retained.",
     "controller_configuration": "movement/camera axes, deadzone and remapping implemented with backup; physical controller not available",
@@ -267,7 +267,10 @@
       "research/private/scene-validation/policy-interpreter-text-v1/manifest.json",
       "research/private/player-state1-runtime-v1/manifest.json",
       "research/private/player-state1-actor-v1/manifest.json",
-      "research/private/player-state1-continuation-v1/manifest.json"
+      "research/private/player-state1-continuation-v1/manifest.json",
+      "research/private/player-spatial-context-v4/manifest.json",
+      "research/private/player-position-bridge-v1/manifest.json",
+      "research/private/spatial-triangle-native-v1/manifest.json"
     ],
     "analysis_elf_checks": 23,
     "index_cli_tests": 7,
@@ -521,7 +524,7 @@
     "playable coop, synchronized actions and Internet transport",
     "Windows runtime validation"
   ],
-  "next": "Recover object+54 and its rCollision/tree binding to the original spatial containers; execute callback18dc48 to a complete query before implementing native uncached acquisition. Then recover scheduler/bootstrap and source-coordinate/input application to Player. Destination handlers, combat, quests, saves, full PT-BR, physical controller validation, Windows execution and playable Internet coop remain required.",
+  "next": "Compose the source-bound SBC resource, original grid traversal and hit selection for native uncached spatial acquisition; recover gameplay masks and live object/resource population. Verify the PBW-to-model animation bridge, then implement its native composition with the existing owners. Scheduler/bootstrap, destination handlers, combat, quests, saves, full PT-BR, physical controller validation, Windows execution and playable Internet coop remain required.",
   "roadmap": "docs/roadmap.md",
   "resource_index": {
     "archives": 10592,
@@ -1099,9 +1102,9 @@
   },
   "next_frontier": {
     "native_graphics": "Native geometry/palette/CPU skinning integrated. Original material pipeline, projection/camera, visibility policy and PICA precision remain separate unverified frontiers.",
-    "animation": "State1 entries and continuations1/2/4/9 compose native command, cost/position and explicit contexts. PBW-to-model synchronization source path is identified but not executed as a whole; recover orientation/virtual callbacks, full animation placement, bootstrap flags and scheduler timing.",
+    "animation": "PBW-to-model-to-PBW bridge completed150 original calls with real MOD/LMT and explicit initialization, including9573b8 and output callbacks. Implement native Euler orientation and wrapper composition with existing field/pose owners; direction-refresh/b06b38 paths, full placement, bootstrap and scheduler remain open.",
     "product": "Playable combat, quests, saves, full PT-BR and Internet cooperative play remain required for the original objective. Laboratory is not the completed port.",
-    "spatial": "Native finite vertical-triangle leaf validated. Original manager query follows compressed grid in the selected SBC; object/resource/tree population and full callbacks remain under investigation before native uncached acquisition."
+    "spatial": "Original manager/grid query completed223 times over real SBC;122hits/101misses in explicit masks/context. Native cc94f0 leaf validated separately. Port source-normal17fec8, GRCO traversal and hit selection with canonical SBC owner; retain unproven gameplay masks, transforms, scene population and Player uncached route."
   },
   "native_actor": {
     "documentation": "docs/native-actor-rendering.md",
@@ -1167,7 +1170,7 @@
     "original_bootstrap_scheduler_proven": false,
     "windows_execution": false
   },
-  "development_extension": "native-spatial-triangle-and-spatial-grid-research",
+  "development_extension": "native-spatial-triangle-and-original-grid-position-bridge",
   "player_state1": {
     "documentation": "docs/player-state1-native.md",
     "native": "src/player_state1.cpp",
@@ -1243,6 +1246,23 @@
       "loaded_scene_population_proven": false,
       "positive_collision_proven": false,
       "native_uncached_acquisition": false
+    },
+    "spatial_context_v4": {
+      "documentation": "docs/player-spatial-context-v4.md",
+      "evidence": "research/private/player-spatial-context-v4/manifest.json",
+      "original_complete_queries": 223,
+      "direct_queries": 211,
+      "wrapper_queries": 12,
+      "hits": 122,
+      "misses": 101,
+      "negative_controls": 6,
+      "artifact_audit_checks": 5414,
+      "original_instructions": 2591410,
+      "mapped_source_bytes": 34966,
+      "source_readbacks": 72,
+      "loaded_scene_population_proven": false,
+      "native_uncached_acquisition": false,
+      "scope": "Real compressed GRCO chooses source pair IDs. Explicit manager/resource relocations, masks and untransformed object. Original leaf17fec8 differs from cc94f0. No full loader or Player ID2 uncached path."
     }
   },
   "spatial_triangle": {
@@ -1260,21 +1280,37 @@
     "process_negatives_per_profile": 20,
     "native_boundaries": 88,
     "manager_integration": false,
-    "complete_gameplay": false
+    "complete_gameplay": false,
+    "integration_validation": {
+      "macos_ctest_passed": 102,
+      "macos_ctest_seconds": 43.17,
+      "macos_build_command_seconds": 46.457,
+      "windows_cross_build_command_seconds": 2.875,
+      "warnings": 0,
+      "windows_execution": false
+    }
   },
   "player_position_bridge": {
     "documentation": "docs/player-position-bridge.md",
-    "evidence": "research/private/spatial-triangle-native-v1/position-bridge-source.json",
-    "readbacks_revalidated": 3,
-    "source_bytes": 1416,
-    "arm_executions": 0,
+    "evidence": "research/private/player-position-bridge-v1/",
+    "static_probe": "research/private/spatial-triangle-native-v1/position-bridge-source.json",
+    "readbacks_revalidated": 8,
+    "source_bytes": 3528,
+    "arm_executions": 150,
+    "sequences": 66,
+    "frame_animation_cases": 144,
+    "joint_publication_cases": 141,
+    "moving_cases": 51,
+    "early_return_cases": 6,
+    "publication_skipped_cases": 3,
     "native_integration": false,
-    "order": "b07c08 PBW ->d00; b06f8c d00 ->model40, animation9573b8, copy/weightback andoffset; b07bb8 d00 ->PBW",
+    "order": "b07c08 PBW ->d00; b06f8c orientation and d00 ->model40, animation9573b8, copy/weightback and offset,95b490/95b940; b07bb8 d00 ->PBW",
     "remaining": [
-      "b05350 orientation",
-      "concrete virtual4c/50 callbacks",
-      "full9573b8 composition",
-      "placement/scheduler order"
-    ]
+      "native Euler orientation and wrapper composition",
+      "direction refresh d64&0x1",
+      "active b06b38 path",
+      "placement/scheduler order and startup"
+    ],
+    "scope": "Original isolated ABI calls, real body001 and2LMT resources, diagnostic globals/banks/state. No complete enclosing update or native equivalence claimed."
   }
 }

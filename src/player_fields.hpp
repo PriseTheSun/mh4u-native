@@ -12,6 +12,7 @@ struct PbwFields {
     std::optional<std::uint32_t> field14_bits,field478;
     std::optional<std::uint8_t> field6fb,field6fc,field93ee,field93f1;
     std::optional<std::uint32_t> field10_bits,field18_bits,field354_bits;
+    std::optional<std::uint32_t> field1c_bits; // PBW position W, published by b07bb8.
     bool operator==(const PbwFields&)const=default;
 };
 struct PwFields {

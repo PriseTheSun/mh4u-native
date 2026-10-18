@@ -22,11 +22,13 @@ aquisição espacial sem cache continuam pendentes no runtime.
 O módulo de [interseção vertical original](docs/spatial-triangle.md) passou
 1.464 consultas preservadas, com102 hits idênticos byte a byte. Ele ainda
 precisa ser composto com a busca de objetos e a seleção do resultado.
-A [ponte de posição](docs/player-position-bridge.md) identifica o fluxo
-PBW→modelo→PBW para a futura composição com animação e scheduler.
+A [ponte de posição](docs/player-position-bridge.md) foi executada em150 casos
+originais PBW→modelo→PBW, incluindo animação e publicação das juntas, sob
+estado inicial explícito. Sua implementação nativa e o scheduler permanecem pendentes.
 O launcher publicado permanece 0.17.0.
 Veja também o [catálogo v4](docs/localization-v4.md) e o
-[ensaio de construção e busca espacial](docs/player-spatial-context-v3.md).
+[ensaio da consulta espacial sobre a grade real](docs/player-spatial-context-v4.md),
+com223 retornos completos,122 hits e101 misses no código original.
 
 O novo [modo de inspeção do Player](docs/player-preview.md) permite pedidos
 manuais de estado, pausa e avanço por passo no caçador da vila. Usa o controlador,
